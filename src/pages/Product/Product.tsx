@@ -1,4 +1,5 @@
 import React from "react"
+import "./product.style.css"
 import { ProductInfo, ProductInfoProps } from "../../components/ProductInfo/ProductInfo"
 import Book from "../../assets/book_cover.jpg"
 const testProps: ProductInfoProps = {
@@ -13,7 +14,7 @@ const testProps: ProductInfoProps = {
 }
 const Product = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto glass-container p-2">
       <ProductInfo {...testProps} />
     </div>
   )
