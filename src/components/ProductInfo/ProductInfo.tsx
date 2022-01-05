@@ -12,13 +12,15 @@ export interface ProductInfoProps {
 }
 export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price }) => {
   return (
-    <div className="flex flex-row">
-      <div className="product-img-container flex flex-row justify-center mx-5 my-2">
+    <div className="grid grid-rows-6 md:grid-flow-col gap-4">
+      <div className="product-img-container row-span-6">
         <img src={thumbnail} alt="cover"></img>
       </div>
-      <div className=" flex flex-col justify-between ">
-        <div>
-          <h3>{title}</h3>
+      <div className="col-span-2 product-title flex flex-row items-center">
+        <h1 className="text-xl">{title}</h1>
+      </div>
+      <div className="row-span-5 col-span-2 flex flex-col justify-between">
+        <div className="product-detail">
           <p>แต่งโดย: {author}</p>
           <p>เนื้อหาโดยสังเขป:</p>
           <p>{summary}</p>
