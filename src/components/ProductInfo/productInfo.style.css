@@ -1,0 +1,10 @@
+.product-img-container {
+  max-width: 335px;
+  max-height: 335px;
+  background: var(--glass);
+}
+.product-img-container > img {
+  max-width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
