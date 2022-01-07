@@ -1,6 +1,4 @@
 .product-img-container {
-  max-width: 335px;
-  max-height: 335px;
   background: var(--glass);
 }
 .product-img-container > img {
@@ -9,7 +7,7 @@
   max-height: 335px;
   vertical-align: middle;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .product-title {
     order: -9999;
   }

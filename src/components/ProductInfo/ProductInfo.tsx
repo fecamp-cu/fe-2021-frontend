@@ -15,8 +15,8 @@ export interface ProductInfoProps {
 export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price, file }) => {
   return (
     <div>
-      <div className="grid grid-rows-6 md:grid-flow-col gap-4 mb-5">
-        <div className="product-img-container row-span-6">
+      <div className="grid sm:grid-rows-6 sm:grid-flow-col gap-4 mb-5">
+        <div className="product-img-container row-span-6 flex col-span-2 flex-row items-center justify-center">
           <img src={thumbnail} alt="cover"></img>
         </div>
         <div className="col-span-2 product-title flex flex-row items-center">
@@ -28,7 +28,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
             <p>เนื้อหาโดยสังเขป:</p>
             <p>{summary}</p>
           </div>
-          <div className="flex flex-col items-start order-first md:order-2">
+          <div className="flex flex-col items-start order-first sm:order-2">
             {type === "examPreps" ? (
               <>
                 {/* TODO: Style buttons */}
