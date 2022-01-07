@@ -57,7 +57,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
         </ol>
       </div>
       <div>
-        <h1 className="text-lg font-bold">ตัวอย่างหนังสือ:</h1>
+        <h1 className="text-lg font-bold">ตัวอย่าง{type === "examPreps" ? "หนังสือ" : "ข้อสอบ"}:</h1>
         <PDFView srcUrl={fileUrl} />
       </div>
     </div>
