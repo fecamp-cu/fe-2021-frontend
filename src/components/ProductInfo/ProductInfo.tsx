@@ -56,7 +56,10 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
           ))}
         </ol>
       </div>
-      <PDFView srcUrl={file} />
+      <div>
+        <h1 className="text-lg">ตัวอย่างหนังสือ:</h1>
+        <PDFView srcUrl={file} />
+      </div>
     </div>
   )
 }
