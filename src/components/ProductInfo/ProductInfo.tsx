@@ -1,4 +1,5 @@
 import React from "react"
+import { PDFView } from "../PDFView/PDFView"
 import "./productInfo.style.css"
 export interface ProductInfoProps {
   title: string
@@ -7,10 +8,11 @@ export interface ProductInfoProps {
   type: "oldPapers" | "examPreps"
   index: string[]
   thumbnail: string
-  file?: File
+  file?: string
   price?: number
+  //This is subject to change depending on how backend store data
 }
-export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price }) => {
+export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price, file }) => {
   return (
     <div>
       <div className="grid grid-rows-6 md:grid-flow-col gap-4 mb-5">
@@ -54,6 +56,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
           ))}
         </ol>
       </div>
+      <PDFView srcUrl={file} />
     </div>
   )
 }
