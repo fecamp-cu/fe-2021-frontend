@@ -1,0 +1,301 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;500&display=swap");
+#navContainer {
+    height: 168px;
+    padding-top: 1%;
+}
+
+#P-navbar {
+  position: absolute;
+  width: 100%;
+  height: 72px;
+  
+
+  background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.35) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 17px;
+}
+
+#homePage {
+  position: absolute;
+  left: 19.55%;
+  right: 75.58%;
+  top: 29.17%;
+  bottom: 29.17%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#logo {
+  position: absolute;
+  width: 199px;
+  left: 40px;
+  top: 22.22%;
+  bottom: 22.22%;
+
+  background: #ffffff;
+}
+
+#shop {
+  position: absolute;
+  left: 26.6%;
+  right: 66.86%;
+  top: 29.17%;
+  bottom: 29.17%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#register-UnLogin {
+  position: absolute;
+  left: 82.63%;
+  right: 10.83%;
+  top: 29.17%;
+  bottom: 29.17%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#register-Login {
+  position: absolute;
+  left: 74.64%;
+  right: 18.82%;
+  top: 29.17%;
+  bottom: 29.17%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#userName {
+  position: absolute;
+  left: 90.77%;
+  right: 2.81%;
+  top: 29.17%;
+  bottom: 29.17%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#userPic {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 1191px;
+  top: 11px;
+  left: 86.56%;
+  right: 9.81%;
+  top: 15.28%;
+  bottom: 15.28%;
+
+  background: #c4c4c4;
+}
+
+#enterTheLesson {
+  position: absolute;
+  left: 35.32%;
+  right: 57.19%;
+  top: 29.17%;
+  bottom: 29.17%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#dropDown {
+  width: 176px;
+  height: 86px;
+  margin-top: 5%;
+  margin-left: 87%;
+
+  background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.3) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+}
+
+#logout {
+  padding-left: 20%;
+  padding-top: 4%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#personal-info {
+  padding-left: 20%;
+  padding-top: 2%;
+
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+#vertical-bar {
+  width: 144px;
+  height: 1px;
+  margin-top: 4%;
+  margin-left: 7%;
+
+  /* white/500 */
+
+  background: #ffffff;
+}
+
+
+@media (max-width: 390px) {
+    #P-navbar {
+        position: absolute;
+        width: 100%;
+        height: 72px;
+        
+      
+        background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.35) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+        border: 1px solid #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+        /* Note: backdrop-filter has minimal browser support */
+      
+        border-radius: 17px;
+      }
+
+      #dropDown {
+        width: 100%;
+        height: 100%;
+        margin-top: 23%;
+        margin-left: 0%;
+        padding-left: 35%;
+        padding-top: 3%;
+      
+        background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.3) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+        border: 1px solid #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+
+        align-items: center;
+        text-align: center;
+      }
+      
+      #logout {
+        width: 120px;
+        height: 30px;
+        padding: 0;
+      
+        font-family: Noto Sans Thai;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+        display: flex;
+        align-items: left;
+        text-align: left;
+      
+        color: #ffffff;
+      }
+      
+      #personal-info {
+        width: 120px;
+        height: 30px;
+        padding: 0;
+      
+        font-family: Noto Sans Thai;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      
+        color: #ffffff;
+      }
+      
+      #vertical-bar {
+        width: 144px;
+        height: 1px;
+        margin-left: -9%;
+        margin-bottom: 3%;
+  
+      
+        /* white/500 */
+      
+        background: #ffffff;
+      }
+
+    
+
+}
