@@ -1,0 +1,12 @@
+.pdf-view > object,
+.pdf-view > object > iframe {
+  width: 100%;
+  height: 800px;
+}
+
+@media only screen and (max-width: 640px) {
+  .pdf-view > object,
+  .pdf-view > object > iframe {
+    height: 450px;
+  }
+}
