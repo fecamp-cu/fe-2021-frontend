@@ -4,7 +4,7 @@
   height: 800px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .pdf-view > object,
   .pdf-view > object > iframe {
     height: 450px;

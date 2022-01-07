@@ -11,7 +11,7 @@ const testProps: ProductInfoProps = {
   thumbnail: Book,
   index: ["ปรนัยตัวเลือก 10 ข้อ", "ปรนัยตัวเลือก 5 ข้อ", "เติมคำ 5 ข้อ"],
   price: 199,
-  file: "https://pdfgeneratorapi.com/example-documents/52272/pdf",
+  fileUrl: "https://pdfgeneratorapi.com/example-documents/52272/pdf",
 }
 const Product = () => {
   return (

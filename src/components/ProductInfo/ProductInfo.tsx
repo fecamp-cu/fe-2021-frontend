@@ -8,19 +8,19 @@ export interface ProductInfoProps {
   type: "oldPapers" | "examPreps"
   index: string[]
   thumbnail: string
-  file?: string
+  fileUrl?: string
   price?: number
   //This is subject to change depending on how backend store data
 }
-export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price, file }) => {
+export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price, fileUrl }) => {
   return (
-    <div>
-      <div className="grid sm:grid-rows-6 sm:grid-flow-col gap-4 mb-5">
+    <div style={{ color: "var(--white-400)" }}>
+      <div className="grid sm:grid-rows-6 sm:grid-flow-col gap-4 mb-8">
         <div className="product-img-container row-span-6 flex col-span-2 flex-row items-center justify-center">
           <img src={thumbnail} alt="cover"></img>
         </div>
         <div className="col-span-2 product-title flex flex-row items-center">
-          <h1 className="text-xl">{title}</h1>
+          <h1 className="text-xl font-bold">{title}</h1>
         </div>
         <div className="row-span-5 col-span-2 flex flex-col justify-between">
           <div className="product-detail">
@@ -46,8 +46,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
           </div>
         </div>
       </div>
-      <div>
-        <h1 className="text-lg">สารบัญ</h1>
+      <div className="mb-8">
+        <h1 className="text-lg font-bold">สารบัญ</h1>
         <ol>
           {index.map((text, i) => (
             <li key={`index-${i}`}>
@@ -57,8 +57,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
         </ol>
       </div>
       <div>
-        <h1 className="text-lg">ตัวอย่างหนังสือ:</h1>
-        <PDFView srcUrl={file} />
+        <h1 className="text-lg font-bold">ตัวอย่างหนังสือ:</h1>
+        <PDFView srcUrl={fileUrl} />
       </div>
     </div>
   )
