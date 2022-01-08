@@ -1,10 +1,21 @@
 import PropTypes, { string } from "prop-types"
 import { useState } from "react"
 import "./Navbar.css"
+import "../../index.css"
+import { useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
+import {MdLaunch} from "react-icons/md"
 
-function Navbar(props: any) {
-  const { isLogin, atPage } = props
+interface NavbarProps {
+  userName: string
+  isLogin: boolean
+}
+
+function Navbar(props: NavbarProps) {
+  const { userName, isLogin } = props
   const [hasDropdown, setHasDropDown] = useState(false)
+  const location = useLocation()
+  const atPage = location.pathname
 
   function clickPage(event: any) {
     console.log("click")
@@ -15,116 +26,135 @@ function Navbar(props: any) {
     //   window.location.reload();
   }
 
-  function showPictureProfile(isLogin: boolean) {
-    if (isLogin&& !hasDropdown) {
-      return <img className="rounded-circle d-inline-flex me-2" src="" width={50} height={50} alt="" id="picture"></img>
-    }
-  }
-
-  function showEnterTheLesson(isLogin: boolean) {
-    if (isLogin) {
-      return (
-        <li className="nav-item"><a className="pt-1 me-4" href="#" id="element">เข้าสู่บทเรียน</a></li>
-      )
-    }
-  }
-
-  function showDropDown(isLogin: boolean) {
-    if (isLogin) {
-      return (
-        <ul className="dropdown-menu mt-4" id="color-navbar">
-          <li>
-            <a className="dropdown-item ms-2" href="#">
-              ข้อมูลส่วนตัว
-            </a>
-            <hr></hr>
-            <a className="dropdown-item ms-2" href="#">
-              ออกจากระบบ
-            </a>
-          </li>
-        </ul>
-      )
-    }
-  }
-
-  function underlineHomePage(atPage:string){
-    if(atPage=="home"){
-      return " border-bottom"
-    }
-    return ""
-  }
-
-  function underlineShop(atPage:string){
-    if(atPage=="shop"){
-      return " border-bottom"
-    }
-    return ""
-  }
-
-  function setProfileCenter(hasDropdown:boolean){
-    if(hasDropdown){
-      return ""
-    }
-    return " d-inline-flex"
-  }
-
-  function showLogin(isLogin:boolean){
-    if(isLogin){
-      return (
-        <a className={"pt-1 me-4"+setProfileCenter(hasDropdown)} data-bs-toggle="dropdown" id="profile">
-                นายขยันอะ
-              </a>
-      )
-    }
-    return <a className={"pt-1 me-4"+setProfileCenter(hasDropdown)} data-bs-toggle="dropdown" id="profile">
-    เข้าสู่ระบบ
-  </a>
-  }
-
-
   return (
-    <nav className="navbar navbar-expand-lg sticky-top navbar-dark" id="color-navbar">
+    <nav
+      className="navbar navbar-expand-lg sticky-top navbar-dark"
+      style={{ background: "var(--gm-color)", top: "16px", margin: "15px" }}
+      id="border-navbar"
+    >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#" style={{height: "72px", width:"15%"}}>
+        <a className="navbar-brand" href="#" style={{ height: "54px", width: "18%" }}>
           Navbar
         </a>
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+          data-bs-toggle="dropdown"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
           onClick={clickPage}
         >
           <span className="navbar-toggler-icon"></span>
+        </button> */}
+        <button className="navbar-toggler" type="button" data-bs-toggle="dropdown" onClick={clickPage}>
+          <span className="navbar-toggler-icon"></span>
         </button>
+
+        <div className="dropdown-menu" style={{ background: "var(--gm-color)", width: "100%", margin: "10px 0px" }} id="border-drop">
+          <li className="dropdown-item">
+            <Link className={""} to={"/"} id="element">
+              หน้าแรก
+            </Link>
+          </li>
+          <hr></hr>
+          <li className="dropdown-item">
+            <Link className={""} to={"/shop"} id="element">
+              ร้านหนังสือ
+            </Link>
+          </li>
+          <hr></hr>
+          {isLogin ? (
+            <>
+            <li className="dropdown-item">
+              <Link className={""} to={"/lesson"} id="element">
+                เข้าสู่บทเรียน <MdLaunch/>
+              </Link>
+            </li>
+            <hr></hr>
+            </>
+          ) : (
+            <></>
+          )}
+        
+          {isLogin ? (
+            <>
+              <li className="dropdown-item">
+                <Link className={""} id="element" to={"/profile"}>
+                  ข้อมูลส่วนตัว
+                </Link>
+              </li>
+              <hr></hr>
+              <li className="dropdown-item">
+                <Link className={""} id="element" to={"/logout"}>
+                  ออกจากระบบ
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="dropdown-item">
+                <Link className={""} id="element" to={"/login"}>
+                  เข้าสู่ระบบ
+                </Link>
+              </li>
+            </>
+          )}
+        </div>
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav list-inline me-auto justify-content-star">
             <li className="nav-item">
-              <a className={"pt-1 me-4"+underlineHomePage(atPage)} href="#" id="element">
+              <Link className={"pt-1 me-4" + (atPage == "/" ? " border-bottom" : "")} to={"/"} id="element">
                 หน้าแรก
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className={"pt-1 me-4"+underlineShop(atPage)} href="#" id="element">
+              <Link className={"pt-1 me-4" + (atPage == "/shop" ? " border-bottom" : "")} to={"/shop"} id="element">
                 ร้านหนังสือ
-              </a>
+              </Link>
             </li>
-            {showEnterTheLesson(isLogin)}
+            {isLogin ? (
+              <li className="nav-item">
+                <Link className={"pt-1 me-4" + (atPage == "/lesson" ? " border-bottom" : "")} to={"/lesson"} id="element">
+                  เข้าสู่บทเรียน
+                </Link>
+              </li>
+            ) : (
+              <></>
+            )}
           </ul>
           <ul className="navbar-nav list-inline justify-content-end">
             <li className="nav-item">
-              <a className="pt-1 me-4" href="#" id="element">
+              <Link className={"pt-2 me-4" + (atPage == "/register" ? " border-bottom" : "")} to={"/register"} id="element">
                 สมัครค่าย
-              </a>
+              </Link>
             </li>
-            <li className="nav-item dropdown">
-              {showPictureProfile(isLogin)}
-              {showLogin(isLogin)}
-              {showDropDown(isLogin)}
-            </li>
+            {isLogin ? (
+              <>
+                <img className="rounded-circle d-inline-flex me-2" src="" width={50} height={50} alt="" id="picture"></img>
+                <li className="nav-item dropdown">
+                  <a className={"pt-2 me-4" + (hasDropdown ? "" : " d-inline-flex")} data-bs-toggle="dropdown" id="profile">
+                    {userName}
+                  </a>
+                  <ul className="dropdown-menu mt-3" style={{ background: "var(--gm-color)", margin: "0% 0% 0% -45%" }} id="border-drop">
+                    <li>
+                      <Link className="dropdown-item ms-2" to={"/profile"}>
+                        ข้อมูลส่วนตัว
+                      </Link>
+                      <hr></hr>
+                      <Link className="dropdown-item ms-2" to={"/logout"}>
+                        ออกจากระบบ
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              </>
+            ) : (
+              <Link className={"pt-2 me-4" + (atPage == "/login" ? " border-bottom" : "")} to={"/login"} id="element">
+                เข้าสู่ระบบ
+              </Link>
+            )}
           </ul>
         </div>
       </div>
@@ -132,18 +162,9 @@ function Navbar(props: any) {
   )
 }
 
-Navbar.propTypes = {
-  userName: PropTypes.string,
-  isLogin: PropTypes.bool,
-  atPage: PropTypes.string,
-  hasDropdown: PropTypes.bool,
-}
-
 Navbar.defaultProps = {
   userName: "นายขยันอะ",
   isLogin: false,
-  atPage: "Default",
-  hasDropdown: false,
 }
 
 export default Navbar
