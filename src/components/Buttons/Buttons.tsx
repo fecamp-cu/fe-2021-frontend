@@ -2,7 +2,7 @@ import React from "react";
 import './Buttons.style.css';
 
 interface ButtonProps {
-    children: string
+    children: any
     typeButton: string
     typeText: string
     onClick: any
