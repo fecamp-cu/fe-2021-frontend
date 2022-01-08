@@ -60,11 +60,6 @@
   width: 157px;
   height: 40px;
 
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
   border: 1px solid #ffffff;
   background-color: transparent;
   box-sizing: border-box;
@@ -83,10 +78,6 @@
   width: 157px;
   height: 40px;
 
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
 
   background: #ffffff;
   border-radius: 5px;
@@ -102,10 +93,6 @@
 
 .editProfileButton {
   position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
 
   width: 346px;
   height: 40px;
@@ -128,8 +115,6 @@
   position: absolute;
   width: 207px;
   height: 40px;
-  left: 247px;
-  top: 348px;
 
   /* white/500 */
 
@@ -149,8 +134,6 @@
   position: absolute;
   width: 207px;
   height: 40px;
-  left: 22px;
-  top: 348px;
 
   border: 1px solid #ffffff;
   box-sizing: border-box;
@@ -206,8 +189,6 @@
   position: absolute;
   width: 395px;
   height: 40px;
-  left: 493px;
-  top: 484px;
 
   border: 1px solid #ffffff;
   box-sizing: border-box;
@@ -224,8 +205,6 @@
   position: absolute;
   width: 395px;
   height: 40px;
-  left: 907px;
-  top: 484px;
 
   background: #ab3a41;
   border-radius: 5px;
@@ -243,8 +222,6 @@
   position: absolute;
   width: 809px;
   height: 40px;
-  left: 493px;
-  top: 542px;
 
   /* white/500 */
 
@@ -264,8 +241,6 @@
   position: absolute;
   width: 809px;
   height: 40px;
-  left: 493px;
-  top: 542px;
 
   border: 1px solid #ffffff;
   box-sizing: border-box;
@@ -283,8 +258,6 @@
   position: absolute;
   width: 454px;
   height: 40px;
-  left: 730px;
-  top: 369px;
 
   /* white/500 */
 
@@ -305,11 +278,6 @@
 
   width: 71px;
   height: 40px;
-
-  left: 80.62%;
-  right: 3.74%;
-  top: 57.54%;
-  bottom: 28.42%;
 
   /* medOfRedToPink */
 
@@ -444,32 +412,27 @@
     position: absolute;
     width: 330px;
     height: 30px;
-    left: 15px;
-    top: 422px;
   }
 
   .addToCartButton {
     position: absolute;
     width: 330px;
     height: 30px;
-    left: 15px;
-    top: 465px;
   }
 
   .priceButton {
     position: absolute;
     width: 330px;
     height: 30px;
-    left: 15px;
-    top: 508px;
+   
+
   }
 
   .testSampleButton {
     position: absolute;
     width: 330px;
     height: 30px;
-    left: 15px;
-    top: 422px;
+   
   }
 
   .applyText {
