@@ -1,0 +1,14 @@
+.product-img-container {
+  background: var(--glass);
+}
+.product-img-container > img {
+  max-width: 100%;
+  height: auto;
+  max-height: 335px;
+  vertical-align: middle;
+}
+@media only screen and (max-width: 640px) {
+  .product-title {
+    order: -9999;
+  }
+}
