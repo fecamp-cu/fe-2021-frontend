@@ -34,6 +34,7 @@ function Profile() {
           />
         ) : (
         <button
+          className="plusShow"
           onClick={(event) => {
             event.preventDefault();
             fileInputRef.current?.click();

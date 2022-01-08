@@ -18,6 +18,7 @@ const Example = () => {
         <AlertButton isEmergency message="This is just a proposed project structure, feel free to change it if you want">
           Example Button
         </AlertButton>
+        <Profile></Profile>
       </header>
     </div>
   )
