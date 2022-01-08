@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar"
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navbar isLogin={true} hasDropdown={true}/>}></Route>
+      <Route path="/" element={<Navbar isLogin={true} hasDropdown={true} atPage={"home"}/>}></Route>
       
     </Routes>
    

@@ -215,87 +215,65 @@
 }
 
 
-@media (max-width: 390px) {
-    #P-navbar {
-        position: absolute;
-        width: 100%;
-        height: 72px;
-        
-      
-        background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.35) 1.45%, rgba(255, 255, 255, 0.15) 100%);
-        border: 1px solid #ffffff;
-        box-sizing: border-box;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(10px);
-        /* Note: backdrop-filter has minimal browser support */
-      
-        border-radius: 17px;
-      }
 
-      #dropDown {
-        width: 100%;
-        height: 100%;
-        margin-top: 23%;
-        margin-left: 0%;
-        padding-left: 35%;
-        padding-top: 3%;
-      
-        background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.3) 1.45%, rgba(255, 255, 255, 0.15) 100%);
-        border: 1px solid #ffffff;
-        box-sizing: border-box;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-        border-radius: 12px;
+/* ------------------------------------------------ */
 
-        align-items: center;
-        text-align: center;
-      }
-      
-      #logout {
-        width: 120px;
-        height: 30px;
-        padding: 0;
-      
-        font-family: Noto Sans Thai;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 30px;
-        display: flex;
-        align-items: left;
-        text-align: left;
-      
-        color: #ffffff;
-      }
-      
-      #personal-info {
-        width: 120px;
-        height: 30px;
-        padding: 0;
-      
-        font-family: Noto Sans Thai;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 30px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-      
-        color: #ffffff;
-      }
-      
-      #vertical-bar {
-        width: 144px;
-        height: 1px;
-        margin-left: -9%;
-        margin-bottom: 3%;
-  
-      
-        /* white/500 */
-      
-        background: #ffffff;
-      }
+#color-navbar {
+  background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.35) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
 
+  border-radius: 17px;
+}
+
+a {
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+a.dropdown-item{
+  font-family: Noto Sans Thai;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+hr{
+  border-top: 2px solid white;
+}
+
+#picture{
+
+  background: #c4c4c4;
+
+}
+
+@media (max-width: 995px) {
+  a#element{
+    display: block;
+    border-bottom: 1px solid white;
     
+  }
+
+  a#profile{
+    display: block;
+  }
 
 }
