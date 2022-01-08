@@ -5,6 +5,7 @@ import "../../index.css"
 import { useLocation } from "react-router-dom"
 import { Link } from "react-router-dom"
 import {MdLaunch} from "react-icons/md"
+import {HiMenuAlt3} from "react-icons/hi"
 
 interface NavbarProps {
   userName: string
@@ -48,7 +49,7 @@ function Navbar(props: NavbarProps) {
           <span className="navbar-toggler-icon"></span>
         </button> */}
         <button className="navbar-toggler" type="button" data-bs-toggle="dropdown" onClick={clickPage}>
-          <span className="navbar-toggler-icon"></span>
+          <HiMenuAlt3 color="white" size="2.5rem"/>
         </button>
 
         <div className="dropdown-menu" style={{ background: "var(--gm-color)", width: "100%", margin: "10px 0px" }} id="border-drop">
@@ -117,7 +118,7 @@ function Navbar(props: NavbarProps) {
             {isLogin ? (
               <li className="nav-item">
                 <Link className={"pt-1 me-4" + (atPage == "/lesson" ? " border-bottom" : "")} to={"/lesson"} id="element">
-                  เข้าสู่บทเรียน
+                  เข้าสู่บทเรียน <MdLaunch/>
                 </Link>
               </li>
             ) : (
