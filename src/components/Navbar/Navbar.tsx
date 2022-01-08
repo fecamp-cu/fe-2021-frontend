@@ -1,9 +1,7 @@
-import PropTypes, { string } from "prop-types"
 import { useState } from "react"
 import "./Navbar.css"
 import "../../index.css"
-import { useLocation } from "react-router-dom"
-import { Link } from "react-router-dom"
+import { useLocation,Link } from "react-router-dom"
 import {MdLaunch} from "react-icons/md"
 import {HiMenuAlt3} from "react-icons/hi"
 
@@ -20,7 +18,7 @@ function Navbar(props: NavbarProps) {
 
   function clickPage(event: any) {
     console.log("click")
-    if (hasDropdown == true) {
+    if (hasDropdown === true) {
       return setHasDropDown(false)
     }
     return setHasDropDown(true)
@@ -106,18 +104,18 @@ function Navbar(props: NavbarProps) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav list-inline me-auto justify-content-star">
             <li className="nav-item">
-              <Link className={"pt-1 me-4" + (atPage == "/" ? " border-bottom" : "")} to={"/"} id="element">
+              <Link className={"pt-1 me-4" + (atPage === "/" ? " border-bottom" : "")} to={"/"} id="element">
                 หน้าแรก
               </Link>
             </li>
             <li className="nav-item">
-              <Link className={"pt-1 me-4" + (atPage == "/shop" ? " border-bottom" : "")} to={"/shop"} id="element">
+              <Link className={"pt-1 me-4" + (atPage === "/shop" ? " border-bottom" : "")} to={"/shop"} id="element">
                 ร้านหนังสือ
               </Link>
             </li>
             {isLogin ? (
               <li className="nav-item">
-                <Link className={"pt-1 me-4" + (atPage == "/lesson" ? " border-bottom" : "")} to={"/lesson"} id="element">
+                <Link className={"pt-1 me-4" + (atPage === "/lesson" ? " border-bottom" : "")} to={"/lesson"} id="element">
                   เข้าสู่บทเรียน <MdLaunch/>
                 </Link>
               </li>
@@ -127,7 +125,7 @@ function Navbar(props: NavbarProps) {
           </ul>
           <ul className="navbar-nav list-inline justify-content-end">
             <li className="nav-item">
-              <Link className={"pt-2 me-4" + (atPage == "/register" ? " border-bottom" : "")} to={"/register"} id="element">
+              <Link className={"pt-2 me-4" + (atPage === "/register" ? " border-bottom" : "")} to={"/register"} id="element">
                 สมัครค่าย
               </Link>
             </li>
@@ -152,7 +150,7 @@ function Navbar(props: NavbarProps) {
                 </li>
               </>
             ) : (
-              <Link className={"pt-2 me-4" + (atPage == "/login" ? " border-bottom" : "")} to={"/login"} id="element">
+              <Link className={"pt-2 me-4" + (atPage === "/login" ? " border-bottom" : "")} to={"/login"} id="element">
                 เข้าสู่ระบบ
               </Link>
             )}
