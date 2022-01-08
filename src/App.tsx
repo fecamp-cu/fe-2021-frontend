@@ -6,7 +6,7 @@ import Button from './components/Buttons/Buttons'
 function App() {
   return (
     <div className="App">
-      <Button typeButton={"applyButton"} typeText={"applyText"} onClick={""}>สมัครค่าย</Button>
+      <Button typeButton={"loginButton"} typeText={"redOrangeText"} onClick={""}>เข้าสู่ระบบ</Button>
     </div>
   );
 }
