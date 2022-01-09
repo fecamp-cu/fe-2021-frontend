@@ -29,5 +29,5 @@ spec:
             periodSeconds: 3
           resources:
             limits:
-              cpu: 500m
+              cpu: 300m
               memory: 500Mi
