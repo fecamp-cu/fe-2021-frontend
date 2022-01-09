@@ -21,3 +21,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
