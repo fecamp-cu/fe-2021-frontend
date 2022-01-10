@@ -15,4 +15,5 @@
   background: var(--gm-color);
   color: var(--white-400);
   border-radius: 5px;
+  transition: 0.3s;
 }
