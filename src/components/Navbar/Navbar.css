@@ -160,6 +160,10 @@ hr {
   flex-direction: row;
 }
 
+.border-bottom{
+  border-bottom: 1px solid #ffffff;
+}
+
 
 
 @media (max-width: 995px) {
