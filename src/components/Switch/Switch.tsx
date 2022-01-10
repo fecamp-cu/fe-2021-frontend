@@ -20,7 +20,7 @@ const Switch = ({ items, onSelectCallback }: SwitchProps) => {
   )
   return (
     <div className="flex justify-center">
-      <div className="flex switch">
+      <div className="flex switch w-full justify-center">
         {items.map((item) => (
           <button
             className={`flex justify-center items-center px-5 py-2`}

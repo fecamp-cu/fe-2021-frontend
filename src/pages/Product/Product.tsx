@@ -45,12 +45,12 @@ const Product = () => {
     else setProduct(testProps[0])
   }
   return (
-    <>
+    <div className="mx-4 sm:mx-12">
       <Switch items={switchItems} onSelectCallback={getProduct} />
-      <div className="mx-4 sm:mx-12 glass-container p-4 md:pt-8 mt-5">
+      <div className="glass-container p-4 md:pt-8 mt-5">
         <ProductInfo {...product} />
       </div>
-    </>
+    </div>
   )
 }
 
