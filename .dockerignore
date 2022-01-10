@@ -1,0 +1,9 @@
+build
+node_modules
+.dockerignore
+.gitignore
+.prettierrc
+Dockerfile
+k8s-dev.yml
+k8s-master.yml
+README.md

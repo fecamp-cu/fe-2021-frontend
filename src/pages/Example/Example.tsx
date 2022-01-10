@@ -2,6 +2,7 @@ import React from "react"
 import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
+import Footer from "../../components/Footer/Footer"
 
 const Example = () => {
   return (
