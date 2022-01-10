@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-import './AddToCartButton.style.css';
 import { IoMdBasket } from 'react-icons/io';
 
 
@@ -51,7 +50,7 @@ const WhiteText = styled.a`
   }
 `;
 
-const Logo = styled.img`
+const Logo = styled.div`
   margin-right: 10px;
   margin-bottom: 10px;
   
@@ -67,16 +66,5 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ onClick }) => {
   return <Button onClick={onClick}><WhiteText><Logo><IoMdBasket></IoMdBasket></Logo>เพิ่มลงตะกร้า</WhiteText></Button>
 
 }
-
-// interface AddToCartButtonProps {
-//     onClick: (e:React.MouseEvent<HTMLButtonElement>) => void
-
-//   }
-
-//   const AddToCartButton: React.FC<AddToCartButtonProps>=({onClick })=> {
-
-//     return <button className="addToCartButton" onClick={onClick}><p className="whiteNormalText"><IoMdBasket className="img"></IoMdBasket>เพิ่มลงตะกร้า</p></button>
-
-// }
 
 export default AddToCartButton
