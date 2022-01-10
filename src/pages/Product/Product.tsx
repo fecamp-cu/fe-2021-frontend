@@ -2,6 +2,7 @@ import React from "react"
 import "./product.style.css"
 import { ProductInfo, ProductInfoProps } from "../../components/ProductInfo/ProductInfo"
 import Book from "../../assets/book_cover.jpg"
+import Switch from "../../components/Switch/Switch"
 const testProps: ProductInfoProps = {
   title: "เตรียมสอบ PAT3 ความถนัดทางวิศวกรรมศาสตร์",
   summary:
@@ -15,9 +16,13 @@ const testProps: ProductInfoProps = {
 }
 const Product = () => {
   return (
-    <div className="container mx-auto glass-container p-4 md:pt-8">
-      <ProductInfo {...testProps} />
-    </div>
+    <>
+      <Switch items={["หนังสือหนังหา", "ข้อส่งข้อสอบ"]} selectedItem="หนังสือหนังหา" />
+
+      <div className="mx-4 sm:mx-12 glass-container p-4 md:pt-8 mt-5">
+        <ProductInfo {...testProps} />
+      </div>
+    </>
   )
 }
 

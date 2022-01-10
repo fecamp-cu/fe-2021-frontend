@@ -1,0 +1,18 @@
+.switch > :first-child {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.switch > :last-child {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.switch {
+  border-radius: 5px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+  color: var(--crimson);
+}
+#selected-tab {
+  background: var(--gm-color);
+  color: var(--white-400);
+  border-radius: 5px;
+}
