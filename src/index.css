@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
 @font-face {
   font-family: "CHULALONGKORN";
   src: local("CHULALONGKORN"), url("./assets/fonts/CHULALONGKORNReg.otf") format("opentype"),

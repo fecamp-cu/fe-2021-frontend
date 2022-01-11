@@ -19,7 +19,7 @@
 } */
 
 .loginButton {
-  position: absolute;
+
   width: 433px;
   height: 40px;
 
@@ -37,7 +37,7 @@
 }
 
 .cancelButton {
-  position: absolute;
+
   width: 335px;
   height: 40px;
   background-color: transparent;
@@ -55,7 +55,6 @@
 }
 
 .cancelSmallButton {
-  position: absolute;
 
   width: 157px;
   height: 40px;
@@ -73,7 +72,6 @@
 }
 
 .saveButton {
-  position: absolute;
 
   width: 157px;
   height: 40px;
@@ -91,7 +89,6 @@
 }
 
 .editProfileButton {
-  position: absolute;
 
   width: 346px;
   height: 40px;
@@ -111,7 +108,6 @@
 }
 
 .returnToMainButton {
-  position: absolute;
   width: 207px;
   height: 40px;
 
@@ -130,7 +126,6 @@
 }
 
 .goToProfileButton {
-  position: absolute;
   width: 207px;
   height: 40px;
 
@@ -147,7 +142,6 @@
 }
 
 .registerButton {
-  position: absolute;
   width: 335px;
   height: 40px;
 
@@ -166,7 +160,7 @@
 }
 
 .applyButton {
-  position: absolute;
+
   width: 194px;
   height: 67px;
 
