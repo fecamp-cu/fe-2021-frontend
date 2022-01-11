@@ -23,7 +23,7 @@ const Switch = ({ items, onSelectCallback }: SwitchProps) => {
       <div className="flex switch w-full justify-center">
         {items.map((item) => (
           <button
-            className={`flex justify-center items-center px-5 py-2`}
+            className={`flex justify-center items-center px-5`}
             onClick={() => onSelect(item)}
             key={item.title}
             id={selectedItem.title === item.title ? "selected-tab" : ""}

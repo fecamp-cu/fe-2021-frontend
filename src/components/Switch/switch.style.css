@@ -1,4 +1,6 @@
 .switch button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.2rem;
   height: auto;
   max-height: 40px;
   width: 100%;
