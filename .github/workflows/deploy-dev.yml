@@ -3,6 +3,7 @@ name: Build and Deploy to GKE
 env:
   GKE_CLUSTER: fecamp
   GKE_ZONE: asia-southeast1-a
+  GKE_DEPLOYMENT_NAME: fecamp-2021-backend
 
 on:
   push:
@@ -60,4 +61,4 @@ jobs:
       - name: Deploy
         run: |
           kubectl apply -f k8s-$BRANCH.yaml -n $BRANCH
-          kubectl rollout restart deployment/fecamp-2021-frontend -n $BRANCH
+          kubectl rollout restart deployment/$GKE_DEPLOYMENT_NAME -n $BRANCH
