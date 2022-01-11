@@ -14,7 +14,7 @@ function App() {
       {/* <Route path="/" element={<Example />}></Route> */}
       <Route path="/product" element={<Product />}></Route>
     </Routes>
-    <Product/>
+    <LandingPage/>
     </>
   )
 }
