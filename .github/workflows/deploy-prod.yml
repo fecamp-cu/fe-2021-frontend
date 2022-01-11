@@ -3,7 +3,7 @@ name: Build and Deploy to GKE
 env:
   GKE_CLUSTER: fecamp
   GKE_ZONE: asia-southeast1-a
-  GKE_DEPLOYMENT_NAME: fecamp-2021-backend
+  GKE_DEPLOYMENT_NAME: fecamp-2021-frontend
 
 on:
   push:
