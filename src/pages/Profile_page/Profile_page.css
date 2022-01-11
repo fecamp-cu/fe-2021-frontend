@@ -61,7 +61,7 @@
     line-height: 20px;
 }
 
-.formInput,.formInputNumber{
+.formInput{
     font-family: 'Bai Jamjuree', sans-serif;
     color: white;
     font-weight: 400;
@@ -74,12 +74,8 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.formInput::placeholder, .formInputNumber::placeholder{
+.formInput::placeholder{
     color: white;
-}
-
-.formInputNumber::-webkit-inner-spin-button,::-webkit-outer-spin-button{
-    -webkit-appearance: none;
 }
 
 .formSelect{

@@ -40,7 +40,7 @@ function Page(){
                     <div className="formRow">
                         <div className="formComponent">
                             <label className="formLabel">เบอร์โทรศัพท์</label>
-                            <input className="formInput" type="text" placeholder="เบอร์โทร" style={{width: 230}}></input>
+                            <input className="formInput" type="text" placeholder="เบอร์โทร" maxLength={10} style={{width: 230}}></input>
                         </div>
                         <div className="formComponent">
                             <label className="formLabel">อีเมล</label>
@@ -51,8 +51,14 @@ function Page(){
                         <div className="formComponent">
                             <label className="formLabel">ระดับชั้น</label>
                             <select className="formSelect" style={{width: 144}}>
+                                <option value="m4">ม.4</option>
                                 <option value="m5">ม.5</option>
                                 <option value="m6">ม.6</option>
+                                <option value="pwc">ปวช.</option>
+                                <option value="p1">ปี1</option>
+                                <option value="p2">ปี2</option>
+                                <option value="p3">ปี3</option>
+                                <option value="other">อื่นๆ</option>
                             </select>
                         </div>
                         <div className="formComponent">
@@ -81,7 +87,7 @@ function Page(){
                         </div>
                         <div className="formComponent">
                             <label className="formLabel">รหัสไปรษณีย์</label>
-                            <input className="formInputNumber" type="number" placeholder="ไปรษณีย์" maxLength={5} style={{width: 116}}></input>
+                            <input className="formInput" type="text" placeholder="ไปรษณีย์" maxLength={5} style={{width: 116}}></input>
                         </div>
                     </div>
                 </form>
