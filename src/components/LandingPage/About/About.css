@@ -50,6 +50,19 @@
   margin-bottom: 50px;
 }
 
+.row-image {
+  left: 0;
+  display: flex;
+  width: 300%;
+  overflow: hidden;
+  overflow-y: hidden;
+  animation-name: scroll;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  white-space: nowrap;
+}
+
 .activity-image {
   /* width: 1420px;
   height: 200px; */
@@ -60,14 +73,24 @@
   margin-left: auto;
   margin-right: auto; */
 
-  max-width: 1420px;
-
-  margin-left: auto;
-  margin-right: auto;
+  /* max-width: 1420px; */
+  height: 200px;
+  width: auto;
 }
 
 .activity-image2 {
+  height: 200px;
+  width: auto;
   display: none;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .img-container {

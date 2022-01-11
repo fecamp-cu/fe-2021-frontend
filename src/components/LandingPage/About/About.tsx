@@ -20,8 +20,21 @@ function About() {
             <h1 className="topic-text2">ภาพกิจกรรม</h1>
 
             <div className="img-container">
-                <img className="activity-image" src={activityPic} alt="activity-pic"></img>
-                <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
+                <div className="row-image">
+                    <img className="activity-image" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image" src={activityPic} alt="activity-pic"></img>
+                </div>
+                
+                <div className="row-image">
+                    <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
+                    <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
+                </div>
             </div>
 
             <div className="video-container">
