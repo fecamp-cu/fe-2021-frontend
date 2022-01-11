@@ -4,7 +4,7 @@ import { IoMdBasket } from 'react-icons/io';
 
 
 const Button = styled.button`
-  position: absolute;
+
   width: 395px;
   height: 40px;
 
@@ -20,7 +20,6 @@ const Button = styled.button`
   padding-top: 10px;
 
   @media (max-width: 390px) {
-    position: absolute;
     width: 330px;
     height: 30px;
 
@@ -28,7 +27,7 @@ const Button = styled.button`
 `;
 
 const WhiteText = styled.a`
-  position: absolute;
+
   font-family: CHULALONGKORN;
   font-style: normal;
   font-weight: normal;
@@ -43,7 +42,7 @@ const WhiteText = styled.a`
   color: #ffffff;
 
   @media (max-width: 390px) {
-    position: absolute;
+    
     font-size: 14px;
     line-height: 21px;
 
@@ -57,7 +56,7 @@ const Logo = styled.div`
 `;
 
 interface AddToCartButtonProps {
-  onClick: any
+  onClick: (e:React.MouseEvent<HTMLButtonElement>) => void
 
 }
 
