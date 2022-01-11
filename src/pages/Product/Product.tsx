@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import "./product.style.css"
 import { ProductInfo, ProductInfoProps } from "../../components/ProductInfo/ProductInfo"
 import Book from "../../assets/book_cover.jpg"
@@ -39,7 +39,13 @@ const Product = () => {
       value: PRODUCT_TYPE.oldPapers,
     },
   ]
-  const [product, setProduct] = useState<ProductInfoProps>(testProps[0])
+  const [product, setProduct] = useState<ProductInfoProps>()
+  useEffect(() => {
+    //mock api call
+    setTimeout(() => {
+      setProduct(testProps[0])
+    }, 300)
+  }, [])
   const getProduct = (value: string) => {
     //api calls?
     if (value === PRODUCT_TYPE.oldPapers) setProduct(testProps[1])
@@ -48,9 +54,7 @@ const Product = () => {
   return (
     <div className="mx-4 sm:mx-12">
       <Switch items={switchItems} onSelectCallback={getProduct} />
-      <div className="glass-container p-4 md:pt-8 mt-5">
-        <ProductInfo {...product} />
-      </div>
+      <div className="glass-container p-4 md:pt-8">{product ? <ProductInfo {...product} /> : <div>loading</div>}</div>
     </div>
   )
 }

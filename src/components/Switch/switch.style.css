@@ -1,4 +1,6 @@
 .switch button {
+  height: auto;
+  max-height: 40px;
   width: 100%;
 }
 .switch > :first-child {
