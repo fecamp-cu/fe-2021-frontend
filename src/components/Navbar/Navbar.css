@@ -12,7 +12,7 @@
   border-radius: 17px;
 }
 
-a {
+#element {
   font-family: Noto Sans Thai;
   font-style: normal;
   font-weight: 500;
@@ -38,7 +38,7 @@ a {
   color: #ffffff;
 }
 
-img {
+#picture {
   border-radius: 50%;
 }
 
