@@ -2,7 +2,7 @@ import React from "react"
 import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
-import Profile from "../../components/AlertButton/Profile_picture/Profile"
+import Profile from "../../components/Profile_picture/Profile"
 
 const Example = () => {
   return (
