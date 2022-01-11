@@ -1,0 +1,7 @@
+input[type=text]:focus {
+  border: 2px solid #ffffff;
+}
+
+select:focus {
+  color: black;
+}
