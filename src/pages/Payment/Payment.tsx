@@ -164,10 +164,20 @@ function Payment() {
 
           <h1 style={{ color: "white", marginTop: "19px" }}>เลือกที่อยู่จัดส่งพัสดุของคุณ</h1>
           <form action="">
-            <div style={{marginBottom:"36px"}}>
-              <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer" type="radio" name="selectAddress" style={{ marginRight: "17px", marginTop: "20px"}} />
+            <div style={{ marginBottom: "36px" }}>
+              <input
+                className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
+                type="radio"
+                name="selectAddress"
+                style={{ marginRight: "17px", marginTop: "20px" }}
+              />
               <WhiteLabel style={{ marginRight: "112px" }}>ที่อยู่ปัจจุบัน</WhiteLabel>
-              <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer" type="radio" name="selectAddress" style={{ marginRight: "17px" }} />
+              <input
+                className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
+                type="radio"
+                name="selectAddress"
+                style={{ marginRight: "17px" }}
+              />
               <WhiteLabel>ที่อยู่ใหม่</WhiteLabel>
             </div>
 
@@ -198,7 +208,7 @@ function Payment() {
             <div>
               <div>
                 <input
-                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                  className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
                   name="selectPayment"
                   style={{ marginRight: "17px", marginTop: "20px" }}
@@ -207,7 +217,7 @@ function Payment() {
               </div>
               <div>
                 <input
-                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                  className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
                   name="selectPayment"
                   style={{ marginRight: "17px", marginTop: "20px" }}
@@ -216,7 +226,7 @@ function Payment() {
               </div>
               <div>
                 <input
-                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                  className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
                   name="selectPayment"
                   style={{ marginRight: "17px", marginTop: "20px" }}

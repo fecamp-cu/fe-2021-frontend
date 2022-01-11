@@ -15,6 +15,8 @@ import ProfileShow from "./pages/Profile/ProfileShow"
 import ProfileEdit from "./pages/Profile/ProfileEdit"
 import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
+import ProductList from "./components/Product_list/ProductList"
+import facebookLogo from "./assets/book_cover.jpg"
 
 function App() {
   const location = useLocation()
