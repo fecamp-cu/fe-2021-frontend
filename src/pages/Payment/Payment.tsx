@@ -15,6 +15,7 @@ const PaymentComponentBackground = styled.div`
   margin-right: 118px;
 `
 
+
 const Header = styled.h1`
   padding-left: 15px;
   font-family: CHULALONGKORN;
