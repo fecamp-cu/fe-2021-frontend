@@ -33,11 +33,12 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
               {type === "examPreps" ? (
                 <>
                   {/* TODO: Style buttons */}
-                  <button>ดูตัวอย่างหนังสือ</button>
+                  <div className="flex justify-around w-full">
+                    <button>ดูตัวอย่างหนังสือ</button>
+                    <button>เพิ่มลงตะกร้า</button>
+                  </div>
 
-                  <button>เพิ่มลงตะกร้า</button>
-
-                  <button>ซื้อ {price} บาท</button>
+                  <button className="w-full text-center">ซื้อ {price} บาท</button>
                 </>
               ) : (
                 <>
