@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react"
-import "./product.style.css"
+import { ProductContainer } from "./product.style"
 import { ProductInfo, ProductInfoProps } from "../../components/ProductInfo/ProductInfo"
 import Book from "../../assets/book_cover.jpg"
 import Switch from "../../components/Switch/Switch"
 import { PRODUCT_TYPE } from "../../utils/enums"
+import { IoMdBasket } from "react-icons/io"
+import { Circle } from "../../components/Containers"
 const testProps: ProductInfoProps[] = [
   {
     title: "เตรียมสอบ PAT3 ความถนัดทางวิศวกรรมศาสตร์",
@@ -52,10 +54,17 @@ const Product = () => {
     else setProduct(testProps[0])
   }
   return (
-    <div className="mx-4 sm:mx-12">
-      <Switch items={switchItems} onSelectCallback={getProduct} />
-      <div className="glass-container p-4 md:pt-8">{product ? <ProductInfo {...product} /> : <div>loading</div>}</div>
-    </div>
+    <ProductContainer>
+      <div>
+        <Switch items={switchItems} onSelectCallback={getProduct} />
+        <div className="absolute right-8 top-32 hidden sm:block">
+          <Circle color="white">
+            <IoMdBasket size={40} color={"var(--crimson)"} />
+          </Circle>
+        </div>
+      </div>
+      <main className="glass-container p-4 md:pt-8">{product ? <ProductInfo {...product} /> : <div>loading</div>}</main>
+    </ProductContainer>
   )
 }
 
