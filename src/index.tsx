@@ -2,14 +2,14 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter } from "react-router-dom"
 import "./index.css"
-// import App from "./App"
 import Footer from "./components/Footer/Footer"
 import reportWebVitals from "./reportWebVitals"
+import App from "./App"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Footer />
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
