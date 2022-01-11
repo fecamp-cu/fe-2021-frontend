@@ -33,7 +33,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
               {type === "examPreps" ? (
                 <>
                   {/* TODO: Style buttons */}
-                  <div className="flex justify-around w-full">
+                  <div className="flex flex-col sm:flex-row justify-around w-full">
                     <button>ดูตัวอย่างหนังสือ</button>
                     <button>เพิ่มลงตะกร้า</button>
                   </div>
