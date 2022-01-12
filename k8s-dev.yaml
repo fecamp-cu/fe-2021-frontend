@@ -1,0 +1,36 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: fecamp-2021-frontend
+  namespace: dev
+  labels:
+    app: fecamp-2021-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fecamp-2021-frontend
+  template:
+    metadata:
+      labels:
+        app: fecamp-2021-frontend
+    spec:
+      containers:
+        - name: fecamp-2021-frontend
+          image: ghcr.io/fecamp-cu/fe-2021-frontend:dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 80m
+              memory: 256Mi

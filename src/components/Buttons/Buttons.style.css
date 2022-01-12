@@ -1,0 +1,442 @@
+/* @font-face {
+  font-family: "CHULALONGKORN";
+  src: local("CHULALONGKORN"), url("./assets/fonts/CHULALONGKORNReg.otf") format("opentype"),
+    url("./assets/fonts/CHULALONGKORNBold.otf") format("opentype");
+}
+* {
+  font-family: "CHULALONGKORN";
+}
+:root {
+  --glass: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
+  --gm-color: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.22) 100%);
+  --crimson: #8b0000;
+  --bg-color: linear-gradient(180deg, #9b2c33 0%, #d1555d 49.48%, #ea727f 99.88%);
+  --pink-red: linear-gradient(90deg, #d46c86 0%, #8b0000 100%);
+  --red-orange: linear-gradient(93.44deg, #af3b43 5.21%, #ea727f 98.99%);
+  --white-200: #e8e8e8;
+  --white-400: #f5f5f5;
+  --white-500: #ffffff;
+} */
+
+.loginButton {
+  position: absolute;
+  width: 433px;
+  height: 40px;
+
+  /* white/500 */
+
+  background: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 11px;
+}
+
+.cancelButton {
+  position: absolute;
+  width: 335px;
+  height: 40px;
+  background-color: transparent;
+
+  /* white/500 */
+
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.cancelSmallButton {
+  position: absolute;
+
+  width: 157px;
+  height: 40px;
+
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.saveButton {
+  position: absolute;
+
+  width: 157px;
+  height: 40px;
+
+  background: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.editProfileButton {
+  position: absolute;
+
+  width: 346px;
+  height: 40px;
+
+  /* white/500 */
+
+  background: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.returnToMainButton {
+  position: absolute;
+  width: 207px;
+  height: 40px;
+
+  /* white/500 */
+
+  background: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.goToProfileButton {
+  position: absolute;
+  width: 207px;
+  height: 40px;
+
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.registerButton {
+  position: absolute;
+  width: 335px;
+  height: 40px;
+
+  /* white/500 */
+
+  background: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.applyButton {
+  position: absolute;
+  width: 194px;
+  height: 67px;
+
+  /* red2orange/left/right */
+
+  background: linear-gradient(93.44deg, #af3b43 5.21%, #ea727f 98.99%);
+  border-radius: 30px;
+  border: 0px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.bookSampleButton {
+  /* Rectangle 41 */
+
+  position: absolute;
+  width: 395px;
+  height: 40px;
+
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.priceButton {
+  position: absolute;
+  width: 809px;
+  height: 40px;
+
+  /* white/500 */
+
+  background: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.testSampleButton {
+  position: absolute;
+  width: 809px;
+  height: 40px;
+
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.confirmButton {
+  position: absolute;
+  width: 454px;
+  height: 40px;
+
+  /* white/500 */
+
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.codeButton {
+  position: absolute;
+
+  width: 71px;
+  height: 40px;
+
+  /* medOfRedToPink */
+
+  background: #d15c65;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.applyText {
+  position: absolute;
+
+  font-family: CHULALONGKORN;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 54px;
+  /* identical to box height */
+
+  display: flex;
+
+  color: #ffffff;
+}
+
+.redOrangeText {
+  position: absolute;
+  /* TH/Button/Chalalongkorn */
+
+  font-family: CHULALONGKORN;
+  background: linear-gradient(93.44deg, #af3b43 100%, #ea727f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.whiteBoldText {
+  position: absolute;
+  /* TH/Button/Chalalongkorn */
+
+  font-family: CHULALONGKORN;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  /* white/500 */
+
+  color: #ffffff;
+}
+
+.whiteNormalText {
+  /* เพิ่มลงตะกร้า */
+
+  position: absolute;
+  font-family: CHULALONGKORN;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+.whiteSmallText {
+  position: absolute;
+
+  font-family: CHULALONGKORN;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* white/500 */
+
+  color: #ffffff;
+}
+
+@media (max-width: 390px) {
+  .cancelSmallButton {
+    position: absolute;
+    width: 107px;
+    height: 32px;
+  }
+
+  .saveButton {
+    position: absolute;
+    width: 107px;
+    height: 32px;
+  }
+
+  .editProfileButton {
+    position: absolute;
+    width: 230px;
+    height: 32px;
+  }
+
+  .applyButton {
+    position: absolute;
+    width: 148px;
+    height: 49px;
+  }
+
+  .bookSampleButton {
+    /* Rectangle 41 */
+
+    position: absolute;
+    width: 330px;
+    height: 30px;
+  }
+
+  .addToCartButton {
+    position: absolute;
+    width: 330px;
+    height: 30px;
+  }
+
+  .priceButton {
+    position: absolute;
+    width: 330px;
+    height: 30px;
+  }
+
+  .testSampleButton {
+    position: absolute;
+    width: 330px;
+    height: 30px;
+  }
+
+  .applyText {
+    position: absolute;
+    font-size: 28px;
+    line-height: 42px;
+  }
+
+  .redOrangeText {
+    position: absolute;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .whiteBoldText {
+    position: absolute;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .whiteNormalText {
+    /* เพิ่มลงตะกร้า */
+
+    position: absolute;
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
