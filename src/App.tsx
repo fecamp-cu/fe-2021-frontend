@@ -7,6 +7,9 @@ import Footer from "./components/Footer/Footer"
 import ProductList from "./components/Product_list/ProductList"
 import facebookLogo from "./assets/book_cover.jpg";
 
+function click(){
+  return
+}
 function App() {
   return (
     <>
@@ -16,7 +19,7 @@ function App() {
       <Route path="/" element={<Example />}></Route>
       <Route path="/product" element={<Product />}></Route>
     </Routes> */}
-    <ProductList productImg={facebookLogo}></ProductList>
+    <ProductList productImg={facebookLogo} onClick={click} title = "เตรียมสอบ PAT3 ความถนัดทางวิศวกรรมศาสตร์" price="$ 190.00"></ProductList>
     
     <Footer />
     

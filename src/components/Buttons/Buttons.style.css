@@ -179,7 +179,7 @@
 .bookSampleButton {
   /* Rectangle 41 */
 
-  position: absolute;
+  
   width: 395px;
   height: 40px;
 
@@ -195,7 +195,7 @@
 }
 
 .priceButton {
-  position: absolute;
+  
   width: 809px;
   height: 40px;
 
@@ -214,7 +214,7 @@
 }
 
 .testSampleButton {
-  position: absolute;
+  
   width: 809px;
   height: 40px;
 
@@ -231,7 +231,7 @@
 }
 
 .confirmButton {
-  position: absolute;
+  
   width: 454px;
   height: 40px;
 
@@ -250,7 +250,7 @@
 }
 
 .codeButton {
-  position: absolute;
+  
 
   width: 71px;
   height: 40px;
@@ -270,7 +270,7 @@
 }
 
 .applyText {
-  position: absolute;
+  
 
   font-family: CHULALONGKORN;
   font-style: normal;
@@ -285,7 +285,7 @@
 }
 
 .redOrangeText {
-  position: absolute;
+  
   /* TH/Button/Chalalongkorn */
 
   font-family: CHULALONGKORN;
@@ -302,7 +302,7 @@
 }
 
 .whiteBoldText {
-  position: absolute;
+  
   /* TH/Button/Chalalongkorn */
 
   font-family: CHULALONGKORN;
@@ -323,7 +323,7 @@
 .whiteNormalText {
   /* เพิ่มลงตะกร้า */
 
-  position: absolute;
+  
   font-family: CHULALONGKORN;
   font-style: normal;
   font-weight: normal;
@@ -339,7 +339,7 @@
 }
 
 .whiteSmallText {
-  position: absolute;
+  
 
   font-family: CHULALONGKORN;
   font-style: normal;
@@ -359,25 +359,25 @@
 
 @media (max-width: 390px) {
   .cancelSmallButton {
-    position: absolute;
+    
     width: 107px;
     height: 32px;
   }
 
   .saveButton {
-    position: absolute;
+    
     width: 107px;
     height: 32px;
   }
 
   .editProfileButton {
-    position: absolute;
+    
     width: 230px;
     height: 32px;
   }
 
   .applyButton {
-    position: absolute;
+    
     width: 148px;
     height: 49px;
   }
@@ -385,43 +385,43 @@
   .bookSampleButton {
     /* Rectangle 41 */
 
-    position: absolute;
+    
     width: 330px;
     height: 30px;
   }
 
   .addToCartButton {
-    position: absolute;
+    
     width: 330px;
     height: 30px;
   }
 
   .priceButton {
-    position: absolute;
+    
     width: 330px;
     height: 30px;
   }
 
   .testSampleButton {
-    position: absolute;
+    
     width: 330px;
     height: 30px;
   }
 
   .applyText {
-    position: absolute;
+    
     font-size: 28px;
     line-height: 42px;
   }
 
   .redOrangeText {
-    position: absolute;
+    
     font-size: 14px;
     line-height: 21px;
   }
 
   .whiteBoldText {
-    position: absolute;
+    
     font-size: 14px;
     line-height: 21px;
   }
@@ -429,7 +429,7 @@
   .whiteNormalText {
     /* เพิ่มลงตะกร้า */
 
-    position: absolute;
+    
     font-size: 14px;
     line-height: 21px;
   }
