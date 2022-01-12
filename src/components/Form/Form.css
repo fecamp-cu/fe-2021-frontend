@@ -5,33 +5,35 @@
     position : absolute;
     width : 1440px;
     height : 1102px;
-    left: 0px;
-    top : 0px;
 }
 
-.container{
+.form{
     position : absolute;
+    align-items: center;
     width : 1203px;
     height: 651.37;
-    left : 118px;
-    top : 195.63px;
-    /*background : red;*/
-    background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
+    background-color: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(30px);
     border-radius: 20px;
+    margin : 90px 120px 30px 120px;
 }
 
+.container{
+    margin : 140px 250px 100px 250px;
+}
+
+.uppercontainer{
+    margin : 30px 0px;
+}
+.lowercontainer{
+    margin : 30px 0px;
+}
 #header{
-    position: absolute;
-    width : 131px;
+    /*position: absolute;*/
+    text-align: center;
+    margin : 20px 300px;
     height : 25.49px;
-    top : 84.37px;
-    left : 548px;
-    /*left: 46.25%;
-    right: 44.65%;
-    top: 25.41%;
-    bottom: 72.28%;*/
 
     /* TH/H4 */
 
@@ -48,7 +50,8 @@
 }
 
 .label{
-    position : absolute;
+    /*position : absolute;*/
+    margin : 15px 6px; 
     height : 20px;
     font-family: Bai Jamjuree;
     font-style : normal;
@@ -59,7 +62,9 @@
 }
 
 .input{
-    position : absolute;
+    /*position : absolute;*/
+    margin : 10px;
+    padding : 1px 10px;
     height : 30px;
     background : rgba(255, 255, 255, 0.3);
     border : 1px solid #FFFFFF;
@@ -68,20 +73,89 @@
     font-family: Bai Jamjuree;
     font-style : normal;
     font-weight : normal;
+    font-size : 14px;
     color : white;
 }
 
+.input:focus{  
+    outline : none;
+}
 .grade{
-    position : absolute;
-    left : 329px;
-    top: 235.37px;
-    right : 730px;
-    width: 144px;
+    /*position : absolute;*/
     height : 30px;
+    width : 144px;
     background: rgba(255, 255, 255, 0.3);
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 5px;
-     color : white;
+    color : white;
 }
 
+.error{
+    color : red;
+    display : none;
+}
+
+input:invalid ~ span{
+    display : block;
+}
+#option{
+    background-color :#9B2C33;
+}
+
+#firstName{
+    width : 300px;
+}
+
+#lastName{
+    width : 263px;
+}
+
+#tel{
+    width : 230px;
+}
+
+#email{
+    width : 285px;
+}
+
+#school{
+    width : 382px;
+}
+
+#grade{
+    width : 144px;
+}
+
+#address{
+    width : 407px;
+}
+
+#subdistrict{
+    width : 120px;
+}
+
+#district{
+    width : 128px;
+}
+
+#province{
+    width : 156px;
+}
+
+#postcode{
+    width : 113px;
+}
+
+#username{
+    width : 625px;
+}
+
+#password1{
+    width : 571px;
+    margin-left : 48px;
+}
+
+#password2{
+    width : 571px;
+}

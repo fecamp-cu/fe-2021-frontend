@@ -1,63 +1,80 @@
 import './Form.css'
+import {useState} from 'react'
 
 function FormComponent(){
+
+  const [values, setValues] = useState({
+      firstName : "",
+      surName : "",
+      tel : "",
+      email : "",
+      grade : "ม.6",
+      school : "",
+      address : "",
+      subdistrict : "",
+      district : "",
+      province : "",
+      postcode : ""
+  })
+  const onChange= (e : any) =>{
+    setValues({...values, [e.target.id] : e.target.value})
+  }
+  console.log(values)
+  const handleSubmit = (e : any) =>{
+      e.preventDefault()
+  }
   return (
         <div className = 'body'>
-            <div className = 'container'>
-                <h1 id = 'header'>ข้อมูลผู้สมัคร</h1>
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '928px', top : '138.37px'}}>ชื่อ</label>
-                    <input className = 'input' id = 'firstname' style = {{width : '300px', left : '291px', right : '612px', top : '135.37px'}}></input>
-                    <label className = 'label' style = {{left : '611px', right: '535px', top : '138.37px'}}>นามสกุล</label>
-                    <input className = 'input' id = 'surname' style = {{width : '263px', left :'683px', right : '257px', top : '135.37px'}}></input>
+            <form className = 'form' onSubmit = {handleSubmit}>
+                <div className= 'container'>
+                    <div className = 'uppercontainer'>
+                        <h1 id = 'header'>ข้อมูลผู้สมัคร</h1>
+                        <div>
+                            <label className = 'label' >ชื่อ</label>
+                            <input type = 'string' className = 'input' id = 'firstName' name = 'firstName' onChange = {onChange} required></input>
+                            <label className = 'label'>นามสกุล</label>
+                            <input type = 'string' className = 'input' id = 'lastName' name = 'lastName' onChange = {onChange} required></input>
+                        </div>
+                        <div>
+                            <label className = 'label'>เบอร์โทรศัพท์</label>
+                            <input type = 'string' className = 'input' id = 'tel' onChange = {onChange} required></input>
+                            <label className = 'label'>อีเมล</label>
+                            <input type = 'email' className = 'input' id = 'email' onChange = {onChange} required></input>
+                        </div>
+                        <div>
+                            <label className = 'label'>ระดับชั้น</label>
+                            <select className = 'input' id = 'grade' onChange = {onChange}>
+                                <option value = 'ม.6' id = 'option'>ม.6</option>
+                                <option value = 'ม.5' id = 'option'>ม.5</option>
+                                <option value = 'ม.4' id = 'option'>ม.4</option>
+                                <option value = 'ปวช.3' id = 'option'>ปวช.3</option>
+                                <option value = 'ปวช.2' id = 'option'>ปวช.2</option>
+                                <option value = 'ปวช.1' id = 'option'>ปวช.1</option>
+                                <option value = 'อื่นๆ' id = 'option'>อื่นๆ</option>
+                                <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
+                            </select>
+                            <label className = 'label'>โรงเรียน</label>
+                            <input type = 'string' className = 'input' id = 'school' onChange = {onChange} required></input>
+                        </div>
+                        <div>
+                            <label className = 'label'>ที่อยู่</label>
+                            <input type = 'string' className = 'input' id = 'address' onChange = {onChange} required></input>
+                            <label className = 'label'>ตำบล/แขวง</label>
+                            <input type = 'string' className = 'input' id = 'subdistrict' onChange = {onChange} required></input>
+                        </div>
+                        <div>
+                            <label className = 'label'>อำเภอ/เขต</label>
+                            <input type = 'string' className = 'input' id = 'district' onChange = {onChange} required></input>
+                            <label className = 'label'>จังหวัด</label>
+                            <input type = 'string' className = 'input' id = 'province' onChange = {onChange} required></input>
+                            <label className = 'label'>รหัสไปรษณีย์</label>
+                            <input type = 'string' className = 'input' id = 'postcode' onChange = {onChange} required></input>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '856px', top : '188.37px'}}>เบอร์โทรศัพท์</label>
-                    <input className = 'input' id = 'tel' style = {{width : '230px', left : '361px', right : '612px', top : '185.37px'}}></input>
-                    <label className = 'label' style = {{left : '611px', right: '588px', top : '188.37px'}}>อีเมล</label>
-                    <input className = 'input' id = 'email' style = {{width : '285px', left : '661px', right : '257px', top : '185.37px'}}></input>
-                </div>
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '890px', top : '238.37px'}}>ระดับชั้น</label>
-                    <select className = 'grade'>
-                        <option>ม.6</option>
-                        <option>ม.5</option>
-                        <option>ม.4</option>
-                    </select>
-                    <label className = 'label' style = {{left : '493px', right: '655px', top : '235.37px'}}>โรงเรียน</label>
-                    <input className = 'input' id = 'school'style = {{width : '382px', left : '564px', right : '257px', top : '232.37px'}}></input>
-                </div>
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '916px', top : '288.37px'}}>ที่อยู่</label>
-                    <input className = 'input' id = 'address' style = {{width : '407px', left : '302px', right : '494px', top : '285.37px'}}></input>
-                    <label className = 'label' style = {{left : '729px', right: '380px', top : '288.37px'}}>ตำบล/แขวง</label>
-                    <input className = 'input' id = 'subdistrict' style = {{width : '123px', left : '823px', right : '257px', top : '285.37px'}}></input>
-                </div>
-
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '858px', top : '338.37px'}}>อำเภอ/เขต</label>
-                    <input className = 'input' id = 'district' style = {{width : '128px', left : '345px', right : '730px', top : '335.37px'}}></input>
-                    <label className = 'label' style = {{left : '493px', right: '649px', top : '338.37px'}}>จังหวัด</label>
-                    <input className = 'input' id = 'province' style = {{width : '156px', left : '554px', right : '493px', top : '335.37px'}}></input>
-                    <label className = 'label' style = {{left : '730px', right: '385px', top : '338.37px'}}>รหัสไปรษณีย์</label>
-                    <input className = 'input' id = 'postalcode' style = {{width : '116px', left : '831px', right : '256px', top : '335.37px'}}></input>
-                </div>
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '900px', top : '419.37px'}}>ชื่อผู้ใช้</label>
-                    <input className = 'input' id = 'username' style = {{width : '634px', left : '312px', right : '257px', top : '416.37px'}}></input>
-                </div>
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '890px', top : '466.37px'}}>รหัสผ่าน</label>
-                    <input className = 'input' id = 'password1' style = {{width : '585px', left : '361px', right : '257px', top : '463.37px'}}></input>
-                </div>
-
-                <div>
-                    <label className = 'label' style = {{left : '256px', right: '842px', top : '513.37px'}}>ยืนยันรหัสผ่าน</label>
-                    <input className = 'input' id = 'password2' style = {{width : '585px', left : '361px', right : '257px', top : '510.37px'}}></input>
-                </div>
-            </div>
+            </form>
         </div>
-  );
+    );
 }
 
 export default FormComponent
