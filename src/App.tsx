@@ -18,6 +18,9 @@ import Login from "./pages/Login/Login"
 import ProductList from "./components/Product_list/ProductList"
 import facebookLogo from "./assets/book_cover.jpg"
 
+function click() {
+  return
+}
 function App() {
   const location = useLocation()
   const { user, setUser } = useUserContext()
