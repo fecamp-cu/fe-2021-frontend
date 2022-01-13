@@ -43,7 +43,7 @@ const WhiteText = styled.a`
   color: #ffffff;
 
   @media (max-width: 390px) {
-    position: absolute;
+    
     font-size: 14px;
     line-height: 21px;
 
@@ -57,7 +57,7 @@ const Logo = styled.div`
 `;
 
 interface AddToCartButtonProps {
-  onClick: any
+  onClick: (e:React.MouseEvent<HTMLButtonElement>) => void
 
 }
 

@@ -12,7 +12,6 @@ function App() {
   return (
     <>
     <Navbar isLogin={true}/>
-    <ProductList productImg={facebookLogo}></ProductList>
     
     <Routes>
       <Route path="/" element={<Example />}></Route>
