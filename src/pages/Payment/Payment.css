@@ -5,3 +5,12 @@ input[type=text]:focus {
 select:focus {
   color: black;
 }
+
+label.disable{
+  color: #707070 !important;
+}
+
+input[type=text].disable{
+  background: rgba(164, 164, 164, 0.3) !important;
+  border: 1px solid #707070 !important;
+}
