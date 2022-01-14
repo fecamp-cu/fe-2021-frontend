@@ -26,18 +26,18 @@ function FormComponent(){
   return (
         <div className = 'body'>
             <form className = 'form' onSubmit = {handleSubmit}>
-                <div className= 'container'>
+                <div className= 'formcon'>
                     <div className = 'uppercontainer'>
                         <h1 id = 'header'>ข้อมูลผู้สมัคร</h1>
                         <div>
                             <label className = 'label' >ชื่อ</label>
-                            <input type = 'string' className = 'input' id = 'firstName' name = 'firstName' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'firstName' name = 'firstName' onChange = {onChange} required></input>
                             <label className = 'label'>นามสกุล</label>
-                            <input type = 'string' className = 'input' id = 'lastName' name = 'lastName' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'lastName' name = 'lastName' onChange = {onChange} required></input>
                         </div>
                         <div>
                             <label className = 'label'>เบอร์โทรศัพท์</label>
-                            <input type = 'string' className = 'input' id = 'tel' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'tel' onChange = {onChange} required></input>
                             <label className = 'label'>อีเมล</label>
                             <input type = 'email' className = 'input' id = 'email' onChange = {onChange} required></input>
                         </div>
@@ -54,21 +54,24 @@ function FormComponent(){
                                 <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                             </select>
                             <label className = 'label'>โรงเรียน</label>
-                            <input type = 'string' className = 'input' id = 'school' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'school' onChange = {onChange} required></input>
                         </div>
                         <div>
                             <label className = 'label'>ที่อยู่</label>
-                            <input type = 'string' className = 'input' id = 'address' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'address' onChange = {onChange} required></input>
                             <label className = 'label'>ตำบล/แขวง</label>
-                            <input type = 'string' className = 'input' id = 'subdistrict' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'subdistrict' onChange = {onChange} required></input>
                         </div>
                         <div>
                             <label className = 'label'>อำเภอ/เขต</label>
-                            <input type = 'string' className = 'input' id = 'district' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'district' onChange = {onChange} required></input>
                             <label className = 'label'>จังหวัด</label>
-                            <input type = 'string' className = 'input' id = 'province' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'province' onChange = {onChange} required></input>
                             <label className = 'label'>รหัสไปรษณีย์</label>
-                            <input type = 'string' className = 'input' id = 'postcode' onChange = {onChange} required></input>
+                            <input type = 'text' className = 'input' id = 'postcode' onChange = {onChange} required></input>
+                        </div>
+                        <div>
+                            <button type = 'submit'>ลงทะเบียน</button>
                         </div>
                     </div>
                 </div>

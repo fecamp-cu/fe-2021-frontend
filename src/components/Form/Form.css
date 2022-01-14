@@ -19,7 +19,7 @@
     margin : 90px 120px 30px 120px;
 }
 
-.container{
+.formcon{
     margin : 140px 250px 100px 250px;
 }
 
@@ -32,7 +32,7 @@
 #header{
     /*position: absolute;*/
     text-align: center;
-    margin : 20px 300px;
+    margin : 20px 285px;
     height : 25.49px;
 
     /* TH/H4 */
@@ -158,4 +158,165 @@ input:invalid ~ span{
 
 #password2{
     width : 571px;
+}
+
+@media (max-width : 600px) {
+    body{
+        background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
+        position : absolute;
+        width : 390px;
+        height : 1237px;
+    }
+    .form{
+        position : absolute;
+        align-items: center;
+        width : 342px;
+        height: 778px;
+        background-color: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(50px);
+        border-radius: 18px;
+        margin : 50px 24px;
+    }
+    
+    .formcon{
+        margin : 50px 30px;
+    }
+    
+    .uppercontainer{
+        margin : 0px;
+    }
+    .lowercontainer{
+        margin : 30px 0px;
+    }
+    #header{
+        /*position: absolute;*/
+        text-align: center;
+        margin : 20px 285px;
+        height : 25.49px;
+    
+        /* TH/H4 */
+    
+        font-family: CHULALONGKORN;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 42px;
+        display: flex;
+        align-items: center;
+    
+        color: #FFFFFF;
+        display :none;
+    }
+    
+    .label{
+        /*position : absolute;*/
+        margin : 3px 6px; 
+        height : 20px;
+        font-family: Bai Jamjuree;
+        font-style : normal;
+        font-weight : normal;
+        font-size : 16px;
+        line-height : 20px;
+        color : white;
+    }
+    
+    .input{
+        /*position : absolute;*/
+        margin : 3px 2px;
+        padding : 1px 5px;
+        height : 28px;
+        background : rgba(255, 255, 255, 0.3);
+        border : 1px solid #FFFFFF;
+        box-sizing : border-box;
+        border-radius : 5px;
+        font-family: Bai Jamjuree;
+        font-style : normal;
+        font-weight : normal;
+        font-size : 14px;
+        color : white;
+    }
+    
+    .input:focus{  
+        outline : none;
+    }
+    .grade{
+        /*position : absolute;*/
+        height : 30px;
+        width : 144px;
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid #FFFFFF;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color : white;
+    }
+    
+    .error{
+        color : red;
+        display : none;
+    }
+    
+    input:invalid ~ span{
+        display : block;
+    }
+    #option{
+        background-color :#9B2C33;
+    }
+    
+    #firstName{
+        width : 278px;
+    }
+    
+    #lastName{
+        width : 278px;
+    }
+    
+    #tel{
+        width : 278px;
+    }
+    
+    #email{
+        width : 278px;
+    }
+    
+    #school{
+        width : 278px;
+    }
+    
+    #grade{
+        width : 278px;
+    }
+    
+    #address{
+        width : 278px;
+    }
+    
+    #subdistrict{
+        width : 278px;
+    }
+    
+    #district{
+        width : 278px;
+    }
+    
+    #province{
+        width : 278px;
+    }
+    
+    #postcode{
+        width : 278px;
+    }
+    
+    #username{
+        width : 625px;
+    }
+    
+    #password1{
+        width : 571px;
+        margin-left : 48px;
+    }
+    
+    #password2{
+        width : 571px;
+    }
 }
