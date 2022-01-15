@@ -17,6 +17,8 @@ import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
 import ProductList from "./components/Product_list/ProductList"
 import facebookLogo from "./assets/book_cover.jpg"
+import Payment from "./pages/Payment/Payment"
+import ProductListV2 from "./components/Product_list/ProductListv2"
 
 function click() {
   return
@@ -48,6 +50,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/profile" element={<ProfileShow user={user} setUser={setUser} />}></Route>
           <Route path="/profile/edit" element={<ProfileEdit user={user} setUser={setUser} />}></Route>
+          <Route path="/payment" element={<Payment />}></Route>
         </Routes>
       </PageContainer>
       <Footer
