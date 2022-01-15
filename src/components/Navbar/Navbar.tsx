@@ -39,29 +39,25 @@ toggle between hiding and showing the dropdown content */
     }
   }
 
-  const style = {display:"block"}
 
   return (
     <nav
-      className="navbar navbar-expand-lg sticky-top navbar-dark"
-      style={{ background: "var(--gm-color)", top: "16px", margin: "15px" }}
-      id="border-navbar"
+      className="navbar navbar-expand-lg"
     >
       {/* -----------------------nav logo, will be change to FE logo later------------------- */}
       <div className="container-fluid">
-        <a className="navbar-brand" href="#" style={{ height: "54px", width: "18%" }}>
+        <a className="navbar-brand" href="#">
           Navbar
         </a>
 
         {/* --------------toggle button, it will appear when open in mobile------------------ */}
-        <button className="navbar-toggler dropbtn" type="button" onClick={dropMenu}>
+        <button className="navbar-toggler" type="button" onClick={dropMenu}>
           <HiMenuAlt3 color="white" size="2.5rem" className="dropbtn" />
         </button>
 
         {/* -------------------the menu dropdown when you open in mobile--------------------- */}
         <div
-          className="dropdown-menu dropdown-content"
-          style={{ background: "var(--gm-color)", width: "100%", margin: "10px 0px", top: "100%", left: "0px" }}
+          className="dropdown-menu dropdown-alignment dropdown-content"
           id="Menu-list"
         >
           <li className="dropdown-item">
@@ -80,7 +76,8 @@ toggle between hiding and showing the dropdown content */
             <>
               <li className="dropdown-item">
                 <Link className={""} to={"/lesson"} id="element">
-                  เข้าสู่บทเรียน<MdLaunch/>
+                  เข้าสู่บทเรียน
+                  <MdLaunch />
                 </Link>
               </li>
               <hr></hr>
@@ -116,7 +113,7 @@ toggle between hiding and showing the dropdown content */
 
         {/* -------------------------the normal menu, when you open in desktop---------------------- */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav list-inline me-auto justify-content-star">
+          <ul className="navbar-nav list-inline me-auto">
             <li className="nav-item">
               <Link className={"pt-1 me-4" + (atPage === "/" ? " border-bottom" : "")} to={"/"} id="element">
                 หน้าแรก
@@ -147,20 +144,24 @@ toggle between hiding and showing the dropdown content */
               <>
                 <img className="rounded-circle d-inline-flex me-2" src="" width={50} height={50} alt="" id="picture"></img>
                 <li className="nav-item dropdown show">
-                  <button className={"pt-2 me-4 d-inline-flex dropbtn"} data-bs-toggle="dropdown" id="profile" onClick={dropProfile}>
+                  <button className={"pt-2 me-4 d-inline-flex dropbtn"} data-bs-toggle="dropdown" id="element" onClick={dropProfile}>
                     {userName}
                   </button>
-                    <ul className="dropdown-menu dropdown-content border-drop" style={{ background: "var(--gm-color)", margin: "30px 0% 0% -60px", width:"176px", height:"86px" }} id="profile-list">
-                      <li>
-                        <Link className="dropdown-item center" to={"/profile"}>
-                          ข้อมูลส่วนตัว
-                        </Link>
-                        <hr></hr>
-                        <Link className="dropdown-item center" to={"/logout"}>
-                          ออกจากระบบ
-                        </Link>
-                      </li>
-                    </ul>
+                  <ul
+                    className="dropdown-menu dropdown-content border-drop"
+                    style={{margin: "30px 0% 0% -60px", width: "176px", height: "86px" }}
+                    id="profile-list"
+                  >
+                    <li>
+                      <Link className="dropdown-item center" to={"/profile"} id="element">
+                        ข้อมูลส่วนตัว
+                      </Link>
+                      <hr></hr>
+                      <Link className="dropdown-item center" to={"/logout"} id="element">
+                        ออกจากระบบ
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
               </>
             ) : (
