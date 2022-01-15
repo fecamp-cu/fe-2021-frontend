@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../Buttons/Buttons";
-import {FaTrashRestore} from "react-icons/fa";
+import { FaTrashRestore } from "react-icons/fa";
 import { useState } from "react";
-import {FiPlus} from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 
 
 const ProductBackground = styled.div`
     width: 454px;
-    height: 285px;
+    min-height: 285px;
+    height:auto !important;
 
     /* redtopink */
 
@@ -22,7 +23,8 @@ const ProductBackground = styled.div`
 const ListBackGround = styled.div`
     position: absolute;
     width: 454px;
-    height: 157px;
+    min-height: 157px;
+    height:auto !important;
     left: 0px;
     margin-top: 60px;
 
@@ -145,7 +147,7 @@ const CodeInput = styled.input`
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 5px;
-
+    font-size: 20px;
     padding-left: 10px;
     padding-top: 5px;
 }`;
@@ -187,8 +189,6 @@ const ShippingCost = styled.p`
     position: absolute;
     width: 48px;
     height: 24px;
-    left: 20px;
-    margin-top: 225px;
 
     font-family: CHULALONGKORN;
     font-style: normal;
@@ -207,11 +207,7 @@ const ShippingCost = styled.p`
 
 const Cost = styled.p`
     position: absolute;
-    width: 61px;
-    height: 27px;
-    left: 20px;
-    margin-top: 248px;
-
+    
     /* TH/H6 */
 
     font-family: CHULALONGKORN;
@@ -256,36 +252,34 @@ const Amount = styled.p`
 
 interface ProductListProps {
     productImg: any
-    onClick: (e:React.MouseEvent<HTMLButtonElement>) => void
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
     title: string
-    price: string
-
+    price: number
+    shipping: number
 
 }
-
-
-const ProductList: React.FC<ProductListProps> = ({ productImg, onClick, title, price }) => {
-    const [code,setCode] = useState(" ")
-    const [amount,setAmount] = useState(1)
-    const inputCode = (event:React.ChangeEvent<HTMLInputElement>) =>{
+const ProductList: React.FC<ProductListProps> = ({ productImg, onClick, title, price, shipping }) => {
+    const [code, setCode] = useState(" ")
+    const [amount, setAmount] = useState(1)
+    const inputCode = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         setCode(event.target.value)
 
     }
 
-    const addAmount = (event:React.MouseEvent<HTMLButtonElement>) =>{
+    const addAmount = (event: React.MouseEvent<HTMLButtonElement>) => {
 
-        setAmount(amount+1)
+        setAmount(amount + 1)
     }
 
-    const reduceAmount = (event:React.MouseEvent<HTMLButtonElement>) =>{
-        if(amount>1){
-            setAmount(amount-1)
+    const reduceAmount = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (amount > 1) {
+            setAmount(amount - 1)
         }
-        else{
+        else {
             setAmount(1)
         }
-        
+
     }
 
     return <ProductBackground>
@@ -294,15 +288,19 @@ const ProductList: React.FC<ProductListProps> = ({ productImg, onClick, title, p
             <ProductImg src={productImg}></ProductImg>
             <Title><InfoText>{title}</InfoText></Title>
             <Code><InfoText>โค้ดส่วนลด</InfoText></Code>
-            <Price>{price}</Price>
-            <SqrBtn style={{marginLeft: '336px', marginTop: '53px'}} onClick={reduceAmount}><BinLogo><FaTrashRestore></FaTrashRestore></BinLogo></SqrBtn>
+            <Price>$ {price.toFixed(2)}</Price>
+            <SqrBtn style={{ marginLeft: '336px', marginTop: '53px' }} onClick={reduceAmount}><BinLogo><FaTrashRestore></FaTrashRestore></BinLogo></SqrBtn>
             <Amount>{amount}</Amount>
-            <SqrBtn style={{marginLeft: '407px', marginTop: '53px'}} onClick={addAmount}><PlusLogo><FiPlus></FiPlus></PlusLogo></SqrBtn>
+            <SqrBtn style={{ marginLeft: '407px', marginTop: '53px' }} onClick={addAmount}><PlusLogo><FiPlus></FiPlus></PlusLogo></SqrBtn>
             <CodeBtn><Button typeButton="codeButton" typeText="whiteSmallText" onClick={onClick} >ใช้โค้ด</Button></CodeBtn>
             <CodeInput type="text" onChange={inputCode}></CodeInput>
+            
         </ListBackGround>
-        <ShippingCost>ค่าจัดส่ง</ShippingCost>
-        <Cost>ราคาสุทธิ</Cost>
+        <ShippingCost style={{ marginLeft: '20px', marginTop: '225px'}}>ค่าจัดส่ง</ShippingCost>
+        <ShippingCost style={{ marginLeft: '385px', marginTop: '225px'}}>$ {shipping.toFixed(2)}</ShippingCost>
+        <Cost style={{ marginLeft: '20px', marginTop: '248px'}}>ราคาสุทธิ</Cost>
+        <Cost style={{ marginLeft: '385px', marginTop: '248px'}}>$ {(price*amount+shipping).toFixed(2)}</Cost>
+        
 
     </ProductBackground>
 
