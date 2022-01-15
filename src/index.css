@@ -24,6 +24,8 @@
 body {
   margin: 0;
   background: var(--bg-color);
+
+
 }
 .glass-container {
   background: var(--gm-color);
