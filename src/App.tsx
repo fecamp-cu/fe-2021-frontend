@@ -9,12 +9,13 @@ import LandingPage from "./pages/LandingPage/LandingPage"
 function App() {
   return (
     <>
-    {/* <Navbar isLogin={true}/> */}
+    <Navbar isLogin={true}/>
     <Routes>
-      {/* <Route path="/" element={<Example />}></Route> */}
+      <Route path="/" element={<Example />}></Route>
       <Route path="/product" element={<Product />}></Route>
+      <Route path="/landingPage" element={<LandingPage />}></Route>
     </Routes>
-    <LandingPage/>
+    <Footer />
     </>
   )
 }

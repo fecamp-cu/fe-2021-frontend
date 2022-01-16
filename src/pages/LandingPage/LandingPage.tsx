@@ -11,15 +11,18 @@ function LandingPage() {
 
     return(
         <div>
-            <div className="top-landing-background">
-            <Navbar/>
-            <Button typeButton="applyButton" typeText="applyText" onClick={clickButton}>สมัครค่าย</Button>
+            <div className="top-landing-container">
+                <div className="top-landing-background">
+                    
+                </div>
+                <div className="apply-button-landing-page">
+                    <Button typeButton="applyButton" typeText="applyText" onClick={clickButton}>สมัครค่าย</Button>
+                </div>
             </div>
 
             <div className="landing-background">
                 <About/>
             </div>
-            <Footer/>
         </div>
     );
 }

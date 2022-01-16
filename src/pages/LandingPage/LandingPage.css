@@ -1,10 +1,26 @@
+.top-landing-container {
+  height: 1000px;
+  background-color: white;
+}
+
 .landing-background {
   max-width: 100%;
   background: linear-gradient(180deg, #9b2c33 0%, #e56d77 100%);
 }
 
 .top-landing-background {
-  background: linear-gradient(to bottom, #939393 70%, #ffffff 0%);
+  background-image: url("../../assets/images/landingPage-top-pic.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   max-width: 100%;
   height: 800px;
+}
+
+.apply-button-landing-page {
+  text-align: center;
+  /* align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%; */
 }

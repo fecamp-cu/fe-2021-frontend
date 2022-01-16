@@ -38,7 +38,7 @@ function About() {
             </div>
 
             <div className="video-container">
-                <iframe className="video-camp" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+                <iframe className="video-camp" src="https://www.youtube.com/embed/0OCyTBaPiYc"></iframe>
                 <div className="video-text">คลิปเปิดค่าย Jailbreak by FeCampX - FECamp Chula</div>
             </div>
 
