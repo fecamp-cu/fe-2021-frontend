@@ -60,7 +60,7 @@ const Select = styled.select`
     font-weight : normal;
     font-size : 14px;
     color : white;
-    
+
     &:focus{
         outline : none;
     }
@@ -78,7 +78,7 @@ function FormComponent(){
       surName : "",
       tel : "",
       email : "",
-      grade : "ม.6",
+      grade : "ม.5",
       school : "",
       address : "",
       subdistrict : "",
@@ -117,12 +117,8 @@ function FormComponent(){
                             <div>
                                 <Label>ระดับชั้น</Label>
                                 <Select className = 'w-144' id = 'grade' onChange = {onChange}>
-                                    <option value = 'ม.6' id = 'option'>ม.6</option>
                                     <option value = 'ม.5' id = 'option'>ม.5</option>
-                                    <option value = 'ม.4' id = 'option'>ม.4</option>
-                                    <option value = 'ปวช.3' id = 'option'>ปวช.3</option>
                                     <option value = 'ปวช.2' id = 'option'>ปวช.2</option>
-                                    <option value = 'ปวช.1' id = 'option'>ปวช.1</option>
                                     <option value = 'อื่นๆ' id = 'option'>อื่นๆ</option>
                                     <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                                 </Select>
@@ -152,12 +148,8 @@ function FormComponent(){
                                 <div>
                                     <Label>ระดับชั้น</Label>
                                     <Select className = 'w-278' onChange = {onChange}>
-                                        <option value = 'ม.6' id = 'option'>ม.6</option>
                                         <option value = 'ม.5' id = 'option'>ม.5</option>
-                                        <option value = 'ม.4' id = 'option'>ม.4</option>
-                                        <option value = 'ปวช.3' id = 'option'>ปวช.3</option>
                                         <option value = 'ปวช.2' id = 'option'>ปวช.2</option>
-                                        <option value = 'ปวช.1' id = 'option'>ปวช.1</option>
                                         <option value = 'อื่นๆ' id = 'option'>อื่นๆ</option>
                                         <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                                     </Select>
