@@ -1,5 +1,7 @@
 import React from "react"
+import { Button } from "../Buttons/Button"
 import { PDFView } from "../PDFView/PDFView"
+import { IoMdBasket } from "react-icons/io"
 import "./productInfo.style.css"
 export interface ProductInfoProps {
   title: string
@@ -33,16 +35,24 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
               {type === "examPreps" ? (
                 <>
                   {/* TODO: Style buttons */}
-                  <div className="flex flex-col sm:flex-row justify-around w-full">
-                    <button>ดูตัวอย่างหนังสือ</button>
-                    <button>เพิ่มลงตะกร้า</button>
+                  <div className="flex flex-col sm:flex-row justify-around w-full mb-2">
+                    <Button outline shadow={false} lineHeight="35px" className=" mb-2 sm:mb-0 sm:mr-2">
+                      ดูตัวอย่างหนังสือ
+                    </Button>
+                    <Button bg="#781A36" outline={false} shadow={false} Icon={IoMdBasket} lineHeight="35px">
+                      เพิ่มลงตะกร้า
+                    </Button>
                   </div>
 
-                  <button className="w-full text-center">ซื้อ {price} บาท</button>
+                  <Button bg="white" textColor="var(--crimson)" outline={false} shadow={false} lineHeight="35px" className="mb-2">
+                    ซื้อ {price} บาท
+                  </Button>
                 </>
               ) : (
                 <>
-                  <button>ดูตัวอย่างข้อสอบ</button>
+                  <Button outline shadow={false}>
+                    ดูตัวอย่างข้อสอบ
+                  </Button>
                 </>
               )}
             </div>
