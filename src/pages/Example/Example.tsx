@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
+import { checkoutCardOmise, PaymentTypes } from "../../utils/checkoutOmise"
 
 const Example = () => {
+  useEffect(() => {
+    checkoutCardOmise(150, {}, (s) => console.log("ok"), PaymentTypes.eBank)
+  }, [])
   return (
     <div className="App">
       <header className="App-header">
