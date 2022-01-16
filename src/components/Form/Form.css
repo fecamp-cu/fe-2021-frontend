@@ -12,7 +12,8 @@
     align-items: center;
     width : 1203px;
     height: 651.37;
-    background-color: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
+    /*background-color: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);*/
+    background-color: rgba(255, 255, 255, 0.25);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(30px);
     border-radius: 20px;
@@ -20,7 +21,7 @@
 }
 
 .formcon{
-    margin : 140px 250px 100px 250px;
+    margin : 140px 250px 30px 250px;
 }
 
 .uppercontainer{
@@ -99,6 +100,7 @@
 input:invalid ~ span{
     display : block;
 }
+
 #option{
     background-color :#9B2C33;
 }
@@ -159,7 +161,12 @@ input:invalid ~ span{
 #password2{
     width : 571px;
 }
-
+@media (min-width : 600px){
+    .collapsible{
+        display: none;
+    }
+    
+}
 @media (max-width : 600px) {
     body{
         background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
@@ -171,8 +178,9 @@ input:invalid ~ span{
         position : absolute;
         align-items: center;
         width : 342px;
-        height: 778px;
-        background-color: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
+        /*max-height: 778px;*/
+        /*background-color: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);*/
+        background-color: rgba(255, 255, 255, 0.25);
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(50px);
         border-radius: 18px;
@@ -180,7 +188,7 @@ input:invalid ~ span{
     }
     
     .formcon{
-        margin : 50px 30px;
+        margin : 50px 30px 10px 30px;
     }
     
     .uppercontainer{
@@ -259,10 +267,22 @@ input:invalid ~ span{
     input:invalid ~ span{
         display : block;
     }
+    .conpc{
+        display: none;
+    }
+    .collapsed-icon{
+        color : white;
+        height : 24px;
+        width : 24px;
+        align-items: flex;
+        margin : 10px 130px;
+        vertical-align: middle;
+    }
+
     #option{
         background-color :#9B2C33;
     }
-    
+
     #firstName{
         width : 278px;
     }
