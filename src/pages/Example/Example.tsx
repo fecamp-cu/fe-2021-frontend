@@ -5,9 +5,6 @@ import AlertButton from "../../components/AlertButton/AlertButton"
 import { checkoutCardOmise, PaymentTypes } from "../../utils/omise"
 
 const Example = () => {
-  useEffect(() => {
-    checkoutCardOmise(150, {}, () => console.log("ok"), PaymentTypes.eBank)
-  }, [])
   return (
     <div className="App">
       <header className="App-header">
