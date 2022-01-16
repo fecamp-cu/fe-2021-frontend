@@ -5,27 +5,6 @@ import {BsChevronDown} from 'react-icons/bs'
 import {BsChevronUp} from 'react-icons/bs'
 import {IconContext} from 'react-icons'
 
-function Collapsible(){
-    const config = {
-        duration : 500/*,
-        easing : 'cuber-bezier(.93,.12,.42,.25)'*/
-    }; //speed
-    const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config);
-    return (
-        <div className = 'collapsible'>
-            <div className = 'header' {...getToggleProps()}>
-                {isExpanded ? 'Collapse' : 'Expand'}
-            </div>
-            <div {...getCollapseProps()}>
-                <div className = "content">
-                    Now you can see the hidden content. <br></br>
-                    Click again to hide...
-                </div>
-            </div>
-        </div>
-    );
-}
-
 function FormComponent(){
   const [values, setValues] = useState({
       firstName : "",

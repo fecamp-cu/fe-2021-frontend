@@ -168,7 +168,7 @@ input:invalid ~ span{
     
 }
 @media (max-width : 600px) {
-    body{
+    .body{
         background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
         position : absolute;
         width : 390px;
