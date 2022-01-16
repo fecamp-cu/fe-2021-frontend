@@ -1079,7 +1079,6 @@
 
 "@emotion/stylis@^0.8.4":
   version "0.8.5"
-  resolved "https://registry.npmjs.org/@emotion/stylis/-/stylis-0.8.5.tgz"
   resolved "https://registry.yarnpkg.com/@emotion/stylis/-/stylis-0.8.5.tgz#deacb389bd6ee77d1e7fcaccce9e16c5c7e78e04"
   integrity sha512-h6KtPihKFn3T9fuIrwvXXUOwlx3rfUvfZIcP5a6rh8Y7zjE3O06hT5Ss4S/YI1AYhuZ1kjaE/5EaOOI2NqSylQ==
 
@@ -1701,11 +1700,7 @@
 
 "@types/hoist-non-react-statics@*":
   version "3.3.1"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
-=======
   resolved "https://registry.npmjs.org/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz"
->>>>>>> dbf464f195d33abbdb7bbcb8afef4b9da817a27a
   integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
   dependencies:
     "@types/react" "*"
@@ -1884,11 +1879,7 @@
 
 "@types/styled-components@^5.1.19":
   version "5.1.19"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.19.tgz#d76f431ee49d0a222ab4e758dcd540b01987652d"
-=======
   resolved "https://registry.npmjs.org/@types/styled-components/-/styled-components-5.1.19.tgz"
->>>>>>> dbf464f195d33abbdb7bbcb8afef4b9da817a27a
   integrity sha512-hNj14Oamk7Jhb/fMMQG7TUkd3e8uMMgxsCTH+ueJNGdFo/PuhlGDQTPChqyilpZP0WttgBHkc2YyT5UG+yc6Yw==
   dependencies:
     "@types/hoist-non-react-statics" "*"
