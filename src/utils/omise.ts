@@ -13,13 +13,12 @@ export const setUpOmise = () => {
 }
 export const checkoutCardOmise = (amount: number, order: any, onCheckoutSuccess: (res: AxiosResponse) => void, payType: PaymentTypes) => {
   window.OmiseCard.open({
-    amount: amount * 100,
+    amount: amount,
     currency: "THB",
     defaultPaymentMethod: payType,
     otherPaymentMethods: "internet_banking,promptpay,credit_card",
     onCreateTokenSuccess: async (nonce: string) => {
       order.token = nonce
-      console.log(nonce)
       try {
         const res = await client.post("/shop/checkout", order)
         onCheckoutSuccess(res)
