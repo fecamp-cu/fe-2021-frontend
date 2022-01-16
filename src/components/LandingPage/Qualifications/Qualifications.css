@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+.qualifications-header {
+  font-family: CHULALONGKORN;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+
+  margin-bottom: 34px;
+}
+
+.qualification-box {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* width: 800px; */
+  /* margin-left: auto;
+  margin-right: auto;  */
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.index-with-bg {
+  margin-left: 12em;
+  margin-right: 1em;
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  /* position: absolute; */
+
+  color: #000000;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+.flex-none {
+  order: 1;
+  flex: 3;
+}
+.index-num {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.qualification-text {
+  order: 3;
+  flex: 7;
+  flex-wrap: wrap;
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 180%;
+  text-align: left;
+  padding-top: 5px;
+  /* position: relative; */
+  color: #ffffff;
+  padding-right: 12em;
+}

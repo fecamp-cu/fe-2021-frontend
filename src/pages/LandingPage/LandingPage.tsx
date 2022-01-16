@@ -2,6 +2,8 @@ import About from "../../components/LandingPage/About/About"
 import Footer from "../../components/Footer/Footer"
 import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/Buttons/Buttons";
+import Qualifications from "../../components/LandingPage/Qualifications/Qualifications"
+
 import "./LandingPage.css"
 
 function LandingPage() {
@@ -22,6 +24,7 @@ function LandingPage() {
 
             <div className="landing-background">
                 <About/>
+                <Qualifications/>
             </div>
         </div>
     );
