@@ -4,6 +4,73 @@ import useCollapse from 'react-collapsed'
 import {BsChevronDown} from 'react-icons/bs'
 import {BsChevronUp} from 'react-icons/bs'
 import {IconContext} from 'react-icons'
+import styled from 'styled-components'
+
+const Input = styled.input`
+    margin : 10px;
+    padding : 1px 10px;
+    height : 30px;
+    background : rgba(255, 255, 255, 0.3);
+    border : 1px solid #FFFFFF;
+    box-sizing : border-box;
+    border-radius : 5px;
+    font-family: Bai Jamjuree;
+    font-style : normal;
+    font-weight : normal;
+    font-size : 14px;
+    color : white;
+
+    &:focus{
+        outline : none;
+    }
+
+    @media (max-width : 600px){
+        width : 278px;
+        margin : 3px 2px;
+        padding : 1px 5px;
+        height : 28px;
+    }
+`;
+
+const Label = styled.label`
+    margin : 15px 6px; 
+    height : 20px;
+    font-family: Bai Jamjuree;
+    font-style : normal;
+    font-weight : normal;
+    font-size : 16px;
+    line-height : 20px;
+    color : white;
+    
+    @media (max-width : 600px){
+        margin : 3px 6px;    
+    }
+`;
+
+const Select = styled.select`
+    margin : 10px;
+    padding : 1px 10px;
+    height : 30px;
+    background : rgba(255, 255, 255, 0.3);
+    border : 1px solid #FFFFFF;
+    box-sizing : border-box;
+    border-radius : 5px;
+    font-family: Bai Jamjuree;
+    font-style : normal;
+    font-weight : normal;
+    font-size : 14px;
+    color : white;
+    
+    &:focus{
+        outline : none;
+    }
+    @media (max-width : 600px){
+        width : 278px;
+        margin : 3px 2px;
+        padding : 1px 5px;
+        height : 28px;
+    }
+`;
 
 function FormComponent(){
   const [values, setValues] = useState({
@@ -31,25 +98,25 @@ function FormComponent(){
   return (
         <div className = 'body'>
             <form className = 'form' onSubmit = {handleSubmit}>
-                <div className= 'formcon'>
-                    <div className = 'uppercontainer'>
+                <div className= 'mt-12 mr-7 mb-2.5 ml-7 sm:mt-32 sm:mr-60 sm:mb-7 sm:ml-60'>
+                    <div className = "my-7">
                         <h1 id = 'header'>ข้อมูลผู้สมัคร</h1>
                         <div>
-                            <label className = 'label' >ชื่อ</label>
-                            <input type = 'text' className = 'input' id = 'firstName' name = 'firstName' onChange = {onChange} required></input>
-                            <label className = 'label'>นามสกุล</label>
-                            <input type = 'text' className = 'input' id = 'lastName' name = 'lastName' onChange = {onChange} required></input>
+                            <Label>ชื่อ</Label>
+                            <Input type = 'text' className = 'w-278 sm:w-300' id = 'firstName' onChange = {onChange} required></Input>
+                            <Label>นามสกุล</Label>
+                            <Input type = 'text' className = 'w-278 sm:w-263'id = 'lastName' onChange = {onChange} required></Input>
                         </div>
                         <div>
-                            <label className = 'label'>เบอร์โทรศัพท์</label>
-                            <input type = 'text' className = 'input' id = 'tel' onChange = {onChange} required></input>
-                            <label className = 'label'>อีเมล</label>
-                            <input type = 'email' className = 'input' id = 'email' onChange = {onChange} required></input>
+                            <Label>เบอร์โทรศัพท์</Label>
+                            <Input type = 'text' className = 'w-278 sm:w-230' id = 'tel' onChange = {onChange} required></Input>
+                            <Label>อีเมล</Label>
+                            <Input type = 'email' className = 'w-278 sm:w-285' id = 'email' onChange = {onChange} required></Input>
                         </div>
                         <div className = 'conpc'>
                             <div>
-                                <label className = 'label'>ระดับชั้น</label>
-                                <select className = 'input' id = 'grade' onChange = {onChange}>
+                                <Label>ระดับชั้น</Label>
+                                <Select className = 'w-144' id = 'grade' onChange = {onChange}>
                                     <option value = 'ม.6' id = 'option'>ม.6</option>
                                     <option value = 'ม.5' id = 'option'>ม.5</option>
                                     <option value = 'ม.4' id = 'option'>ม.4</option>
@@ -58,23 +125,23 @@ function FormComponent(){
                                     <option value = 'ปวช.1' id = 'option'>ปวช.1</option>
                                     <option value = 'อื่นๆ' id = 'option'>อื่นๆ</option>
                                     <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
-                                </select>
-                                <label className = 'label'>โรงเรียน</label>
-                                <input type = 'text' className = 'input' id = 'school' onChange = {onChange} required></input>
+                                </Select>
+                                <Label>โรงเรียน</Label>
+                                <Input type = 'text'  className = 'w-382' id = 'school' onChange = {onChange} required></Input>
                             </div>
                             <div>
-                                <label className = 'label'>ที่อยู่</label>
-                                <input type = 'text' className = 'input' id = 'address' onChange = {onChange} required></input>
-                                <label className = 'label'>ตำบล/แขวง</label>
-                                <input type = 'text' className = 'input' id = 'subdistrict' onChange = {onChange} required></input>
+                                <Label>ที่อยู่</Label>
+                                <Input type = 'text' className = 'w-407' id = 'address' onChange = {onChange} required></Input>
+                                <Label>ตำบล/แขวง</Label>
+                                <Input type = 'text'  className = 'w-120' id = 'subdistrict' onChange = {onChange} required></Input>
                             </div>
                             <div>
-                                <label className = 'label'>อำเภอ/เขต</label>
-                                <input type = 'text' className = 'input' id = 'district' onChange = {onChange} required></input>
-                                <label className = 'label'>จังหวัด</label>
-                                <input type = 'text' className = 'input' id = 'province' onChange = {onChange} required></input>
-                                <label className = 'label'>รหัสไปรษณีย์</label>
-                                <input type = 'text' className = 'input' id = 'postcode' onChange = {onChange} required></input>
+                                <Label>อำเภอ/เขต</Label>
+                                <Input type = 'text'  className = 'w-128' id = 'district' onChange = {onChange} required></Input>
+                                <Label>จังหวัด</Label>
+                                <Input type = 'text' className = 'w-156' id = 'province' onChange = {onChange} required></Input>
+                                <Label>รหัสไปรษณีย์</Label>
+                                <Input type = 'text' className = 'w-113' id = 'postcode' onChange = {onChange} required></Input>
                             </div>
                             <div>
                                 <button type = 'submit'>ลงทะเบียน</button>
@@ -83,8 +150,8 @@ function FormComponent(){
                         <div className = 'collapsible'>
                             <div className = 'clpcontent' {...getCollapseProps()}>
                                 <div>
-                                    <label className = 'label'>ระดับชั้น</label>
-                                    <select className = 'input' id = 'grade' onChange = {onChange}>
+                                    <Label>ระดับชั้น</Label>
+                                    <Select className = 'w-278' onChange = {onChange}>
                                         <option value = 'ม.6' id = 'option'>ม.6</option>
                                         <option value = 'ม.5' id = 'option'>ม.5</option>
                                         <option value = 'ม.4' id = 'option'>ม.4</option>
@@ -93,23 +160,23 @@ function FormComponent(){
                                         <option value = 'ปวช.1' id = 'option'>ปวช.1</option>
                                         <option value = 'อื่นๆ' id = 'option'>อื่นๆ</option>
                                         <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
-                                    </select>
-                                    <label className = 'label'>โรงเรียน</label>
-                                    <input type = 'text' className = 'input' id = 'school' onChange = {onChange} required></input>
+                                    </Select>
+                                    <Label>โรงเรียน</Label>
+                                    <Input type = 'text' className = 'w-278' id = 'school' onChange = {onChange} required></Input>
                                 </div>
                                 <div>
-                                    <label className = 'label'>ที่อยู่</label>
-                                    <input type = 'text' className = 'input' id = 'address' onChange = {onChange} required></input>
-                                    <label className = 'label'>ตำบล/แขวง</label>
-                                    <input type = 'text' className = 'input' id = 'subdistrict' onChange = {onChange} required></input>
+                                    <Label>ที่อยู่</Label>
+                                    <Input type = 'text' className = 'w-278' id = 'address' onChange = {onChange} required></Input>
+                                    <Label>ตำบล/แขวง</Label>
+                                    <Input type = 'text' className = 'w-278' id = 'subdistrict' onChange = {onChange} required></Input>
                                 </div>
                                 <div>
-                                    <label className = 'label'>อำเภอ/เขต</label>
-                                    <input type = 'text' className = 'input' id = 'district' onChange = {onChange} required></input>
-                                    <label className = 'label'>จังหวัด</label>
-                                    <input type = 'text' className = 'input' id = 'province' onChange = {onChange} required></input>
-                                    <label className = 'label'>รหัสไปรษณีย์</label>
-                                    <input type = 'text' className = 'input' id = 'postcode' onChange = {onChange} required></input>
+                                    <Label>อำเภอ/เขต</Label>
+                                    <Input type = 'text' className = 'w-278' id = 'district' onChange = {onChange} required></Input>
+                                    <Label>จังหวัด</Label>
+                                    <Input type = 'text' className = 'w-278' id = 'province' onChange = {onChange} required></Input>
+                                    <Label>รหัสไปรษณีย์</Label>
+                                    <Input type = 'text' className = 'w-278' id = 'postcode' onChange = {onChange} required></Input>
                                 </div>
                                 <div>
                                     <button type = 'submit'>ลงทะเบียน</button>
