@@ -2,11 +2,11 @@ import React, { useEffect } from "react"
 import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
-import { checkoutCardOmise, PaymentTypes } from "../../utils/checkoutOmise"
+import { checkoutCardOmise, PaymentTypes } from "../../utils/omise"
 
 const Example = () => {
   useEffect(() => {
-    checkoutCardOmise(150, {}, (s) => console.log("ok"), PaymentTypes.eBank)
+    checkoutCardOmise(150, {}, () => console.log("ok"), PaymentTypes.eBank)
   }, [])
   return (
     <div className="App">

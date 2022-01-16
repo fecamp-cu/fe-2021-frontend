@@ -1,16 +1,14 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Route, Routes } from "react-router-dom"
 import Footer from "./components/Footer/Footer"
 import Example from "./pages/Example/Example"
 import Navbar from "./components/Navbar/Navbar"
 import Product from "./pages/Product/Product"
 import Profile from "./components/Profile_picture/Profile"
-import { setUpOmise } from "./utils/checkoutOmise"
+import { setUpOmise } from "./utils/omise"
 
 function App() {
-  useEffect(() => {
-    setUpOmise()
-  }, [])
+  setUpOmise()
   return (
     <>
       <Navbar isLogin={true} />
