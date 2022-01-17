@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import "./Payment.css"
+import axios from "axios"
+import { Console } from "console"
+
+interface Basket {
+  productId: number
+  quantity: number
+}
 
 const PaymentComponentBackground = styled.div`
   box-sizing: border-box;
@@ -206,44 +213,127 @@ function Payment() {
       setShippingZipCode(zipCode)
     }
   }, [isUseOldAddress, address, subDistrict, district, province, zipCode])
+<<<<<<< HEAD
+=======
+
+  // -------------------omise handle-----------------
+
+  function omiseConfigure() {
+    window.OmiseCard.configure({
+      frameLabel: "FE Camp",
+      submitLabel: "Pay",
+      defaultPaymentMethod: "credit_card",
+    })
+    window.OmiseCard.configureButton("#credit-card")
+    window.OmiseCard.attach()
+  }
+
+  const sentData = async (
+    source: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    tel: string,
+    grade: string,
+    school: string,
+    address: string,
+    subdistrict: string,
+    district: string,
+    province: string,
+    // postalCode
+    postcode: string,
+    basket: Basket[],
+    promotion_code?: string
+  ) => {
+    try {
+      await axios({
+        method: "post",
+        url: "https://dev.fe.in.th/api",
+        data: {
+          source,
+          email,
+          firstName,
+          lastName,
+          tel,
+          grade,
+          school,
+          address,
+          subdistrict,
+          district,
+          province,
+          postcode,
+          basket,
+          promotion_code,
+        },
+      })
+    } catch {
+      console.log("error")
+    }
+  }
+
+  function omiseResiveToken() {
+    window.OmiseCard.open({
+      amount: 12345,
+      onCreateTokenSuccess: (token: any) => {
+        console.log(token)
+        const b1 = {productId: 10,quantity: 2}
+        const basket = [b1]
+        sentData(token,email,firstName,lastName,tel,grade,school,shippingAddress,shippingSubDistrict,shippingDistrict,shippingProvince,shippingZipCode,basket)
+      },
+    })
+  }
+
+  function payWithCreditCard(event: any) {
+    event.preventDefault()
+    omiseConfigure()
+    omiseResiveToken()
+  }
+>>>>>>> 803fb57... add omise payment
 
   return (
     <PaymentComponentBackground>
-      <div style={{ padding: "46px 20px", width: "760px" }}>
+      <form>
+        <button type="button" id="credit-card" onClick={payWithCreditCard}>
+          จ่ายเงิน
+        </button>
+      </form>
+      <div style={{ padding: "46px 20px", width: "75%" }}>
         <div>
-          <WhiteCircle>
-            <Number>1</Number>
-          </WhiteCircle>
-          <Header>ข้อมูลผู้ซื้อ</Header>
-          {<RiArrowDropDownLine style={{ marginRight: "auto", marginLeft: "67%", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+          <div style={{ overflow: "auto" }}>
+            <WhiteCircle>
+              <Number>1</Number>
+            </WhiteCircle>
+            <Header>ข้อมูลผู้ซื้อ</Header>
+            {<RiArrowDropDownLine style={{ float: "right", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+          </div>
           <form action="">
             <div style={{ marginBottom: "20px" }}>
               <WhiteLabel>ชื่อ</WhiteLabel>
-              <TextInput type="text" style={{ width: "300px" }} onChange={inputFirstName} value={firstName} />
+              <TextInput type="text" style={{ width: "39%" }} onChange={inputFirstName} value={firstName} />
               <WhiteLabel>นามสกุล</WhiteLabel>
-              <TextInput type="text" style={{ width: "263px" }} onChange={inputLastName} value={lastName} />
+              <TextInput type="text" style={{ width: "40%" }} onChange={inputLastName} value={lastName} />
             </div>
             <div style={{ marginBottom: "20px" }}>
               <WhiteLabel>เบอร์โทรศัพท์</WhiteLabel>
-              <TextInput type="tel" style={{ width: "230px" }} onChange={inputTel} value={tel} />
+              <TextInput type="tel" style={{ width: "31%" }} onChange={inputTel} value={tel} />
               <WhiteLabel>อีเมล</WhiteLabel>
-              <TextInput type="email" style={{ width: "285px" }} onChange={inputEmail} value={email} />
+              <TextInput type="email" style={{ width: "42%" }} onChange={inputEmail} value={email} />
             </div>
             <div style={{ marginBottom: "20px" }}>
               <WhiteLabel>ระดับชั้น</WhiteLabel>
-              <WhiteSelect id="grade" name="grade" style={{ width: "150px", height: "26px" }} onChange={inputGrade} value={grade}>
+              <WhiteSelect id="grade" name="grade" style={{ width: "19%", height: "26px" }} onChange={inputGrade} value={grade}>
                 <option value="grade10">ม.4</option>
                 <option value="grade11">ม.5</option>
                 <option value="grade12">ม.6</option>
               </WhiteSelect>
               <WhiteLabel>โรงเรียน</WhiteLabel>
-              <TextInput type="text" style={{ width: "382px" }} onChange={inputSchool} value={school} />
+              <TextInput type="text" style={{ width: "56%" }} onChange={inputSchool} value={school} />
             </div>
             <div style={{ marginBottom: "20px" }}>
               <WhiteLabel>ที่อยู่</WhiteLabel>
-              <TextInput type="text" style={{ width: "407px" }} onChange={inputAddress} value={address} />
+              <TextInput type="text" style={{ width: "59%" }} onChange={inputAddress} value={address} />
               <WhiteLabel>ตำบล/แขวง</WhiteLabel>
-              <TextInput type="text" style={{ width: "123px" }} onChange={inputSubDistrict} value={subDistrict} />
+              <TextInput type="text" style={{ width: "16%" }} onChange={inputSubDistrict} value={subDistrict} />
             </div>
             <div style={{ marginBottom: "20px" }}>
               <WhiteLabel>อำเภอ/เขต</WhiteLabel>
@@ -351,6 +441,7 @@ function Payment() {
                 />
                 <WhiteLabel style={{ marginRight: "112px" }}>พร้อมเพย์</WhiteLabel>
               </div>
+
               <div>
                 <input
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
@@ -358,8 +449,10 @@ function Payment() {
                   name="selectPayment"
                   style={{ marginRight: "17px", marginTop: "20px" }}
                 />
+
                 <WhiteLabel>บัตรเครดิต/เดบิต</WhiteLabel>
               </div>
+
               <div>
                 <input
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"

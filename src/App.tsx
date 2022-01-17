@@ -16,7 +16,6 @@ import ProfileEdit from "./pages/Profile/ProfileEdit"
 import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
 import ProductList from "./components/Product_list/ProductList"
-<<<<<<< HEAD
 import facebookLogo from "./assets/book_cover.jpg"
 import Payment from "./pages/Payment/Payment"
 import ProductListV2 from "./components/Product_list/ProductListv2"
@@ -25,11 +24,6 @@ import PaymentConfirm from "./pages/Payment/PaymentConfirm"
 function click() {
   return
 }
-=======
-import facebookLogo from "./assets/book_cover.jpg";
-import PaymentConfirm from "./pages/Payment/PaymentConfirm"
-
->>>>>>> 2bf4c19... add payment confirm page
 function App() {
   const location = useLocation()
   const { user, setUser } = useUserContext()

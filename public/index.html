@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
+    <script>
+      Omise.setPublicKey("pkey_test_5qioru2r12ndnfxgzak")
+      OmiseCard.configure({
+        publicKey: "pkey_test_5qioru2r12ndnfxgzak",
+      })
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,6 +28,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+<<<<<<< HEAD
     <title>Fe Camp</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKLCNLPQJZ"></script>
@@ -30,6 +38,10 @@
         dataLayer.push(arguments)
       }
       gtag("js", new Date())
+=======
+    <title>React App</title>
+    
+>>>>>>> 803fb57... add omise payment
 
       window.gtag = gtag
       gtag("config", "G-XKLCNLPQJZ")
