@@ -14,13 +14,13 @@ import { useState } from "react";
 //     }
 // }
 
-function Page(){
+function Profile_page(){
     const [prev, setPrev] = useState({
         firstName : "",
         surName : "",
         tel : "",
         email : "",
-        grade : "ม.6",
+        grade : "",
         school : "",
         address : "",
         subdistrict : "",
@@ -34,7 +34,7 @@ function Page(){
         surName : "",
         tel : "",
         email : "",
-        grade : "ม.6",
+        grade : "",
         school : "",
         address : "",
         subdistrict : "",
@@ -135,9 +135,10 @@ function Page(){
                         </div>
                         <div className="formComponent">
                             <label className="formLabel">รหัสไปรษณีย์</label>
-                            <input className="formInput" id="postcode" type="text" value={values.postcode} onChange={formOnChange} maxLength={5} disabled={disableElement} style={{width: 116}}></input>
+                            <input className="formInput" id="postcode" type="text" value={values.postcode} onChange={formOnChange} maxLength={5} pattern="[0-9]{5}" disabled={disableElement} style={{width: 116}}></input>
                         </div>
                     </div>
+                    <button type="submit">ส่ง</button>
                 </form>
                     {
                         disableElement?<Button typeButton="editProfileButton" typeText="redOrangeText" onClick={editButtonHandler}>แก้ไขโปรไฟล์</Button>:null
@@ -150,10 +151,11 @@ function Page(){
                     }
                     
             </div>
-            <h1 className="history">ประวัติการสั่งซื้อ</h1>
             {
                 !disableElement?<Button typeButton="saveButton" typeText="redOrangeText" onClick={saveButtonHandler}>บันทึก</Button>:null
             }
+            <h1 className="history">ประวัติการสั่งซื้อ</h1>
+            
 
             <div>
                 <Footer/>
@@ -162,4 +164,4 @@ function Page(){
     );  
 }
 
-export default Page;
+export default Profile_page;
