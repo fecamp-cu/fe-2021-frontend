@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import facebookLogo from "../../assets/book_cover.jpg";
 
 const Container = styled.div`
     width: 454px;
@@ -36,17 +37,20 @@ const ListBackGround = styled.div`
     width: 454px;
     min-height: 100px;
     height:auto !important;
+    padding-left: 20px;
+    padding-top: 0.1px;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
 }
 `;
 
+
 const CodeBg = styled.div`
     width: 454px;
-    min-height: 70px;
+    min-height: 80px;
     height:auto !important;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
     padding-left: 20px;
-    padding-top: 13px;
+    padding-top: 17px;
     
 }`;
 
@@ -90,6 +94,7 @@ const ShippingCost = styled.p`
     font-size: 16px;
     line-height: 24px;
     /* identical to box height */
+    display: inline;
 
     /* white/500 */
 
@@ -110,35 +115,74 @@ const Cost = styled.p`
     color: #FFFFFF;
 }`;
 
+const ProductImg = styled.img`
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    margin-top: 30px;
+
+}`;
+
+const Title = styled.p`
+    display: inline-block;
+    margin-left: 15px;
+}`;
+
+export interface Book {
+    productId: number;
+    title: string;
+    price: number;
+    productImg: any;
+}
+
+interface Basket{
+    productId: number;
+    quantity: number;
+}
 
 interface ProductListProps {
-    productImg: any
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
-    title: string
-    price: number
-    shipping: number
+    productImg?: any
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+    title?: string
+    price?: number
+    shipping?: number
+    bookList: Book[];
 
 }
-const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title, price, shipping }) => {
-    const [code, setCode] = useState(" ")
+
+const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title, price, shipping,bookList }) => {
+    const [promotion_code, setPromotionCode] = useState(" ")
 
     const inputCode = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-        setCode(event.target.value)
+        setPromotionCode(event.target.value)
 
     }
 
-    
+    const bookCart:Book[] = [];
+
+    bookList?.forEach(e=>{
+        bookCart.push(e);
+    })
+
     return <Container>
             <Head>รายการสินค้า</Head>
-            
-            <ListBackGround></ListBackGround>
-            <ListBackGround></ListBackGround>
+                {bookCart.map(e=>{
+                    return(
+                        <ListBackGround>
+                            <ProductImg src = {e.productImg}></ProductImg>
+                            <Title><InfoText>{e.title}</InfoText></Title>
+                        </ListBackGround>
+                    )
+                })}
+
             <CodeBg><InfoText>โค้ดส่วนลด</InfoText><CodeInput type="text" onChange={inputCode}></CodeInput></CodeBg>
             
 
             <Footer>
                 <ShippingCost>ค่าจัดส่ง</ShippingCost>
+                <ShippingCost style={{marginLeft: '330px'}}>฿ 0.00</ShippingCost>
                 <Cost>ราคาสุทธิ</Cost>
             </Footer>
         
