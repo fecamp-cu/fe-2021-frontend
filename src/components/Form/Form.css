@@ -2,27 +2,29 @@
 
 
 .body{
-    background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
+    /*background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
     position : absolute;
     width : 1440px;
-    height : 1102px;
+    height : 1102px;*/
+    display : flex;
+    justify-content: center;
 }
 
 .form{
-    position : absolute;
-    align-items: center;
-    width : 1203px;
-    height: 651.37;
+    display : flex;
+    flex-direction : column;
+    justify-content: center;
+    flex-basis : 1200px;
     background-color: rgba(255, 255, 255, 0.25);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(30px);
     border-radius: 20px;
-    margin : 90px 120px 30px 120px;
+    margin : 90px 30px 30px 30px;
 }
 
 #header{
     text-align: center;
-    margin : 20px 285px;
+    margin : 20px ;
     height : 25.49px;
 
     /* TH/H4 */
@@ -32,11 +34,43 @@
     font-weight: bold;
     font-size: 28px;
     line-height: 42px;
-    display: flex;
     align-items: center;
-
     color: #FFFFFF;
 
+}
+.row1{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto minmax(250px,300px) auto minmax(250px, 263px);
+}
+
+.row2{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto minmax(130px,230px) auto minmax(260px, 285px);
+}
+
+.row3{
+    display : grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto minmax(70px, 144px) auto minmax(300px, 382px);
+}
+
+.row4{
+    display : grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto minmax(300px, 400px) auto 120px;
+}
+
+.row5{
+    display : grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto minmax(90px, 130px) auto minmax(105px, 160px) auto minmax(75px, 120px);
 }
 
 input:invalid ~ span{
@@ -54,27 +88,27 @@ input:invalid ~ span{
     
 }
 @media (max-width : 600px) {
-    .body{
-        background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
-        position : absolute;
-        width : 390px;
-        height : 1237px;
-    }
     .form{
-        position : absolute;
-        align-items: center;
-        width : 342px;
-        background-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(50px);
         border-radius: 18px;
         margin : 50px 24px;
     }
+    .row1{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: minmax(0px, 278px);
+        grid-template-rows : 1fr 1fr;
+    }
     
-    #header{
-        display :none;
-    }  
-       
+    .row2{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: minmax(0px, 278px);
+        grid-template-rows : 1fr 1fr;
+    }
+    
     input:invalid ~ span{
         display : block;
     }
