@@ -1,0 +1,32 @@
+import React from "react"
+import { IconType } from "react-icons"
+import styled from "styled-components"
+import { BaseButton } from "./BaseButton"
+import { BaseButtonProps } from "./BaseButton"
+
+interface ButtonProps extends BaseButtonProps {
+  className?: string
+  onClick?: () => void
+  Icon?: IconType
+}
+const Logo = styled.span`
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: #fff;
+`
+
+export const Button: React.FC<ButtonProps> = ({ onClick, Icon, children, textColor, ...rest }) => {
+  return (
+    <BaseButton onClick={onClick} {...rest} textColor={textColor}>
+      {/* <p>{icon && <Logo>{icon}</Logo>}</p> */}
+      <p>
+        {Icon && (
+          <Logo>
+            <Icon color={textColor} size={20}></Icon>
+          </Logo>
+        )}
+        {children}
+      </p>
+    </BaseButton>
+  )
+}
