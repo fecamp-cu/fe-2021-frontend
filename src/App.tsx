@@ -20,6 +20,14 @@ import facebookLogo from "./assets/book_cover.jpg"
 import Payment from "./pages/Payment/Payment"
 import ProductListV2 from "./components/Product_list/ProductListv2"
 import PaymentConfirm from "./pages/Payment/PaymentConfirm"
+import {Book} from "./components/Product_list/ProductListv2"
+
+
+const book:Book[] = [
+  {productId:1,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo},
+  {productId:2,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo},
+  {productId:3,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo}
+]
 
 function click() {
   return
