@@ -6,8 +6,10 @@ import Product from "./pages/Product/Product"
 import Footer from "./components/Footer/Footer"
 import { PageContainer } from "./components/Containers"
 import Profile from "./components/Profile_picture/Profile"
+import { setUpOmise } from "./utils/omise"
 
 function App() {
+  setUpOmise()
   return (
     <>
       <Navbar isLogin={true} />
