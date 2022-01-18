@@ -102,15 +102,15 @@ function FormComponent(){
                         <h1 id = 'header'>ข้อมูลผู้สมัคร</h1>
                         <div className = 'row1'>
                             <Label>ชื่อ</Label>
-                            <Input type = 'text' /*width = "300px"*/ id = 'firstName' onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'firstName' onChange = {onChange} required></Input>
                             <Label>นามสกุล</Label>
-                            <Input type = 'text' /*width = "263px"*/ id = 'lastName' onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'lastName' onChange = {onChange} required></Input>
                         </div>
                         <div className = 'row2'>
                             <Label>เบอร์โทรศัพท์</Label>
-                            <Input type = 'text' /*width = "230px"*/ id = 'tel' onChange = {onChange} required></Input>
+                            <Input type = 'text'  id = 'tel' onChange = {onChange} required></Input>
                             <Label>อีเมล</Label>
-                            <Input type = 'email' /*width = "285px"*/ id = 'email' onChange = {onChange} required></Input>
+                            <Input type = 'email' id = 'email' onChange = {onChange} required></Input>
                         </div>
                         <div className = 'conpc'>
                             <div className = 'row3'>
@@ -122,21 +122,21 @@ function FormComponent(){
                                     <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                                 </Select>
                                 <Label>โรงเรียน</Label>
-                                <Input type = 'text'  /*width ="382px"*/ id = 'school' onChange = {onChange} required></Input>
+                                <Input type = 'text' id = 'school' onChange = {onChange} required></Input>
                             </div>
                             <div className = 'row4'>
                                 <Label>ที่อยู่</Label>
-                                <Input type = 'text' /*width = "407px"*/ id = 'address' onChange = {onChange} required></Input>
+                                <Input type = 'text' id = 'address' onChange = {onChange} required></Input>
                                 <Label>ตำบล/แขวง</Label>
-                                <Input type = 'text'  /*width = "120px"*/ id = 'subdistrict' onChange = {onChange} required></Input>
+                                <Input type = 'text' id = 'subdistrict' onChange = {onChange} required></Input>
                             </div>
                             <div className = 'row5'>
                                 <Label>อำเภอ/เขต</Label>
-                                <Input type = 'text'  /*width = "128px"*/ id = 'district' onChange = {onChange} required></Input>
+                                <Input type = 'text' id = 'district' onChange = {onChange} required></Input>
                                 <Label>จังหวัด</Label>
-                                <Input type = 'text' /*width = "156px"*/ id = 'province' onChange = {onChange} required></Input>
+                                <Input type = 'text' id = 'province' onChange = {onChange} required></Input>
                                 <Label>รหัสไปรษณีย์</Label>
-                                <Input type = 'text' /*width = "113px"*/ id = 'postcode' onChange = {onChange} required></Input>
+                                <Input type = 'text' id = 'postcode' onChange = {onChange} required></Input>
                             </div>
                             <div>
                                 <button type = 'submit'>ลงทะเบียน</button>
@@ -144,7 +144,7 @@ function FormComponent(){
                         </div>
                         <div className = 'collapsible'>
                             <div className = 'clpcontent' {...getCollapseProps()}>
-                                <div className = 'grid justify-center items-center grid-rows-2 grid-cols-1'>
+                                <div className = 'row3'>
                                     <Label>ระดับชั้น</Label>
                                     <Select onChange = {onChange}>
                                         <option value = 'ม.5' id = 'option'>ม.5</option>
@@ -155,13 +155,13 @@ function FormComponent(){
                                     <Label>โรงเรียน</Label>
                                     <Input type = 'text' id = 'school' onChange = {onChange} required></Input>
                                 </div>
-                                <div className = 'grid justify-center items-center grid-rows-2 grid-cols-1'>
+                                <div className = 'row4'>
                                     <Label>ที่อยู่</Label>
                                     <Input type = 'text' id = 'address' onChange = {onChange} required></Input>
                                     <Label>ตำบล/แขวง</Label>
                                     <Input type = 'text' id = 'subdistrict' onChange = {onChange} required></Input>
                                 </div>
-                                <div className = 'grid justify-center items-center grid-rows-2 grid-cols-1'>
+                                <div className = 'row5'>
                                     <Label>อำเภอ/เขต</Label>
                                     <Input type = 'text' id = 'district' onChange = {onChange} required></Input>
                                     <Label>จังหวัด</Label>
@@ -174,7 +174,7 @@ function FormComponent(){
                                 </div>
                             </div>
                         <IconContext.Provider value = {{className : 'collapsed-icon'}}>
-                            <div /*className = 'collapsed-icon'*/ {...getToggleProps()}>
+                            <div className = 'flex justify-center' {...getToggleProps()}>
                                 {isExpanded ? (
                                     <div id = 'collapsed'><BsChevronUp/></div>
                                 ) : (

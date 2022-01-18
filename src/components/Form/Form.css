@@ -2,10 +2,6 @@
 
 
 .body{
-    /*background: linear-gradient(180deg, #9B2C33 0%, #E56D77 100%);
-    position : absolute;
-    width : 1440px;
-    height : 1102px;*/
     display : flex;
     justify-content: center;
 }
@@ -107,6 +103,28 @@ input:invalid ~ span{
         align-items: center;
         grid-template-columns: minmax(0px, 278px);
         grid-template-rows : 1fr 1fr;
+    }
+    
+    .row3{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: minmax(0px, 278px);
+        grid-template-rows : 1fr 1fr;
+    }
+    .row4{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: minmax(0px, 278px);
+        grid-template-rows : 1fr 1fr;
+    }
+    .row5{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: minmax(0px, 278px);
+        grid-template-rows : 1fr 1fr 1fr;
     }
     
     input:invalid ~ span{
