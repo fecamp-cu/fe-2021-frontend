@@ -21,6 +21,17 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: fecamp-config
+                  key: api_url
+            - name: REACT_APP_OMISE_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: omise-secret
+                  key: public_key
           readinessProbe:
             httpGet:
               path: /
