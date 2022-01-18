@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 import Example from "./pages/Example/Example"
+import Form from "./components/Form/Form"
 import Navbar from "./components/Navbar/Navbar"
 import Product from "./pages/Product/Product"
 import Footer from "./components/Footer/Footer"
@@ -19,6 +20,7 @@ function App() {
           <Route path="/product" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/form" element={<Form />}></Route>
         </Routes>
       </PageContainer>
     </>
