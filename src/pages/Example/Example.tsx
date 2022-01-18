@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
-import Profile from "../../components/Profile_picture/Profile"
+import { checkoutCardOmise, PaymentTypes } from "../../utils/omise"
 
 const Example = () => {
   return (
@@ -18,7 +18,6 @@ const Example = () => {
         <AlertButton isEmergency message="This is just a proposed project structure, feel free to change it if you want">
           Example Button
         </AlertButton>
-        <Profile></Profile>
       </header>
     </div>
   )
