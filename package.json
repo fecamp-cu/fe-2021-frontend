@@ -1,6 +1,6 @@
 {
   "name": "fe-camp-frontend",
-  "version": "0.1.0",
+  "version": "v1.22.17",
   "private": true,
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
@@ -17,6 +17,7 @@
     "axios": "^0.24.0",
     "postcss": "^8.4.5",
     "react": "^17.0.2",
+    "react-collapsed": "^3.3.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.1",
