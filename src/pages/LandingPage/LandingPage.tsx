@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer"
 import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/Buttons/Buttons";
 import Qualifications from "../../components/LandingPage/Qualifications/Qualifications"
-
+import Schedule from "../../components/LandingPage/Schedule/Schedule";
 import "./LandingPage.css"
 
 function LandingPage() {
@@ -24,6 +24,7 @@ function LandingPage() {
 
             <div className="landing-background">
                 <About/>
+                <Schedule/>
                 <Qualifications/>
             </div>
         </div>

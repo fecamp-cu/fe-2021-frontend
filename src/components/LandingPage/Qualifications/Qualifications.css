@@ -66,3 +66,25 @@
   color: #ffffff;
   padding-right: 12em;
 }
+
+/*For mobile 450px */
+@media (max-width: 450px) {
+  .qualifications-header {
+    font-size: 28px;
+    line-height: 42px;
+
+    padding-top: 96px;
+    margin-bottom: 15px;
+  }
+  .index-with-bg {
+    font-weight: normal;
+    font-size: 14px;
+    padding-left: 30px;
+  }
+  .qualification-text {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 180%;
+    padding-right: 30px;
+  }
+}
