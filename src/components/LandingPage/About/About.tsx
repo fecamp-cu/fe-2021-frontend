@@ -3,7 +3,7 @@ import "./About.css"
 
 function About() {
     return (
-        <div>
+        <div id="about-landingPage-content">
 
             <h1 className="topic-text">FE camp คืออะไร</h1>
 

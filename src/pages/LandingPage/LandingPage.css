@@ -1,5 +1,5 @@
 .top-landing-container {
-  height: 1000px;
+  height: 800px;
   background-color: white;
 }
 
@@ -11,16 +11,36 @@
 .top-landing-background {
   background-image: url("../../assets/images/landingPage-top-pic.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  width: 100%;
   max-width: 100%;
+  overflow: hidden;
   height: 800px;
+  display: flex;
+  justify-content: center;
 }
 
-.apply-button-landing-page {
+.roo-juk-kai-text {
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 180%;
   text-align: center;
-  /* align-items: center;
-  justify-content: center;
+  align-items: center;
+  color: #b32f4e;
+
+  margin-top: 50px;
+}
+
+.blocking-container {
+  margin-top: 36%;
+  /* justify-content: center;
+  text-align: center;
+  align-items: center; */
+}
+
+.icon-image {
   margin-left: auto;
   margin-right: auto;
-  width: 100%; */
+  margin-top: 10px;
 }
