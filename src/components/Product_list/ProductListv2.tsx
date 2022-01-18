@@ -37,6 +37,7 @@ const ListBackGround = styled.div`
     width: 454px;
     min-height: 100px;
     height:auto !important;
+    display: inline-block;
     padding-left: 20px;
     padding-top: 0.1px;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
@@ -46,11 +47,11 @@ const ListBackGround = styled.div`
 
 const CodeBg = styled.div`
     width: 454px;
-    min-height: 80px;
+    min-height: 90px;
     height:auto !important;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
     padding-left: 20px;
-    padding-top: 17px;
+    padding-top: 30px;
     
 }`;
 
@@ -129,6 +130,21 @@ const Title = styled.p`
     margin-left: 15px;
 }`;
 
+const SqrBtn = styled.button`
+
+    width: 30px;
+    height: 30px;
+    /* medOfRedToPink */
+
+    background: #D15C65;
+    border-radius: 5px;
+    justify-content: center;
+    text-align: center;
+    align-item: center;
+    position: absolute;
+
+}`;
+
 export interface Book {
     productId: number;
     title: string;
@@ -172,7 +188,9 @@ const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title,
                     return(
                         <ListBackGround>
                             <ProductImg src = {e.productImg}></ProductImg>
-                            <Title><InfoText>{e.title}</InfoText></Title>
+                            <Title><InfoText>{e.title}</InfoText> </Title>
+                            <SqrBtn style={{left: '336px', marginTop: '70px'}}></SqrBtn>
+                            <SqrBtn style={{left: '407px', marginTop: '70px'}}></SqrBtn>
                         </ListBackGround>
                     )
                 })}
