@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import facebookLogo from "../../assets/book_cover.jpg";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus } from "react-icons/ai";
 
 const Container = styled.div`
     width: 454px;
@@ -142,7 +144,36 @@ const SqrBtn = styled.button`
     text-align: center;
     align-item: center;
     position: absolute;
+    color: #fff;
+    font-size: 20px;
 
+}`;
+
+const Logo = styled.p`
+    margin-left: 5px;
+}`;
+
+const Price = styled.p`
+
+    position: absolute;
+    width: 61px;
+    height: 27px;
+
+    /* TH/H6 */
+
+    font-family: CHULALONGKORN;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    /* white/500 */
+
+    color: #FFFFFF;
 }`;
 
 export interface Book {
@@ -189,8 +220,10 @@ const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title,
                         <ListBackGround>
                             <ProductImg src = {e.productImg}></ProductImg>
                             <Title><InfoText>{e.title}</InfoText> </Title>
-                            <SqrBtn style={{left: '336px', marginTop: '70px'}}></SqrBtn>
-                            <SqrBtn style={{left: '407px', marginTop: '70px'}}></SqrBtn>
+                            <SqrBtn style={{left: '336px', marginTop: '70px'}}><Logo><AiOutlineMinus/></Logo></SqrBtn>
+                            <SqrBtn style={{left: '407px', marginTop: '70px'}}><Logo><AiOutlinePlus/></Logo></SqrBtn>
+                            <Price style ={{left: '107px', marginTop: '-25px'}}>฿ {e.price.toFixed(2)}</Price>
+                            
                         </ListBackGround>
                     )
                 })}
