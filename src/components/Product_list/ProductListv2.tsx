@@ -30,9 +30,9 @@ const Head = styled.div`
 }`;
 
 const Footer = styled.div`
-    height: 68px;
+    height: 75px;
     padding-left: 20px;
-    padding-top: 8px;
+    padding-top: 13px;
 }`;
 
 const ListBackGround = styled.div`
@@ -183,11 +183,10 @@ export interface Book {
     productImg: any;
 }
 
-interface Basket{
+interface Basket {
     productId: number;
     quantity: number;
 }
-
 interface ProductListProps {
     productImg?: any
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -200,6 +199,7 @@ interface ProductListProps {
 
 const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title, price, shipping,bookList }) => {
     const [promotion_code, setPromotionCode] = useState(" ")
+    const [quantity,setQuantity] = useState()
 
     const inputCode = (event: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -208,10 +208,14 @@ const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title,
     }
 
     const bookCart:Book[] = [];
+    const basket:Basket[] = [];
 
     bookList?.forEach(e=>{
         bookCart.push(e);
+        basket.push({productId: e.productId, quantity:1});
     })
+
+    const [currentBasket,setCurrentBasket] = useState(basket)
 
     return <Container>
             <Head>รายการสินค้า</Head>
