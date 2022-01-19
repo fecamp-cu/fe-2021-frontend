@@ -10,9 +10,13 @@ const Item = (props: { day: boolean | ReactChild | ReactFragment | ReactPortal |
 }
 
 function Schedule() {
-    const data = [{id:1,day:14,month:"ม.ค.",year:2565,con:"เริ่มการเปิดรับสมัคร"},
-                  {id:2,day:15,month:"ม.ค.",year:2565,con:"ปิดการรับสมัคร"},
-                  {id:3,day:16,month:"ม.ค.",year:2565,con:"จบกิจกรรม"} ]
+    const data = [{id:1,day:24,month:"ก.พ.",year:2565,con:"เริ่มการเปิดรับสมัคร"},
+                  {id:2,day:20,month:"มี.ค.",year:2565,con:"ปิดการรับสมัคร"},
+                  {id:3,day:8,month:"เม.ย.",year:2565,con:"ประกาศรายชื่อผู้ที่มีสิทธิ์จ่ายเงิน"},
+                  {id:4,day:8,month:"เม.ย.",year:2565,con:"สิ้นสุดการจ่ายเงินชำระค่าเข้าค่าย"},
+                  {id:5,day:8,month:"เม.ย.",year:2565,con:"ประกาศรายชื่อผู้มีสิทธิ์เข้าค่าย"},
+                  {id:6,day:8,month:"เม.ย.",year:2565,con:"เริ่มค่าย FECamp15"},
+                  {id:7,day:8,month:"เม.ย.",year:2565,con:"สิ้นสุดค่าย FECamp15"}]
 
     return (
         <>
