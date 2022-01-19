@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../Buttons/Buttons";
+// import Button from "../../components/Buttons/Buttons";
 import { FaTrashRestore } from "react-icons/fa";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -292,7 +292,7 @@ const ProductList: React.FC<ProductListProps> = ({ productImg, onClick, title, p
             <SqrBtn style={{ marginLeft: '336px', marginTop: '53px' }} onClick={reduceAmount}><BinLogo><FaTrashRestore></FaTrashRestore></BinLogo></SqrBtn>
             <Amount>{amount}</Amount>
             <SqrBtn style={{ marginLeft: '407px', marginTop: '53px' }} onClick={addAmount}><PlusLogo><FiPlus></FiPlus></PlusLogo></SqrBtn>
-            <CodeBtn><Button typeButton="codeButton" typeText="whiteSmallText" onClick={onClick} >ใช้โค้ด</Button></CodeBtn>
+            {/* <CodeBtn><Button typeButton="codeButton" typeText="whiteSmallText" onClick={onClick} >ใช้โค้ด</Button></CodeBtn> */}
             <CodeInput type="text" onChange={inputCode}></CodeInput>
             
         </ListBackGround>
