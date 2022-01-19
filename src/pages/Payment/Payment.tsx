@@ -4,11 +4,27 @@ import { RiArrowDropDownLine } from "react-icons/ri"
 import "./Payment.css"
 import axios from "axios"
 import { Console } from "console"
+import ReuseForm from "../../components/Form/reuseForm"
+import ProductListV2 from "../../components/Product_list/ProductListv2"
+import facebookLogo from "../../assets/book_cover.jpg";
 
 interface Basket {
   productId: number
   quantity: number
 }
+
+interface Book{
+  productId:number
+  title:string
+  price: number
+  productImg:string
+}
+
+const book:Book[] = [
+  {productId:1,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo},
+  {productId:2,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo},
+  {productId:3,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo}
+]
 
 const PaymentComponentBackground = styled.div`
   box-sizing: border-box;
@@ -284,20 +300,38 @@ function Payment() {
   }
 
   function payWithCreditCard(event: any) {
+    console.log("lllllllll")
     event.preventDefault()
     omiseConfigure()
     omiseResiveToken()
   }
 >>>>>>> 803fb57... add omise payment
 
+  const [values, setValues] = useState({
+        firstName : "",
+        surName : "",
+        tel : "",
+        email : "",
+        grade : "ม.5",
+        school : "",
+        address : "",
+        subdistrict : "",
+        district : "",
+        province : "",
+        postcode : ""
+    })
+    const onChange= (e : any) =>{
+      setValues({...values, [e.target.id] : e.target.value})
+    }
+
   return (
-    <PaymentComponentBackground>
-      <form>
-        <button type="button" id="credit-card" onClick={payWithCreditCard}>
+    <PaymentComponentBackground style={{display:'inline-flex'}}>
+      
+      <div style={{ padding: "46px 20px", width: "75%"}}>
+        <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"}/>
+        <button type = 'submit' id="credit-card" form="myform">
           จ่ายเงิน
         </button>
-      </form>
-      <div style={{ padding: "46px 20px", width: "75%" }}>
         <div>
           <div style={{ overflow: "auto" }}>
             <WhiteCircle>
@@ -466,6 +500,11 @@ function Payment() {
           </form>
         </div>
       </div>
+      <div style={{paddingTop:"50px", paddingRight:"20px"}}>
+        <ProductListV2 bookList={book}></ProductListV2>
+        
+      </div>
+      
     </PaymentComponentBackground>
   )
 }
