@@ -12,7 +12,7 @@ module.exports = {
         base: ["18px", "27px"],
         sm: ["16px", "20px"],
         xs: ["14px", "17.5px"],
-      },
+      }
     },
   },
   plugins: [],

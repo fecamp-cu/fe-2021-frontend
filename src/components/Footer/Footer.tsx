@@ -6,7 +6,7 @@ import youtubeLogo from "../../assets/images/Subtract.png";
 function Footer() {
   return (
     
-    <div className="container">
+    <div className="footer-container">
       <div className="sub-container1">
         <div className="sub1-column1">
           <h1 className="faculty-text">
@@ -20,9 +20,17 @@ function Footer() {
 
         <div className="sub1-column2">
           <div className="icons">
-          <img src={facebookLogo} alt="facebook-logo" className="image"></img>
-          <img src={instagramLogo} alt="instagram-logo" className="image"></img>
-          <img src={youtubeLogo} alt="youtube-logo" className="image"></img>
+
+          <a href="https://th-th.facebook.com/fecampchula/" target="_blank">
+            <img src={facebookLogo} alt="facebook-logo" className="image"></img>
+          </a>
+          <a href="https://www.instagram.com/fecampcu/" target="_blank">
+            <img src={instagramLogo} alt="instagram-logo" className="image"></img>
+          </a>
+          <a href="https://www.youtube.com/channel/UCzAKRq31Xm-lqcP4ZkI5ZSg" target="_blank">
+            <img src={youtubeLogo} alt="youtube-logo" className="image"></img>
+          </a>
+          
           </div>
         </div>
       </div>
