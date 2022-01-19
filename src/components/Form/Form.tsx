@@ -114,6 +114,7 @@ function FormComponent(){
                         </div>
                         <div className = 'conpc'>
                             <div className = 'row3'>
+
                                 <Label>ระดับชั้น</Label>
                                 <Select id = 'grade' onChange = {onChange}>
                                     <option value = 'ม.5' id = 'option'>ม.5</option>
@@ -137,6 +138,7 @@ function FormComponent(){
                                 <Input type = 'text' id = 'province' onChange = {onChange} required></Input>
                                 <Label>รหัสไปรษณีย์</Label>
                                 <Input type = 'text' id = 'postcode' onChange = {onChange} required></Input>
+
                             </div>
                             <div>
                                 <button type = 'submit'>ลงทะเบียน</button>
@@ -145,6 +147,7 @@ function FormComponent(){
                         <div className = 'collapsible'>
                             <div className = 'clpcontent' {...getCollapseProps()}>
                                 <div className = 'row3'>
+
                                     <Label>ระดับชั้น</Label>
                                     <Select onChange = {onChange}>
                                         <option value = 'ม.5' id = 'option'>ม.5</option>
@@ -155,7 +158,10 @@ function FormComponent(){
                                     <Label>โรงเรียน</Label>
                                     <Input type = 'text' id = 'school' onChange = {onChange} required></Input>
                                 </div>
+
                                 <div className = 'row4'>
+
+
                                     <Label>ที่อยู่</Label>
                                     <Input type = 'text' id = 'address' onChange = {onChange} required></Input>
                                     <Label>ตำบล/แขวง</Label>

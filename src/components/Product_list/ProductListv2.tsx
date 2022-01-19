@@ -224,9 +224,9 @@ const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title,
                         <ListBackGround>
                             <ProductImg src = {e.productImg}></ProductImg>
                             <Title><InfoText>{e.title}</InfoText> </Title>
-                            <SqrBtn style={{left: '336px', marginTop: '70px'}}><Logo><AiOutlineMinus/></Logo></SqrBtn>
-                            <SqrBtn style={{left: '407px', marginTop: '70px'}}><Logo><AiOutlinePlus/></Logo></SqrBtn>
-                            <Price style ={{left: '107px', marginTop: '-25px'}}>฿ {e.price.toFixed(2)}</Price>
+                            <SqrBtn style={{marginLeft: '-95px', marginTop: '70px'}}><Logo><AiOutlineMinus/></Logo></SqrBtn>
+                            <SqrBtn style={{marginLeft: '-22px', marginTop: '70px'}}><Logo><AiOutlinePlus/></Logo></SqrBtn>
+                            <Price style ={{marginLeft: '86px', marginTop: '-25px'}}>฿ {e.price.toFixed(2)}</Price>
                             
                         </ListBackGround>
                     )
