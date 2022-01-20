@@ -4,6 +4,7 @@ import { useState } from "react";
 import facebookLogo from "../../assets/book_cover.jpg";
 import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
+import { Button } from "../Buttons/Button";
 
 const Container = styled.div`
     width: 454px;
@@ -33,6 +34,7 @@ const Footer = styled.div`
     height: 75px;
     padding-left: 20px;
     padding-top: 13px;
+    
 }`;
 
 const ListBackGround = styled.div`
@@ -61,6 +63,7 @@ const CodeInput = styled.input`
     width: 222px;
     height: 40px;
     margin-left: 36px;
+    display: inline;
 
     background: rgba(255, 255, 255, 0.3);
     /* white/500 */
@@ -105,7 +108,7 @@ const ShippingCost = styled.p`
 }`;
 
 const Cost = styled.p`
-
+    display: inline-block;
 
     font-family: CHULALONGKORN;
     font-style: normal;
@@ -176,6 +179,33 @@ const Price = styled.p`
     color: #FFFFFF;
 }`;
 
+
+const Amount = styled.p`
+
+    position: absolute;
+    /* TH/H6 */
+
+    font-family: CHULALONGKORN;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* medOfRedToPink */
+
+    color: #D15C65;
+}`;
+
+const CodeBtn = styled.p`
+    margin-left: 13px;
+    display: inline;
+}`;
+
 export interface Book {
     productId: number;
     title: string;
@@ -188,16 +218,13 @@ interface Basket {
     quantity: number;
 }
 interface ProductListProps {
-    productImg?: any
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-    title?: string
-    price?: number
     shipping?: number
     bookList: Book[];
 
 }
 
-const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title, price, shipping,bookList }) => {
+const ProductListV2: React.FC<ProductListProps> = ({onClick, shipping, bookList }) => {
     const [promotion_code, setPromotionCode] = useState(" ")
     const [quantity,setQuantity] = useState()
 
@@ -213,9 +240,45 @@ const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title,
     bookList?.forEach(e=>{
         bookCart.push(e);
         basket.push({productId: e.productId, quantity:1});
+        console.log(e.price)
     })
 
     const [currentBasket,setCurrentBasket] = useState(basket)
+
+    const addAmount = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setCurrentBasket(
+            currentBasket.map((b)=>
+                b.productId.toString() === event.currentTarget.id
+                ? {...b,quantity:b.quantity+1}
+                :{...b}
+                
+            )
+        );
+
+    };
+
+    const reduceAmount = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setCurrentBasket(
+            currentBasket.map((b)=>
+                b.productId.toString() === event.currentTarget.id
+                ? {...b,quantity:b.quantity>0?b.quantity-1:0}
+                :{...b}
+                
+            )
+        );
+
+    };
+
+    const getPrice = (basket:Basket[]) =>{
+        let p = 0;
+        basket.map(e => {
+            bookCart.map(b=>{
+                e.productId===b.productId?p = p + (e.quantity*b.price):p = p+0
+            })
+            
+        })
+        return p
+    }
 
     return <Container>
             <Head>รายการสินค้า</Head>
@@ -224,21 +287,33 @@ const ProductListV2: React.FC<ProductListProps> = ({ productImg, onClick, title,
                         <ListBackGround>
                             <ProductImg src = {e.productImg}></ProductImg>
                             <Title><InfoText>{e.title}</InfoText> </Title>
-                            <SqrBtn style={{marginLeft: '-95px', marginTop: '70px'}}><Logo><AiOutlineMinus/></Logo></SqrBtn>
-                            <SqrBtn style={{marginLeft: '-22px', marginTop: '70px'}}><Logo><AiOutlinePlus/></Logo></SqrBtn>
+                            {currentBasket.map((b)=>{
+                                if(b.productId===e.productId){
+                                    return <Amount style={{marginLeft: '360px',marginTop: '-25px'}}>{b.quantity}</Amount>
+                                }
+                    
+                            })}
+                            <SqrBtn style={{marginLeft: '-95px', marginTop: '70px'}} id={e.productId.toString()} onClick={reduceAmount}><Logo><AiOutlineMinus/></Logo></SqrBtn>
+                        
+                            <SqrBtn style={{marginLeft: '-22px', marginTop: '70px'}} id={e.productId.toString()} onClick={addAmount}><Logo><AiOutlinePlus/></Logo></SqrBtn>
                             <Price style ={{marginLeft: '86px', marginTop: '-25px'}}>฿ {e.price.toFixed(2)}</Price>
                             
                         </ListBackGround>
                     )
                 })}
 
-            <CodeBg><InfoText>โค้ดส่วนลด</InfoText><CodeInput type="text" onChange={inputCode}></CodeInput></CodeBg>
+            <CodeBg>
+                <InfoText>โค้ดส่วนลด</InfoText><CodeInput type="text" onChange={inputCode}></CodeInput>
+                <CodeBtn><Button width="71" bg="#D45161" fontSize="16px" lineHeight="24px" outline={false} shadow>ใช้โค้ด</Button></CodeBtn>
+            </CodeBg>
             
 
             <Footer>
                 <ShippingCost>ค่าจัดส่ง</ShippingCost>
                 <ShippingCost style={{marginLeft: '330px'}}>฿ 0.00</ShippingCost>
                 <Cost>ราคาสุทธิ</Cost>
+                <Cost style={{marginLeft: '297px'}}>฿ {getPrice(currentBasket).toFixed(2)}</Cost>
+                
             </Footer>
         
         </Container>
