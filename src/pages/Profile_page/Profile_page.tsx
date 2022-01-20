@@ -2,7 +2,7 @@ import "./Profile_page.css"
 import Profile from "../../components/Profile_picture/Profile";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import Button from "../../components/Buttons/Buttons";
+
 import { useState } from "react";
 
 
@@ -66,9 +66,9 @@ function Profile_page(){
 
     return(
         <div className="profilePage">
-            <div className="navbar">
+            {/* <div className="navbar">
                 <Navbar/>
-            </div>
+            </div> */}
             <h1 className="personal">ข้อมูลส่วนตัว</h1>
             <div className="picture">
                 <Profile/>
@@ -140,26 +140,27 @@ function Profile_page(){
                     </div>
                     <button type="submit">ส่ง</button>
                 </form>
-                    {
+                    {/* {
                         disableElement?<Button typeButton="editProfileButton" typeText="redOrangeText" onClick={editButtonHandler}>แก้ไขโปรไฟล์</Button>:null
-                    }
+                    } */}
                     {/* {
                         !disableElement?<Button typeButton="saveButton" typeText="redOrangeText" onClick={saveButtonHandler}>บันทึก</Button>:null
                     } */}
-                    {
+                    {/* {
                         !disableElement?<Button typeButton="cancelSmallButton" typeText="whiteNormalText" onClick={cancelButtonHandler}>ยกเลิก</Button>:null
-                    }
+                    } */}
                     
             </div>
-            {
+            {/* {
                 !disableElement?<Button typeButton="saveButton" typeText="redOrangeText" onClick={saveButtonHandler}>บันทึก</Button>:null
-            }
+            } */}
             <h1 className="history">ประวัติการสั่งซื้อ</h1>
             
 
-            <div>
+
+            {/* <div>
                 <Footer/>
-            </div>
+            </div> */}
         </div>
     );  
 }

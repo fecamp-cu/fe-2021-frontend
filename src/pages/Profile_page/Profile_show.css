@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Kanit:wght@100&display=swap');
+
+.showContainer{
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 704px;
+}
+
+.picture{
+    display: inline-block;
+    width: 120px;
+    height: 85px;
+    margin-left: auto;
+    margin-right: 24px;
+    text-align: center;
+}
+
+.myProfile{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 54px;
+    /* identical to box height */
+    color: white;
+    align-items: center;
+    text-align: center;
+    margin-top: 75px;
+}
+
+.infoProfile{
+    
+    display: inline-block;
+    background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+    color: white;
+    align-items: center;
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 69px;
+    width: 560px;
+    height: 108px;
+    background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.175) 10.21%, rgba(255, 255, 255, 0.07) 90.92%);
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    backdrop-filter: blur(75.731px);
+    /* Note: backdrop-filter has minimal browser support */
+    padding-top: 25px;
+    padding-left: 32px;
+    border-radius: 12px;
+    
+}
+
+.editIcon{
+    position: absolute;
+    left: 500px;
+    top: 40.5px;
+}
+
+.name{
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.email{
+    padding-top: 8px;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.history{
+    margin-top: 55px;
+    text-align: left;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 42px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+}
+
+.infoHistory{
+    background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.175) 10.21%, rgba(255, 255, 255, 0.07) 90.92%);
+    border: 0.75731px solid #FFFFFF;
+    box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 12px;
+    width: 100%;
+    height: 117px;
+    margin-top: 16px;
+}
+
+.historyList{
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    /* identical to box height */
+    color: #FFFFFF;
+    padding-top: 25px;
+    padding-left: 40px;
+    text-align: left;
+}
+
+.policy{
+    margin-top: 64px;
+    text-align: left;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 42px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+}
+
+.swapAccount, .logout{
+    margin-top: 16px;
+    text-align: left;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 42px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+}
+
+.logoutIcon{
+    position: absolute;
+    top: 810px;
+    left: 420px;
+}

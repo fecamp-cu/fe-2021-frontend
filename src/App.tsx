@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer"
 import { PageContainer } from "./components/Containers"
 import Profile from "./components/Profile_picture/Profile"
 import { setUpOmise } from "./utils/omise"
+import Profile_page from "./pages/Profile_page/Profile_page"
+import Profile_show from "./pages/Profile_page/Profile_show"
 
 function App() {
   setUpOmise()
@@ -21,6 +23,7 @@ function App() {
           <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/form" element={<Form />}></Route>
+          <Route path="/Profile_show" element={<Profile_show />}></Route>
         </Routes>
       </PageContainer>
     </>
