@@ -25,6 +25,7 @@ function App() {
           <Route path="/landingPage" element={<LandingPage />}></Route>
         </Routes>
       </PageContainer>
+      <Footer/>
     </>
   )
 }

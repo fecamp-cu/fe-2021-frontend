@@ -11,7 +11,7 @@ function Qualifications(){
     ]
 
     return (
-        <div>
+        <div className="qualification-container">
 
             <h1 className="qualifications-header">คุณสมบัติผู้สมัคร</h1>
             <ol>

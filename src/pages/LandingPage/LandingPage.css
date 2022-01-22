@@ -15,7 +15,7 @@
 
 .top-landing-white-bg {
   background-color: white;
-  height: 500px;
+  height: 250px;
 }
 
 .landing-apply-button {
@@ -35,7 +35,7 @@
   align-items: center;
   color: #b32f4e;
 
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .blocking-container {
