@@ -59,22 +59,6 @@
   flex: 1;
 }
 
-<<<<<<< Updated upstream
 .tableRow {
   padding-bottom: 20%;
 }
-||||||| constructed merge base
-.tableRow{
-  justify-content: center;
-  position: relative;
-  padding-left: 50%;
-  padding-right: 50%;
-}
-=======
-.tableRow{
-  justify-content: center;
-  position: relative;
-  padding-left: 50%;
-  padding-right: 50%;
-}
->>>>>>> Stashed changes
