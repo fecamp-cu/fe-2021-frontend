@@ -1,7 +1,7 @@
 import "./Footer.css";
-import facebookLogo from "../../assets/images/facebook.png";
-import instagramLogo from "../../assets/images/instagram.png";
-import youtubeLogo from "../../assets/images/Subtract.png";
+import {FaFacebookSquare} from "react-icons/fa"
+import {FaInstagramSquare} from "react-icons/fa"
+import {FaYoutubeSquare} from "react-icons/fa"
 
 function Footer() {
   return (
@@ -22,13 +22,13 @@ function Footer() {
           <div className="icons">
 
           <a href="https://th-th.facebook.com/fecampchula/" target="_blank">
-            <img src={facebookLogo} alt="facebook-logo" className="image"></img>
+            <FaFacebookSquare className="image-footer"></FaFacebookSquare>
           </a>
           <a href="https://www.instagram.com/fecampcu/" target="_blank">
-            <img src={instagramLogo} alt="instagram-logo" className="image"></img>
+            <FaInstagramSquare className="image-footer"></FaInstagramSquare>
           </a>
           <a href="https://www.youtube.com/channel/UCzAKRq31Xm-lqcP4ZkI5ZSg" target="_blank">
-            <img src={youtubeLogo} alt="youtube-logo" className="image"></img>
+            <FaYoutubeSquare className="image-footer"></FaYoutubeSquare>
           </a>
           
           </div>
