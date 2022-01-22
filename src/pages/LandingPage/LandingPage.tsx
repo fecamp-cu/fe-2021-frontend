@@ -20,9 +20,9 @@ function LandingPage() {
             </div>
 
             <div className="top-landing-white-bg">
-                <span className="landing-apply-button">
+                <div className="landing-apply-button">
                     <ApplyButton onClick={clickButton}></ApplyButton>
-                </span>
+                </div>
                 <p className="roo-juk-kai-text">รู้จักค่าย</p>
                 <img src={icon} alt="icon" className={`icon-image animate-pulse`}></img>
             </div>

@@ -15,11 +15,14 @@
 
 .top-landing-white-bg {
   background-color: white;
-  height: 750px;
+  height: 500px;
 }
 
 .landing-apply-button {
-  margin-top: -500px;
+  transform: translate(0, -30px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .roo-juk-kai-text {

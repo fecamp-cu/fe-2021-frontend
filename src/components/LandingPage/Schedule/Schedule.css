@@ -44,6 +44,8 @@
   order: 0;
   flex-grow: 0;
   margin: 4px 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .leftCol {
   order: 1;
@@ -54,10 +56,9 @@
 
 .rightCol {
   order: 2;
+  flex: 1;
 }
 
-.tableRow{
-  padding-left: 34%;
-  padding-right: 34%;
+.tableRow {
   padding-bottom: 20%;
 }
