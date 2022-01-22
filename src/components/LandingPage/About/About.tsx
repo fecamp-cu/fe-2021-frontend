@@ -1,6 +1,10 @@
 import activityPic from "../../../assets/images/activityPic.png"
 import "./About.css"
 
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
+
 function About() {
     return (
         <div id="about-landingPage-content">
@@ -19,7 +23,12 @@ function About() {
 
             <h1 className="topic-text2">ภาพกิจกรรม</h1>
 
-            <div className="img-container">
+            <Carousel>
+                {/* <div>
+                    <img className="activity-image" src={activityPic} alt="activity-pic"></img>
+                </div> */}
+            </Carousel>
+            {/* <div className="img-container">
                 <div className="row-image">
                     <img className="activity-image" src={activityPic} alt="activity-pic"></img>
                     <img className="activity-image" src={activityPic} alt="activity-pic"></img>
@@ -35,7 +44,7 @@ function About() {
                     <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
                     <img className="activity-image2" src={activityPic} alt="activity-pic"></img>
                 </div>
-            </div>
+            </div> */}
 
             <div className="video-container">
                 <div className="video-text">คลิปเปิดค่าย Jailbreak by FeCampX - FECamp Chula</div>

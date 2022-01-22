@@ -15,17 +15,16 @@ function LandingPage() {
 
     return(
         <div>
-            <div className="top-landing-container">
-                <div className="top-landing-background">
-                    <div className="blocking-container">
-                        <div className="apply-button-landing-page">
-                            <ApplyButton onClick={clickButton}></ApplyButton>
-                        </div>
-                        <p className="roo-juk-kai-text">รู้จักค่าย</p>
-                        <img src={icon} alt="icon" className={`icon-image animate-pulse`}></img>
-                    </div>
-                </div>
-                
+
+            <div className="top-landing-background">
+            </div>
+
+            <div className="top-landing-white-bg">
+                <span className="landing-apply-button">
+                    <ApplyButton onClick={clickButton}></ApplyButton>
+                </span>
+                <p className="roo-juk-kai-text">รู้จักค่าย</p>
+                <img src={icon} alt="icon" className={`icon-image animate-pulse`}></img>
             </div>
             
             <div className="landing-background">

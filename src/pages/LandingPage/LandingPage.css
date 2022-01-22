@@ -1,8 +1,3 @@
-.top-landing-container {
-  height: 800px;
-  background-color: white;
-}
-
 .landing-background {
   max-width: 100%;
   background: linear-gradient(180deg, #9b2c33 0%, #e56d77 100%);
@@ -14,9 +9,17 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
-  height: 800px;
-  display: flex;
-  justify-content: center;
+  height: 550px;
+  background-size: cover;
+}
+
+.top-landing-white-bg {
+  background-color: white;
+  height: 750px;
+}
+
+.landing-apply-button {
+  margin-top: -500px;
 }
 
 .roo-juk-kai-text {
