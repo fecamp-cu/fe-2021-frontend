@@ -17,10 +17,6 @@
   margin-bottom: 30px;
 }
 
-.p-container {
-  display: block;
-}
-
 .about-text {
   font-family: Bai Jamjuree;
   font-style: normal;
@@ -31,6 +27,9 @@
   text-align: center;
 
   color: #ffffff;
+
+  padding-left: 20vw;
+  padding-right: 20vw;
 }
 
 .topic-text2 {
