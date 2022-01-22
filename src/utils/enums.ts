@@ -11,3 +11,8 @@ export enum PaymentTypes {
   cardEndpoint = "credit-card",
   promptPayEndpoint = "promptpay",
 }
+
+export enum PromotionCodeType {
+  PERCENTAGE = "percentage",
+  AMOUNT = "amount",
+}
