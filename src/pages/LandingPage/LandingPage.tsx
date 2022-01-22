@@ -6,6 +6,8 @@ import Qualifications from "../../components/LandingPage/Qualifications/Qualific
 import Schedule from "../../components/LandingPage/Schedule/Schedule";
 import Sponsor from "../../components/LandingPage/Sponsor/Sponsor"
 import icon from "../../assets/images/Icon.png"
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+
 import "./LandingPage.css"
 
 function LandingPage() {
@@ -24,7 +26,7 @@ function LandingPage() {
                     <ApplyButton onClick={clickButton}></ApplyButton>
                 </div>
                 <p className="roo-juk-kai-text">รู้จักค่าย</p>
-                <a href="#main-info-landing"><img src={icon} alt="icon" className={`icon-image animate-pulse`}></img></a>
+                <AnchorLink href="#main-info-landing"><img src={icon} alt="icon" className={`icon-image animate-pulse`}></img></AnchorLink>
             </div>
             
             <div className="landing-background" id="main-info-landing">
