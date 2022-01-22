@@ -12,10 +12,13 @@
 .picture{
     display: inline-block;
     width: 120px;
-    height: 85px;
+    height: 120px;
     margin-left: auto;
     margin-right: 24px;
     text-align: center;
+    background: white;
+    border-radius: 50%;
+    margin-bottom: -35px;
 }
 
 .myProfile{
@@ -116,6 +119,19 @@
     text-align: left;
 }
 
+.historyBuy{
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    /* identical to box height */
+    color: #FFFFFF;
+    padding-top: 11px;
+    padding-left: 40px;
+    text-align: left;
+}
+
 .policy{
     margin-top: 64px;
     text-align: left;
@@ -144,6 +160,16 @@
 
 .logoutIcon{
     position: absolute;
-    top: 810px;
-    left: 420px;
+    top: 750px;
+    margin-left: 140px;
+}
+
+.shopIcon{
+    position: absolute;
+    top: 67px;
+    left: 200px;
+}
+
+@media (max-width : 600px) {
+    
 }

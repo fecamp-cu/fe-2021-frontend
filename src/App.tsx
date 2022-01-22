@@ -10,6 +10,7 @@ import Profile from "./components/Profile_picture/Profile"
 import { setUpOmise } from "./utils/omise"
 import Profile_page from "./pages/Profile_page/Profile_page"
 import Profile_show from "./pages/Profile_page/Profile_show"
+import Profile_edit from "./pages/Profile_page/Profile_edit"
 
 function App() {
   setUpOmise()
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/form" element={<Form />}></Route>
           <Route path="/Profile_show" element={<Profile_show />}></Route>
+          <Route path="/Profile_edit" element={<Profile_edit />}></Route>
         </Routes>
       </PageContainer>
     </>
