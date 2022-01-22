@@ -24,10 +24,10 @@ function LandingPage() {
                     <ApplyButton onClick={clickButton}></ApplyButton>
                 </div>
                 <p className="roo-juk-kai-text">รู้จักค่าย</p>
-                <img src={icon} alt="icon" className={`icon-image animate-pulse`}></img>
+                <a href="#main-info-landing"><img src={icon} alt="icon" className={`icon-image animate-pulse`}></img></a>
             </div>
             
-            <div className="landing-background">
+            <div className="landing-background" id="main-info-landing">
                 <About/>
                 <Schedule/>
                 <Qualifications/>
