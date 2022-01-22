@@ -57,8 +57,7 @@
 }
 
 .tableRow{
-  justify-content: center;
-  position: relative;
-  padding-left: 50%;
-  padding-right: 50%;
+  padding-left: 34%;
+  padding-right: 34%;
+  padding-bottom: 20%;
 }
