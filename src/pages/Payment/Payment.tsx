@@ -326,7 +326,11 @@ function Payment() {
 
   return (
     <PaymentComponentBackground style={{display:'inline-flex'}}>
-      
+      <form>
+        <button type="button" id="credit-card" onClick={payWithCreditCard}>
+          จ่ายเงิน
+        </button>
+      </form>
       <div style={{ padding: "46px 20px", width: "75%"}}>
         <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"}/>
         <button type = 'submit' id="credit-card" form="myform">
@@ -502,6 +506,11 @@ function Payment() {
       </div>
       <div style={{paddingTop:"50px", paddingRight:"20px"}}>
         <ProductListV2 bookList={book}></ProductListV2>
+        <form>
+        <button type="button" id="credit-card" onClick={payWithCreditCard}>
+          จ่ายเงิน
+        </button>
+      </form>
         
       </div>
       
