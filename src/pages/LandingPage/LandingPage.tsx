@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import ApplyButton from "../../components/Buttons/ApplyButton";
 import Qualifications from "../../components/LandingPage/Qualifications/Qualifications"
 import Schedule from "../../components/LandingPage/Schedule/Schedule";
+import Sponsor from "../../components/LandingPage/Sponsor/Sponsor"
 import icon from "../../assets/images/Icon.png"
 import "./LandingPage.css"
 
@@ -31,6 +32,7 @@ function LandingPage() {
                 <About/>
                 <Schedule/>
                 <Qualifications/>
+                <Sponsor/>
             </div>
         </div>
     );

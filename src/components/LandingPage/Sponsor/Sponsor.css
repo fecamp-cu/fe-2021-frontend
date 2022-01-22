@@ -1,0 +1,42 @@
+.sponsor-header {
+  font-family: CHULALONGKORN;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+
+  margin-bottom: 48px;
+}
+
+.sponsor-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sub-flex {
+  flex: 33.33%;
+}
+
+.sponsor-image1 {
+  height: 160px;
+  width: 160px;
+  margin-left: auto;
+}
+
+.sponsor-image2 {
+  height: 160px;
+  width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sponsor-image3 {
+  height: 160px;
+  width: 160px;
+  margin-right: auto;
+}
