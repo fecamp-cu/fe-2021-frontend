@@ -6,24 +6,24 @@ import axios from "axios"
 import { Console } from "console"
 import ReuseForm from "../../components/Form/reuseForm"
 import ProductListV2 from "../../components/Product_list/ProductListv2"
-import facebookLogo from "../../assets/book_cover.jpg";
+import facebookLogo from "../../assets/book_cover.jpg"
 
 interface Basket {
   productId: number
   quantity: number
 }
 
-interface Book{
-  productId:number
-  title:string
+interface Book {
+  productId: number
+  title: string
   price: number
-  productImg:string
+  productImg: string
 }
 
-const book:Book[] = [
-  {productId:1,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo},
-  {productId:2,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo},
-  {productId:3,title:'เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์',price: 15,productImg: facebookLogo}
+const book: Book[] = [
+  { productId: 1, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo },
+  { productId: 2, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo },
+  { productId: 3, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo },
 ]
 
 const PaymentComponentBackground = styled.div`
@@ -229,8 +229,6 @@ function Payment() {
       setShippingZipCode(zipCode)
     }
   }, [isUseOldAddress, address, subDistrict, district, province, zipCode])
-<<<<<<< HEAD
-=======
 
   // -------------------omise handle-----------------
 
@@ -292,9 +290,23 @@ function Payment() {
       amount: 12345,
       onCreateTokenSuccess: (token: any) => {
         console.log(token)
-        const b1 = {productId: 10,quantity: 2}
+        const b1 = { productId: 10, quantity: 2 }
         const basket = [b1]
-        sentData(token,email,firstName,lastName,tel,grade,school,shippingAddress,shippingSubDistrict,shippingDistrict,shippingProvince,shippingZipCode,basket)
+        sentData(
+          token,
+          email,
+          firstName,
+          lastName,
+          tel,
+          grade,
+          school,
+          shippingAddress,
+          shippingSubDistrict,
+          shippingDistrict,
+          shippingProvince,
+          shippingZipCode,
+          basket
+        )
       },
     })
   }
@@ -305,35 +317,29 @@ function Payment() {
     omiseConfigure()
     omiseResiveToken()
   }
->>>>>>> 803fb57... add omise payment
 
   const [values, setValues] = useState({
-        firstName : "",
-        surName : "",
-        tel : "",
-        email : "",
-        grade : "ม.5",
-        school : "",
-        address : "",
-        subdistrict : "",
-        district : "",
-        province : "",
-        postcode : ""
-    })
-    const onChange= (e : any) =>{
-      setValues({...values, [e.target.id] : e.target.value})
-    }
+    firstName: "",
+    surName: "",
+    tel: "",
+    email: "",
+    grade: "ม.5",
+    school: "",
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    postcode: "",
+  })
+  const onChange = (e: any) => {
+    setValues({ ...values, [e.target.id]: e.target.value })
+  }
 
   return (
-    <PaymentComponentBackground style={{display:'inline-flex'}}>
-      <form>
-        <button type="button" id="credit-card" onClick={payWithCreditCard}>
-          จ่ายเงิน
-        </button>
-      </form>
-      <div style={{ padding: "46px 20px", width: "75%"}}>
-        <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"}/>
-        <button type = 'submit' id="credit-card" form="myform">
+    <PaymentComponentBackground style={{ display: "inline-flex" }}>
+      <div style={{ padding: "46px 20px", width: "75%" }}>
+        <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"} />
+        <button type="submit" id="credit-card" form="myform">
           จ่ายเงิน
         </button>
         <div>
@@ -504,16 +510,9 @@ function Payment() {
           </form>
         </div>
       </div>
-      <div style={{paddingTop:"50px", paddingRight:"20px"}}>
+      <div style={{ paddingTop: "50px", paddingRight: "20px" }}>
         <ProductListV2 bookList={book}></ProductListV2>
-        <form>
-        <button type="button" id="credit-card" onClick={payWithCreditCard}>
-          จ่ายเงิน
-        </button>
-      </form>
-        
       </div>
-      
     </PaymentComponentBackground>
   )
 }
