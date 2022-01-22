@@ -1,6 +1,12 @@
 .landing-background {
   max-width: 100%;
-  background: linear-gradient(180deg, #9b2c33 0%, #e56d77 100%);
+  background: linear-gradient(
+    180.44deg,
+    rgba(188, 70, 70, 0.5) 4.66%,
+    rgba(188, 70, 70, 0.5) 4.67%,
+    rgba(198, 75, 97, 0.5) 39.68%,
+    rgba(188, 70, 70, 0.5) 77.48%
+  );
 }
 
 .top-landing-background {
