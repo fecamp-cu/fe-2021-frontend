@@ -38,15 +38,16 @@
   margin-top: 40px;
 }
 
-.blocking-container {
-  margin-top: 36%;
-  /* justify-content: center;
-  text-align: center;
-  align-items: center; */
-}
-
 .icon-image {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
+}
+
+/*For mobile 450px */
+@media (max-width: 450px) {
+  .roo-juk-kai-text {
+    font-size: 16px;
+    line-height: 17px;
+  }
 }
