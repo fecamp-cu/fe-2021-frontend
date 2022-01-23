@@ -21,9 +21,9 @@ const Example = () => {
         <Button shadow={false} outline={false} onClick={() => console.log(token)}>
           Check Token
         </Button>
-        <Button shadow={false} outline={false} onClick={() => axiosInstance.checkoutCard(token, PaymentTypes.cardEndpoint)}>
+        {/* <Button shadow={false} outline={false} onClick={() => axiosInstance.checkoutCard(token, PaymentTypes.cardEndpoint)}>
           Send Token to Backend
-        </Button>
+        </Button> */}
         <Button shadow={false} outline={false} onClick={() => createSourceOmise(10000, "promptpay", setSource)}>
           Promptpay Source
         </Button>

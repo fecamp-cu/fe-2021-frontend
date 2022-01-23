@@ -1,4 +1,5 @@
 import Axios from "axios"
+import { type } from "os"
 import { PaymentTypes, PromotionCodeType } from "./enums"
 
 export type GenPromotionCode = {
@@ -7,6 +8,20 @@ export type GenPromotionCode = {
   expireDate?: Date
   code?: string
   value?: number
+}
+
+export type costumerData = {
+    firstName: string,
+    surName: string,
+    tel: string,
+    email: string,
+    grade: string,
+    school: string,
+    address: string,
+    subdistrict: string,
+    district: string,
+    province: string,
+    postcode: string,
 }
 
 const client = Axios.create({
@@ -38,20 +53,20 @@ const checkout = async (source: object, paymentType: PaymentTypes) => {
   console.log(res)
 }
 
-const checkoutCard = async (token: object, paymentType: PaymentTypes) => {
+const checkoutCard = async (token: object, paymentType: PaymentTypes, costumerData: costumerData) => {
   const res = await client.post(`/shop/checkout/${paymentType}`, {
     source: token,
-    email: "admin@samithiwat.info",
-    firstName: "someone",
-    lastName: "naja",
-    tel: "0922501231",
-    grade: "string",
-    school: "string",
-    address: "string",
-    subdistrict: "string",
-    district: "string",
-    province: "string",
-    postcode: "11000",
+    email: costumerData.email,
+    firstName: costumerData.firstName,
+    lastName: costumerData.surName,
+    tel: costumerData.tel,
+    grade: costumerData.grade,
+    school: costumerData.school,
+    address: costumerData.address,
+    subdistrict: costumerData.subdistrict,
+    district: costumerData.district,
+    province: costumerData.province,
+    postcode: costumerData.postcode,
     basket: [
       {
         productId: 1,
