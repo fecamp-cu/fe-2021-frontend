@@ -3,10 +3,12 @@ import styled from "styled-components"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import "./Payment.css"
 import axios from "axios"
-import { Console } from "console"
 import ReuseForm from "../../components/Form/reuseForm"
 import ProductListV2 from "../../components/Product_list/ProductListv2"
 import facebookLogo from "../../assets/book_cover.jpg"
+import { createOmiseToken, createSourceOmise, setUpOmise } from "../../utils/omise"
+import axiosInstance from "../../utils/client"
+import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
 
 interface Basket {
   productId: number
@@ -140,6 +142,20 @@ function Payment() {
   const [province, setProvince] = useState("")
   const [zipCode, setZipCode] = useState("")
 
+  const [values, setValues] = useState({
+    firstName: "",
+    surName: "",
+    tel: "",
+    email: "",
+    grade: "ม.5",
+    school: "",
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    postcode: "",
+  })
+
   function inputFirstName(event: any) {
     setFirstname(event.target.value)
   }
@@ -234,6 +250,7 @@ function Payment() {
 
   function omiseConfigure() {
     window.OmiseCard.configure({
+      publicKey: "pkey_test_5qkz65yd4xjeimitf5x",
       frameLabel: "FE Camp",
       submitLabel: "Pay",
       defaultPaymentMethod: "credit_card",
@@ -312,31 +329,21 @@ function Payment() {
   }
 
   function payWithCreditCard(event: any) {
-    console.log("lllllllll")
     event.preventDefault()
-    omiseConfigure()
+    setUpOmise()
     omiseResiveToken()
   }
-
-  const [values, setValues] = useState({
-    firstName: "",
-    surName: "",
-    tel: "",
-    email: "",
-    grade: "ม.5",
-    school: "",
-    address: "",
-    subdistrict: "",
-    district: "",
-    province: "",
-    postcode: "",
-  })
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.id]: e.target.value })
   }
 
   return (
     <PaymentComponentBackground style={{ display: "inline-flex" }}>
+      <form>
+        <button type="button" id="credit-card" onClick={payWithCreditCard}>
+          จ่ายเงิน
+        </button>
+      </form>
       <div style={{ padding: "46px 20px", width: "75%" }}>
         <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"} />
         <button type="submit" id="credit-card" form="myform">
@@ -512,6 +519,11 @@ function Payment() {
       </div>
       <div style={{ paddingTop: "50px", paddingRight: "20px" }}>
         <ProductListV2 bookList={book}></ProductListV2>
+        <form>
+          <button type="button" id="credit-card" onClick={payWithCreditCard}>
+            จ่ายเงิน
+          </button>
+        </form>
       </div>
     </PaymentComponentBackground>
   )
