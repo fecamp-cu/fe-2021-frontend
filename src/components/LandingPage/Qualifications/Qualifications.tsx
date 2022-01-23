@@ -18,7 +18,6 @@ function Qualifications(){
                 {qualificationList.map( (element,index)=>{
                     return (
                         <div key={index} className="qualification-box">
-                            {/* <div className="flex-none"></div> */}
                             <div className="index-with-bg">
                                 <div className="index-num">{index+1}</div>
                             </div> 
