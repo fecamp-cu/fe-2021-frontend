@@ -9,6 +9,8 @@ import icon from "../../assets/images/Icon.png"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import "./LandingPage.css"
+import PhotoPreview from "../../components/LandingPage/PhotoPreview/PhotoPreview";
+import VideoCamp from "../../components/LandingPage/VideoCamp/VideoCamp";
 
 function LandingPage() {
     const clickButton = () => {
@@ -31,6 +33,8 @@ function LandingPage() {
             
             <div className="landing-background" id="main-info-landing">
                 <About/>
+                <PhotoPreview/>
+                <VideoCamp/>
                 <Schedule/>
                 <Qualifications/>
                 <Sponsor/>
