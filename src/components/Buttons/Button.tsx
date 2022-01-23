@@ -8,6 +8,7 @@ interface ButtonProps extends BaseButtonProps {
   className?: string
   onClick?: () => void
   Icon?: IconType
+  form? : string
 }
 const Logo = styled.span`
   margin-right: 10px;

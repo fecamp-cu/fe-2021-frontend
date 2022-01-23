@@ -51,7 +51,7 @@ const Label = styled.label`
 const Register = () =>{
     const [values, setValues] = useState({
         firstName : "",
-        surName : "",
+        lastName : "",
         tel : "",
         email : "",
         grade : "ม.6",
@@ -72,7 +72,6 @@ const Register = () =>{
         e.preventDefault();
     }
     
-
     return (
         <div className = 'mt-32 items-center'>
             <form className = 'formbox'>
@@ -99,7 +98,7 @@ const Register = () =>{
                 </div>
                 <div className = 'rowbutton'>
                     <Link to = {"/login"}><Button textColor='white' outline shadow = {false}>ยกเลิก</Button></Link>
-                    <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow>ลงทะเบียน</Button>
+                    <Button form = 'reg' bg = 'white' textColor='#9B2C33' outline = {false} shadow>ลงทะเบียน</Button>
                 </div>
             </form>
         </div>
