@@ -62,3 +62,80 @@
 .tableRow {
   padding-bottom: 20%;
 }
+
+
+@media (max-width: 810px) {
+  .item {
+    width: 385px;
+    height: 40px;
+    font-size: 13px;
+    line-height: 25px;
+    font-weight: 400;
+    border-radius: 12px;
+  }
+
+  .leftCol {
+    order: 1;
+    flex: 0.5;
+    padding-left: 50px;
+    margin-right: 24px;
+  }
+  
+  .rightCol {
+    order: 2;
+    flex: 1;
+  }
+
+  .title-text {
+    font-family: CHULALONGKORN;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 72px;
+ 
+  
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .item {
+    width: 290px;
+    height: 35px;
+    font-size: 11px;
+    line-height: 25px;
+  }
+
+  .leftCol {
+    order: 1;
+    flex: 0.5;
+    padding-left: 30px;
+    margin-right: 24px;
+  }
+  
+  .rightCol {
+    order: 2;
+    flex: 1;
+  }
+  
+  .title-text {
+    font-family: CHULALONGKORN;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 72px;
+ 
+  
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    justify-content: center;
+  }
+
+}
