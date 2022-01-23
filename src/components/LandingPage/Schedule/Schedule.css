@@ -60,9 +60,8 @@
 }
 
 .tableRow {
-  padding-bottom: 20%;
+  margin-bottom: 95px;
 }
-
 
 @media (max-width: 810px) {
   .item {
@@ -80,7 +79,7 @@
     padding-left: 50px;
     margin-right: 24px;
   }
-  
+
   .rightCol {
     order: 2;
     flex: 1;
@@ -92,8 +91,7 @@
     font-weight: bold;
     font-size: 36px;
     line-height: 72px;
- 
-  
+
     display: flex;
     align-items: center;
     text-align: center;
@@ -101,7 +99,6 @@
     justify-content: center;
   }
 }
-
 
 @media (max-width: 400px) {
   .item {
@@ -117,25 +114,23 @@
     padding-left: 30px;
     margin-right: 24px;
   }
-  
+
   .rightCol {
     order: 2;
     flex: 1;
   }
-  
+
   .title-text {
     font-family: CHULALONGKORN;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
     line-height: 72px;
- 
-  
+
     display: flex;
     align-items: center;
     text-align: center;
     color: white;
     justify-content: center;
   }
-
 }

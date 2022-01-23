@@ -1,6 +1,4 @@
 import About from "../../components/LandingPage/About/About"
-import Footer from "../../components/Footer/Footer"
-import Navbar from "../../components/Navbar/Navbar";
 import ApplyButton from "../../components/Buttons/ApplyButton";
 import Qualifications from "../../components/LandingPage/Qualifications/Qualifications"
 import Schedule from "../../components/LandingPage/Schedule/Schedule";
@@ -11,6 +9,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 import "./LandingPage.css"
 import PhotoPreview from "../../components/LandingPage/PhotoPreview/PhotoPreview";
 import VideoCamp from "../../components/LandingPage/VideoCamp/VideoCamp";
+import {GiPolarStar} from "react-icons/gi"
 
 function LandingPage() {
     const clickButton = () => {
@@ -33,10 +32,14 @@ function LandingPage() {
             
             <div className="landing-background" id="main-info-landing">
                 <About/>
+                <GiPolarStar className="star-icon"></GiPolarStar>
                 <PhotoPreview/>
                 <VideoCamp/>
+                <GiPolarStar className="star-icon"></GiPolarStar>
                 <Schedule/>
+                <GiPolarStar className="star-icon"></GiPolarStar>
                 <Qualifications/>
+                <GiPolarStar className="star-icon"></GiPolarStar>
                 <Sponsor/>
             </div>
         </div>

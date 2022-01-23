@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
 
+#about-landingPage-content {
+  margin-bottom: 95px;
+}
+
 .topic-text {
   font-family: CHULALONGKORN;
   font-style: normal;
@@ -32,23 +36,6 @@
   padding-right: 20vw;
 }
 
-.topic-text2 {
-  font-family: CHULALONGKORN;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 72px;
-
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-
-  color: #ffffff;
-
-  margin-top: 96px;
-  margin-bottom: 50px;
-}
-
 /*For mobile 450px */
 @media (max-width: 450px) {
   .topic-text {
@@ -65,12 +52,5 @@
     padding-left: 56px;
     padding-right: 56px;
     text-align: left;
-  }
-  .topic-text2 {
-    font-size: 28px;
-    line-height: 42px;
-
-    margin-top: 96px;
-    margin-bottom: 35px;
   }
 }
