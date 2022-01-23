@@ -3,10 +3,10 @@ import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
 import { createOmiseToken, createSourceOmise } from "../../utils/omise"
-
 import axiosInstance from "../../utils/client"
 import { Button } from "../../components/Buttons/Button"
 import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
+import clientInstance from "../../utils/client"
 
 const Example = () => {
   const [token, setToken] = React.useState<object>({})
@@ -68,7 +68,11 @@ const Example = () => {
         <AlertButton isEmergency message="This is just a proposed project structure, feel free to change it if you want">
           Example Button
         </AlertButton>
+        <Button shadow={false} outline={false} onClick={() => clientInstance.testAPI()}>
+          Test
+        </Button>
       </header>
+      
     </div>
   )
 }
