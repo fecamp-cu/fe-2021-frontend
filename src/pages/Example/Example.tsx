@@ -2,9 +2,12 @@ import React, { useEffect } from "react"
 import "./example.style.css"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
-import { checkoutCardOmise, PaymentTypes } from "../../utils/omise"
+
+import {Button} from '../../components/Buttons/Button'
+import clientInstance from "../../utils/client"
 
 const Example = () => {
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -18,7 +21,11 @@ const Example = () => {
         <AlertButton isEmergency message="This is just a proposed project structure, feel free to change it if you want">
           Example Button
         </AlertButton>
+        <Button shadow={false} outline={false} onClick={() => clientInstance.testAPI()}>
+          Test
+        </Button>
       </header>
+      
     </div>
   )
 }
