@@ -9,6 +9,7 @@ import facebookLogo from "../../assets/book_cover.jpg"
 import { createOmiseToken, createSourceOmise, setUpOmise } from "../../utils/omise"
 import axiosInstance from "../../utils/client"
 import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
+import Footer from "../../components/Footer/Footer"
 
 interface Basket {
   productId: number
