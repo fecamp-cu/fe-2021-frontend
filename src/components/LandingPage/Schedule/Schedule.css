@@ -30,7 +30,7 @@
 
   color: #ffffff;
 
-  background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.22) 100%);
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid white;
   box-sizing: border-box;
   backdrop-filter: blur(50px);
@@ -133,4 +133,13 @@
     color: white;
     justify-content: center;
   }
+}
+
+.before{
+  background: rgba(255, 255, 255, 0.2);
+  color:#ffffff;
+}
+.after{
+  background: rgba(170, 170, 170, 0.1);
+  color:#aaaaaa;
 }
