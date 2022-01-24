@@ -8,7 +8,7 @@ export const client = Axios.create({
 const getAboutFE = async() => {
   try {
     const res = await client.get('/setting/1')
-    return res;
+    return res
   } catch (error) {
     console.log(error)
   }
@@ -17,7 +17,16 @@ const getAboutFE = async() => {
 const getPhotoPreview = async() => {
   try {
     const res = await client.get('/setting/2')
-    return res;
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getQualifications = async() => {
+  try {
+    const res = await client.get('/setting/3')
+    return res
   } catch (error) {
     console.log(error)
   }
@@ -25,6 +34,7 @@ const getPhotoPreview = async() => {
 
 export const landingPageInstance = {
   getAboutFE,
-  getPhotoPreview
+  getPhotoPreview,
+  getQualifications
 }
 

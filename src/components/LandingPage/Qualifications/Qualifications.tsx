@@ -1,21 +1,26 @@
+import { useEffect, useState } from "react";
+import { landingPageInstance } from "../../../utils/client";
 import "./Qualifications.css"
 
 function Qualifications(){
 
-    const qualificationList = [
-        "กำลังศึกษาอยู่ในระดับชั้นมัธยมศึกษาปีที่ 5 ปวช. 2 หรือมีวุฒิเทียบเท่า",
-        "ไม่ป่วยเป็นโรคติดต่อร้ายแรง",
-        "สามารถเข้าร่วมกิจกรรม ณ คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัยได้ตลอดระยะเวลาที่จัดค่าย",
-        "ไม่เคยเข้าร่วม FECamp  มาก่อน",
-        "ได้รับวัคซีนที่ทางราชการกำหนดอย่างน้อยสองเข็ม หรือวัคซีนชนิดอื่นที่สำนักงานคณะกรรมการอาหารและยารับรองตามจำนวนที่กำหนดแล้วแต่กรณี ก่อนวันที่ 12 พ.ค. 2565 (14วันก่อนเข้าค่าย)"
-    ]
+    const [title, setTitle] = useState("");
+    const [qualificationsArray, setQualificationsArray] = useState([]); 
+
+    useEffect(() => {
+        landingPageInstance.getQualifications().then((res) => {
+            console.log(res)
+            setTitle(res?.data.title)
+            setQualificationsArray(res?.data.qualificationPreviews.map((e: { text: string; }) => e.text))
+        })
+    })
 
     return (
         <div className="qualification-container">
 
-            <h1 className="qualifications-header">คุณสมบัติผู้สมัคร</h1>
+            <h1 className="qualifications-header">{title}</h1>
             <div>
-                {qualificationList.map( (element,index)=>{
+                {qualificationsArray.map( (element,index)=>{
                     return (
                         <div key={index} className="qualification-box">
                             <div className="index-with-bg">
