@@ -1,5 +1,4 @@
 import Axios from "axios"
-import { type } from "os"
 import { PaymentTypes, PromotionCodeType } from "./enums"
 
 export type GenPromotionCode = {
@@ -11,78 +10,93 @@ export type GenPromotionCode = {
 }
 
 export type costumerData = {
-    firstName: string,
-    surName: string,
-    tel: string,
-    email: string,
-    grade: string,
-    school: string,
-    address: string,
-    subdistrict: string,
-    district: string,
-    province: string,
-    postcode: string,
-    shippingAddress: string,
-    shippingSubDistrict: string,
-    shippingDistrict: string,
-    shippingProvince: string,
-    shippingPostCode: string
+  firstName: string
+  lastName: string
+  tel: string
+  email: string
+  grade: string
+  school: string
+  address: string
+  subdistrict: string
+  district: string
+  province: string
+  postcode: string
+  shippingAddress: string
+  shippingSubDistrict: string
+  shippingDistrict: string
+  shippingProvince: string
+  shippingPostCode: string
+}
+
+export type Basket = {
+  productId: number
+  quantity: number
+}
+
+export type CheckoutPayload = {
+  source: object
+  email: string
+  firstName: string
+  lastName: string
+  tel: string
+  grade: string
+  school: string
+  address: string
+  subdistrict: string
+  district: string
+  province: string
+  postcode: string
+  basket: Basket[]
+  promotionCode?: string
+}
+
+function createCheckoutPayload(source: object, costumerData: costumerData, basket: Basket[], promotionCode?: string): CheckoutPayload {
+  const data: CheckoutPayload = {
+    source,
+    email: costumerData.email,
+    firstName: costumerData.firstName,
+    lastName: costumerData.lastName,
+    tel: costumerData.tel,
+    grade: costumerData.grade,
+    school: costumerData.school,
+    address: costumerData.address,
+    subdistrict: costumerData.subdistrict,
+    district: costumerData.district,
+    province: costumerData.province,
+    postcode: costumerData.postcode,
+    basket,
+  }
+
+  if (costumerData.shippingAddress) {
+    data.address = costumerData.shippingAddress
+    data.subdistrict = costumerData.shippingSubDistrict
+    data.district = costumerData.shippingDistrict
+    data.province = costumerData.shippingProvince
+    data.postcode = costumerData.shippingPostCode
+  }
+
+  if (promotionCode) {
+    data.promotionCode = promotionCode
+  }
+
+  return data
 }
 
 const client = Axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 })
 
-const checkout = async (source: object, paymentType: PaymentTypes) => {
-  const res = await client.post(`/shop/checkout/${paymentType}`, {
-    source,
-    email: "admin@samithiwat.info",
-    firstName: "someone",
-    lastName: "naja",
-    tel: "0922501231",
-    grade: "m6",
-    school: "string",
-    address: "string",
-    subdistrict: "string",
-    district: "string",
-    province: "string",
-    postcode: "11000",
-    basket: [
-      {
-        productId: 1,
-        quantity: 1,
-      },
-    ],
-    promotion_code: "string",
-  })
-  console.log(res)
-}
+const checkout = async (source: object, paymentType: PaymentTypes, costumerData: costumerData, basket: Basket[], promotionCode?: string) => {
+  const data = createCheckoutPayload(source, costumerData, basket, promotionCode)
 
-const checkoutCard = async (token: object, paymentType: PaymentTypes, costumerData: costumerData) => {
-  console.log(token);
-  const res = await client.post(`/shop/checkout/${paymentType}`, {
-    source: token,
-    email: costumerData.email,
-    firstName: costumerData.firstName,
-    lastName: costumerData.surName,
-    tel: costumerData.tel,
-    grade: costumerData.grade,
-    school: costumerData.school,
-    address: costumerData.shippingAddress,
-    subdistrict: costumerData.shippingSubDistrict,
-    district: costumerData.shippingDistrict,
-    province: costumerData.shippingProvince,
-    postcode: costumerData.shippingPostCode,
-    basket: [
-      {
-        productId: 1,
-        quantity: 1,
-      },
-    ],
-    promotion_code: "string",
-  })
-  console.log("done")
-  console.log(res)
+  try {
+    const res = await client.post(`/shop/checkout/${paymentType}`, data)
+    console.log("done")
+    console.log(res)
+    return res.data
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const genCode = async (
@@ -131,7 +145,6 @@ const testAPI = async () => {
 const clientInstance = {
   testAPI,
   checkout,
-  checkoutCard,
   genCode,
   verifyCode,
 }

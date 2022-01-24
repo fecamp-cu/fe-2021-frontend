@@ -1,12 +1,31 @@
-import React, { useEffect } from "react"
-import "./example.style.css"
+import React from "react"
 import logo from "../../assets/logo.svg"
 import AlertButton from "../../components/AlertButton/AlertButton"
-import { createOmiseToken, createSourceOmise } from "../../utils/omise"
-import axiosInstance from "../../utils/client"
 import { Button } from "../../components/Buttons/Button"
+import { default as axiosInstance, default as clientInstance } from "../../utils/client"
 import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
-import clientInstance from "../../utils/client"
+import omiseInstance from "../../utils/omise"
+import "./example.style.css"
+
+const basket = [{ productId: 1, quantity: 1 }]
+const costumerData = {
+  email: "admin@samithiwat.dev",
+  firstName: "samithiwat",
+  lastName: "boonchai",
+  tel: "0922501231",
+  grade: "mor 5",
+  school: "school",
+  address: "address",
+  subdistrict: "subdistrict",
+  district: "district",
+  province: "province",
+  postcode: "11000",
+  shippingAddress: "",
+  shippingSubDistrict: "",
+  shippingDistrict: "",
+  shippingProvince: "",
+  shippingPostCode: "",
+}
 
 const Example = () => {
   const [token, setToken] = React.useState<object>({})
@@ -15,31 +34,38 @@ const Example = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Button shadow={false} outline={false} onClick={() => createOmiseToken(10000, setToken)}>
+        <Button shadow={false} outline={false} onClick={() => omiseInstance.createOmiseToken(10000, setToken)}>
           Create Token
         </Button>
         <Button shadow={false} outline={false} onClick={() => console.log(token)}>
           Check Token
         </Button>
-        {/* <Button shadow={false} outline={false} onClick={() => axiosInstance.checkoutCard(token, PaymentTypes.cardEndpoint)}>
+        <Button shadow={false} outline={false} onClick={() => axiosInstance.checkout(token, PaymentTypes.cardEndpoint, costumerData, basket)}>
           Send Token to Backend
-        </Button> */}
-        <Button shadow={false} outline={false} onClick={() => createSourceOmise(10000, "promptpay", setSource)}>
+        </Button>
+        <Button shadow={false} outline={false} onClick={() => omiseInstance.createSourceOmise(10000, "promptpay", setSource)}>
           Promptpay Source
         </Button>
         <Button shadow={false} outline={false} onClick={() => console.log(source)}>
           Check Source
         </Button>
-        <Button shadow={false} outline={false} onClick={() => axiosInstance.checkout(source, PaymentTypes.promptPayEndpoint)}>
+        <Button shadow={false} outline={false} onClick={() => axiosInstance.checkout(source, PaymentTypes.promptPayEndpoint, costumerData, basket)}>
           Send Source to Backend
         </Button>
-        <Button shadow={false} outline={false} onClick={() => createSourceOmise(10000, "internet_banking_scb", setSource)}>
+        <Button shadow={false} outline={false} onClick={() => omiseInstance.createSourceOmise(10000, "internet_banking_scb", setSource)}>
           Internet Banking Source
         </Button>
         <Button shadow={false} outline={false} onClick={() => console.log(source)}>
           Check Source
         </Button>
-        <Button shadow={false} outline={false} onClick={() => axiosInstance.checkout(source, PaymentTypes.eBankEndpoint)}>
+        <Button
+          shadow={false}
+          outline={false}
+          onClick={async () => {
+            const res = await axiosInstance.checkout(source, PaymentTypes.eBankEndpoint, costumerData, basket)
+            window.open(res.authorize_uri, "_blank")
+          }}
+        >
           Send Source to Backend
         </Button>
         <Button shadow={false} outline={false} onClick={() => axiosInstance.testAPI()}>
@@ -72,7 +98,6 @@ const Example = () => {
           Test
         </Button>
       </header>
-      
     </div>
   )
 }

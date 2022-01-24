@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios"
-import { PaymentTypes } from "./enums"
+import axios from "axios"
 
 export const setUpOmise = () => {
   window.Omise.setPublicKey(process.env.REACT_APP_OMISE_PUBLIC_KEY)
@@ -8,7 +7,7 @@ export const setUpOmise = () => {
   })
 }
 
-export const createToken = () => {
+const createToken = () => {
   window.Omise.tokens.create(
     {
       card: {
@@ -28,7 +27,7 @@ export const createToken = () => {
   )
 }
 
-export const createSourceOmise = (amount: number, payType: string, setSource: (source: object) => void) => {
+const createSourceOmise = (amount: number, payType: string, setSource: (source: object) => void) => {
   window.Omise.createSource(
     payType,
     {
@@ -44,7 +43,7 @@ export const createSourceOmise = (amount: number, payType: string, setSource: (s
   )
 }
 
-export const omiseClient = axios.create({
+const omiseClient = axios.create({
   baseURL: "https://vault.omise.co",
   headers: {
     "Content-Type": "application/json",
@@ -58,7 +57,7 @@ export const omiseClient = axios.create({
   // withCredentials: true,
 })
 
-export const createOmiseToken = async (amount: number, setToken: (token: object) => void) => {
+const createOmiseToken = async (amount: number, setToken: (token: object) => void) => {
   const res = await omiseClient.post("/tokens", {
     card: {
       name: "JOHN DOE",
@@ -72,4 +71,12 @@ export const createOmiseToken = async (amount: number, setToken: (token: object)
   })
   res.data.amount = amount
   setToken(res.data)
+  console.log(res.data)
 }
+
+const omiseInstance = {
+  createSourceOmise,
+  createOmiseToken,
+}
+
+export default omiseInstance

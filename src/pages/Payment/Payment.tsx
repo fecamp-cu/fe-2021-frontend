@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react"
-import styled from "styled-components"
-import { RiArrowDropDownLine } from "react-icons/ri"
-import "./Payment.css"
 import axios from "axios"
+import React, { useEffect, useState } from "react"
+import { RiArrowDropDownLine } from "react-icons/ri"
+import styled from "styled-components"
+import facebookLogo from "../../assets/book_cover.jpg"
 import ReuseForm from "../../components/Form/reuseForm"
 import ProductListV2 from "../../components/Product_list/ProductListv2"
-import facebookLogo from "../../assets/book_cover.jpg"
-import { createOmiseToken, createSourceOmise, setUpOmise } from "../../utils/omise"
 import axiosInstance from "../../utils/client"
-import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
-import Footer from "../../components/Footer/Footer"
+import { PaymentTypes } from "../../utils/enums"
+import { setUpOmise } from "../../utils/omise"
+import "./Payment.css"
 
 interface Basket {
   productId: number
@@ -186,7 +185,7 @@ function Payment() {
   const [token, setToken] = React.useState<object>({})
   const [values, setValues] = useState({
     firstName: "",
-    surName: "",
+    lastName: "",
     tel: "",
     email: "",
     grade: "ม.5",
@@ -203,6 +202,9 @@ function Payment() {
     shippingPostCode: "",
   })
   const onChange = (e: any) => {
+    console.log(e.target.id)
+    console.log(e.target.value)
+    console.log(values)
     setValues({ ...values, [e.target.id]: e.target.value })
   }
 
@@ -355,19 +357,22 @@ function Payment() {
     }
   }
 
-  function omiseResiveToken() {
-    window.OmiseCard.open({
+  async function omiseResiveToken(setToken: (token: object) => void) {
+    await window.OmiseCard.open({
       amount: 50000,
-      onCreateTokenSuccess: (token: any) => {
-        console.log(token)
+      onCreateTokenSuccess: async (tokenId: string) => {
+        console.log(tokenId)
 
-        const t = {
-          id: token,
+        const token = {
+          id: tokenId,
           amount: 50000,
           type: PaymentTypes.card,
         }
 
-        axiosInstance.checkoutCard(t, PaymentTypes.cardEndpoint, values);
+        const basket = [{ productId: 1, quantity: 1 }]
+
+        setToken(token)
+        await axiosInstance.checkout(token, PaymentTypes.cardEndpoint, values, basket)
         // const b1 = {productId: 10,quantity: 2}
         // const basket = [b1]
         // sentData(token,email,firstName,lastName,tel,grade,school,shippingAddress,shippingSubDistrict,shippingDistrict,shippingProvince,shippingZipCode,basket)
@@ -375,10 +380,10 @@ function Payment() {
     })
   }
 
-  function payWithCreditCard(event: any) {
+  async function payWithCreditCard(event: any) {
     event.preventDefault()
     setUpOmise()
-    omiseResiveToken()
+    omiseResiveToken(setToken)
   }
 
   return (
