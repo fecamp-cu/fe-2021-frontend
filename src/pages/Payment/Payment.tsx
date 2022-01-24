@@ -127,6 +127,46 @@ const WhiteSelect = styled.select`
   line-height: 17px;
   align-items: center;
 `
+const Input = styled.input`
+  flex-shrink: 1;
+  margin: 5px;
+  padding: 1px 10px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: 600px) {
+    margin: 3px 2px;
+    padding: 1px 5px;
+    height: 28px;
+  }
+`
+
+const Label = styled.label`
+  margin: 15px 6px;
+  height: 20px;
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+
+  @media (max-width: 600px) {
+    margin: 3px 6px;
+  }
+`
 
 function Payment() {
   // ----------------------------User info--------------------------
@@ -141,7 +181,8 @@ function Payment() {
   const [district, setDistrict] = useState("")
   const [province, setProvince] = useState("")
   const [zipCode, setZipCode] = useState("")
-
+  // ---------------------------------------------------------
+  const [token, setToken] = React.useState<object>({})
   const [values, setValues] = useState({
     firstName: "",
     surName: "",
@@ -154,6 +195,11 @@ function Payment() {
     district: "",
     province: "",
     postcode: "",
+    shippingAddress: "",
+    shippingSubDistrict: "",
+    shippingDistrict: "",
+    shippingProvince: "",
+    shippingPostCode: "",
   })
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.id]: e.target.value })
@@ -241,13 +287,16 @@ function Payment() {
 
   useEffect(() => {
     if (isUseOldAddress) {
-      setShippingAddress(address)
-      setShippingSubDistrict(subDistrict)
-      setShippingDistrict(district)
-      setShippingProvince(province)
-      setShippingZipCode(zipCode)
+      setValues({
+        ...values,
+        shippingAddress: values.address,
+        shippingSubDistrict: values.subdistrict,
+        shippingDistrict: values.district,
+        shippingProvince: values.province,
+        shippingPostCode: values.postcode,
+      })
     }
-  }, [isUseOldAddress, address, subDistrict, district, province, zipCode])
+  }, [isUseOldAddress, values.address, values.subdistrict, values.district, values.province, values.postcode])
 
   // -------------------omise handle-----------------
 
@@ -307,10 +356,17 @@ function Payment() {
 
   function omiseResiveToken() {
     window.OmiseCard.open({
-      amount: 12345,
+      amount: 50000,
       onCreateTokenSuccess: (token: any) => {
         console.log(token)
-        axiosInstance.checkoutCard(token, PaymentTypes.cardEndpoint, values)
+
+        const t = {
+          id: token,
+          amount: 50000,
+          type: PaymentTypes.card,
+        }
+
+        axiosInstance.checkoutCard(t, PaymentTypes.cardEndpoint, values);
         // const b1 = {productId: 10,quantity: 2}
         // const basket = [b1]
         // sentData(token,email,firstName,lastName,tel,grade,school,shippingAddress,shippingSubDistrict,shippingDistrict,shippingProvince,shippingZipCode,basket)
@@ -326,13 +382,165 @@ function Payment() {
 
   return (
     <PaymentComponentBackground style={{ display: "inline-flex" }}>
-      <form>
-        <button type="button" id="credit-card" onClick={payWithCreditCard}>
-          จ่ายเงิน
-        </button>
-      </form>
+      <form></form>
       <div style={{ padding: "46px 20px", width: "75%" }}>
-        <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"} />
+        <div>
+          <div style={{ overflow: "auto" }}>
+            <WhiteCircle>
+              <Number>1</Number>
+            </WhiteCircle>
+            <Header>ข้อมูลผู้ซื้อ</Header>
+            {<RiArrowDropDownLine style={{ float: "right", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+          </div>
+          <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} values={values} ids={"myform"} />
+        </div>
+
+        <div style={{ overflow: "auto" }}>
+          <WhiteCircle>
+            <Number>2</Number>
+          </WhiteCircle>
+          <Header>การจัดส่ง</Header>
+          {<RiArrowDropDownLine style={{ float: "right", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+        </div>
+        <div>
+          <h1 style={{ color: "white", marginTop: "19px" }}>เลือกที่อยู่จัดส่งพัสดุของคุณ</h1>
+          <form action="">
+            <div style={{ marginBottom: "0px" }}>
+              <input
+                className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                type="radio"
+                name="selectAddress"
+                checked={isUseOldAddress}
+                onClick={OnClickUseOldAddress}
+                style={{ marginRight: "17px", marginTop: "20px" }}
+              />
+              <WhiteLabel style={{ marginRight: "112px" }}>ที่อยู่ปัจจุบัน</WhiteLabel>
+              <input
+                className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                type="radio"
+                name="selectAddress"
+                checked={!isUseOldAddress}
+                onClick={OnClickUseNewAddress}
+                style={{ marginRight: "17px" }}
+              />
+              <WhiteLabel>ที่อยู่ใหม่</WhiteLabel>
+            </div>
+
+            <div className="row4">
+              <Label className={addressLableColor}>ที่อยู่</Label>
+              <Input
+                className={addressInputColor}
+                disabled={isUseOldAddress}
+                type="text"
+                id="shippingAddress"
+                value={values.shippingAddress}
+                onChange={onChange}
+                required
+              ></Input>
+              <Label className={addressLableColor}>ตำบล/แขวง</Label>
+              <Input
+                className={addressInputColor}
+                disabled={isUseOldAddress}
+                type="text"
+                id="shippingSubDistrict"
+                value={values.shippingSubDistrict}
+                onChange={onChange}
+                required
+              ></Input>
+            </div>
+            <div className="row5">
+              <Label className={addressLableColor}>อำเภอ/เขต</Label>
+              <Input
+                className={addressInputColor}
+                disabled={isUseOldAddress}
+                type="text"
+                id="shippingDistrict"
+                value={values.shippingDistrict}
+                onChange={onChange}
+                required
+              ></Input>
+              <Label className={addressLableColor}>จังหวัด</Label>
+              <Input
+                className={addressInputColor}
+                disabled={isUseOldAddress}
+                type="text"
+                id="shippingProvince"
+                value={values.shippingProvince}
+                onChange={onChange}
+                required
+              ></Input>
+              <Label className={addressLableColor}>รหัสไปรษณีย์</Label>
+              <Input
+                className={addressInputColor}
+                disabled={isUseOldAddress}
+                type="text"
+                id="shippingPostCode"
+                value={values.shippingPostCode}
+                onChange={onChange}
+                required
+              ></Input>
+            </div>
+          </form>
+        </div>
+
+        <div style={{ marginTop: "77px" }}>
+          <WhiteCircle>
+            <Number>3</Number>
+          </WhiteCircle>
+          <Header>การชำระเงิน</Header>
+          {<RiArrowDropDownLine style={{ marginRight: "auto", marginLeft: "67%", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+          <form action="">
+            <div>
+              <div>
+                <input
+                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                  type="radio"
+                  name="selectPayment"
+                  style={{ marginRight: "17px", marginTop: "20px" }}
+                />
+                <WhiteLabel style={{ marginRight: "112px" }}>พร้อมเพย์</WhiteLabel>
+              </div>
+
+              <div>
+                <input
+                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                  type="radio"
+                  name="selectPayment"
+                  style={{ marginRight: "17px", marginTop: "20px" }}
+                />
+
+                <WhiteLabel>บัตรเครดิต/เดบิต</WhiteLabel>
+              </div>
+
+              <div>
+                <input
+                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-red-900 border-2 bg-red-300 checked:bg-red-900 checked:border-blue-100 checked:border-2 cursor-pointer"
+                  type="radio"
+                  name="selectPayment"
+                  style={{ marginRight: "17px", marginTop: "20px" }}
+                />
+                <WhiteLabel>โอนผ่านธนาคาร</WhiteLabel>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div style={{ paddingTop: "50px", paddingRight: "20px" }}>
+        <ProductListV2 bookList={book}></ProductListV2>
+        <form>
+          <button type="submit" id="credit-card" form="myform">
+            จ่ายผ่านบัตรเครดิต
+          </button>
+        </form>
+      </div>
+    </PaymentComponentBackground>
+  )
+
+  return (
+    <PaymentComponentBackground style={{ display: "inline-flex" }}>
+      <form></form>
+      <div style={{ padding: "46px 20px", width: "75%" }}>
+        <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} values={values} ids={"myform"} />
         <button type="submit" id="credit-card" form="myform">
           จ่ายเงิน
         </button>

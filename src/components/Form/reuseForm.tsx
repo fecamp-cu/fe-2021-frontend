@@ -70,12 +70,31 @@ const Select = styled.select`
         height : 28px;
     }
 `;
+
+// const [values, setValues] = useState({
+//     firstName : "",
+//     surName : "",
+//     tel : "",
+//     email : "",
+//     grade : "ม.5",
+//     school : "",
+//     address : "",
+//     subdistrict : "",
+//     district : "",
+//     province : "",
+//     postcode : ""
+// })
+
+// const onChange= (e : any) =>{
+//   setValues({...values, [e.target.id] : e.target.value})
+// }
+
 function ReuseForm(props : any){
 
     const config = {duration : 500};
     const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config);
     return (
-        <form onSubmit = {e => props.onSubmit} id = {props.ids}>
+        <form onSubmit = {props.onSubmit} id = {props.ids}>
             <div className = 'my-7 flex flex-col items-center'>
                 <div className = 'row1'>
                     <Label>ชื่อ</Label>

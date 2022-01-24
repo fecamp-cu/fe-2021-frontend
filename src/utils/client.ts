@@ -22,6 +22,11 @@ export type costumerData = {
     district: string,
     province: string,
     postcode: string,
+    shippingAddress: string,
+    shippingSubDistrict: string,
+    shippingDistrict: string,
+    shippingProvince: string,
+    shippingPostCode: string
 }
 
 const client = Axios.create({
@@ -54,6 +59,7 @@ const checkout = async (source: object, paymentType: PaymentTypes) => {
 }
 
 const checkoutCard = async (token: object, paymentType: PaymentTypes, costumerData: costumerData) => {
+  console.log(token);
   const res = await client.post(`/shop/checkout/${paymentType}`, {
     source: token,
     email: costumerData.email,
@@ -62,11 +68,11 @@ const checkoutCard = async (token: object, paymentType: PaymentTypes, costumerDa
     tel: costumerData.tel,
     grade: costumerData.grade,
     school: costumerData.school,
-    address: costumerData.address,
-    subdistrict: costumerData.subdistrict,
-    district: costumerData.district,
-    province: costumerData.province,
-    postcode: costumerData.postcode,
+    address: costumerData.shippingAddress,
+    subdistrict: costumerData.shippingSubDistrict,
+    district: costumerData.shippingDistrict,
+    province: costumerData.shippingProvince,
+    postcode: costumerData.shippingPostCode,
     basket: [
       {
         productId: 1,
@@ -75,6 +81,7 @@ const checkoutCard = async (token: object, paymentType: PaymentTypes, costumerDa
     ],
     promotion_code: "string",
   })
+  console.log("done")
   console.log(res)
 }
 
