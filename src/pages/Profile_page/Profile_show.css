@@ -170,6 +170,88 @@
     left: 200px;
 }
 
-@media (max-width : 600px) {
-    
+@media (max-width : 390px) {
+    .showContainer{
+        padding: 24px;
+        width: auto;
+        height: 613px;
+    }
+
+    .myProfile{
+        font-size: 20px;
+        margin-top: 0px;
+    }
+
+    .picture{
+        width: 80px;
+        height: 80px;
+        margin-bottom: -20px;
+        margin-right: 14px;
+    }
+
+    .infoProfile{
+        width: 248px;
+        height: 73px;
+        padding: 16px;
+        margin-top: 35px;
+    }
+
+    .name,.email{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .history{
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .editIcon{
+        left: 85%;
+        top: 40%;
+        width: 18px;
+
+    }
+
+    .historyList,.historyBuy{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 24px;
+    }
+
+    .historyList{
+        padding-top: 16px;
+    }
+
+    .historyBuy{
+        padding-top: 8px;
+    }
+
+    .infoHistory{
+        height: 76px;
+        border-radius: 8px;
+    }
+
+    .shopIcon{
+        width: 10.5px;
+        left: 40%;
+        top: 60%;
+    }
+
+    .policy,.logout{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .logoutIcon{
+        width: 18px;
+        margin-left: 80px;
+        top: 580px;
+    }
 }

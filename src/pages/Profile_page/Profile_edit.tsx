@@ -4,11 +4,31 @@ import Profile from "../../components/Profile_picture/Profile";
 import back from "./back.png"
 import "./Profile_edit.css"
 import {Link} from "react-router-dom"
+import { useState } from "react";
+
+
 
 
 
 function Profile_edit(){
-    const handleSubmit = (e : any) =>{
+    const [values, setValues] = useState({
+        firstName: "",
+        surName: "",
+        tel: "",
+        email: "",
+        grade: "ม.5",
+        school: "",
+        address: "",
+        subdistrict: "",
+        district: "",
+        province: "",
+        postcode: "",
+      })
+      const onChange = (e: any) => {
+        setValues({ ...values, [e.target.id]: e.target.value })
+      }
+
+    const onSubmit = (e : any) =>{
         e.preventDefault()
     }
     return(
@@ -19,8 +39,14 @@ function Profile_edit(){
                 <Profile/>
             </div>
             <div className="editForm">
-                <ReuseForm onSubmit={handleSubmit}/>
+                <ReuseForm onChange={onChange} onSubmit={onSubmit} values={values} ids={"myform"}/>
+                <form>
+                <button type="submit" id="profileSubmit" form="myform">
+                    บันทึก
+                </button>
+            </form>
             </div>
+            
         </div>
     );
 
