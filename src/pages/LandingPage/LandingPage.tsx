@@ -10,11 +10,9 @@ import "./LandingPage.css"
 import PhotoPreview from "../../components/LandingPage/PhotoPreview/PhotoPreview";
 import VideoCamp from "../../components/LandingPage/VideoCamp/VideoCamp";
 import {GiPolarStar} from "react-icons/gi"
+import { Link } from "react-router-dom";
 
 function LandingPage() {
-    const clickButton = () => {
-        return null;
-    }
 
     return(
         <div>
@@ -24,7 +22,7 @@ function LandingPage() {
 
             <div className="top-landing-white-bg">
                 <div className="landing-apply-button">
-                    <ApplyButton onClick={clickButton}></ApplyButton>
+                    <Link to={"/register"}><ApplyButton></ApplyButton></Link>
                 </div>
                 <p className="roo-juk-kai-text">รู้จักค่าย</p>
                 <AnchorLink href="#main-info-landing"><img src={icon} alt="icon" className={`icon-image animate-pulse`}></img></AnchorLink>
