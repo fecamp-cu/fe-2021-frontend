@@ -1,28 +1,25 @@
-import activity1 from '../../../assets/images/activity1.jpg'
-import activity2 from '../../../assets/images/activity2.jpg'
-import activity3 from '../../../assets/images/activity3.jpg'
-import activity4 from '../../../assets/images/activity4.jpg'
-import activity5 from '../../../assets/images/activity5.jpg'
-import activity6 from '../../../assets/images/activity6.jpg'
-import activity7 from '../../../assets/images/activity7.jpg'
-import activity8 from '../../../assets/images/activity8.jpg'
-import activity9 from '../../../assets/images/activity9.jpg'
-import activity10 from '../../../assets/images/activity10.jpg'
-
 import '../../../../node_modules/tw-elements/dist/css/index.min.css';
 import '../../../../node_modules/tw-elements/dist/js/index.min.js';
 
 import './PhotoPreview.css'
+import { useEffect, useState } from 'react'
+import { landingPageInstance } from '../../../utils/client'
 
 function PhotoPreview() {
 
-  const image_src = [activity2,activity3,activity4,activity5,
-    activity6,activity7,activity8,activity9,activity10
-  ]
+  const [title, setTitle] = useState("");
+  const [imgUrlArray, setImgUrlArray] = useState([]);
+
+  useEffect(() => {
+    landingPageInstance.getPhotoPreview().then((res) => {
+      setTitle(res?.data.title)
+      setImgUrlArray(res?.data.photoPreviews.map((e: { imgUrl: string }) => e.imgUrl))
+    })
+  })
 
   return (
   <div>
-    <h1 className="topic-text2">ภาพกิจกรรม</h1>
+    <h1 className="topic-text2">{title}</h1>
 
     <div id="carouselExampleIndicators" className="carousel slide relative" data-bs-ride="carousel">
       <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
@@ -47,25 +44,32 @@ function PhotoPreview() {
   </div>
 
     <div className="carousel-inner relative w-full overflow-hidden">
-      <div className="carousel-item active float-left w-full">
-        <img
-          src={activity1}
-          className="block w-full"
-          alt="activityImage"
-        />
-      </div>
-
-      {image_src.map((e,i) => {
-        return( 
-        <div key={i} className="carousel-item float-left w-full">
-        <img
-          src={e}
-          className={`block w-full`}
-          alt="activityImage"
-        />
-        </div>
-        );
-        })}
+      
+      {imgUrlArray.map((e,i) => {
+        if(i === 0){
+          return (
+              <div className="carousel-item active float-left w-full">
+                <img
+                  src={e}
+                  className="block w-full"
+                  alt="activityImage"
+                />
+              </div>
+          );
+        }
+        else{
+          return( 
+          <div key={i} className="carousel-item float-left w-full">
+          <img
+            src={e}
+            className={`block w-full`}
+            alt="activityImage"
+          />
+          </div>
+          );
+          }
+        })
+        }
     
     </div>
 

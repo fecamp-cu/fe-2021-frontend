@@ -5,18 +5,26 @@ export const client = Axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 })
 
-const aboutFE = async() => {
+const getAboutFE = async() => {
   try {
-    const res = await client.get('/setting/about_fe_container/1')
+    const res = await client.get('/setting/1')
     return res;
   } catch (error) {
     console.log(error)
   }
-  // const res = await client.get('/setting/about_fe_container/1')
-  // return res
+}
+
+const getPhotoPreview = async() => {
+  try {
+    const res = await client.get('/setting/2')
+    return res;
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const landingPageInstance = {
-  aboutFE
+  getAboutFE,
+  getPhotoPreview
 }
 
