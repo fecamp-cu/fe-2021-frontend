@@ -9,8 +9,15 @@ const testAPI = async () => {
   console.log(res)
 }
 
+const postLogin = async (postLog : object) => {
+  const res = await client.post("/auth/login", postLog)
+  console.log(res)
+}
+
 const clientInstance = {
+  client,
   testAPI,
+  postLogin
 }
 
 export default clientInstance
