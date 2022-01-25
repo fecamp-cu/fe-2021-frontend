@@ -1,6 +1,7 @@
 import React from "react";
+import axios from "axios";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import facebookLogo from "../../assets/book_cover.jpg";
 import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
