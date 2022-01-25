@@ -7,9 +7,6 @@ import {Link} from "react-router-dom"
 import { useState } from "react";
 
 
-
-
-
 function Profile_edit(){
     const [values, setValues] = useState({
         firstName: "",
@@ -41,10 +38,14 @@ function Profile_edit(){
             <div className="editForm">
                 <ReuseForm onChange={onChange} onSubmit={onSubmit} values={values} ids={"myform"}/>
                 <form>
-                <button type="submit" id="profileSubmit" form="myform">
-                    บันทึก
-                </button>
-            </form>
+                    <Link to="/Profile_show">
+                        <button style={{marginRight:50}}>ยกเลิก</button>
+                    </Link>
+                    <button type="submit" id="profileSubmit" form="myform">
+                        บันทึก
+                    </button>
+                    
+                </form>
             </div>
             
         </div>

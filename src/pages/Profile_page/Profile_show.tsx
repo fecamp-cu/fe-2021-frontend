@@ -4,9 +4,15 @@ import edit from "./Icon.png"
 import logout from "./Logout.png"
 import shop from "./shop.png"
 import {Link} from "react-router-dom"
-
+import { useState } from "react";
 
 function Profile_show(){
+    const [buyHistory,setBuyHistory] = useState([
+        {value:"Hi"},
+        {value:"Hi"},
+        {value:"Hi"},
+    ]);
+
     return(
         <div className="showContainer">
             <h1 className="myProfile">โปรไฟล์ของฉัน</h1>
@@ -26,16 +32,27 @@ function Profile_show(){
             <div className="history">
                 ประวัติการสั่งซื้อ
             </div>
-            <div className="infoHistory">
-                <div className="historyList">
-                    คุณยังไม่เคยสั่งซื้อหนังสือ
-                </div>
-                <Link to="">
-                    <div className="historyBuy"> 
-                        เลือกซื้อตอนนี้เลย !
-                        <img className="shopIcon" src={shop} alt="" />
+            
+            <div className="historyFrame">
+                <div className="infoHistory" style={{marginTop:0}}>
+                    <div className="historyList">
+                        คุณยังไม่เคยสั่งซื้อหนังสือ
                     </div>
-                </Link>
+                    <Link to="">
+                        <div className="historyBuy"> 
+                            เลือกซื้อตอนนี้เลย !
+                            <img className="shopIcon" src={shop} alt="" />
+                        </div>
+                    </Link>
+                </div>
+                {buyHistory.map(history=>(
+                    <div className="infoHistory">
+                        <div className="historyList">
+                        {history.value}
+                        </div>
+                    </div>
+                ))}
+                
             </div>
 
             <div className="policy">

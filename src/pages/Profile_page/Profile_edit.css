@@ -49,11 +49,20 @@
 @media (max-width : 390px) {
     .editForm{
         width: auto;
-        height: 760px;
+        height: 910px;
         margin: 32px;
     }
     .personalProfile{
         font-size: 20px;
+    }
+
+    .editPicture{
+        margin-bottom: -90px;
+    }
+
+    .backIcon{
+        width: 18px;
+        left: 30px;
     }
 
 

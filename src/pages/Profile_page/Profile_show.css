@@ -93,6 +93,22 @@
     align-items: center;
 }
 
+.historyFrame{
+    height: 170px;
+    margin-top: 15px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.historyFrame::-webkit-scrollbar{
+    width: 3px;
+}
+
+.historyFrame::-webkit-scrollbar-thumb{
+    background-color: white;
+    border-radius: 5px;
+}
+
 .infoHistory{
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.175) 10.21%, rgba(255, 255, 255, 0.07) 90.92%);
     border: 0.75731px solid #FFFFFF;
@@ -159,9 +175,8 @@
 }
 
 .logoutIcon{
-    position: absolute;
-    top: 750px;
-    margin-left: 140px;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .shopIcon{
@@ -214,6 +229,9 @@
         width: 18px;
 
     }
+    .historyFrame{
+        height: 150px;
+    }
 
     .historyList,.historyBuy{
         font-style: normal;
@@ -249,9 +267,13 @@
         line-height: 24px;
     }
 
+    .policy{
+        margin-top: 48px;
+    }
+
     .logoutIcon{
         width: 18px;
-        margin-left: 80px;
-        top: 580px;
+        margin-left: 8px;
+        top: 564px;
     }
 }
