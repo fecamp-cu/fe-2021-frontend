@@ -5,6 +5,7 @@ import back from "./back.png"
 import "./Profile_edit.css"
 import {Link} from "react-router-dom"
 import { useState } from "react";
+import clientInstance from "../../utils/client";
 
 
 function Profile_edit(){
@@ -13,7 +14,7 @@ function Profile_edit(){
         surName: "",
         tel: "",
         email: "",
-        grade: "ม.5",
+        grade: "ม.6",
         school: "",
         address: "",
         subdistrict: "",
@@ -26,8 +27,26 @@ function Profile_edit(){
       }
 
     const onSubmit = (e : any) =>{
-        e.preventDefault()
+        try{
+            console.log("try");
+            clientInstance.postProfile(values);
+        }catch{
+            console.log("catch");
+            
+        }
     }
+
+    const testClick = (e:any) => {
+        try{
+            console.log("try");
+            clientInstance.getProfile();
+        }catch{
+            console.log("catch");
+            
+        }
+        
+    }
+
     return(
         <div className="editContainer">
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
@@ -47,7 +66,7 @@ function Profile_edit(){
                     
                 </form>
             </div>
-            
+            <button onClick={testClick}>Test</button>
         </div>
     );
 
