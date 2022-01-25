@@ -30,7 +30,7 @@
 
   color: #ffffff;
 
-  background: rgba(255, 255, 255, 0.4);
+  /* background: rgba(255, 255, 255, 0.4); */
   border: 1px solid white;
   box-sizing: border-box;
   backdrop-filter: blur(50px);
@@ -135,11 +135,15 @@
   }
 }
 
-.before{
+.after{
   background: rgba(255, 255, 255, 0.2);
   color:#ffffff;
 }
-.after{
+.before{
   background: rgba(170, 170, 170, 0.1);
   color:#aaaaaa;
+}
+.highlight-item {
+  background: rgba(255, 255, 255, 0.4);
+  color:#ffffff;
 }

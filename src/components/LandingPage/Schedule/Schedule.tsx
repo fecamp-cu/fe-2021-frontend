@@ -1,39 +1,67 @@
-import { ReactChild, ReactFragment, ReactPortal } from 'react';
+import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
+import { landingPageInstance } from '../../../utils/client';
 import './Schedule.css'
+import { fromUnixTime, getDate, getISODay, getMonth, getYear, isBefore, isSameDay } from 'date-fns'
 
 interface ItemProps {
     day: number,
-    month: string,
+    month: any,
     year: number,
     con: string,
     highlight: boolean
+    className:any
 }
 
+const arrayChange = ["","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
+
 const Item = (props: ItemProps) => {
-    return  <li className={`item ${props.highlight && 'highlight-item'}`}>
+    return  <li className={`item ${props.className}`}>
             <div className='leftCol'>{props.day} {props.month} {props.year}</div> 
             <div className='rightCol'>{props.con}</div>
             </li>
 }
 
 function Schedule() {
-    const currentHighlight = new Date();
-    const data = [{id:1,day:24,month:"ก.พ.",year:2565,con:"เริ่มการเปิดรับสมัคร"},
-                  {id:2,day:20,month:"มี.ค.",year:2565,con:"ปิดการรับสมัคร"},
-                  {id:3,day:8,month:"เม.ย.",year:2565,con:"ประกาศรายชื่อผู้ที่มีสิทธิ์จ่ายเงิน"},
-                  {id:4,day:8,month:"เม.ย.",year:2565,con:"ผู้มีสิทธิ์จ่ายเงินชำระค่าเข้าค่าย"},
-                  {id:5,day:15,month:"เม.ย.",year:2565,con:"สิ้นสุดการจ่ายเงินชำระค่าเข้าค่าย"},
-                  {id:6,day:4,month:"พ.ค.",year:2565,con:"ประกาศรายชื่อผู้มีสิทธิ์เข้าค่าย"},
-                  {id:7,day:26,month:"พ.ค.",year:2565,con:"เริ่มค่าย FECamp15"},
-                  {id:8,day:1,month:"มิ.ย.",year:2565,con:"สิ้นสุดค่าย FECamp15"}]
+
+    const [title, setTitle] = useState("");
+    const [arraySchedule, setArraySchedule] = useState([]); 
+  
+    useEffect(() => {
+      landingPageInstance.getSchedule().then((res) => {
+        setTitle(res?.data.title)
+        setArraySchedule(res?.data.timelineEvents)
+      })
+    })
 
     return (
         <>
-            <div className="title-text">ตารางเวลา</div>
+            <div className="title-text">{title}</div>
             <ul className='tableRow'>
-                { data.map((element)=>{
-                    const isInTimestampRange = true // compare timestamp vs current time
-                    return <Item day={element.day} month={element.month} year={element.year} con={element.con} key={element.id} highlight={isInTimestampRange}/>
+                { arraySchedule?.map((element :{ text: string , eventDate:string, id:number })=>{
+                    const data = Date.parse(element.eventDate) 
+                    let isInTimestampRange = true // compare timestamp vs current time
+                    const currentTime = new Date()
+                    const currentDay = getDate(currentTime)
+                    const currentMonth = getMonth(currentTime)+1  // need to plus one
+                    const currentYear = getYear(currentTime)
+
+                    const compDay = getDate(data)
+                    const compMonth = getMonth(data)+1
+                    const compYear = getYear(data)
+
+                    if(isSameDay(new Date(compYear,compMonth ,compDay),  new Date(currentYear,currentMonth ,currentDay))) {
+                        isInTimestampRange = true
+                        return <Item className="highlight-item" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
+                    }
+                    else if(isBefore(new Date(compYear,compMonth ,compDay),  new Date(currentYear,currentMonth ,currentDay))) {
+                        // ผ่านมาแล้ว 50 ปี
+                        isInTimestampRange = false
+                        return <Item className="before" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/> 
+                    } 
+                    else {
+                        isInTimestampRange = false
+                        return <Item className="after" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
+                    }
                 })}
             </ul>
         </>

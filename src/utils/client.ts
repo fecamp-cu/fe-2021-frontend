@@ -32,9 +32,19 @@ const getQualifications = async() => {
   }
 }
 
+const getSchedule = async() => {
+  try {
+    const res = await client.get('/setting/5')
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const landingPageInstance = {
   getAboutFE,
   getPhotoPreview,
-  getQualifications
+  getQualifications,
+  getSchedule
 }
 
