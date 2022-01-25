@@ -15,9 +15,9 @@ interface ButtonProps extends BaseButtonProps, LogoProps {
 
 }
 
-export const Button: React.FC<ButtonProps> = ({ onClick, Icon, children, textColor, ...rest }) => {
+export const Button: React.FC<ButtonProps> = ({ onClick, Icon, children, textColor, className, ...rest }) => {
   return (
-    <BaseButton onClick={onClick} {...rest} textColor={textColor}>
+    <BaseButton onClick={onClick} className={className} textColor={textColor}>
       {/* <p>{icon && <Logo>{icon}</Logo>}</p> */}
       <p>
         {Icon && (
