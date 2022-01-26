@@ -1,27 +1,24 @@
 import React from "react"
 import { IconType } from "react-icons"
 import styled from "styled-components"
-import { BaseButton } from "./BaseButton"
-import { BaseButtonProps } from "./BaseButton"
-import { LogoProps } from "./Logo"
-import { Logo } from "./Logo"
+import { BaseButton, BaseButtonProps } from "./BaseButton"
+
+import { LogoProps, Logo } from "./Logo"
 
 interface ButtonProps extends BaseButtonProps, LogoProps {
   className?: string
   onClick?: () => void
   Icon?: IconType
   form?: string
-
-
 }
 
-export const Button: React.FC<ButtonProps> = ({ onClick, Icon, children, textColor, className, ...rest }) => {
+export const Button: React.FC<ButtonProps> = ({ children, textColor, Icon, marginbottom, marginleft, marginright, margintop, ...rest }) => {
   return (
-    <BaseButton onClick={onClick} className={className} textColor={textColor}>
+    <BaseButton {...rest} textColor={textColor}>
       {/* <p>{icon && <Logo>{icon}</Logo>}</p> */}
       <p>
         {Icon && (
-          <Logo {...rest}>
+          <Logo {...{ marginbottom, marginleft, marginright, margintop }}>
             <Icon color={textColor} size={20}></Icon>
           </Logo>
         )}
