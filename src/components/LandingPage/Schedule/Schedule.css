@@ -17,10 +17,8 @@
 .item {
   width: 602px;
   height: 72px;
-  font-family: Bai Jamjuree;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
   line-height: 25px;
 
   /* identical to box height */
@@ -52,11 +50,15 @@
   flex: 0.5;
   padding-left: 96px;
   margin-right: 48px;
+  font-family: Bai Jamjuree;
+  font-size: 20px;
 }
 
 .rightCol {
   order: 2;
   flex: 1;
+  font-family: Bai Jamjuree;
+  font-size: 20px;
 }
 
 .tableRow {
@@ -67,7 +69,6 @@
   .item {
     width: 385px;
     height: 40px;
-    font-size: 13px;
     line-height: 25px;
     font-weight: 400;
     border-radius: 12px;
@@ -78,11 +79,13 @@
     flex: 0.5;
     padding-left: 50px;
     margin-right: 24px;
+    font-size: 13px;
   }
 
   .rightCol {
     order: 2;
     flex: 1;
+    font-size: 13px;
   }
 
   .title-text {
@@ -113,11 +116,13 @@
     flex: 0.5;
     padding-left: 30px;
     margin-right: 24px;
+    font-size: 11px;
   }
 
   .rightCol {
     order: 2;
     flex: 1;
+    font-size: 11px;
   }
 
   .title-text {

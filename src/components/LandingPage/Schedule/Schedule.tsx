@@ -1,7 +1,7 @@
 import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
 import { landingPageInstance } from '../../../utils/client';
 import './Schedule.css'
-import { fromUnixTime, getDate, getISODay, getMonth, getYear, isBefore, isSameDay } from 'date-fns'
+import {  getDate, getMonth, getYear, isBefore, isSameDay } from 'date-fns'
 
 interface ItemProps {
     day: number,
@@ -48,6 +48,7 @@ function Schedule() {
                     const compDay = getDate(data)
                     const compMonth = getMonth(data)+1
                     const compYear = getYear(data)
+                    
 
                     if(isSameDay(new Date(compYear,compMonth ,compDay),  new Date(currentYear,currentMonth ,currentDay))) {
                         isInTimestampRange = true
@@ -62,6 +63,8 @@ function Schedule() {
                         isInTimestampRange = false
                         return <Item className="after" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
                     }
+                    
+                    
                 })}
             </ul>
         </>
