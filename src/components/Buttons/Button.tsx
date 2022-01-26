@@ -3,25 +3,25 @@ import { IconType } from "react-icons"
 import styled from "styled-components"
 import { BaseButton } from "./BaseButton"
 import { BaseButtonProps } from "./BaseButton"
+import { LogoProps } from "./Logo"
+import { Logo } from "./Logo"
 
-interface ButtonProps extends BaseButtonProps {
+interface ButtonProps extends BaseButtonProps, LogoProps {
   className?: string
   onClick?: () => void
   Icon?: IconType
-}
-const Logo = styled.span`
-  margin-right: 10px;
-  margin-bottom: 10px;
-  color: #fff;
-`
+  form?: string
 
-export const Button: React.FC<ButtonProps> = ({ onClick, Icon, children, textColor, ...rest }) => {
+
+}
+
+export const Button: React.FC<ButtonProps> = ({ onClick, Icon, children, textColor, className, ...rest }) => {
   return (
-    <BaseButton onClick={onClick} {...rest} textColor={textColor}>
+    <BaseButton onClick={onClick} className={className} textColor={textColor}>
       {/* <p>{icon && <Logo>{icon}</Logo>}</p> */}
       <p>
         {Icon && (
-          <Logo>
+          <Logo {...rest}>
             <Icon color={textColor} size={20}></Icon>
           </Logo>
         )}
