@@ -5,23 +5,35 @@ export const client = Axios.create({
 })
 
 const postProfile = async(postProf : object) =>{
-  await client.post("https://dev.fe.in.th/api/profile",postProf)
+  await client.post("/profile",postProf)
 }
 
 const getProfile =async () => {
-  try{
-    const res = await client.get("https://dev.fe.in.th/api/setting/1")
+    const res = await client.get("/profile")
     console.log(res);
-  }catch{
-    console.log("error");
-  }
+}
+
+const patchProfile = async(patchProf : object) =>{
+  await client.post("/profile/14",patchProf)
+}
+
+const postLogin = async(postLog : object) =>{
+  const res = await client.post("/auth/login",postLog)
+  console.log(res);
   
 }
 
-const clientInstance = {
-  client,
-  postProfile,
-  getProfile
+const getTest =async () => {
+  const res = await client.get("/shop/5")
+  console.log(res);
 }
 
-export default clientInstance
+export const clientInstance = {
+  client,
+  postProfile,
+  getProfile,
+  patchProfile,
+  postLogin,
+  getTest
+}
+

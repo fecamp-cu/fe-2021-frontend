@@ -3,8 +3,10 @@ import "./Profile_show.css"
 import edit from "./Icon.png"
 import logout from "./Logout.png"
 import shop from "./shop.png"
+import { PDFView } from "../../components/PDFView/PDFView";
 import {Link} from "react-router-dom"
 import { useState } from "react";
+
 
 function Profile_show(){
     const [buyHistory,setBuyHistory] = useState([
@@ -48,18 +50,19 @@ function Profile_show(){
                 {buyHistory.map(history=>(
                     <div className="infoHistory">
                         <div className="historyList">
-                        {history.value}
+                            {history.value}
                         </div>
                     </div>
                 ))}
                 
             </div>
-
-            <div className="policy">
-                นโยบายความเป็นส่วนตัว
-            </div>
-            
             <Link to="">
+                <div className="policy">
+                    นโยบายความเป็นส่วนตัว
+                </div>
+            </Link>
+            
+            <Link to="/">
                 <div className="logout">
                     ออกจากระบบ
                     <img className="logoutIcon" src={logout} alt="" />
