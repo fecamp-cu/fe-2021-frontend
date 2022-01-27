@@ -9,7 +9,6 @@ function Qualifications(){
 
     useEffect(() => {
         landingPageInstance.getQualifications().then((res) => {
-            console.log(res)
             setTitle(res?.data.title)
             setQualificationsArray(res?.data.qualificationPreviews.map((e: { text: string; }) => e.text))
         })

@@ -48,7 +48,7 @@ function PhotoPreview() {
       {imgUrlArray.map((e,i) => {
         if(i === 0){
           return (
-              <div className="carousel-item active float-left w-full">
+              <div key={i} className="carousel-item active float-left w-full">
                 <img
                   src={e}
                   className="block w-full"
