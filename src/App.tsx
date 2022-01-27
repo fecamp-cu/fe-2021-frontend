@@ -1,22 +1,20 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import Example from "./pages/Example/Example"
+import { PageContainer } from "./components/Containers"
+import Footer from "./components/Footer/Footer"
 import Form from "./components/Form/Form"
 import Navbar from "./components/Navbar/Navbar"
-import Product from "./pages/Product/Product"
-import Footer from "./components/Footer/Footer"
-import { PageContainer } from "./components/Containers"
 import Profile from "./components/Profile_picture/Profile"
-import { setUpOmise } from "./utils/omise"
-import PaymentConfirm from "./pages/Payment/PaymentConfirm"
+import Example from "./pages/Example/Example"
 import Payment from "./pages/Payment/Payment"
-
+import PaymentConfirm from "./pages/Payment/PaymentConfirm"
+import Product from "./pages/Product/Product"
+import { setUpOmise } from "./utils/omise"
 
 function App() {
   setUpOmise()
   return (
     <>
-
       <Navbar isLogin={true} />
       <PageContainer>
         <Routes>
@@ -29,7 +27,6 @@ function App() {
           <Route path="/paymentconfirm" element={<PaymentConfirm />}></Route>
         </Routes>
       </PageContainer>
-
     </>
   )
 }
