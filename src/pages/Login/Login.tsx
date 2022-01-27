@@ -7,7 +7,7 @@ import {AiFillFacebook} from 'react-icons/ai'
 import { IconContext } from 'react-icons/lib'
 import {useState} from 'react'
 import clientInstance from '../../utils/client'
-import Redirect  from 'react-router'
+import  { Navigate } from 'react-router-dom'
 
 const Login = () => {
     const [values, setValues] = useState({
@@ -27,11 +27,16 @@ const Login = () => {
         console.log("login")
         e.preventDefault()
         clientInstance.postLogin(LoginInfo).then(res => {
-            console.log("login success")
+            console.log("login success");
+            <Navigate to = '/register' />
         })
         .catch(error => {
             alert("email or password is incorrect")
         })
+    }
+
+    const resetRequested = {
+        email : values.email,
     }
 
     return (
@@ -43,7 +48,7 @@ const Login = () => {
                     <input type = 'email' className = 'input' id = 'email' value = {values.email} onChange = {onChange} required></input>
                     <label className = 'label'>รหัสผ่าน</label>
                     <input type = 'password' className = 'input' id = 'password' value = {values.password} onChange = {onChange} required></input>
-                    <p className = 'text-white text-sm text-right mx-1.5'>ลืมรหัสผ่าน</p>
+                    <p className = 'text-white text-sm text-right mx-1.5' onClick={() => clientInstance.resetPassword(resetRequested)}>ลืมรหัสผ่าน</p>
                     <div className = 'my-1.5 mx-2.5'>
                         <Button form = 'loginform' bg = 'white' textColor='#9B2C33' outline = {false} shadow>เข้าสู่ระบบ</Button>
                     </div>
@@ -54,14 +59,15 @@ const Login = () => {
                     <hr className = 'line'></hr>
                 </div>
                 <div className = 'loginbutton'>
-                    <Button Icon = {FcGoogle} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn'></Button>
+                    <Button Icon = {FcGoogle} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getGoogle()}></Button>
                     <div></div>
                     <IconContext.Provider value = {{className : 'fb-icon'}}>
-                        <Button Icon = {AiFillFacebook} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn'></Button>
+                        <Button Icon = {AiFillFacebook} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getFacebook()}></Button>
                     </IconContext.Provider>
                 </div>
                 <Link to={"/register"} className = 'text-white underline underline-offset-1'>ยังไม่ได้ลงทะเบียนใช่ไหม?</Link>
             </div>
+            <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getUserInfo()}>userInfo</Button>
         </div>
     )
 }
