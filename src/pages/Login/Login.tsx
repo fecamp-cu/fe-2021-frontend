@@ -7,7 +7,6 @@ import {AiFillFacebook} from 'react-icons/ai'
 import { IconContext } from 'react-icons/lib'
 import {useState} from 'react'
 import clientInstance from '../../utils/client'
-import  { Navigate } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -41,6 +40,17 @@ const Login = () => {
         email : values.email,
     }
 
+    const handleReset = () =>{
+        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if(values.email === ""){
+            alert("Please fill an email")
+        }else if(!values.email.match(validRegex)){
+            alert("Invalid email address!")
+        }else{
+            clientInstance.resetPassword(resetRequested)
+        }
+    }
+
     return (
         <div className = 'flex justify-center items-center'>
             <div className = 'loginbox'>
@@ -50,7 +60,7 @@ const Login = () => {
                     <input type = 'email' className = 'input' id = 'email' value = {values.email} onChange = {onChange} required></input>
                     <label className = 'label'>รหัสผ่าน</label>
                     <input type = 'password' className = 'input' id = 'password' value = {values.password} onChange = {onChange} required></input>
-                    <p className = 'text-white text-sm text-right mx-1.5' onClick={() => clientInstance.resetPassword(resetRequested)}>ลืมรหัสผ่าน</p>
+                    <p className = 'text-white text-sm text-right mx-1.5' onClick={() => handleReset()}>ลืมรหัสผ่าน</p>
                     <div className = 'my-1.5 mx-2.5'>
                     <Button form = 'loginform' bg = 'white' textColor='#9B2C33' outline = {false} shadow>เข้าสู่ระบบ</Button>
                     </div>
