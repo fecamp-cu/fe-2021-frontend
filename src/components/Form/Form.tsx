@@ -70,50 +70,50 @@ const Select = styled.select`
         height : 28px;
     }
 `;
+interface PersonalInfo{
+    firstName : string, 
+    lastName : string,
+    tel : string,
+    grade : string,
+    school : string,
+    address : string,
+    subdistrict : string,
+    district : string,
+    province : string,
+    postcode : string
+}
+interface PersonalInfoFormProps{
+    onSubmit : any,
+    ids : string,
+    values : PersonalInfo,
+    email : string,
+    onChange : any
+}
 
-function FormComponent(){
-  const [values, setValues] = useState({
-      firstName : "",
-      lastName : "",
-      tel : "",
-      email : "",
-      grade : "ม.6",
-      school : "",
-      address : "",
-      subdistrict : "",
-      district : "",
-      province : "",
-      postcode : ""
-  })
-  const onChange= (e : any) =>{
-    setValues({...values, [e.target.id] : e.target.value})
-  }
-  console.log(values)
-  const handleSubmit = (e : any) =>{
-      e.preventDefault()
-  }
-  const config = {duration : 500};
-  const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config)
-  return (
-        <div className = 'body'>
-            <form className = 'form' onSubmit = {handleSubmit}>
+function PersonalInfoForm(props : PersonalInfoFormProps){
+    const config = {
+        duration : 500,
+        defaultExpanded: true};
+    const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config);
+    return (
+        <form onSubmit = {props.onSubmit} id = {props.ids}>
             <div className = 'my-7 flex flex-col items-center'>
                 <div className = 'row1'>
                     <Label>ชื่อ</Label>
-                    <Input type = 'text' id = 'firstName' value = {values.firstName} onChange = {onChange} required></Input>
+                    <Input type = 'text' id = 'firstName' value = {props.values.firstName} onChange = {props.onChange} required></Input>
                     <Label>นามสกุล</Label>
-                    <Input type = 'text' id = 'lastName' value = {values.lastName} onChange = {onChange} required></Input>
+                    <Input type = 'text' id = 'lastName' value = {props.values.lastName} onChange = {props.onChange} required></Input>
                 </div>
                 <div className = 'row2'>
                     <Label>เบอร์โทรศัพท์</Label>
-                    <Input type = 'text'  id = 'tel' value = {values.tel} onChange = {onChange} required></Input>
+                    <Input type = 'text'  id = 'tel' value = {props.values.tel} onChange = {props.onChange} required></Input>
                     <Label>อีเมล</Label>
-                    <Input type = 'email' id = 'email' value = {values.email} onChange = {onChange} required></Input>
+                    <Input type = 'email' id = 'email' value = {props.email} onChange = {props.onChange} required></Input>
                 </div>
                 <div className = 'conpc'>
                     <div className = 'row3'>
                         <Label>ระดับชั้น</Label>
-                        <Select id = 'grade' value = {values.grade} onChange = {onChange}>
+                        <Select id = 'grade' value = {props.values.grade} onChange = {props.onChange}>
                             <option value = 'ม.6' id = 'option'>ม.6</option>
                             <option value = 'ม.5' id = 'option'>ม.5</option>
                             <option value = 'ม.4' id = 'option'>ม.4</option>
@@ -124,28 +124,28 @@ function FormComponent(){
                             <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                         </Select>
                         <Label>โรงเรียน</Label>
-                        <Input type = 'text' id = 'school' value = {values.school} onChange = {onChange} required></Input>
+                        <Input type = 'text' id = 'school' value = {props.values.school} onChange = {props.onChange} required></Input>
                     </div>
                     <div className = 'row4'>
                         <Label>ที่อยู่</Label>
-                        <Input type = 'text' id = 'address' value = {values.address} onChange = {onChange} required></Input>
+                        <Input type = 'text' id = 'address' value = {props.values.address} onChange = {props.onChange} required></Input>
                         <Label>ตำบล/แขวง</Label>
-                        <Input type = 'text' id = 'subdistrict' value = {values.subdistrict} onChange = {onChange} required></Input>
+                        <Input type = 'text' id = 'subdistrict' value = {props.values.subdistrict} onChange = {props.onChange} required></Input>
                     </div>
                     <div className = 'row5'>
                         <Label>อำเภอ/เขต</Label>
-                        <Input type = 'text' id = 'district' value = {values.district} onChange = {onChange} required></Input>
+                        <Input type = 'text' id = 'district' value = {props.values.district} onChange = {props.onChange} required></Input>
                         <Label>จังหวัด</Label>
-                        <Input type = 'text' id = 'province' value = {values.province} onChange = {onChange} required></Input>
+                        <Input type = 'text' id = 'province' value = {props.values.province} onChange = {props.onChange} required></Input>
                         <Label>รหัสไปรษณีย์</Label>
-                        <Input type = 'text' id = 'postcode' value = {values.postcode} onChange = {onChange} required></Input>
+                        <Input type = 'text' id = 'postcode' value = {props.values.postcode} onChange = {props.onChange} required></Input>
                     </div>
                 </div>
                 <div className = 'collapsible'>
                     <div className = 'clpcontent' {...getCollapseProps()}>
                         <div className = 'row3'>
                             <Label>ระดับชั้น</Label>
-                            <Select onChange = {onChange}>
+                            <Select onChange = {props.onChange}>
                                 <option value = 'ม.6' id = 'option'>ม.6</option>
                                 <option value = 'ม.5' id = 'option'>ม.5</option>
                                 <option value = 'ม.4' id = 'option'>ม.4</option>
@@ -156,21 +156,21 @@ function FormComponent(){
                                 <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                             </Select>
                             <Label>โรงเรียน</Label>
-                            <Input type = 'text' id = 'school' value = {values.school} onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'school' value = {props.values.school} onChange = {props.onChange} required></Input>
                         </div>
                         <div className = 'row4'>
                             <Label>ที่อยู่</Label>
-                            <Input type = 'text' id = 'address' value = {values.address} onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'address' value = {props.values.address} onChange = {props.onChange} required></Input>
                             <Label>ตำบล/แขวง</Label>
-                            <Input type = 'text' id = 'subdistrict' value = {values.subdistrict} onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'subdistrict' value = {props.values.subdistrict} onChange = {props.onChange} required></Input>
                         </div>
                         <div className = 'row5'>
                             <Label>อำเภอ/เขต</Label>
-                            <Input type = 'text' id = 'district' value = {values.district} onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'district' value = {props.values.district} onChange = {props.onChange} required></Input>
                             <Label>จังหวัด</Label>
-                            <Input type = 'text' id = 'province' value = {values.province} onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'province' value = {props.values.province} onChange = {props.onChange} required></Input>
                             <Label>รหัสไปรษณีย์</Label>
-                            <Input type = 'text' id = 'postcode' value = {values.postcode} onChange = {onChange} required></Input>
+                            <Input type = 'text' id = 'postcode' value = {props.values.postcode} onChange = {props.onChange} required></Input>
                         </div>
                     </div>
                     <IconContext.Provider value = {{className : 'collapsed-icon'}}>
@@ -186,8 +186,7 @@ function FormComponent(){
                 </div>
             </div>
         </form>
-    </div>
     );
 }
 
-export default FormComponent
+export default PersonalInfoForm;
