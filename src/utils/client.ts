@@ -49,7 +49,9 @@ const resetPassword = async (requestReset : object) =>{
 }
 
 const postRegister = async (postReg : object) => {
-  await client.post("/auth/register", postReg)
+  await addBearer() 
+  const res = await client.post("/auth/register", postReg)
+  console.log(res)
 }
 
 const getGoogle = async () => {

@@ -7,6 +7,8 @@ import {Button} from '../../components/Buttons/Button'
 import {useState} from 'react'
 import {Link} from "react-router-dom"
 import clientInstance from '../../utils/client'
+import { AxiosError } from 'axios'
+import Footer from '../../components/Footer/Footer'
 
 const Input = styled.input`
     flex-shrink : 1;
@@ -51,6 +53,7 @@ const Label = styled.label`
 const isLogin = false
 
 const Register = () =>{
+
     const [values, setValues] = useState({
         firstName : "" ,
         lastName : "",
@@ -65,44 +68,51 @@ const Register = () =>{
         postcode : "",
         username : "",
         password1 : "",
-        password2 : ""
+        password2 : "",
+        image : ""
     })
-    const onChange= (e : any) =>{
+    const onChange = (e : any) =>{
       setValues({...values, [e.target.id] : e.target.value})
     }
-
     console.log(values)
 
-    function handleSubmit(e : any){
-        e.preventDefault();
+    const userInfo = {
+        "username": values.username,
+        "password": values.password1,
+        "email": values.email,
+        "firstName": values.firstName,
+        "lastName": values.lastName,
+        "imageUrl": "https://imgurl.com",
+        "tel": values.tel,
+        "grade": values.grade,
+        "school": values.school,
+        "address": values.address,
+        "subdistrict": values.subdistrict,
+        "district": values.district,
+        "province": values.province,
+        "postcode": values.postcode
     }
 
-    const userInfo = {
-        username: values.username,
-        password: values.password1,
-        email: values.email,
-        firstName: values.firstName,
-        lastName: values.lastName,
-        tel: values.tel,
-        grade: values.grade,
-        school: values.school,
-        address: values.address,
-        subdistrict: values.subdistrict,
-        district: values.district,
-        province: values.province,
-        postcode: values.postcode
+    const handleSubmit = async (e : any) => {
+        console.log("Register")
+        e.preventDefault();
+        try{
+            await clientInstance.postRegister(userInfo)
+        }catch(error : any) {
+            alert(error.response.data.message)
+        }
     }
 
     return (
-        <div className = 'mt-32 items-center'>
-            <form className = 'formbox'>
+        <div className = 'mt-28 items-center'>
+            <form className = 'formbox' onSubmit = {(e) => e.preventDefault()}>
                 <div className = 'profile'>
-                    <Profile></Profile>
+                    <Profile/>
                 </div>
                 <h1 className = 'regheader'>ข้อมูลผู้สมัคร</h1>  
-                <Form values = {values} onChange = {onChange} onSubmit = {handleSubmit} ids = "reg"></Form>
-                <div className = 'mt-8 sm:mt-14 mb-8'>
-                    <form className = 'register' id = 'reg'>
+                <Form values = {values} email = {values.email} onChange = {onChange} onSubmit = {handleSubmit} ids = "reg"></Form>
+                <div className = 'mt-2 sm:mt-4 mb-8'>
+                    <form className = 'register' onSubmit={(e) => e.preventDefault()}>
                         <div className = 'username'>
                             <Label>ชื่อผู้ใช้</Label>
                             <Input type = 'text' id = 'username' value = {values.username} onChange = {onChange} required></Input>
@@ -119,9 +129,10 @@ const Register = () =>{
                 </div>
                 <div className = 'rowbutton'>
                     <Link to = {"/login"}><Button textColor='white' outline shadow = {false}>ยกเลิก</Button></Link>
-                    <Button form = 'reg' bg = 'white' textColor='#9B2C33' outline = {false} shadow onClick={() => clientInstance.postRegister(userInfo)}>ลงทะเบียน</Button>
+                    <Button form = 'reg' bg = 'white' textColor='#9B2C33' outline = {false} shadow>ลงทะเบียน</Button>
                 </div>
             </form>
+            <Footer/>
         </div>
     )
 }

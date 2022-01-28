@@ -10,7 +10,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(30px);
     border-radius: 20px;
-    margin : 30px;
+    margin : 30px 80px;
     padding : 60px 0px 0px 0px;
     z-index : -2;
 }
@@ -28,7 +28,7 @@
 
 .regheader{
     text-align: center;
-    margin : 20px ;
+    margin : 20px 20px 0px 20px ;
     height : 25.49px;
 
     /* TH/H4 */
