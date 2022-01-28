@@ -15,9 +15,9 @@ function ProfileEdit(props:any) {
         setPreview(reader.result as string);
       };
     }else{
-      setPreview(props.preview);
+      setPreview(undefined);
     }
-  }, []);
+  }, [props.image]);
 
   return (
     <div className="container">

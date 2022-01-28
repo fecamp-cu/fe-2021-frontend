@@ -26,19 +26,28 @@ async function addBearer() {
   client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
 }
 
-const postProfile = async(postProf : object) =>{
-  await client.post("/profile",postProf)
-}
-
 const getProfile =async () => {
     addBearer();
-    const res = await client.get("/profile/12");
+    const res = await client.get("/profile");
     console.log(res);
     return res;
 }
 
-const patchProfile = async(patchProf : object) =>{
-  await client.post("/profile/14",patchProf)
+const patchProfile = async(patchProf : object,id:any) =>{
+  const res = await client.patch("/profile/"+id,patchProf)
+  storeToken(res.data);
+}
+
+const putProfile = async(patchProf : File|undefined) =>{
+  const res = await client.put("/profile/upload",patchProf)
+  storeToken(res.data);
+}
+
+const getUser =async () => {
+  addBearer();
+  const res = await client.get("/auth/me");
+  console.log(res);
+  return res;
 }
 
 const postLogin = async(postLog : object) =>{
@@ -47,17 +56,32 @@ const postLogin = async(postLog : object) =>{
   storeToken(res.data);
 }
 
+const deleteLogout = async() =>{
+  const res = await client.delete("/auth/logout")
+  storeToken(res.data);
+}
+
+const getOrder =async (id : any) => {
+  addBearer();
+  const res = await client.get("/order/"+id)
+  console.log(res);
+  return res;
+}
+
 const getTest =async () => {
-  const res = await client.get("/shop/5")
+  const res = await client.get("/")
   console.log(res);
 }
 
 export const clientInstance = {
   client,
-  postProfile,
   getProfile,
   patchProfile,
   postLogin,
+  getOrder,
+  getUser,
+  putProfile,
+  deleteLogout,
   getTest
 }
 

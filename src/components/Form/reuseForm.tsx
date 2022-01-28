@@ -75,7 +75,7 @@ function ReuseForm(props : any){
     const config = {duration : 500};
     const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config);
     return (
-        <form onSubmit = {e => props.onSubmit} id = {props.ids}>
+        <form onSubmit = {props.onSubmit} id = {props.ids}>
             <div className = 'my-7 flex flex-col items-center'>
                 <div className = 'row1'>
                     <Label>ชื่อ</Label>
@@ -87,7 +87,7 @@ function ReuseForm(props : any){
                     <Label>เบอร์โทรศัพท์</Label>
                     <Input type = 'text'  id = 'tel' value = {props.values.tel} onChange = {props.onChange} required></Input>
                     <Label>อีเมล</Label>
-                    <Input type = 'email' id = 'email' value = {props.values.email} onChange = {props.onChange} required></Input>
+                    <Input type = 'email' id = 'email' value = {props.email} onChange = {props.onChange} required></Input>
                 </div>
                 <div className = 'conpc'>
                     <div className = 'row3'>

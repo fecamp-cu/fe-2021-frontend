@@ -7,31 +7,54 @@ import "./Profile_edit.css"
 import {Link} from "react-router-dom"
 import { useEffect, useState } from "react";
 import {clientInstance} from "../../utils/client";
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
 
 function Profile_edit(){
+    const [user, setUser] = useState({
+        "id": 0,
+        "username": "",
+        "email": "",
+        "role": "",
+        "profile": {
+          "id": 0,
+          "firstName": "",
+          "lastName": "",
+          "imageUrl": "",
+          "tel": "",
+          "grade": "",
+          "school": "",
+          "address": "",
+          "subdistrict": "",
+          "district": "",
+          "province": "",
+          "postcode": ""
+        }
+      })
+
     const [values, setValues] = useState({
+        "id": 0,
         "firstName": "",
         "lastName": "",
         "imageUrl": "",
         "tel": "",
-        "grade": "ม.6",
-        "email": "",
+        "grade": "",
         "school": "",
         "address": "",
         "subdistrict": "",
         "district": "",
         "province": "",
-        "postcode": "",
-    })
+        "postcode": ""
+      })
     
     const [image, setImage] = useState<File>();
 
     useEffect(()=>{
-        clientInstance.getProfile().then((res:AxiosResponse)=>{
-            setValues(res.data)
+        clientInstance.getUser().then((res)=>{
+            setUser(res.data)
+            setValues(res?.data.profile)
         })
+        
     },[])
 
     const onChange = (e: any) => {
@@ -46,10 +69,14 @@ function Profile_edit(){
         console.log(file);
     }
 
-    const onSubmit = (e : any) =>{
-        clientInstance.patchProfile(values).then((res)=>{
-            console.log(res);
-        })
+    const onSubmit = (e:any) =>{
+        e.preventDefault();
+        const {id, ...newValues} = values;
+        console.log(newValues);
+        
+        clientInstance.patchProfile(newValues,user.id)
+        clientInstance.putProfile(image)
+        
     }
 
     const testClick = () => {
@@ -60,7 +87,9 @@ function Profile_edit(){
         //     }).catch(err => console.log("error"))
         
         //clientInstance.getTest();
-        clientInstance.getProfile();
+        //clientInstance.getProfile();
+        clientInstance.getUser();
+        clientInstance.getOrder(user.id);
     }
 
     const testLogin = () => {
@@ -74,25 +103,25 @@ function Profile_edit(){
     
 
     return(
-        <div className="editContainer">
+        <div className="editContainer" >
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
             <h1 className="personalProfile">ข้อมูลส่วนตัว</h1>
             <div className="editPicture">
-                <ProfileEdit onChange={onChangeImage} image={image} preview={values.imageUrl}/>
+                <ProfileEdit onChange={onChangeImage} image={image} preview={user.profile.imageUrl}/>
             </div>
             <div className="editForm">
-                <ReuseForm onChange={onChange} onSubmit={onSubmit} values={values} ids={"myform"}/>
+                <ReuseForm onChange={onChange} onSubmit={onSubmit} values={values} email={user.email} ids={"myform"}/>
                 <form>
                     <Link to="/Profile_show">
                         <button style={{marginRight:50}}>ยกเลิก</button>
                     </Link>
-                    <button type="submit" id="profileSubmit" form="myform">
+                    <button type="submit" id="myform" form="myform">
                         บันทึก
                     </button>
                     
                 </form>
             </div>
-            <button onClick={testClick}>Test</button>
+            <button onClick={testClick} style={{marginRight:50}}>Test</button>
             <button onClick={testLogin}>Login</button>
         </div>
     );

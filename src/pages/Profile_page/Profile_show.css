@@ -18,7 +18,8 @@
     text-align: center;
     background: white;
     border-radius: 50%;
-    margin-bottom: 40px;
+    margin-bottom: 42px;
+    object-fit: cover;
 }
 
 .myProfile{
@@ -73,13 +74,13 @@
     padding-top: 8px;
     font-family: 'Bai Jamjuree', sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: normal;
     font-size: 20px;
     line-height: 25px;
 }
 
 .history{
-    margin-top: 55px;
+    margin-top: 45px;
     text-align: left;
     color: white;
     font-style: normal;
@@ -199,7 +200,7 @@
     .picture{
         width: 80px;
         height: 80px;
-        margin-bottom: -20px;
+        margin-bottom: 30px;
         margin-right: 14px;
     }
 
@@ -217,6 +218,7 @@
     }
 
     .history{
+        margin-top: 40px;
         font-weight: bold;
         font-size: 16px;
         line-height: 24px;
