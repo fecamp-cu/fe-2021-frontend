@@ -6,8 +6,6 @@
   font-weight: bold;
   font-size: 48px;
   line-height: 72px;
-  /* identical to box height */
-
   display: flex;
   align-items: center;
   text-align: center;
@@ -20,24 +18,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: 25px;
-
-  /* identical to box height */
-
   display: flex;
   align-items: center;
-
   color: #ffffff;
-
-  /* background: rgba(255, 255, 255, 0.4); */
   border: 1px solid white;
   box-sizing: border-box;
   backdrop-filter: blur(50px);
-  /* Note: backdrop-filter has minimal browser support */
-
   border-radius: 20px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -88,7 +75,7 @@
     font-size: 13px;
   }
 
-  .title-text {
+  /* .title-text {
     font-family: CHULALONGKORN;
     font-style: normal;
     font-weight: bold;
@@ -100,10 +87,10 @@
     text-align: center;
     color: white;
     justify-content: center;
-  }
+  } */
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .item {
     width: 290px;
     height: 35px;
@@ -129,8 +116,8 @@
     font-family: CHULALONGKORN;
     font-style: normal;
     font-weight: bold;
-    font-size: 30px;
-    line-height: 72px;
+    font-size: 28px;
+    line-height: 42px;
 
     display: flex;
     align-items: center;

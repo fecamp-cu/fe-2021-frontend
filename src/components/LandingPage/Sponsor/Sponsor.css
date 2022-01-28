@@ -166,4 +166,18 @@
     margin-left: 5vw;
     margin-right: 5vw;
   }
+  .sponsor-header {
+    font-family: CHULALONGKORN;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 42px;
+  
+    align-items: center;
+    text-align: center;
+  
+    color: #ffffff;
+  
+    margin-bottom: 48px;
+  }
 }

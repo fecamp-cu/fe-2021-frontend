@@ -1,7 +1,7 @@
 import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
 import { landingPageInstance } from '../../../utils/client';
 import './Schedule.css'
-import {  getDate, getMonth, getYear, isBefore, isSameDay } from 'date-fns'
+import {  getDate, getMonth, getYear, isBefore, isWithinInterval } from 'date-fns'
 
 interface ItemProps {
     day: number,
@@ -23,45 +23,48 @@ const Item = (props: ItemProps) => {
 
 function Schedule() {
 
-    const [title, setTitle] = useState("");
     const [arraySchedule, setArraySchedule] = useState([]); 
   
     useEffect(() => {
       landingPageInstance.getActiveSetting().then((res) => {
-        setTitle(res?.data.title)
         setArraySchedule(res?.data.timelineEvents)
       })
     })
 
     return (
         <>
-            <div className="title-text">{title}</div>
+            <div className="title-text">ตารางเวลา</div>
             <ul className='tableRow'>
-                { arraySchedule?.map((element :{ text: string , eventDate:string, id:number })=>{
-                    const data = Date.parse(element.eventDate) 
-                    let isInTimestampRange = true // compare timestamp vs current time
+                { arraySchedule?.map((element :{ text: string , eventStartDate:string, eventEndDate:string, id:number })=>{
+                    const data = Date.parse(element.eventStartDate) 
+                    const enddate = Date.parse(element.eventEndDate)
+                    let isInTimestampRange = true // startare timestamp vs current time
                     const currentTime = new Date()
                     const currentDay = getDate(currentTime)
-                    const currentMonth = getMonth(currentTime)+1  // need to plus one
+                    const currentMonth = getMonth(currentTime)+1 // need to plus one
                     const currentYear = getYear(currentTime)
 
-                    const compDay = getDate(data)
-                    const compMonth = getMonth(data)+1
-                    const compYear = getYear(data)
+                    const endDay = getDate(enddate)
+                    const endMonth = getMonth(enddate)+1 
+                    const endYear = getYear(enddate)
+
+                    const startDay = getDate(data)
+                    const startMonth = getMonth(data)+1
+                    const startYear = getYear(data)
                     
 
-                    if(isSameDay(new Date(compYear,compMonth ,compDay),  new Date(currentYear,currentMonth ,currentDay))) {
+                    if(isWithinInterval( new Date(currentYear,currentMonth ,currentDay), {start:new Date(startYear,startMonth,startDay), end:new Date(endYear,endMonth,endDay-1) } )) {
                         isInTimestampRange = true
-                        return <Item className="highlight-item" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
+                        return <Item className="highlight-item" day={startDay} month={arrayChange[startMonth]} year={startYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
                     }
-                    else if(isBefore(new Date(compYear,compMonth ,compDay),  new Date(currentYear,currentMonth ,currentDay))) {
+                    else if(isBefore(new Date(startYear,startMonth ,startDay),  new Date(currentYear,currentMonth ,currentDay))) {
                         // ผ่านมาแล้ว 50 ปี
                         isInTimestampRange = false
-                        return <Item className="before" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/> 
+                        return <Item className="before" day={startDay} month={arrayChange[startMonth]} year={startYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/> 
                     } 
                     else {
                         isInTimestampRange = false
-                        return <Item className="after" day={compDay} month={arrayChange[compMonth]} year={compYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
+                        return <Item className="after" day={startDay} month={arrayChange[startMonth]} year={startYear+543} con={element.text} key={element.id} highlight={isInTimestampRange}/>
                     }
                     
                     
