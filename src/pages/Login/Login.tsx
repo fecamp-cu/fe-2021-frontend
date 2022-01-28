@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom"
+import {Link, Route} from "react-router-dom"
 import './Login.css'
 import {Button} from '../../components/Buttons/Button'
 import {FcGoogle} from 'react-icons/fc'
@@ -8,8 +8,10 @@ import { IconContext } from 'react-icons/lib'
 import {useState} from 'react'
 import clientInstance from '../../utils/client'
 import  { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+    const history = useNavigate();
     const [values, setValues] = useState({
         email : "",
         password : ""
@@ -28,7 +30,7 @@ const Login = () => {
         e.preventDefault()
         clientInstance.postLogin(LoginInfo).then(res => {
             console.log("login success");
-            <Navigate to = '/register' />
+            history('/')
         })
         .catch(error => {
             alert("email or password is incorrect")
@@ -50,7 +52,7 @@ const Login = () => {
                     <input type = 'password' className = 'input' id = 'password' value = {values.password} onChange = {onChange} required></input>
                     <p className = 'text-white text-sm text-right mx-1.5' onClick={() => clientInstance.resetPassword(resetRequested)}>ลืมรหัสผ่าน</p>
                     <div className = 'my-1.5 mx-2.5'>
-                        <Button form = 'loginform' bg = 'white' textColor='#9B2C33' outline = {false} shadow>เข้าสู่ระบบ</Button>
+                    <Button form = 'loginform' bg = 'white' textColor='#9B2C33' outline = {false} shadow>เข้าสู่ระบบ</Button>
                     </div>
                 </form>
                 <div className = 'loginwith'>
