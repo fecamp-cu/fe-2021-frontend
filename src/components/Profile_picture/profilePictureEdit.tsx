@@ -6,7 +6,7 @@ function ProfileEdit(props:any) {
   
   const [preview, setPreview] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  
   useEffect(()=>{
     if(props.image){
       const reader = new FileReader();
@@ -15,9 +15,9 @@ function ProfileEdit(props:any) {
         setPreview(reader.result as string);
       };
     }else{
-      setPreview(undefined);
+      setPreview(props.preview);
     }
-  }, [props.image]);
+  }, []);
 
   return (
     <div className="container">
@@ -33,15 +33,15 @@ function ProfileEdit(props:any) {
             }}
           />
         ) : (
-        <button
-          className="plusShow"
+          <img 
+          className="imageShow"
+          src={props.preview} 
+          style={{objectFit: "cover"}} 
           onClick={(event) => {
             event.preventDefault();
             fileInputRef.current?.click();
           }}
-        >
-          <img className="circle_plus" src={props.img} alt=""/>
-        </button>)}
+        />)}
         <input 
           type="file" 
           style={{display:"none"}} 

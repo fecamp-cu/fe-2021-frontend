@@ -5,14 +5,16 @@ import ProfileEdit from "../../components/Profile_picture/profilePictureEdit";
 import back from "./back.png"
 import "./Profile_edit.css"
 import {Link} from "react-router-dom"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {clientInstance} from "../../utils/client";
+import { AxiosResponse } from "axios";
 
 
 function Profile_edit(){
     const [values, setValues] = useState({
         "firstName": "",
         "lastName": "",
+        "imageUrl": "",
         "tel": "",
         "grade": "ม.6",
         "email": "",
@@ -22,9 +24,15 @@ function Profile_edit(){
         "district": "",
         "province": "",
         "postcode": "",
-      })
+    })
     
     const [image, setImage] = useState<File>();
+
+    useEffect(()=>{
+        clientInstance.getProfile().then((res:AxiosResponse)=>{
+            setValues(res.data)
+        })
+    },[])
 
     const onChange = (e: any) => {
         setValues({ ...values, [e.target.id]: e.target.value })
@@ -39,7 +47,7 @@ function Profile_edit(){
     }
 
     const onSubmit = (e : any) =>{
-        clientInstance.postProfile(values).then((res)=>{
+        clientInstance.patchProfile(values).then((res)=>{
             console.log(res);
         })
     }
@@ -70,7 +78,7 @@ function Profile_edit(){
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
             <h1 className="personalProfile">ข้อมูลส่วนตัว</h1>
             <div className="editPicture">
-                <ProfileEdit onChange={onChangeImage} image={image}/>
+                <ProfileEdit onChange={onChangeImage} image={image} preview={values.imageUrl}/>
             </div>
             <div className="editForm">
                 <ReuseForm onChange={onChange} onSubmit={onSubmit} values={values} ids={"myform"}/>
