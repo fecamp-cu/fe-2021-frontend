@@ -7,19 +7,17 @@ import { landingPageInstance } from '../../../utils/client'
 
 function PhotoPreview() {
 
-  const [title, setTitle] = useState("");
   const [imgUrlArray, setImgUrlArray] = useState([]);
 
   useEffect(() => {
-    landingPageInstance.getPhotoPreview().then((res) => {
-      setTitle(res?.data.title)
+    landingPageInstance.getActiveSetting().then((res) => {
       setImgUrlArray(res?.data.photoPreviews.map((e: { imgUrl: string }) => e.imgUrl))
     })
   })
 
   return (
   <div>
-    <h1 className="topic-text2">{title}</h1>
+    <h1 className="topic-text2">ภาพกิจกรรม</h1>
 
     <div id="carouselExampleIndicators" className="carousel slide relative" data-bs-ride="carousel">
       <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">

@@ -27,7 +27,7 @@ function Schedule() {
     const [arraySchedule, setArraySchedule] = useState([]); 
   
     useEffect(() => {
-      landingPageInstance.getSchedule().then((res) => {
+      landingPageInstance.getActiveSetting().then((res) => {
         setTitle(res?.data.title)
         setArraySchedule(res?.data.timelineEvents)
       })

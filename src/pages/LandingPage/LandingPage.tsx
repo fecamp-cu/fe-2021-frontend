@@ -34,7 +34,7 @@ function LandingPage() {
                 <PhotoPreview/>
                 <VideoCamp/>
                 <GiPolarStar className="star-icon"></GiPolarStar>
-                <Schedule/>
+                {/* <Schedule/> */}
                 <GiPolarStar className="star-icon"></GiPolarStar>
                 <Qualifications/>
                 <GiPolarStar className="star-icon"></GiPolarStar>

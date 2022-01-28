@@ -4,12 +4,10 @@ import "./Qualifications.css"
 
 function Qualifications(){
 
-    const [title, setTitle] = useState("");
     const [qualificationsArray, setQualificationsArray] = useState([]); 
 
     useEffect(() => {
-        landingPageInstance.getQualifications().then((res) => {
-            setTitle(res?.data.title)
+        landingPageInstance.getActiveSetting().then((res) => {
             setQualificationsArray(res?.data.qualificationPreviews.map((e: { text: string; }) => e.text))
         })
     })
@@ -17,7 +15,7 @@ function Qualifications(){
     return (
         <div className="qualification-container">
 
-            <h1 className="qualifications-header">{title}</h1>
+            <h1 className="qualifications-header">คุณสมบัติผู้สมัคร</h1>
             <div>
                 {qualificationsArray.map( (element,index)=>{
                     return (
