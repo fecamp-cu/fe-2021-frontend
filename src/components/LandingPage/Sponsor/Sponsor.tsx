@@ -1,8 +1,4 @@
 import "./Sponsor.css"
-import FECampLogo from "../../../assets/images/FECampLogo.png"
-import chulaEngineering from "../../../assets/images/chulaEngineering.jpg"
-import chula1 from "../../../assets/images/chula1.jpg"
-import chula2 from "../../../assets/images/chula2.png"
 
 function Sponsor() {
     return (
