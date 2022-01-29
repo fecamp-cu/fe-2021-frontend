@@ -24,16 +24,16 @@ const Login = () => {
         password : values.password
     }
 
-    const handleSubmit = (e : any) => {
+    const handleSubmit = async (e : any) => {
         console.log("login")
         e.preventDefault()
-        clientInstance.postLogin(LoginInfo).then(res => {
-            console.log("login success");
+        try{
+            await clientInstance.postLogin(LoginInfo)
+            console.log("login success")
             history('/')
-        })
-        .catch(error => {
-            alert("email or password is incorrect")
-        })
+        }catch(error : any){
+            alert(error.response.data.message)
+        }
     }
 
     const resetRequested = {
@@ -80,6 +80,7 @@ const Login = () => {
                 <Link to={"/register"} className = 'text-white underline underline-offset-1'>ยังไม่ได้ลงทะเบียนใช่ไหม?</Link>
             </div>
             <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getUserInfo()}>userInfo</Button>
+            <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getLogout()}>Logout</Button>
         </div>
     )
 }

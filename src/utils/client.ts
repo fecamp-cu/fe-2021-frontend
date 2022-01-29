@@ -62,6 +62,12 @@ const getFacebook = async () =>{
   await client.get("/auth/facebook")
 }
 
+const getLogout = async() => {
+  await addBearer() 
+  const res = await client.get("/auth/logout")
+  console.log(res)
+}
+
 const clientInstance = {
   client,
   testAPI,
@@ -70,7 +76,8 @@ const clientInstance = {
   postLogin,
   getGoogle,
   getFacebook,
-  resetPassword
+  resetPassword,
+  getLogout
 }
 
 export default clientInstance

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Profile from '../../components/Profile_picture/Profile'
 import {Button} from '../../components/Buttons/Button'
 import {useState} from 'react'
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import clientInstance from '../../utils/client'
 import { AxiosError } from 'axios'
 import Footer from '../../components/Footer/Footer'
@@ -53,7 +53,7 @@ const Label = styled.label`
 const isLogin = false
 
 const Register = () =>{
-
+    const history = useNavigate();
     const [values, setValues] = useState({
         firstName : "" ,
         lastName : "",
@@ -98,6 +98,8 @@ const Register = () =>{
         e.preventDefault();
         try{
             await clientInstance.postRegister(userInfo)
+            console.log("register success")
+            history('/login')
         }catch(error : any) {
             alert(error.response.data.message)
         }
@@ -105,9 +107,9 @@ const Register = () =>{
 
     return (
         <div className = 'mt-28 items-center'>
-            <form className = 'formbox' onSubmit = {(e) => e.preventDefault()}>
+            <div className = 'formbox'> 
                 <div className = 'profile'>
-                    <Profile/>
+                    <Profile/> 
                 </div>
                 <h1 className = 'regheader'>ข้อมูลผู้สมัคร</h1>  
                 <Form values = {values} email = {values.email} onChange = {onChange} onSubmit = {handleSubmit} ids = "reg"></Form>
@@ -131,7 +133,7 @@ const Register = () =>{
                     <Link to = {"/login"}><Button textColor='white' outline shadow = {false}>ยกเลิก</Button></Link>
                     <Button form = 'reg' bg = 'white' textColor='#9B2C33' outline = {false} shadow>ลงทะเบียน</Button>
                 </div>
-            </form>
+            </div>
             <Footer/>
         </div>
     )
