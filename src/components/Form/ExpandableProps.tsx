@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
+import {IconContext} from 'react-icons'
 
 interface ExpandableProps {
     collapsedHeight: number
@@ -34,17 +35,19 @@ interface ExpandableProps {
     className,
     collapseIcon,
   }) => {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
     return (
       <div>
         <ExpandableBlock collapsedHeight={collapsedHeight} expandedHeight={expandedHeight} atWidth={atWidth} show={show} className={className ?? ""}>
           {children}
         </ExpandableBlock>
-        <div className="flex justify-center">
-          <ExpandButton onClick={() => setShow((prev) => !prev)} atWidth={atWidth}>
-            {show ? collapseIcon : expandIcon}
-          </ExpandButton>
-        </div>
+        <IconContext.Provider value = {{className : 'collapsed-icon'}}>
+          <div className="flex justify-center">
+            <ExpandButton onClick={() => setShow((prev) => !prev)} atWidth={atWidth}>
+              {show ? collapseIcon : expandIcon}
+            </ExpandButton>
+          </div>
+        </IconContext.Provider>
       </div>
     )
   }

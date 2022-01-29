@@ -92,21 +92,16 @@ interface PersonalInfoFormProps{
 }
 
 function PersonalInfoForm(props : PersonalInfoFormProps){
-    const config = {
-        duration : 500,
-        defaultExpanded: true};
-    const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config);
     return (
         <form onSubmit = {props.onSubmit} id = {props.ids}>
             <Expandable 
-                className="my-7 flex flex-col items-center"
+                className="my-7 justify-center"
                 atWidth={600}
                 expandedHeight={1200}
                 collapsedHeight={450}
                 expandIcon={<BsChevronDown />}
                 collapseIcon={<BsChevronUp />}
             >
-            {/* <div className = 'my-7 flex flex-col items-center'> */}
                 <div className = 'row1'>
                     <Label>ชื่อ</Label>
                     <Input type = 'text' name = 'firstName' value = {props.values.firstName} onChange = {props.onChange} required></Input>
@@ -119,7 +114,7 @@ function PersonalInfoForm(props : PersonalInfoFormProps){
                     <Label>อีเมล</Label>
                     <Input type = 'email' name = 'email' value = {props.email} onChange = {props.onChange} required></Input>
                 </div>
-                <div className = 'conpc'>
+                <div>
                     <div className = 'row3'>
                         <Label>ระดับชั้น</Label>
                         <Select name = 'grade' value = {props.values.grade} onChange = {props.onChange}>
@@ -150,51 +145,7 @@ function PersonalInfoForm(props : PersonalInfoFormProps){
                         <Input type = 'text' name = 'postcode' value = {props.values.postcode} onChange = {props.onChange} required></Input>
                     </div>
                 </div>
-                {/* <div className = 'collapsible'>
-                    <div className = 'clpcontent' {...getCollapseProps()}>
-                        <div className = 'row3'>
-                            <Label>ระดับชั้น</Label>
-                            <Select onChange = {props.onChange}>
-                                <option value = 'ม.6' id = 'option'>ม.6</option>
-                                <option value = 'ม.5' id = 'option'>ม.5</option>
-                                <option value = 'ม.4' id = 'option'>ม.4</option>
-                                <option value = 'ปวช.3' id = 'option'>ปวช.3</option>
-                                <option value = 'ปวช.2' id = 'option'>ปวช.2</option>
-                                <option value = 'ปวช.1' id = 'option'>ปวช.1</option>
-                                <option value = 'อื่นๆ' id = 'option'>อื่นๆ</option>
-                                <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
-                            </Select>
-                            <Label>โรงเรียน</Label>
-                            <Input type = 'text' id = 'school' value = {props.values.school} onChange = {props.onChange} required></Input>
-                        </div>
-                        <div className = 'row4'>
-                            <Label>ที่อยู่</Label>
-                            <Input type = 'text' id = 'address' value = {props.values.address} onChange = {props.onChange} required></Input>
-                            <Label>ตำบล/แขวง</Label>
-                            <Input type = 'text' id = 'subdistrict' value = {props.values.subdistrict} onChange = {props.onChange} required></Input>
-                        </div>
-                        <div className = 'row5'>
-                            <Label>อำเภอ/เขต</Label>
-                            <Input type = 'text' id = 'district' value = {props.values.district} onChange = {props.onChange} required></Input>
-                            <Label>จังหวัด</Label>
-                            <Input type = 'text' id = 'province' value = {props.values.province} onChange = {props.onChange} required></Input>
-                            <Label>รหัสไปรษณีย์</Label>
-                            <Input type = 'text' id = 'postcode' value = {props.values.postcode} onChange = {props.onChange} required></Input>
-                        </div>
-                    </div>
-                    <IconContext.Provider value = {{className : 'collapsed-icon'}}>
-                        <div className = 'flex justify-center' {...getToggleProps()}>
-                            {isExpanded ? (
-                                <div id = 'collapsed'><BsChevronUp/></div>
-                            ) : (
-                                <div id = 'collapsed'><BsChevronDown/></div>
-                            )
-                            }
-                        </div>
-                    </IconContext.Provider>
-                </div> */}
             </Expandable>
-            {/* </div> */}
         </form>
     );
 }
