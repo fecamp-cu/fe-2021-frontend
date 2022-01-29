@@ -20,7 +20,6 @@ function App() {
           <Route path="/product" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/form" element={<Form />}></Route>
         </Routes>
       </PageContainer>
     </>
