@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+||||||| constructed merge base
+import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
+import { landingPageInstance } from '../../../utils/client';
+=======
+import { useEffect, useState } from 'react';
+import { landingPageInstance } from '../../../utils/client';
+>>>>>>> Stashed changes
 import './Schedule.css'
 import {  getDate, getMonth, getYear, isBefore, isWithinInterval } from 'date-fns'
 
