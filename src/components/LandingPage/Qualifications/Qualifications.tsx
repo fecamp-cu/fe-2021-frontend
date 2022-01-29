@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
-import { landingPageInstance } from "../../../utils/client";
 import "./Qualifications.css"
 
-function Qualifications(){
-
-    const [qualificationsArray, setQualificationsArray] = useState([]); 
-
-    useEffect(() => {
-        landingPageInstance.getActiveSetting().then((res) => {
-            setQualificationsArray(res?.data.qualificationPreviews.map((e: { text: string; }) => e.text))
-        })
-    })
+function Qualifications(props : { qualificationsArray : Array<string> } ){
 
     return (
         <div className="qualification-container">
 
             <h1 className="qualifications-header">คุณสมบัติผู้สมัคร</h1>
             <div>
-                {qualificationsArray.map( (element,index)=>{
+                {props.qualificationsArray.map( (element,index)=>{
                     return (
                         <div key={index} className="qualification-box">
                             <div className="index-with-bg">

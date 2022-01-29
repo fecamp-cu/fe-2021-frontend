@@ -2,18 +2,8 @@ import '../../../../node_modules/tw-elements/dist/css/index.min.css';
 import '../../../../node_modules/tw-elements/dist/js/index.min.js';
 
 import './PhotoPreview.css'
-import { useEffect, useState } from 'react'
-import { landingPageInstance } from '../../../utils/client'
 
-function PhotoPreview() {
-
-  const [imgUrlArray, setImgUrlArray] = useState([]);
-
-  useEffect(() => {
-    landingPageInstance.getActiveSetting().then((res) => {
-      setImgUrlArray(res?.data.photoPreviews.map((e: { imgUrl: string }) => e.imgUrl))
-    })
-  })
+function PhotoPreview(props : { imgUrlArray : Array<string> } ) {
 
   return (
   <div>
@@ -43,7 +33,7 @@ function PhotoPreview() {
 
     <div className="carousel-inner relative w-full overflow-hidden">
       
-      {imgUrlArray.map((e,i) => {
+      {props.imgUrlArray.map((e,i) => {
         if(i === 0){
           return (
               <div key={i} className="carousel-item active float-left w-full">

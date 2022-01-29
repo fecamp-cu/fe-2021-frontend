@@ -11,13 +11,34 @@ import PhotoPreview from "../../components/LandingPage/PhotoPreview/PhotoPreview
 import VideoCamp from "../../components/LandingPage/VideoCamp/VideoCamp";
 import {GiPolarStar} from "react-icons/gi"
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import { useEffect, useState } from "react";
+import { landingPageInstance } from "../../utils/client";
 
 function LandingPage() {
 
+    const [post, setPost] = useState("");
+    const [imgUrlArray, setImgUrlArray] = useState([]);
+    const [arraySchedule, setArraySchedule] = useState([]);
+    const [qualificationsArray, setQualificationsArray] = useState([]);
+    const [sponsorURLArray, setSponsorURLArray] = useState([]);
+
+    useEffect(() => {
+        landingPageInstance.getActiveSetting().then((res) => {
+          setPost(res?.data.aboutFeContainers[0].text)
+          setImgUrlArray(res?.data.photoPreviews.map((e: { imgUrl: string }) => e.imgUrl))
+          setArraySchedule(res?.data.timelineEvents)
+          setQualificationsArray(res?.data.qualificationPreviews.map((e: { text: string; }) => e.text))
+          setSponsorURLArray(res?.data.sponcerContainers.map((e: { imgUrl: string; }) => e.imgUrl))
+        })
+      })
+
+
     return(
         <div>
-
+            
             <div className="top-landing-background">
+                <Navbar/>
             </div>
 
             <div className="top-landing-white-bg">
@@ -29,16 +50,16 @@ function LandingPage() {
             </div>
             
             <div className="landing-background" id="main-info-landing">
-                <About/>
+                <About post={post}/>
                 <GiPolarStar className="star-icon"></GiPolarStar>
-                <PhotoPreview/>
+                <PhotoPreview imgUrlArray={imgUrlArray}/>
                 <VideoCamp/>
                 <GiPolarStar className="star-icon"></GiPolarStar>
-                <Schedule/>
+                <Schedule arraySchedule={arraySchedule}/>
                 <GiPolarStar className="star-icon"></GiPolarStar>
-                <Qualifications/>
+                <Qualifications qualificationsArray={qualificationsArray}/>
                 <GiPolarStar className="star-icon"></GiPolarStar>
-                <Sponsor/>
+                <Sponsor sponsorURLArray={sponsorURLArray}/>
             </div>
         </div>
     );

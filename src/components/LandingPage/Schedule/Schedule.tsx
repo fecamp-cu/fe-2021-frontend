@@ -1,5 +1,3 @@
-import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
-import { landingPageInstance } from '../../../utils/client';
 import './Schedule.css'
 import {  getDate, getMonth, getYear, isBefore, isWithinInterval } from 'date-fns'
 
@@ -21,21 +19,22 @@ const Item = (props: ItemProps) => {
             </li>
 }
 
-function Schedule() {
+interface PropsSchedule {
+    arraySchedule: {
+        text: string;
+        eventStartDate: string;
+        eventEndDate: string;
+        id: number;
+    }[]
+}
 
-    const [arraySchedule, setArraySchedule] = useState([]); 
-  
-    useEffect(() => {
-      landingPageInstance.getActiveSetting().then((res) => {
-        setArraySchedule(res?.data.timelineEvents)
-      })
-    })
+const Schedule: React.FC<PropsSchedule> = ({ arraySchedule }) => {
 
     return (
         <>
             <div className="title-text">ตารางเวลา</div>
             <ul className='tableRow'>
-                { arraySchedule?.map((element :{ text: string , eventStartDate:string, eventEndDate:string, id:number })=>{
+                { arraySchedule?.map((element :{ text: string; eventStartDate: string; eventEndDate: string; id: number; })=>{
                     const data = Date.parse(element.eventStartDate) 
                     const enddate = Date.parse(element.eventEndDate)
                     let isInTimestampRange = true // startare timestamp vs current time
