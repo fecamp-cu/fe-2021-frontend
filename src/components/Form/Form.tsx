@@ -5,6 +5,7 @@ import {BsChevronDown} from 'react-icons/bs'
 import {BsChevronUp} from 'react-icons/bs'
 import {IconContext} from 'react-icons'
 import styled from 'styled-components'
+import { Expandable } from './ExpandableProps'
 
 const Input = styled.input`
     flex-shrink : 1;
@@ -97,23 +98,31 @@ function PersonalInfoForm(props : PersonalInfoFormProps){
     const {getCollapseProps, getToggleProps, isExpanded} = useCollapse(config);
     return (
         <form onSubmit = {props.onSubmit} id = {props.ids}>
-            <div className = 'my-7 flex flex-col items-center'>
+            <Expandable 
+                className="my-7 flex flex-col items-center"
+                atWidth={600}
+                expandedHeight={1200}
+                collapsedHeight={450}
+                expandIcon={<BsChevronDown />}
+                collapseIcon={<BsChevronUp />}
+            >
+            {/* <div className = 'my-7 flex flex-col items-center'> */}
                 <div className = 'row1'>
                     <Label>ชื่อ</Label>
-                    <Input type = 'text' id = 'firstName' value = {props.values.firstName} onChange = {props.onChange} required></Input>
+                    <Input type = 'text' name = 'firstName' value = {props.values.firstName} onChange = {props.onChange} required></Input>
                     <Label>นามสกุล</Label>
-                    <Input type = 'text' id = 'lastName' value = {props.values.lastName} onChange = {props.onChange} required></Input>
+                    <Input type = 'text' name = 'lastName' value = {props.values.lastName} onChange = {props.onChange} required></Input>
                 </div>
                 <div className = 'row2'>
                     <Label>เบอร์โทรศัพท์</Label>
-                    <Input type = 'text'  id = 'tel' value = {props.values.tel} onChange = {props.onChange} required></Input>
+                    <Input type = 'text'  name = 'tel' value = {props.values.tel} onChange = {props.onChange} required></Input>
                     <Label>อีเมล</Label>
-                    <Input type = 'email' id = 'email' value = {props.email} onChange = {props.onChange} required></Input>
+                    <Input type = 'email' name = 'email' value = {props.email} onChange = {props.onChange} required></Input>
                 </div>
                 <div className = 'conpc'>
                     <div className = 'row3'>
                         <Label>ระดับชั้น</Label>
-                        <Select id = 'grade' value = {props.values.grade} onChange = {props.onChange}>
+                        <Select name = 'grade' value = {props.values.grade} onChange = {props.onChange}>
                             <option value = 'ม.6' id = 'option'>ม.6</option>
                             <option value = 'ม.5' id = 'option'>ม.5</option>
                             <option value = 'ม.4' id = 'option'>ม.4</option>
@@ -124,24 +133,24 @@ function PersonalInfoForm(props : PersonalInfoFormProps){
                             <option value = 'ไม่ระบุ' id = 'option'>ไม่ระบุ</option>
                         </Select>
                         <Label>โรงเรียน</Label>
-                        <Input type = 'text' id = 'school' value = {props.values.school} onChange = {props.onChange} required></Input>
+                        <Input type = 'text' name = 'school' value = {props.values.school} onChange = {props.onChange} required></Input>
                     </div>
                     <div className = 'row4'>
                         <Label>ที่อยู่</Label>
-                        <Input type = 'text' id = 'address' value = {props.values.address} onChange = {props.onChange} required></Input>
+                        <Input type = 'text' name = 'address' value = {props.values.address} onChange = {props.onChange} required></Input>
                         <Label>ตำบล/แขวง</Label>
-                        <Input type = 'text' id = 'subdistrict' value = {props.values.subdistrict} onChange = {props.onChange} required></Input>
+                        <Input type = 'text' name = 'subdistrict' value = {props.values.subdistrict} onChange = {props.onChange} required></Input>
                     </div>
                     <div className = 'row5'>
                         <Label>อำเภอ/เขต</Label>
-                        <Input type = 'text' id = 'district' value = {props.values.district} onChange = {props.onChange} required></Input>
+                        <Input type = 'text' name = 'district' value = {props.values.district} onChange = {props.onChange} required></Input>
                         <Label>จังหวัด</Label>
-                        <Input type = 'text' id = 'province' value = {props.values.province} onChange = {props.onChange} required></Input>
+                        <Input type = 'text' name = 'province' value = {props.values.province} onChange = {props.onChange} required></Input>
                         <Label>รหัสไปรษณีย์</Label>
-                        <Input type = 'text' id = 'postcode' value = {props.values.postcode} onChange = {props.onChange} required></Input>
+                        <Input type = 'text' name = 'postcode' value = {props.values.postcode} onChange = {props.onChange} required></Input>
                     </div>
                 </div>
-                <div className = 'collapsible'>
+                {/* <div className = 'collapsible'>
                     <div className = 'clpcontent' {...getCollapseProps()}>
                         <div className = 'row3'>
                             <Label>ระดับชั้น</Label>
@@ -183,8 +192,9 @@ function PersonalInfoForm(props : PersonalInfoFormProps){
                             }
                         </div>
                     </IconContext.Provider>
-                </div>
-            </div>
+                </div> */}
+            </Expandable>
+            {/* </div> */}
         </form>
     );
 }
