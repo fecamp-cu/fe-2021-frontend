@@ -6,12 +6,12 @@ export interface BaseButtonProps {
     width?: string
     height?: string
     bg?: string
-    outline: boolean
+    outline?: boolean
     textColor?: string
     fontSize?: string
     fontWeight?: string
     lineHeight?: string
-    shadow: boolean
+    shadow?: boolean
   }
 
 export const BaseButton = styled.button<BaseButtonProps>`
