@@ -71,10 +71,10 @@ const Login = () => {
                     <hr className = 'line'></hr>
                 </div>
                 <div className = 'loginbutton'>
-                    <Button Icon = {FcGoogle} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getGoogle()}></Button>
+                    <Button Icon = {FcGoogle} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn' margintop = '0' marginright = '0' marginbottom = '0' marginleft = '0' onClick={() => clientInstance.getGoogle()}></Button>
                     <div></div>
                     <IconContext.Provider value = {{className : 'fb-icon'}}>
-                        <Button Icon = {AiFillFacebook} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getFacebook()}></Button>
+                        <Button Icon = {AiFillFacebook} bg = 'white' outline = {false} shadow width = '45px' height = '45px' className ='btn' margintop = '0' marginright = '0' marginbottom = '0' marginleft = '0' onClick={() => clientInstance.getFacebook()}></Button>
                     </IconContext.Provider>
                 </div>
                 <Link to={"/register"} className = 'text-white underline underline-offset-1'>ยังไม่ได้ลงทะเบียนใช่ไหม?</Link>

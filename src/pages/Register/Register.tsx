@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from '../../components/Form/reuseForm'
+import Form from '../../components/Form/Form'
 import './Register.css'
 import styled from 'styled-components'
 import Profile from '../../components/Profile_picture/Profile'
