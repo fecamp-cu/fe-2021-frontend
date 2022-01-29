@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
 
 #about-landingPage-content {
-  margin-bottom: 95px;
+  margin-bottom: 70px;
 }
 
 .topic-text {
@@ -36,6 +36,17 @@
   padding-right: 27vw;
 }
 
+@media (max-width: 900px) {
+  .about-text {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 180%;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    text-align: left;
+  }
+}
+
 /*For mobile 450px */
 @media (max-width: 450px) {
   .topic-text {
@@ -43,14 +54,14 @@
     line-height: 42px;
 
     padding-top: 96px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
   }
   .about-text {
     font-weight: normal;
     font-size: 16px;
     line-height: 180%;
-    padding-left: 56px;
-    padding-right: 56px;
+    padding-left: 11vw;
+    padding-right: 11vw;
     text-align: left;
   }
 }

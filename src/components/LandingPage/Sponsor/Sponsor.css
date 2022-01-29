@@ -1,5 +1,5 @@
 .sponsor-main-container {
-  padding-bottom: 120px;
+  padding-bottom: 100px;
 }
 
 .sponsor-header {
@@ -163,8 +163,8 @@
     border-radius: 7.88321px;
 
     height: 160px;
-    margin-left: 5vw;
-    margin-right: 5vw;
+    margin-left: 6vw;
+    margin-right: 6vw;
   }
   .sponsor-header {
     font-family: CHULALONGKORN;
@@ -172,12 +172,12 @@
     font-weight: bold;
     font-size: 28px;
     line-height: 42px;
-  
+
     align-items: center;
     text-align: center;
-  
+
     color: #ffffff;
-  
-    margin-bottom: 48px;
+
+    margin-bottom: 16px;
   }
 }
