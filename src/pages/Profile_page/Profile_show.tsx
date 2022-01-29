@@ -35,27 +35,20 @@ function Profile_show(){
       })
 
     const [error, setError] = useState()
-    const [order, setOrder] = useState({
-        "id": 0,
-        "chargeId": "",
-        "transactionId": "",
-        "paymentMethod": "",
-        "amount": 0,
-        "paidAt": ""
-    })
+    const [order, setOrder] = useState([])
 
     const arrayChange = ["","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
 
-    const data = Date.parse(order.paidAt) 
-    const Day = getDate(data)
-    const Month = getMonth(data)+1 // need to plus one
-    const Year = getYear(data)
+    // const data = Date.parse(order.paidAt) 
+    // const Day = getDate(data)
+    // const Month = getMonth(data)+1 // need to plus one
+    // const Year = getYear(data)
 
 
     useEffect(()=>{
         clientInstance.getUser().then((res)=>{
             setUser(res.data)
-            clientInstance.getOrder(res?.data.id).then((resp)=>{
+            clientInstance.getOrderAll().then((resp)=>{
                 setOrder(resp.data)
             }).catch(err => {setError(err)});
         })
@@ -63,7 +56,7 @@ function Profile_show(){
     },[])    
 
     const handleLogout = () =>{
-        clientInstance.deleteLogout();
+        clientInstance.getLogout();
     }
 
     return(
@@ -87,16 +80,35 @@ function Profile_show(){
                 ประวัติการสั่งซื้อ
             </div>
             {!error?(
+                // <div className="historyFrame">
+                //     <div className="infoHistory" style={{marginTop:0}}>
+                //         <div className="historyList">
+                //             ข้อสอบเก่าสุดเจ๋ง รวมข้อสอบท็อป ๆ มาให้ได้ลองทำ
+                //         </div>
+                //         <div className="historyBuy"> 
+                //             คุณได้สั่งซื้อหนังสือเป็นจำนวน {order.amount} เล่มเมื่อวันที่ {Day} {arrayChange[Month]} {Year+543}
+                //         </div>
+                //     </div>
+                // </div>
                 <div className="historyFrame">
-                <div className="infoHistory" style={{marginTop:0}}>
-                    <div className="historyList">
-                        ข้อสอบเก่าสุดเจ๋ง รวมข้อสอบท็อป ๆ มาให้ได้ลองทำ
-                    </div>
-                    <div className="historyBuy"> 
-                        คุณได้สั่งซื้อหนังสือเป็นจำนวน {order.amount} เล่มเมื่อวันที่ {Day} {arrayChange[Month]} {Year+543}
-                    </div>
+                {order.map((element :{ amount: number,   paidAt: string })=>{
+                    const data = Date.parse(element.paidAt) 
+                    const Day = getDate(data)
+                    const Month = getMonth(data)+1 // need to plus one
+                    const Year = getYear(data)
+                    return (
+                        
+                            <div className="infoHistory" style={{marginTop:10}}>
+                                <div className="historyList">
+                                    ข้อสอบเก่าสุดเจ๋ง รวมข้อสอบท็อป ๆ มาให้ได้ลองทำ
+                                </div>
+                                <div className="historyBuy"> 
+                                    คุณได้สั่งซื้อหนังสือเป็นจำนวน {element.amount} เล่มเมื่อวันที่ {Day} {arrayChange[Month]} {Year+543}
+                                </div>
+                            </div>
+                    );
+                })}
                 </div>
-            </div>
                 ):(
                 <div className="historyFrame">
                     <div className="infoHistory" style={{marginTop:0}}>

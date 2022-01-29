@@ -38,9 +38,17 @@ const patchProfile = async(patchProf : object,id:any) =>{
   storeToken(res.data);
 }
 
-const putProfile = async(patchProf : File|undefined) =>{
-  const res = await client.put("/profile/upload",patchProf)
-  storeToken(res.data);
+const putProfile = async(patchProf : any) =>{
+  if(patchProf){ 
+    const formData = new FormData();
+    formData.append('avatar',patchProf);
+    const res = await client.put("/profile/upload",formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    storeToken(res.data);
+  }
 }
 
 const getUser =async () => {
@@ -56,14 +64,21 @@ const postLogin = async(postLog : object) =>{
   storeToken(res.data);
 }
 
-const deleteLogout = async() =>{
-  const res = await client.delete("/auth/logout")
+const getLogout = async() =>{
+  const res = await client.get("/auth/logout")
   storeToken(res.data);
 }
 
 const getOrder =async (id : any) => {
   addBearer();
   const res = await client.get("/order/"+id)
+  console.log(res);
+  return res;
+}
+
+const getOrderAll =async () => {
+  addBearer();
+  const res = await client.get("/order")
   console.log(res);
   return res;
 }
@@ -81,7 +96,8 @@ export const clientInstance = {
   getOrder,
   getUser,
   putProfile,
-  deleteLogout,
+  getLogout,
+  getOrderAll,
   getTest
 }
 
