@@ -9,11 +9,11 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 import "./LandingPage.css"
 import PhotoPreview from "../../components/LandingPage/PhotoPreview/PhotoPreview";
 import VideoCamp from "../../components/LandingPage/VideoCamp/VideoCamp";
-import {GiPolarStar} from "react-icons/gi"
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { landingPageInstance } from "../../utils/client";
+import star from "../../assets/images/star.svg"
 
 function LandingPage() {
 
@@ -37,7 +37,7 @@ function LandingPage() {
     return(
         <div>
             
-            <div className="top-landing-background">
+            <div className={`top-landing-background`}>
                 <Navbar/>
             </div>
 
@@ -51,14 +51,14 @@ function LandingPage() {
             
             <div className="landing-background" id="main-info-landing">
                 <About post={post}/>
-                <GiPolarStar className="star-icon"></GiPolarStar>
+                <img className="star-icon" src={star} alt="starIcon"></img>
                 <PhotoPreview imgUrlArray={imgUrlArray}/>
                 <VideoCamp/>
-                <GiPolarStar className="star-icon"></GiPolarStar>
+                <img className="star-icon" src={star} alt="starIcon"></img>
                 <Schedule arraySchedule={arraySchedule}/>
-                <GiPolarStar className="star-icon"></GiPolarStar>
+                <img className="star-icon" src={star} alt="starIcon"></img>
                 <Qualifications qualificationsArray={qualificationsArray}/>
-                <GiPolarStar className="star-icon"></GiPolarStar>
+                <img className="star-icon" src={star} alt="starIcon"></img>
                 <Sponsor sponsorURLArray={sponsorURLArray}/>
             </div>
         </div>

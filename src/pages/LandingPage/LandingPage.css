@@ -1,19 +1,14 @@
 .landing-background {
   max-width: 100%;
-  /* background: linear-gradient(
-    180.44deg,
-    rgba(188, 70, 70, 0.5) 4.66%,
-    rgba(188, 70, 70, 0.5) 4.67%,
-    rgba(198, 75, 97, 0.5) 39.68%,
-    rgba(188, 70, 70, 0.5) 77.48%
-  ); */
+  /* background: linear-gradient(175.22deg, #8a202b -4.38%, #a43344 34.51%, #ac394c 66.36%, #8a202b 116.67%); */
+  background: rgba(138, 32, 43, 0.7);
   background-image: url("../../assets/images/landingBackground.svg");
   background-size: cover;
-  /* background-repeat: repeat; */
+  background-repeat: repeat;
 }
 
 .top-landing-background {
-  background-image: url("../../assets/images/landingPage-top-pic.png");
+  background-image: url("https://drive.google.com/uc?export=view&id=1OIEpdjHOkinCRCbwzT6smlkWRhAcijrT");
   background-repeat: no-repeat;
   width: 100%;
   max-width: 100%;
