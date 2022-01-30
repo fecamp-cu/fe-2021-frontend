@@ -4,7 +4,7 @@ import '../../../../node_modules/tw-elements/dist/js/index.min.js';
 import './PhotoPreview.css'
 
 function PhotoPreview(props : { imgUrlArray : Array<string> } ) {
-
+  
   return (
   <div>
     <h1 className="topic-text2">ภาพกิจกรรม</h1>
@@ -20,7 +20,7 @@ function PhotoPreview(props : { imgUrlArray : Array<string> } ) {
         aria-label="Slide 1"
         ></button>
 
-      {[...Array(9)].map((e,i) => {
+      {[...Array(Math.max(0,props.imgUrlArray.length-1))].map((e,i) => {
       return( <button key={i}
         type="button"
         data-bs-target="#carouselExampleIndicators"
@@ -39,7 +39,7 @@ function PhotoPreview(props : { imgUrlArray : Array<string> } ) {
               <div key={i} className="carousel-item active float-left w-full">
                 <img
                   src={e}
-                  className="block w-full"
+                  className={`block w-full`}
                   alt="activityImage"
                 />
               </div>

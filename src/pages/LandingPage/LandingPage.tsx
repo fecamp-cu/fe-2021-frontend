@@ -32,8 +32,7 @@ function LandingPage() {
           setSponsorURLArray(res?.data.sponcerContainers.map((e: { imgUrl: string; }) => e.imgUrl))
         })
       },[])
-
-
+    
     return(
         <div>
             
