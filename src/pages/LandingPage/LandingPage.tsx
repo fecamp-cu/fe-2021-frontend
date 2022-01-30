@@ -31,7 +31,7 @@ function LandingPage() {
           setQualificationsArray(res?.data.qualificationPreviews.map((e: { text: string; }) => e.text))
           setSponsorURLArray(res?.data.sponcerContainers.map((e: { imgUrl: string; }) => e.imgUrl))
         })
-      })
+      },[])
 
 
     return(
