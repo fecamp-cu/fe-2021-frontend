@@ -34,7 +34,6 @@ function Profile_show(){
         }
       })
 
-    const [error, setError] = useState()
     const [order, setOrder] = useState([])
 
     const arrayChange = ["","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
@@ -49,10 +48,11 @@ function Profile_show(){
         clientInstance.getUser().then((res)=>{
             setUser(res.data)
             clientInstance.getOrderAll().then((resp)=>{
-                setOrder(resp.data)
-            }).catch(err => {setError(err)});
+                setOrder(resp.data.customer?.order)
+            });
         })
         console.log(user.id);
+        
     },[])    
 
     const handleLogout = () =>{
@@ -79,7 +79,7 @@ function Profile_show(){
             <div className="history">
                 ประวัติการสั่งซื้อ
             </div>
-            {!error?(
+            {order?(
                 // <div className="historyFrame">
                 //     <div className="infoHistory" style={{marginTop:0}}>
                 //         <div className="historyList">

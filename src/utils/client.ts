@@ -38,15 +38,16 @@ const patchProfile = async(patchProf : object,id:any) =>{
   storeToken(res.data);
 }
 
-const putProfile = async(patchProf : any) =>{
-  if(patchProf){ 
+const putProfile = async(putProf : any,id:any) =>{
+  if(putProf){ 
     const formData = new FormData();
-    formData.append('avatar',patchProf);
-    const res = await client.put("/profile/upload",formData,{
+    formData.append('avatar',putProf);
+    const config = {
       headers: {
-        'Content-Type': 'multipart/form-data'
+          'content-type': 'multipart/form-data'
       }
-    })
+    }
+    const res = await client.put("/profile/"+id+"/upload",formData,config)
     storeToken(res.data);
   }
 }
@@ -78,7 +79,7 @@ const getOrder =async (id : any) => {
 
 const getOrderAll =async () => {
   addBearer();
-  const res = await client.get("/order")
+  const res = await client.get("/auth/me?order=true")
   console.log(res);
   return res;
 }

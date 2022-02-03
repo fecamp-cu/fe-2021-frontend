@@ -8,6 +8,7 @@ import {Link} from "react-router-dom"
 import { useEffect, useState } from "react";
 import {clientInstance} from "../../utils/client";
 import axios, { AxiosResponse } from "axios";
+import { Button } from "../../components/Buttons/Button";
 
 
 function Profile_edit(){
@@ -74,8 +75,8 @@ function Profile_edit(){
         const {id, ...newValues} = values;
         console.log(newValues);
         
-        clientInstance.patchProfile(newValues,user.id)
-        clientInstance.putProfile(image)
+        clientInstance.patchProfile(newValues,values.id)
+        clientInstance.putProfile(image,values.id)
         
     }
 
@@ -94,9 +95,9 @@ function Profile_edit(){
     }
 
     const testLogin = () => {
-        clientInstance.postLogin({  
-            "email": "superadmin@gmail.com",
-            "password": "adminadmin"
+        clientInstance.postLogin({
+            "email": "pattarapon.knot@gmail.com",
+            "password": "7v'!Fx]u%eTLibpV"
           });
 
           console.log("login");
@@ -115,6 +116,7 @@ function Profile_edit(){
                 <form>
                     <Link to="/Profile_show">
                         <button style={{marginRight:50}}>ยกเลิก</button>
+                        
                     </Link>
                     <button type="submit" id="myform" form="myform">
                         บันทึก

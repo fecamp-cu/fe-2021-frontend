@@ -16,7 +16,6 @@
     margin-left: auto;
     margin-right: 24px;
     text-align: center;
-    background: white;
     border-radius: 50%;
     margin-bottom: 42px;
     object-fit: cover;
@@ -207,13 +206,13 @@
     .infoProfile{
         width: 248px;
         height: 73px;
-        padding: 16px;
+        padding: 15px;
         margin-top: 35px;
     }
 
     .name,.email{
         font-weight: 500;
-        font-size: 14px;
+        font-size: 13px;
         line-height: 17px;
     }
 
