@@ -2,22 +2,22 @@ import { useRef , useState , useEffect } from "react";
 import './Profile.css'
 import circle from './add_circle_outline.png'
 
-function Profile() {
-  const [image, setImage] = useState<File>();
+function ProfileEdit(props:any) {
+  
   const [preview, setPreview] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  
   useEffect(()=>{
-    if(image){
+    if(props.image){
       const reader = new FileReader();
-      reader.readAsDataURL(image);
+      reader.readAsDataURL(props.image);
       reader.onloadend = () => {
         setPreview(reader.result as string);
       };
     }else{
       setPreview(undefined);
     }
-  }, [image]);
+  }, [props.image]);
 
   return (
     <div className="container">
@@ -33,30 +33,25 @@ function Profile() {
             }}
           />
         ) : (
-        <button
-          className="plusShow"
+          <img 
+          className="imageShow"
+          src={props.preview} 
+          style={{objectFit: "cover"}} 
           onClick={(event) => {
             event.preventDefault();
             fileInputRef.current?.click();
           }}
-        >
-          <img className="circle_plus" src={circle} alt=""/>
-        </button>)}
+        />)}
         <input 
           type="file" 
           style={{display:"none"}} 
           ref={fileInputRef}
           accept = "image/*"
-          onChange={(event) => {
-            const file = event.target.files?.item(0);
-            if(file && file.type.substring(0,5) == "image"){
-              setImage(file);
-            } 
-          }}
+          onChange={props.onChange}
         />
       </form>
     </div>
   );
 }
 
-export default Profile;
+export default ProfileEdit;
