@@ -1,5 +1,4 @@
 import Form from "../../components/Form/Form";
-import ReuseForm from "../../components/Form/reuseForm";
 import Profile from "../../components/Profile_picture/Profile";
 import ProfileEdit from "../../components/Profile_picture/profilePictureEdit";
 import back from "./back.png"
@@ -7,7 +6,6 @@ import "./Profile_edit.css"
 import {Link} from "react-router-dom"
 import { useEffect, useState } from "react";
 import {clientInstance} from "../../utils/client";
-import axios, { AxiosResponse } from "axios";
 import { Button } from "../../components/Buttons/Button";
 
 
@@ -59,7 +57,7 @@ function Profile_edit(){
     },[])
 
     const onChange = (e: any) => {
-        setValues({ ...values, [e.target.id]: e.target.value })
+        setValues({ ...values, [e.target.name]: e.target.value })
     }
 
     const onChangeImage = (event:any) => {
@@ -71,27 +69,13 @@ function Profile_edit(){
     }
 
     const onSubmit = (e:any) =>{
-        e.preventDefault();
+        
         const {id, ...newValues} = values;
         console.log(newValues);
         
         clientInstance.patchProfile(newValues,values.id)
         clientInstance.putProfile(image,values.id)
         
-    }
-
-
-    const testClick = () => {
-        
-        // console.log("try");
-        //     clientInstance.postProfile(values).then((res)=>{
-        //         console.log(res);
-        //     }).catch(err => console.log("error"))
-        
-        //clientInstance.getTest();
-        //clientInstance.getProfile();
-        clientInstance.getUser();
-        clientInstance.getOrder(user.id);
     }
 
     const testLogin = () => {
@@ -112,19 +96,16 @@ function Profile_edit(){
                 <ProfileEdit onChange={onChangeImage} image={image} preview={user.profile.imageUrl}/>
             </div>
             <div className="editForm">
-                <ReuseForm onChange={onChange} onSubmit={onSubmit} values={values} email={user.email} ids={"myform"}/>
+                <Form onChange={onChange} onSubmit={onSubmit} values={values} email={user.email} ids={"myform"}/>
                 <form>
                     <Link to="/Profile_show">
-                        <button style={{marginRight:50}}>ยกเลิก</button>
-                        
+                        <Button className="cancelButton" width="157" height="40" fontSize="20" textColor="white" outline shadow={false}>ยกเลิก</Button>
                     </Link>
-                    <button type="submit" id="myform" form="myform">
-                        บันทึก
-                    </button>
+                    
+                    <Button className="saveButton" width="157" height="40" fontSize="20" form = "myform" bg = 'white' textColor='#9B2C33' outline = {false} shadow>บันทึก</Button>
                     
                 </form>
             </div>
-            <button onClick={testClick} style={{marginRight:50}}>Test</button>
             <button onClick={testLogin}>Login</button>
         </div>
     );

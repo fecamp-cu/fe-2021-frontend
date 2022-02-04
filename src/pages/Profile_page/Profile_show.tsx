@@ -3,11 +3,9 @@ import "./Profile_show.css"
 import edit from "./Icon.png"
 import logout from "./Logout.png"
 import shop from "./shop.png"
-import { PDFView } from "../../components/PDFView/PDFView";
 import {Link} from "react-router-dom"
 import { useEffect, useState } from "react";
 import { clientInstance } from "../../utils/client";
-import { AxiosResponse } from "axios";
 import { getDate, getMonth, getYear } from "date-fns";
 
 
@@ -60,6 +58,7 @@ function Profile_show(){
     }
 
     return(
+        <div className="bgContainer">
         <div className="showContainer" >
             <h1 className="myProfile">โปรไฟล์ของฉัน</h1>
             {/* <div className="picture">
@@ -137,6 +136,7 @@ function Profile_show(){
                 </div>
             </Link>
             
+        </div>
         </div>
     );
 

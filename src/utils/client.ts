@@ -26,13 +26,6 @@ async function addBearer() {
   client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
 }
 
-const getProfile =async () => {
-    addBearer();
-    const res = await client.get("/profile");
-    console.log(res);
-    return res;
-}
-
 const patchProfile = async(patchProf : object,id:any) =>{
   const res = await client.patch("/profile/"+id,patchProf)
   storeToken(res.data);
@@ -70,12 +63,6 @@ const getLogout = async() =>{
   storeToken(res.data);
 }
 
-const getOrder =async (id : any) => {
-  addBearer();
-  const res = await client.get("/order/"+id)
-  console.log(res);
-  return res;
-}
 
 const getOrderAll =async () => {
   addBearer();
@@ -84,21 +71,13 @@ const getOrderAll =async () => {
   return res;
 }
 
-const getTest =async () => {
-  const res = await client.get("/")
-  console.log(res);
-}
-
 export const clientInstance = {
   client,
-  getProfile,
   patchProfile,
   postLogin,
-  getOrder,
   getUser,
   putProfile,
   getLogout,
   getOrderAll,
-  getTest
 }
 

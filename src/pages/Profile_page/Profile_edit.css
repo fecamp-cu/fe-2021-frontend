@@ -37,13 +37,17 @@
     background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.15) 100%);
     color: white;
     width: 1040px;
-    height: 414px;
+    height: 440px;
     border-radius: 15px;
     align-items: center;
     margin-right: auto;
     margin-left: auto;
     padding-top: 60px;
     text-align: center;
+}
+
+.cancelButton{
+    margin-right: 50px;
 }
 
 @media (max-width : 390px) {
@@ -64,6 +68,7 @@
         width: 18px;
         left: 30px;
     }
+    
 
 
 }
