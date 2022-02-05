@@ -17,12 +17,11 @@ function App() {
       {/* <Navbar isLogin={true} /> */}
       <PageContainer>
         <Routes>
-          <Route path="/" element={<Example />}></Route>
-          <Route path="/product" element={<Product />}></Route>
+          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/form" element={<Form />}></Route>
-          <Route path="/landingPage" element={<LandingPage />}></Route>
         </Routes>
       </PageContainer>
       <Footer/>

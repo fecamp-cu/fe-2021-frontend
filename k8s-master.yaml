@@ -6,7 +6,7 @@ metadata:
   labels:
     app: fecamp-2021-frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: fecamp-2021-frontend
@@ -40,8 +40,8 @@ spec:
             periodSeconds: 3
           resources:
             requests:
-              cpu: 50m
-              memory: 128Mi
+              cpu: 15m
+              memory: 25Mi
             limits:
-              cpu: 80m
-              memory: 256Mi
+              cpu: 25m
+              memory: 40Mi
