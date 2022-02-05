@@ -8,6 +8,7 @@ import { IconContext } from 'react-icons/lib'
 import {useState} from 'react'
 import clientInstance from '../../utils/client'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 const Login = () => {
     const history = useNavigate();
@@ -52,6 +53,8 @@ const Login = () => {
     }
 
     return (
+        <div className = 'logincon'>
+            <Navbar isLogin = {true}/>
         <div className = 'flex justify-center items-center'>
             <div className = 'loginbox'>
                 <h1 className = 'header'>เข้าสู่ระบบ</h1>
@@ -79,8 +82,9 @@ const Login = () => {
                 </div>
                 <Link to={"/register"} className = 'text-white underline underline-offset-1'>ยังไม่ได้ลงทะเบียนใช่ไหม?</Link>
             </div>
-            <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getUserInfo()}>userInfo</Button>
-            <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getLogout()}>Logout</Button>
+            {/* <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getUserInfo()}>userInfo</Button>
+            <Button bg = 'white' textColor='#9B2C33' outline = {false} shadow width = '45px' height = '45px' className ='btn' onClick={() => clientInstance.getLogout()}>Logout</Button> */}
+        </div>
         </div>
     )
 }

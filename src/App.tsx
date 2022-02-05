@@ -15,7 +15,7 @@ function App() {
   setUpOmise()
   return (
     <>
-      <Navbar isLogin={true} />
+      {/* <Navbar isLogin={true} /> */}
       <PageContainer>
         <Routes>
           <Route path="/" element={<Example />}></Route>
@@ -26,6 +26,7 @@ function App() {
           <Route path ="/login" element={<Login/>}></Route>
         </Routes>
       </PageContainer>
+      <Footer/>
     </>
   )
 }

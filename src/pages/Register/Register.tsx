@@ -9,6 +9,7 @@ import {Link, useNavigate} from "react-router-dom"
 import clientInstance from '../../utils/client'
 import { AxiosError } from 'axios'
 import Footer from '../../components/Footer/Footer'
+import Navbar from '../../components/Navbar/Navbar'
 
 const Input = styled.input`
     flex-shrink : 1;
@@ -72,7 +73,7 @@ const Register = () =>{
         image : ""
     })
     const onChange = (e : any) =>{
-      setValues({...values, [e.target.id] : e.target.value})
+      setValues({...values, [e.target.name] : e.target.value})
     }
     console.log(values)
 
@@ -106,6 +107,8 @@ const Register = () =>{
     }
 
     return (
+        <div className = 'registercon'>
+        <Navbar isLogin = {true}/>
         <div className = 'mt-28 items-center'>
             <div className = 'formbox'> 
                 <div className = 'profile'>
@@ -134,7 +137,7 @@ const Register = () =>{
                     <Button form = 'reg' bg = 'white' textColor='#9B2C33' outline = {false} shadow>ลงทะเบียน</Button>
                 </div>
             </div>
-            <Footer/>
+        </div>   
         </div>
     )
 }
