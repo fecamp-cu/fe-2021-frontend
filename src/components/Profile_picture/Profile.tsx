@@ -1,6 +1,5 @@
 import { useRef , useState , useEffect } from "react";
 import './Profile.css'
-import circle from './add_circle_outline.png'
 
 interface profilePictureProps{
   onChange: any;
