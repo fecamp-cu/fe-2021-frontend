@@ -3,19 +3,25 @@ import { Button } from "../Buttons/Button"
 import { PDFView } from "../PDFView/PDFView"
 import { IoMdBasket } from "react-icons/io"
 import "./productInfo.style.css"
+interface BookIndex {
+  id: number
+  order: number
+  text: string
+}
 export interface ProductInfoProps {
   title: string
   author: string
   summary: string
-  type: "oldPapers" | "examPreps"
-  index: string[]
+  type: "old_papers" | "exam_preps"
+  indexes: BookIndex[]
   thumbnail?: string
-  fileUrl?: string
+  fileURL?: string
   price?: number
   id: number
+  quantityInStock: number
   //This is subject to change depending on how backend store data
 }
-export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price, fileUrl }) => {
+export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, indexes, thumbnail, price, fileURL }) => {
   const pdfRef = useRef<HTMLDivElement>(null)
   const scrollToPdf = useCallback(() => {
     pdfRef.current?.scrollIntoView()
@@ -37,7 +43,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
               <p>{summary}</p>
             </div>
             <div className="flex flex-col items-start order-first sm:order-2">
-              {type === "examPreps" ? (
+              {type === "exam_preps" ? (
                 <>
                   {/* TODO: Style buttons */}
                   <div className="flex flex-col sm:flex-row justify-around w-full mb-2">
@@ -66,16 +72,16 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
         <div className="mb-8">
           <h1 className="text-lg font-bold">สารบัญ</h1>
           <ol>
-            {index.map((text, i) => (
+            {indexes.map((bookIndex, i) => (
               <li key={`index-${i}`}>
-                ส่วนที่ {i}: {text}
+                ส่วนที่ {i}: {bookIndex.text}
               </li>
             ))}
           </ol>
         </div>
         <div ref={pdfRef}>
-          <h1 className="text-lg font-bold">ตัวอย่าง{type === "examPreps" ? "หนังสือ" : "ข้อสอบ"}:</h1>
-          <PDFView srcUrl={fileUrl} />
+          <h1 className="text-lg font-bold">ตัวอย่าง{type === "exam_preps" ? "หนังสือ" : "ข้อสอบ"}:</h1>
+          <PDFView srcUrl={fileURL} />
         </div>
       </div>
     </>
