@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback, useRef } from "react"
 import { Button } from "../Buttons/Button"
 import { PDFView } from "../PDFView/PDFView"
 import { IoMdBasket } from "react-icons/io"
@@ -9,12 +9,17 @@ export interface ProductInfoProps {
   summary: string
   type: "oldPapers" | "examPreps"
   index: string[]
-  thumbnail: string
+  thumbnail?: string
   fileUrl?: string
   price?: number
+  id: number
   //This is subject to change depending on how backend store data
 }
 export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary, type, index, thumbnail, price, fileUrl }) => {
+  const pdfRef = useRef<HTMLDivElement>(null)
+  const scrollToPdf = useCallback(() => {
+    pdfRef.current?.scrollIntoView()
+  }, [])
   return (
     <>
       <div style={{ color: "var(--white-400)" }}>
@@ -50,7 +55,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
                 </>
               ) : (
                 <>
-                  <Button outline shadow={false}>
+                  <Button outline shadow={false} onClick={scrollToPdf} className="mb-2 sm:mb-0">
                     ดูตัวอย่างข้อสอบ
                   </Button>
                 </>
@@ -68,7 +73,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
             ))}
           </ol>
         </div>
-        <div>
+        <div ref={pdfRef}>
           <h1 className="text-lg font-bold">ตัวอย่าง{type === "examPreps" ? "หนังสือ" : "ข้อสอบ"}:</h1>
           <PDFView srcUrl={fileUrl} />
         </div>

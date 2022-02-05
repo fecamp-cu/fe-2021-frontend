@@ -1,5 +1,6 @@
 .product-img-container {
   background: var(--glass);
+  width: 335px;
 }
 .product-img-container > img {
   max-width: 100%;

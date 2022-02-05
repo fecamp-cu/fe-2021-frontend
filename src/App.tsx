@@ -19,7 +19,7 @@ function App() {
       <PageContainer>
         <Routes>
           <Route path="/" element={<Example />}></Route>
-          <Route path="/product" element={<Product />}></Route>
+          <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path ="/register" element={<Register/>}></Route>
