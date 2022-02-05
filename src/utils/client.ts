@@ -1,7 +1,8 @@
-import axios, { AxiosResponse } from "axios"
-import Axios from "axios"
+import { AxiosResponse } from "axios"
+import Axios, { CancelTokenSource } from "axios"
 import { addSeconds, isPast } from "date-fns"
 import { Credentials } from "./types/auth"
+import { ProductInfoProps } from "../components/ProductInfo/ProductInfo"
 
 function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
@@ -13,7 +14,7 @@ function storeToken(credentials: Credentials): void {
 
 const client = Axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  withCredentials : true
+  withCredentials: true,
 })
 
 async function addBearer() {
@@ -27,29 +28,28 @@ async function addBearer() {
   client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
 }
 
-
 const testAPI = async () => {
   const res = await client.get("/")
   console.log(res)
 }
 
-const getUserInfo = async () =>{
+const getUserInfo = async () => {
   addBearer()
   const res = await client.get("/auth/me")
   console.log(res)
 }
 
-const postLogin = async (postLog : object) => {
+const postLogin = async (postLog: object) => {
   const res = await client.post("/auth/login", postLog)
   storeToken(res.data)
 }
 
-const resetPassword = async (requestReset : object) =>{
+const resetPassword = async (requestReset: object) => {
   await client.post("/auth/reset-password/request", requestReset)
 }
 
-const postRegister = async (postReg : object) => {
-  await addBearer() 
+const postRegister = async (postReg: object) => {
+  await addBearer()
   const res = await client.post("/auth/register", postReg)
   console.log(res)
 }
@@ -58,14 +58,23 @@ const getGoogle = async () => {
   await client.get("/auth/google")
 }
 
-const getFacebook = async () =>{
+const getFacebook = async () => {
   await client.get("/auth/facebook")
 }
 
-const getLogout = async() => {
-  await addBearer() 
+const getLogout = async () => {
+  await addBearer()
   const res = await client.get("/auth/logout")
   console.log(res)
+}
+
+const getProduct = async (id: string, setProduct: (data: ProductInfoProps) => void, cancelToken?: CancelTokenSource) => {
+  try {
+    const { data } = await client.get<ProductInfoProps>(`/api/item/${id}`, { cancelToken: cancelToken?.token })
+    setProduct(data)
+  } catch (err) {
+    alert("error cannot get product")
+  }
 }
 
 const clientInstance = {
@@ -77,8 +86,8 @@ const clientInstance = {
   getGoogle,
   getFacebook,
   resetPassword,
-  getLogout
+  getLogout,
+  getProduct,
 }
 
 export default clientInstance
-
