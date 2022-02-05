@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import Example from "./pages/Example/Example"
 import Form from "./components/Form/Form"
@@ -9,7 +9,19 @@ import { PageContainer } from "./components/Containers"
 import Profile from "./components/Profile_picture/Profile"
 import { setUpOmise } from "./utils/omise"
 
+
+
 function App() {
+  const [image, setImage] = useState<File>();
+
+  const onChangeImage = (event:any) => {
+    const file = event.target.files?.item(0);
+    if(file && file.type.substring(0,5) == "image"){
+      setImage(file);
+    } 
+    console.log(file);
+  }
+
   setUpOmise()
   return (
     <>
@@ -19,7 +31,7 @@ function App() {
           <Route path="/" element={<Example />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview=""/>}></Route>
         </Routes>
       </PageContainer>
     </>
@@ -27,3 +39,7 @@ function App() {
 }
 
 export default App
+function setValues(arg0: any) {
+  throw new Error("Function not implemented.")
+}
+
