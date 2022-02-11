@@ -8,6 +8,9 @@ interface profilePictureProps{
 }
 
 function ProfileEdit(props:profilePictureProps) {
+
+  console.log(props.preview);
+  
   
   const [preview, setPreview] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);

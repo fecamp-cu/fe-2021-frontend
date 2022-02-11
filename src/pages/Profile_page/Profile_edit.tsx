@@ -70,6 +70,8 @@ function Profile_edit(){
             setUser(res.data)
             setValues(res?.data.profile)
         })
+        console.log(user);
+        
         clientInstance.getProfile(14).then((res)=>{
             setProfile(res.data);
             console.log(res.data);
@@ -87,13 +89,14 @@ function Profile_edit(){
           setImage(file);
         } 
         console.log(file);
+        clientInstance.putProfile(file,values.id)
     }
 
     const onSubmit = (e:any) =>{
         e.preventDefault();
         const {id, ...newValues} = values;
         console.log(newValues);
-        clientInstance.putProfile(image,values.id)
+        
         clientInstance.patchProfile(newValues,values.id)
     }
 
@@ -109,6 +112,7 @@ function Profile_edit(){
 
     return(
         <div className="editContainer" >
+            <img src={user.profile.imageUrl}></img>
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
             <h1 className="personalProfile">ข้อมูลส่วนตัว</h1>
             <div className="editPicture">
