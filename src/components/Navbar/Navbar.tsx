@@ -46,9 +46,9 @@ toggle between hiding and showing the dropdown content */
     >
       {/* -----------------------nav logo, will be change to FE logo later------------------- */}
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+      <Link className={""} to={"/"} id="element" style={{paddingLeft:"3%", marginRight:"150px"}}>
+          FECAMP
+      </Link>
 
         {/* --------------toggle button, it will appear when open in mobile------------------ */}
         <button className="navbar-toggler" type="button" onClick={dropMenu}>

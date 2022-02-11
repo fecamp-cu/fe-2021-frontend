@@ -154,6 +154,14 @@ hr {
 }
 
 @media (max-width: 1038px) {
+  .navbar > .container-fluid {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -1%;
+  }
+
   a#element {
     margin-top: 22px;
     margin-bottom: 22px;
