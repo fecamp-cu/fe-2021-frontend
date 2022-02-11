@@ -1,11 +1,17 @@
 import { useRef , useState , useEffect } from "react";
 import './Profile.css'
-import circle from './add_circle_outline.png'
 
-function ProfileEdit(props:any) {
+interface profilePictureProps{
+    onChange: any;
+    preview: string;
+    image: any;
+}
+
+function ProfileEdit(props:profilePictureProps) {
   
   const [preview, setPreview] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
   
   useEffect(()=>{
     if(props.image){

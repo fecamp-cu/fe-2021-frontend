@@ -49,9 +49,10 @@ function Profile_show(){
                 setOrder(resp.data.customer?.order)
             });
         })
-        console.log(user.id);
-        
     },[])    
+
+    console.log(user.profile.imageUrl);
+    
 
     const handleLogout = () =>{
         clientInstance.getLogout();
@@ -61,9 +62,6 @@ function Profile_show(){
         <div className="bgContainer">
         <div className="showContainer" >
             <h1 className="myProfile">โปรไฟล์ของฉัน</h1>
-            {/* <div className="picture">
-                
-            </div> */}
             <img className="picture" src={user.profile.imageUrl} alt="" />
             <div className="infoProfile">
                 <Link to="/Profile_edit"><img className="editIcon" src={edit} alt="edit" /></Link>

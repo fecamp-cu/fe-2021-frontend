@@ -8,7 +8,7 @@
 
 .backIcon{
     position: absolute;
-    left: 69px;
+    margin-left: 6vw;
 }
 
 .personalProfile{
@@ -35,8 +35,8 @@
 
 .editForm{
     background: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.15) 100%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     color: white;
-    width: 1040px;
     height: 440px;
     border-radius: 15px;
     align-items: center;
@@ -44,29 +44,35 @@
     margin-left: auto;
     padding-top: 60px;
     text-align: center;
+    width: 1040px;
 }
 
 .cancelButton{
     margin-right: 50px;
 }
 
-@media (max-width : 390px) {
+@media (max-width : 1480px){
     .editForm{
         width: auto;
-        height: 910px;
-        margin: 32px;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+}
+
+
+@media (max-width : 600px) {
+    .editForm{
+        width: auto;
+        height: 920px;
+        margin-left: 8vw;
+        margin-right: 8vw;
     }
     .personalProfile{
-        font-size: 20px;
-    }
-
-    .editPicture{
-        margin-bottom: -90px;
+        font-size: 25px;
     }
 
     .backIcon{
-        width: 18px;
-        left: 30px;
+        width: 20px;
     }
     
 

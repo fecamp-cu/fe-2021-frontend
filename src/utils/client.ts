@@ -31,17 +31,23 @@ const patchProfile = async(patchProf : object,id:any) =>{
   storeToken(res.data);
 }
 
-const putProfile = async(putProf : any,id:any) =>{
+const putProfile = async(putProf : File|undefined,id:number) =>{
+  addBearer();
   if(putProf){ 
     const formData = new FormData();
     formData.append('avatar',putProf);
     const config = {
       headers: {
           'content-type': 'multipart/form-data'
+      },
+      onUploadProgress: (ProgressEvent:any) => {
+          const {loaded,total} = ProgressEvent;
+          const percent = Math.floor((loaded*100)/total);
+          console.log(ProgressEvent);
       }
     }
     const res = await client.put("/profile/"+id+"/upload",formData,config)
-    storeToken(res.data);
+    console.log(res);
   }
 }
 
@@ -51,6 +57,13 @@ const getUser =async () => {
   console.log(res);
   return res;
 }
+
+const getProfile =async (id:number) => {
+  addBearer();
+  const res = await client.get("/profile/" + id);
+  console.log(res);
+  return res;
+} 
 
 const postLogin = async(postLog : object) =>{
   const res = await client.post("/auth/login",postLog)
@@ -79,5 +92,6 @@ export const clientInstance = {
   putProfile,
   getLogout,
   getOrderAll,
+  getProfile
 }
 

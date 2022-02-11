@@ -30,9 +30,26 @@ function Profile_edit(){
           "postcode": ""
         }
       })
+    
+    console.log(user.profile.imageUrl);
+    
 
     const [values, setValues] = useState({
         "id": 0,
+        "firstName": "",
+        "lastName": "",
+        "imageUrl": "",
+        "tel": "",
+        "grade": "",
+        "school": "",
+        "address": "",
+        "subdistrict": "",
+        "district": "",
+        "province": "",
+        "postcode": ""
+      })
+
+    const[profile, setProfile] = useState({
         "firstName": "",
         "lastName": "",
         "imageUrl": "",
@@ -53,6 +70,10 @@ function Profile_edit(){
             setUser(res.data)
             setValues(res?.data.profile)
         })
+        clientInstance.getProfile(14).then((res)=>{
+            setProfile(res.data);
+            console.log(res.data);
+        })
         
     },[])
 
@@ -69,13 +90,11 @@ function Profile_edit(){
     }
 
     const onSubmit = (e:any) =>{
-        
+        e.preventDefault();
         const {id, ...newValues} = values;
         console.log(newValues);
-        
-        clientInstance.patchProfile(newValues,values.id)
         clientInstance.putProfile(image,values.id)
-        
+        clientInstance.patchProfile(newValues,values.id)
     }
 
     const testLogin = () => {
