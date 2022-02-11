@@ -1,5 +1,4 @@
 import Form from "../../components/Form/Form";
-import Profile from "../../components/Profile_picture/Profile";
 import ProfileEdit from "../../components/Profile_picture/profilePictureEdit";
 import back from "./back.png"
 import "./Profile_edit.css"
@@ -30,26 +29,10 @@ function Profile_edit(){
           "postcode": ""
         }
       })
-    
-    console.log(user.profile.imageUrl);
-    
+        
 
     const [values, setValues] = useState({
         "id": 0,
-        "firstName": "",
-        "lastName": "",
-        "imageUrl": "",
-        "tel": "",
-        "grade": "",
-        "school": "",
-        "address": "",
-        "subdistrict": "",
-        "district": "",
-        "province": "",
-        "postcode": ""
-      })
-
-    const[profile, setProfile] = useState({
         "firstName": "",
         "lastName": "",
         "imageUrl": "",
@@ -72,11 +55,6 @@ function Profile_edit(){
         })
         console.log(user);
         
-        clientInstance.getProfile(14).then((res)=>{
-            setProfile(res.data);
-            console.log(res.data);
-        })
-        
     },[])
 
     const onChange = (e: any) => {
@@ -89,14 +67,14 @@ function Profile_edit(){
           setImage(file);
         } 
         console.log(file);
-        clientInstance.putProfile(file,values.id)
+        
     }
 
     const onSubmit = (e:any) =>{
         e.preventDefault();
         const {id, ...newValues} = values;
         console.log(newValues);
-        
+        clientInstance.putProfile(image,values.id)
         clientInstance.patchProfile(newValues,values.id)
     }
 
@@ -112,7 +90,7 @@ function Profile_edit(){
 
     return(
         <div className="editContainer" >
-            <img src={user.profile.imageUrl}></img>
+            {/* <img src={user.profile.imageUrl}></img> */}
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
             <h1 className="personalProfile">ข้อมูลส่วนตัว</h1>
             <div className="editPicture">

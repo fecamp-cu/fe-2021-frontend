@@ -8,7 +8,6 @@ import Footer from "./components/Footer/Footer"
 import { PageContainer } from "./components/Containers"
 import Profile from "./components/Profile_picture/Profile"
 import { setUpOmise } from "./utils/omise"
-import Profile_page from "./pages/Profile_page/Profile_page"
 import Profile_show from "./pages/Profile_page/Profile_show"
 import Profile_edit from "./pages/Profile_page/Profile_edit"
 

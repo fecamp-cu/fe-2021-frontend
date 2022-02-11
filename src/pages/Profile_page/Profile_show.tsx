@@ -1,4 +1,3 @@
-import Profile from "../../components/Profile_picture/Profile";
 import "./Profile_show.css"
 import edit from "./Icon.png"
 import logout from "./Logout.png"
@@ -36,11 +35,6 @@ function Profile_show(){
 
     const arrayChange = ["","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
 
-    // const data = Date.parse(order.paidAt) 
-    // const Day = getDate(data)
-    // const Month = getMonth(data)+1 // need to plus one
-    // const Year = getYear(data)
-
 
     useEffect(()=>{
         clientInstance.getUser().then((res)=>{
@@ -77,16 +71,6 @@ function Profile_show(){
                 ประวัติการสั่งซื้อ
             </div>
             {order?(
-                // <div className="historyFrame">
-                //     <div className="infoHistory" style={{marginTop:0}}>
-                //         <div className="historyList">
-                //             ข้อสอบเก่าสุดเจ๋ง รวมข้อสอบท็อป ๆ มาให้ได้ลองทำ
-                //         </div>
-                //         <div className="historyBuy"> 
-                //             คุณได้สั่งซื้อหนังสือเป็นจำนวน {order.amount} เล่มเมื่อวันที่ {Day} {arrayChange[Month]} {Year+543}
-                //         </div>
-                //     </div>
-                // </div>
                 <div className="historyFrame">
                 {order.map((element :{ amount: number,   paidAt: string })=>{
                     const data = Date.parse(element.paidAt) 
