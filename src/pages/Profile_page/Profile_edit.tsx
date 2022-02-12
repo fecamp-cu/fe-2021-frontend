@@ -1,5 +1,5 @@
 import Form from "../../components/Form/Form";
-import ProfileEdit from "../../components/Profile_picture/profilePictureEdit";
+import ProfileEdit from "../../components/Profile_picture/Profile";
 import back from "./back.png"
 import "./Profile_edit.css"
 import {Link} from "react-router-dom"
@@ -90,7 +90,6 @@ function Profile_edit(){
 
     return(
         <div className="editContainer" >
-            {/* <img src={user.profile.imageUrl}></img> */}
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
             <h1 className="personalProfile">ข้อมูลส่วนตัว</h1>
             <div className="editPicture">
@@ -107,7 +106,7 @@ function Profile_edit(){
                     
                 </form>
             </div>
-            <button onClick={testLogin}>Login</button>
+            {/* <button onClick={testLogin}>Login</button> */}
         </div>
     );
 
