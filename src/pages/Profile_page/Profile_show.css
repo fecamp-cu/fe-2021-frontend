@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Kanit:wght@100&display=swap');
 
-.bgContainer{
-    background: rgba(138, 32, 43, 0.7);
-    background-image: url("../../assets/images/Background.svg");
-    background-size: cover;
-    background-repeat: repeat;
-}
 
 .showContainer{
     align-items: center;

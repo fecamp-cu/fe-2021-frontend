@@ -27,8 +27,8 @@ async function addBearer() {
 }
 
 const patchProfile = async(patchProf : object,id:any) =>{
+  addBearer()
   const res = await client.patch("/profile/"+id,patchProf)
-  storeToken(res.data);
 }
 
 const putProfile = async(putProf : File|undefined,id:number) =>{

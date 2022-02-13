@@ -77,15 +77,6 @@ function Profile_edit(){
         clientInstance.putProfile(image,values.id)
         clientInstance.patchProfile(newValues,values.id)
     }
-
-    const testLogin = () => {
-        clientInstance.postLogin({
-            "email": "pattarapon.knot@gmail.com",
-            "password": "7v'!Fx]u%eTLibpV"
-          });
-
-          console.log("login");
-    }
     
 
     return(

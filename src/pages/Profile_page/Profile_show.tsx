@@ -53,7 +53,7 @@ function Profile_show(){
     }
 
     return(
-        <div className="bgContainer">
+        
         <div className="showContainer" >
             <h1 className="myProfile">โปรไฟล์ของฉัน</h1>
             <img className="picture" src={user.profile.imageUrl} alt="" />
@@ -119,7 +119,7 @@ function Profile_show(){
             </Link>
             
         </div>
-        </div>
+        
     );
 
 }
