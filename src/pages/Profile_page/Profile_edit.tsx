@@ -1,11 +1,11 @@
 import Form from "../../components/Form/Form";
 import ProfileEdit from "../../components/Profile_picture/Profile";
-import back from "./back.png"
 import "./Profile_edit.css"
 import {Link} from "react-router-dom"
 import { useEffect, useState } from "react";
 import {clientInstance} from "../../utils/client";
 import { Button } from "../../components/Buttons/Button";
+import { IoMdArrowBack } from "react-icons/io";
 
 
 function Profile_edit(){
@@ -89,7 +89,7 @@ function Profile_edit(){
 
     return(
         <div>
-            <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
+            <Link to="/Profile_show"><IoMdArrowBack color="white" size="2.5em" className="ml-[80px] absolute"/></Link>
             <h1 className="font-bold text-3xl text-white items-center text-center mt-[75px]">ข้อมูลส่วนตัว</h1>
             <div className="mt-[24px] mb-[-70px] mx-auto w-[120px] h-[120px]">
                 <ProfileEdit onChange={onChangeImage} image={image} preview={user.profile.imageUrl}/>
