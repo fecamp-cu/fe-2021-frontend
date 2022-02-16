@@ -14,6 +14,11 @@ module.exports = {
         xs: ["14px", "17.5px"],
       }
     },
+    fontFamily: {
+      BaiJamjuree: ['Bai Jamjuree', 'san-serif'],
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }

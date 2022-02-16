@@ -55,6 +55,14 @@ function Profile_edit(){
         })
         console.log(user);
         
+            clientInstance.postLogin({
+                "email": "pattarapon.knot@gmail.com",
+                "password": "7v'!Fx]u%eTLibpV"
+              });
+    
+              console.log("login");
+        
+        
     },[])
 
     const onChange = (e: any) => {
@@ -80,24 +88,23 @@ function Profile_edit(){
     
 
     return(
-        <div className="editContainer" >
+        <div>
             <Link to="/Profile_show"><img className="backIcon" src={back} alt="" /></Link>
-            <h1 className="personalProfile">ข้อมูลส่วนตัว</h1>
-            <div className="editPicture">
+            <h1 className="font-bold text-3xl text-white items-center text-center mt-[75px]">ข้อมูลส่วนตัว</h1>
+            <div className="mt-[24px] mb-[-70px] mx-auto w-[120px] h-[120px]">
                 <ProfileEdit onChange={onChangeImage} image={image} preview={user.profile.imageUrl}/>
             </div>
-            <div className="editForm">
+            <div className="mx-auto text-white text-center h-[440px] w-[1040px] pt-[60px] bg-white/30 rounded-[15px] shadow-lg">
                 <Form onChange={onChange} onSubmit={onSubmit} values={values} email={user.email} ids={"myform"}/>
                 <form>
                     <Link to="/Profile_show">
-                        <Button className="cancelButton" width="157" height="40" fontSize="20" textColor="white" outline shadow={false}>ยกเลิก</Button>
+                        <Button className="mr-[50px]" width="157" height="40" fontSize="20" textColor="white" outline shadow={false}>ยกเลิก</Button>
                     </Link>
                     
-                    <Button className="saveButton" width="157" height="40" fontSize="20" form = "myform" bg = 'white' textColor='#9B2C33' outline = {false} shadow>บันทึก</Button>
+                    <Button width="157" height="40" fontSize="20" form = "myform" bg = 'white' textColor='#9B2C33' outline = {false} shadow>บันทึก</Button>
                     
                 </form>
             </div>
-            {/* <button onClick={testLogin}>Login</button> */}
         </div>
     );
 
