@@ -180,8 +180,6 @@ hr {
     display: none !important;
     flex-basis: auto;
   }
-
-
 }
 .me-auto {
   margin-right: auto !important;
@@ -194,15 +192,15 @@ hr {
   list-style: none;
 }
 
-.me-4{
+.me-4 {
   margin-right: 30px !important;
 }
 
-.me-2{
+.me-2 {
   margin-right: 8px !important;
 }
 
-a.center{
+a.center {
   justify-content: center;
   padding-top: 3px;
 }
@@ -214,5 +212,3 @@ a.center{
 }
 
 .dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
