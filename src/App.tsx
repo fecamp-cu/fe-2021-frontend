@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Product from "./pages/Product/Product"
 import Footer from "./components/Footer/Footer"
 import { PageContainer } from "./components/Containers"
-import Profile from "./components/Profile_picture/Profile"
+import ProfilePictureEdit from "./components/ProfilePicture/ProfilePictureEdit"
 import { setUpOmise } from "./utils/omise"
 
 
@@ -31,7 +31,7 @@ function App() {
           <Route path="/" element={<Example />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
-          <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview=""/>}></Route>
+          <Route path="/ProfilePicture" element={<ProfilePictureEdit onChange={onChangeImage} image={image} preview=""/>}></Route>
         </Routes>
       </PageContainer>
     </>
