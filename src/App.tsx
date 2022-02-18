@@ -8,8 +8,8 @@ import Footer from "./components/Footer/Footer"
 import { PageContainer } from "./components/Containers"
 import Profile from "./components/Profile_picture/Profile"
 import { setUpOmise } from "./utils/omise"
-import Profile_show from "./pages/Profile_page/Profile_show"
-import Profile_edit from "./pages/Profile_page/Profile_edit"
+import ProfileShow from "./pages/Profile_page/ProfileShow"
+import ProfileEdit from "./pages/Profile_page/ProfileEdit"
 
 
 
@@ -34,8 +34,8 @@ function App() {
           <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/footer" element={<Footer />}></Route>
           {/* <Route path="/form" element={<Form />}></Route> */}
-          <Route path="/Profile_show" element={<Profile_show />}></Route>
-          <Route path="/Profile_edit" element={<Profile_edit />}></Route>
+          <Route path="/ProfileShow" element={<ProfileShow />}></Route>
+          <Route path="/ProfileEdit" element={<ProfileEdit />}></Route>
           <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview=""/>}></Route>
         </Routes>
       </PageContainer>

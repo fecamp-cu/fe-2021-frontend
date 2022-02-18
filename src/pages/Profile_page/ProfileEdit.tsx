@@ -1,5 +1,5 @@
 import Form from "../../components/Form/Form";
-import ProfileEdit from "../../components/Profile_picture/Profile";
+import ProfilePictureEdit from "../../components/Profile_picture/Profile";
 import "./Profile_edit.css"
 import {Link} from "react-router-dom"
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import { Button } from "../../components/Buttons/Button";
 import { IoMdArrowBack } from "react-icons/io";
 
 
-function Profile_edit(){
+function ProfileEdit(){
     const [user, setUser] = useState({
         "id": 0,
         "username": "",
@@ -89,15 +89,15 @@ function Profile_edit(){
 
     return(
         <div>
-            <Link to="/Profile_show"><IoMdArrowBack color="white" size="2.5em" className="ml-[80px] absolute"/></Link>
+            <Link to="/ProfileShow"><IoMdArrowBack color="white" size="2.5em" className="ml-[80px] absolute"/></Link>
             <h1 className="font-bold text-3xl text-white items-center text-center mt-[75px]">ข้อมูลส่วนตัว</h1>
             <div className="mt-[24px] mb-[-70px] mx-auto w-[120px] h-[120px]">
-                <ProfileEdit onChange={onChangeImage} image={image} preview={user.profile.imageUrl}/>
+                <ProfilePictureEdit onChange={onChangeImage} image={image} preview={user.profile.imageUrl}/>
             </div>
             <div className="mx-auto text-white text-center h-[440px] w-[1040px] pt-[60px] bg-white/30 rounded-[15px] shadow-lg">
                 <Form onChange={onChange} onSubmit={onSubmit} values={values} email={user.email} ids={"myform"}/>
                 <form>
-                    <Link to="/Profile_show">
+                    <Link to="/ProfileShow">
                         <Button className="mr-[50px]" width="157" height="40" fontSize="20" textColor="white" outline shadow={false}>ยกเลิก</Button>
                     </Link>
                     
@@ -110,4 +110,4 @@ function Profile_edit(){
 
 }
 
-export default Profile_edit;
+export default ProfileEdit;

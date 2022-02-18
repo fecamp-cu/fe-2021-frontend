@@ -8,7 +8,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoExitOutline } from "react-icons/io5";
 
 
-function Profile_show(){
+function ProfileShow(){
 
     const [user, setUser] = useState({
         "id": 0,
@@ -66,7 +66,7 @@ function Profile_show(){
                 <div className="font-normal font-medium text-lg leading-[25px] font-BaiJamjuree pt-[8px]">
                     {user.email}
                 </div>
-                <Link to="/Profile_edit"><HiOutlinePencil className="h-[27px] w-[27px] relative left-[465px] top-[-42px]"/></Link>
+                <Link to="/ProfileEdit"><HiOutlinePencil className="h-[27px] w-[27px] relative left-[465px] top-[-42px]"/></Link>
             </div>
             
             <div className="mt-[45px] text-left text-white font-bold text-2xl leading-[42px]">
@@ -127,4 +127,4 @@ function Profile_show(){
 
 }
 
-export default Profile_show;
+export default ProfileShow;
