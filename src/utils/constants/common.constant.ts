@@ -38,3 +38,14 @@ export const menuItems: PagePath[] = [
     link: Path.PROFILE,
   },
 ]
+
+export const subMenuItems = [
+  {
+    name: "ข้อมูลส่วนตัว",
+    link: Path.PROFILE,
+  },
+  {
+    name: "ออกจากระบบ",
+    link: Path.LOGOUT,
+  },
+]

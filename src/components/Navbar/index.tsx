@@ -41,10 +41,10 @@ const Navbar = (props: NavbarProps) => {
             เข้าสู่ระบบ
           </Link>
         ) : (
-          <Link to={Path.PROFILE} className="flex flex-row items-center gap-x-2 text-lg">
+          <div className="flex flex-row items-center gap-x-2 text-lg" onClick={() => props.setIsClicked(!props.isClicked)}>
             <img src={(props.user as User).profile?.imageUrl} alt="Profile Pic" className="h-[3.125rem] w-[3.125rem] rounded-full" />
             {(props.user as User).username}
-          </Link>
+          </div>
         )}
       </div>
       <div className="visible flex h-full w-1/2 flex-col items-end sm:invisible sm:w-0">

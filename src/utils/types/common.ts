@@ -3,6 +3,11 @@ export type PagePath = {
   link: string
 }
 
+export interface WindowDimensions {
+  width: number
+  height: number
+}
+
 export interface Credentials {
   accessToken: string
   refreshToken: string

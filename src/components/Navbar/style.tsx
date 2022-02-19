@@ -28,3 +28,41 @@ export const MenuLink = styled(Link).attrs((props: MenuLinkProps) => ({
   justify-content: center;
   text-decoration: ${(props) => (props.to === props.path ? "underline" : "none")};
 `
+
+export const MenuRoot = styled.aside`
+  position: absolute;
+  z-index: 30;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  animation: fadeIn 0.5s ease-in-out;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  transition: all 0.5s ease-in-out;
+`
+
+export const MenuList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 40;
+  border-radius: 0.75rem;
+  border: 2px solid #ffffff;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: #ffffff;
+`
+
+export const MenuBG = styled.div`
+  position: absolute;
+  z-index: 30;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+`

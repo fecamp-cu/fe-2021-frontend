@@ -1,25 +1,27 @@
 import { Link } from "react-router-dom"
-import { menuItems } from "../../utils/constants/common.constant"
+import { menuItems, subMenuItems } from "../../utils/constants/common.constant"
+import { MenuBG, MenuList, MenuRoot } from "./style"
 
 export type MenubarProps = {
-  menu?: string
+  width: number
 }
 
 export const Menubar = (props: MenubarProps) => {
-  const items = menuItems.map((item) => {
+  const menu = props.width > 640 ? subMenuItems : menuItems
+  const items = menu.map((item, pos) => {
     return (
-      <Link to={item.link} className="flex flex-col justify-center py-4">
+      <Link to={item.link} className="flex w-full flex-col justify-center py-3" key={`item-${pos}`}>
         {item.name}
       </Link>
     )
   })
 
   return (
-    <aside className="absolute z-30 mt-10 flex w-full animate-fade-in-fast flex-row justify-center transition">
-      <div className="absolute z-30 h-full w-11/12 bg-white/50 blur-sm"></div>
-      <div className="z-40 flex w-11/12  flex-col justify-center divide-y-2 divide-white rounded-xl border-2 border-white px-6 text-center font-NotoSansThai font-medium text-white">
+    <MenuRoot className="mt-[2.7rem] justify-center sm:mt-[3.7rem] sm:justify-end lg:mt-[4.2rem] xl:mt-[4.5rem]">
+      <MenuBG className="w-11/12 blur-sm sm:w-[37%] lg:w-[30%] xl:w-1/5 2xl:w-72" />
+      <MenuList className="w-11/12 divide-y-2 divide-white font-NotoSansThai font-medium sm:w-[37%] sm:text-xs lg:w-[30%] xl:w-1/5 2xl:w-72">
         {items}
-      </div>
-    </aside>
+      </MenuList>
+    </MenuRoot>
   )
 }

@@ -23,6 +23,7 @@ function App() {
   })
 
   useEffect(() => {
+    // FIXME Remove this when production
     const fetchUser = async () => {
       await mockLogin({
         email: "superadmin@gmail.com",
@@ -32,7 +33,6 @@ function App() {
       setUser(profile)
     }
     fetchUser()
-    console.log("loaded")
   }, [])
 
   const onChangeImage = (event: any) => {
