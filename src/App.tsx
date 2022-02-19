@@ -10,11 +10,13 @@ import { getProfile, mockLogin } from "./utils/client"
 import { setUpOmise } from "./utils/omise"
 import { User } from "./utils/types/common"
 import { Menubar } from "./components/Navbar/Menubar"
+import useWindowDimensions from "./hooks/useWindowDimension"
 
 function App() {
   const [image, setImage] = useState<File>()
   const [isClicked, setIsClicked] = useState(false)
   const location = useLocation()
+  const { width } = useWindowDimensions()
   const [user, setUser] = useState<User>({
     id: 0,
     username: "",
@@ -47,7 +49,7 @@ function App() {
   return (
     <>
       <Navbar user={user} path={location.pathname} isClicked={isClicked} setIsClicked={setIsClicked} />
-      {isClicked ? <Menubar /> : null}
+      {isClicked ? <Menubar width={width} /> : null}
       <PageContainer>
         <Routes>
           <Route path="/" element={<Example />}></Route>
