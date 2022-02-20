@@ -1,8 +1,6 @@
-import axios from "axios"
-import Axios from "axios"
 import Axios, { AxiosResponse, CancelTokenSource } from "axios"
 import { ProductInfoProps } from "../components/ProductInfo/ProductInfo"
-import { Endpoint, Path } from "./enums/common.enum"
+import { Endpoint } from "./enums/common.enum"
 import { Credentials } from "./types/common"
 import { addSeconds, isPast } from "date-fns"
 import { LoginPayload } from "./types/auth"
@@ -19,19 +17,14 @@ const client = Axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 })
 
-const getActiveSetting = async() => {
+const getActiveSetting = async () => {
   try {
-    const res = await client.get('/settings/active')
-    return res
+    const res: AxiosResponse = await client.get("/settings/active")
+    return res.data
   } catch (error) {
     console.log(error)
   }
 }
-
-export const landingPageInstance = {
-  getActiveSetting
-}
-
 
 // async function addBearer() {
 //   let accessToken = localStorage.getItem("fe_camp_access_token")
@@ -86,4 +79,4 @@ const fetchProduct = async (id: string, setProduct: (data: ProductInfoProps) => 
   }
 }
 
-export { getProfile, fetchProduct, mockLogin }
+export const apiClient = { getProfile, fetchProduct, mockLogin, getActiveSetting }
