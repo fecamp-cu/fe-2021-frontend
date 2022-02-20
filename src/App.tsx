@@ -4,9 +4,8 @@ import { PageContainer } from "./components/Containers"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar"
 import Profile from "./components/Profile_picture/Profile"
-import Example from "./pages/Example/Example"
 import Product from "./pages/Product/Product"
-import { getProfile, mockLogin } from "./utils/client"
+import { apiClient } from "./utils/client"
 import { setUpOmise } from "./utils/omise"
 import { User } from "./utils/types/common"
 import { Menubar } from "./components/Navbar/Menubar"
@@ -28,11 +27,11 @@ function App() {
   useEffect(() => {
     // FIXME Remove this when production
     const fetchUser = async () => {
-      await mockLogin({
+      await apiClient.mockLogin({
         email: "superadmin@gmail.com",
         password: "adminadmin",
       })
-      const profile = await getProfile()
+      const profile = await apiClient.getProfile()
       setUser(profile)
     }
     fetchUser()
