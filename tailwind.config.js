@@ -9,14 +9,22 @@ module.exports = {
       },
       backgroundImage: {
         "primary-gradient": "linear-gradient(175.22deg, #8A202B -4.38%, #A43344 34.51%, #AC394C 66.36%, #8A202B 116.67%);",
+        landing: 'url("/src/assets/images/landingBackground.svg")',
       },
       colors: {
         primary: "#8A202B",
+        gray: {
+          1: "#323232",
+        },
+        red: {
+          1: "#bc4646",
+        },
       },
       fontFamily: {
         NotoSansThai: ["NotoSansThai", "san-serif"],
         Chulalongkorn: ["CHULALONGKORN", "sans-serif"],
         MuseoModerno: ["MuseoModerno", "sans-serif"],
+        BaiJamjuree: ["BaiJamjuree", "sans-serif"],
       },
       fontSize: {
         "5xl": ["64px", "96px"],
