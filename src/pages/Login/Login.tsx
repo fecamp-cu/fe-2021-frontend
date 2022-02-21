@@ -6,9 +6,11 @@ import { FcGoogle } from "react-icons/fc"
 import { AiFillFacebook } from "react-icons/ai"
 import { IconContext } from "react-icons/lib"
 import { apiClient } from "../../utils/client"
+import { useUserContext } from "../../utils/contexts/userContext"
 
 const Login = () => {
   const history = useNavigate()
+  const { setUser } = useUserContext()
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -16,18 +18,13 @@ const Login = () => {
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.id]: e.target.value })
   }
-  console.log(values)
-  const LoginInfo = {
-    email: values.email,
-    password: values.password,
-  }
 
   const handleSubmit = async (e: any) => {
-    console.log("login")
     e.preventDefault()
     try {
-      await apiClient.postLogin(LoginInfo)
-      console.log("login success")
+      await apiClient.postLogin({ ...values })
+      const profile = await apiClient.getProfile()
+      setUser(profile)
       history("/")
     } catch (error: any) {
       alert(error.response.data.message)
@@ -52,7 +49,7 @@ const Login = () => {
   return (
     <div className="logincon">
       <div className="flex items-center justify-center">
-        <div className="loginbox">
+        <div className="loginbox px-2 pb-3">
           <h1 className="header">เข้าสู่ระบบ</h1>
           <form className="loginform" id="loginform" onSubmit={handleSubmit}>
             <label className="label">อีเมล</label>

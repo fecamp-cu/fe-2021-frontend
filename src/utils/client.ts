@@ -27,32 +27,27 @@ const getActiveSetting = async () => {
   }
 }
 
-// FIXME remove this (MOCK data)
+client.interceptors.request.use(
+  async (req) => {
+    if (!req?.headers?.Authorization) {
+      const accessToken = localStorage.getItem("fe_camp_access_token") as string
 
-const mockLogin = async (credentials: LoginPayload) => {
-  const res = await client.post(Endpoint.LOGIN, credentials)
-  storeToken(res.data)
-  client.interceptors.request.use(
-    async (req) => {
-      if (!req?.headers?.Authorization) {
-        let accessToken = localStorage.getItem("fe_camp_access_token") as string
-        const refreshToken = localStorage.getItem("fe_camp_refresh_token") as string
-
-        if (!!refreshToken && isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
-          const res: AxiosResponse = await client.post("/auth/token", { refreshToken })
-          console.log(req)
-          accessToken = res.data.accessToken
-          storeToken(res.data)
-        }
-
-        if (req.headers && accessToken) {
-          req.headers.Authorization = `Bearer ${accessToken}`
-        }
+      if (req.headers && accessToken) {
+        req.headers.Authorization = `Bearer ${accessToken}`
       }
-      return req
-    },
-    (err) => Promise.reject(err)
-  )
+    }
+    return req
+  },
+  (err) => Promise.reject(err)
+)
+const renewToken = async (refreshToken: string) => {
+  try {
+    const res: AxiosResponse = await client.post("/auth/token", { refreshToken })
+    storeToken(res.data)
+    return res.data.accessToken
+  } catch (err) {
+    return undefined
+  }
 }
 
 const getProfile = async () => {
@@ -95,7 +90,6 @@ const getLogout = async () => {
 export const apiClient = {
   getProfile,
   fetchProduct,
-  mockLogin,
   getActiveSetting,
   postLogin,
   resetPassword,
@@ -103,4 +97,6 @@ export const apiClient = {
   getGoogle,
   getFacebook,
   getLogout,
+  storeToken,
+  renewToken,
 }
