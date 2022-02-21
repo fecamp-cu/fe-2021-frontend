@@ -10,7 +10,7 @@ import { setUpOmise } from "./utils/omise"
 import { User } from "./utils/types/common"
 import { Menubar } from "./components/Navbar/Menubar"
 import useWindowDimensions from "./hooks/useWindowDimension"
-import LandingPage from "./pages/LandingPage/LandingPage"
+import LandingPage from "./pages/LandingPage"
 
 function App() {
   const [image, setImage] = useState<File>()
@@ -48,13 +48,12 @@ function App() {
   setUpOmise()
   return (
     <>
-      <Navbar user={user} path={location.pathname} isClicked={isClicked} setIsClicked={setIsClicked} />
+      <Navbar width={width} user={user} path={location.pathname} isClicked={isClicked} setIsClicked={setIsClicked} />
       {isClicked ? <Menubar width={width} /> : null}
       <PageContainer>
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
-          <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview="" />}></Route>
         </Routes>
       </PageContainer>
