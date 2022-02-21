@@ -116,6 +116,7 @@ export const NavContentItem = styled.div`
   z-index: 40;
   font-size: 1.25rem;
   line-height: 1.875rem;
+  cursor: pointer;
 `
 
 export type MenuLinkProps = {

@@ -24,8 +24,6 @@ const Navbar = (props: NavbarProps) => {
   })
 
   return (
-    // FIXME Bug Navbar menu is missing
-
     <Nav>
       <NavTitle to={Path.LANDING}>FE CAMP</NavTitle>
       <NavMenu>{paths}</NavMenu>
