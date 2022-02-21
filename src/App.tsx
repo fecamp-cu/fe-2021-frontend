@@ -4,13 +4,14 @@ import { PageContainer } from "./components/Containers"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar"
 import Profile from "./components/Profile_picture/Profile"
-import Example from "./pages/Example/Example"
 import Product from "./pages/Product/Product"
-import { getProfile, mockLogin } from "./utils/client"
+import { apiClient } from "./utils/client"
 import { setUpOmise } from "./utils/omise"
 import { User } from "./utils/types/common"
 import { Menubar } from "./components/Navbar/Menubar"
 import useWindowDimensions from "./hooks/useWindowDimension"
+import LandingPage from "./pages/LandingPage"
+import { FooterMock } from "./utils/constants/mock.constant"
 
 function App() {
   const [image, setImage] = useState<File>()
@@ -25,13 +26,13 @@ function App() {
   })
 
   useEffect(() => {
-    // FIXME Remove this when production
     const fetchUser = async () => {
-      await mockLogin({
+      // FIXME Remove this when production
+      await apiClient.mockLogin({
         email: "superadmin@gmail.com",
         password: "adminadmin",
       })
-      const profile = await getProfile()
+      const profile = await apiClient.getProfile()
       setUser(profile)
     }
     fetchUser()
@@ -48,16 +49,23 @@ function App() {
   setUpOmise()
   return (
     <>
-      <Navbar user={user} path={location.pathname} isClicked={isClicked} setIsClicked={setIsClicked} />
+      <Navbar width={width} user={user} path={location.pathname} isClicked={isClicked} setIsClicked={setIsClicked} />
       {isClicked ? <Menubar width={width} /> : null}
       <PageContainer>
         <Routes>
-          <Route path="/" element={<Example />}></Route>
+          <Route path="/" element={<LandingPage />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
-          <Route path="/footer" element={<Footer />}></Route>
           <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview="" />}></Route>
         </Routes>
       </PageContainer>
+      <Footer
+        address={FooterMock.address}
+        name={FooterMock.name}
+        copyright={FooterMock.copyright}
+        facebookUrl={FooterMock.facebookUrl}
+        youtubeUrl={FooterMock.youtubeUrl}
+        instagramUrl={FooterMock.instagramUrl}
+      />
     </>
   )
 }

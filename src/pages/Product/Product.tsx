@@ -8,7 +8,7 @@ import { IoMdBasket } from "react-icons/io"
 import { Circle } from "../../components/Containers"
 import { useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
-import { fetchProduct } from "../../utils/client"
+import { apiClient } from "../../utils/client"
 const testProps: ProductInfoProps[] = [
   {
     id: 1,
@@ -49,7 +49,7 @@ const Product = () => {
   ]
   const [product, setProduct] = useState<ProductInfoProps>()
   const getProduct = useCallback(async (id: string, cancelToken?: CancelTokenSource) => {
-    fetchProduct(id, setProduct, cancelToken)
+    apiClient.fetchProduct(id, setProduct, cancelToken)
   }, [])
   useEffect(() => {
     const source = Axios.CancelToken.source()

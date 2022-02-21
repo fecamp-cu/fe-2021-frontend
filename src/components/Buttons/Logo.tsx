@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from 'prop-types'
+import React from "react"
+import styled from "styled-components"
 
 export interface LogoProps {
-    marginright? : string
-    marginleft?: string
-    marginbottom?: string
-    margintop?: string
+  marginright?: string
+  marginleft?: string
+  marginbottom?: string
+  margintop?: string
 }
 
 export const Logo = styled.span<LogoProps>`
@@ -15,4 +14,4 @@ export const Logo = styled.span<LogoProps>`
   margin-bottom: ${(props) => props.marginbottom || "10px"};
   margin-top: ${(props) => props.margintop || "10px"};
   color: #fff;
-}`;
+}`

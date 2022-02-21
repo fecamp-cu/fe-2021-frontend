@@ -1,4 +1,4 @@
-import { Path } from "../enums/common.enum"
+import { Path, Size } from "../enums/common.enum"
 import { PagePath } from "../types/common"
 
 export const navPath: PagePath[] = [
@@ -49,3 +49,15 @@ export const subMenuItems = [
     link: Path.LOGOUT,
   },
 ]
+
+export const device = {
+  mobileS: `(min-width: ${Size.MOBILE_S}px)`,
+  mobileM: `(min-width: ${Size.MOBILE_M}px)`,
+  mobileL: `(min-width: ${Size.MOBILE_L}px)`,
+  mobileOverall: `(min-width: ${Size.MOBILE_OVERALL}px)`,
+  tablet: `(min-width: ${Size.TABLET}px)`,
+  laptop: `(min-width: ${Size.LAPTOP}px)`,
+  laptopL: `(min-width: ${Size.LAPTOP_L}px)`,
+  desktop: `(min-width: ${Size.DESKTOP}px)`,
+  desktopL: `(min-width: ${Size.DESKTOP}px)`,
+}
