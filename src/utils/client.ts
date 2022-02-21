@@ -4,6 +4,7 @@ import { Endpoint } from "./enums/common.enum"
 import { Credentials } from "./types/common"
 import { addSeconds, isPast } from "date-fns"
 import { LoginPayload } from "./types/auth"
+import { ClientRequest } from "http"
 
 function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
@@ -30,7 +31,14 @@ const getActiveSetting = async () => {
 client.interceptors.request.use(
   async (req) => {
     if (!req?.headers?.Authorization) {
-      const accessToken = localStorage.getItem("fe_camp_access_token") as string
+      let accessToken = localStorage.getItem("fe_camp_access_token") as string
+      const refreshToken = localStorage.getItem("fe_camp_refresh_token") as string
+
+      if (!!refreshToken && isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
+        const res: AxiosResponse = await client.post("/auth/token", { refreshToken })
+        accessToken = res.data.accessToken
+        storeToken(res.data)
+      }
 
       if (req.headers && accessToken) {
         req.headers.Authorization = `Bearer ${accessToken}`
@@ -40,7 +48,7 @@ client.interceptors.request.use(
   },
   (err) => Promise.reject(err)
 )
-const renewToken = async (refreshToken: string) => {
+const renewToken = async (refreshToken: string): Promise<string | undefined> => {
   try {
     const res: AxiosResponse = await client.post("/auth/token", { refreshToken })
     storeToken(res.data)
@@ -55,10 +63,10 @@ const getProfile = async () => {
   return res.data
 }
 
-const fetchProduct = async (id: string, setProduct: (data: ProductInfoProps) => void, cancelToken?: CancelTokenSource) => {
+const fetchProduct = async (id: string, cancelToken?: CancelTokenSource) => {
   try {
     const { data } = await client.get<ProductInfoProps>(`/api/item/${id}`, { cancelToken: cancelToken?.token })
-    setProduct(data)
+    return data
   } catch (err) {
     alert("error cannot get product")
   }
@@ -76,6 +84,7 @@ const resetPassword = async (requestReset: object) => {
 }
 const postRegister = async (postReg: object) => {
   const res = await client.post("/auth/register", postReg)
+  return res
 }
 const getGoogle = async () => {
   await client.get("/auth/google")

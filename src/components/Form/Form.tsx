@@ -90,7 +90,7 @@ interface PersonalInfoFormProps {
   onChange: any
 }
 
-function PersonalInfoForm(props: PersonalInfoFormProps) {
+const PersonalInfoForm: React.FC<PersonalInfoFormProps> = (props) => {
   return (
     <form onSubmit={props.onSubmit} id={props.ids}>
       <Expandable
@@ -159,6 +159,7 @@ function PersonalInfoForm(props: PersonalInfoFormProps) {
             <Label>รหัสไปรษณีย์</Label>
             <Input type="text" name="postcode" value={props.values.postcode} onChange={props.onChange} required></Input>
           </div>
+          {props.children}
         </div>
       </Expandable>
     </form>

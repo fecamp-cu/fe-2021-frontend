@@ -1,5 +1,5 @@
 import React from "react"
-import Form from "../../components/Form/Form"
+import PersonalInfoForm from "../../components/Form/Form"
 import "./Register.css"
 import styled from "styled-components"
 import Profile from "../../components/Profile_picture/Profile"
@@ -72,7 +72,6 @@ const Register = () => {
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
-  console.log(values)
 
   const userInfo = {
     username: values.username,
@@ -95,7 +94,8 @@ const Register = () => {
     console.log("Register")
     e.preventDefault()
     try {
-      await apiClient.postRegister(userInfo)
+      const res = await apiClient.postRegister(userInfo)
+      console.log(res)
       console.log("register success")
       history("/login")
     } catch (error: any) {
@@ -105,30 +105,31 @@ const Register = () => {
 
   return (
     <div className="registercon">
-      <div className="mt-28 items-center">
+      <div className="items-center pt-28">
         <div className="formbox">
           <div className="profile">{/* <Profile /> */}</div>
           <h1 className="regheader">ข้อมูลผู้สมัคร</h1>
-          <Form values={values} email={values.email} onChange={onChange} onSubmit={handleSubmit} ids="reg"></Form>
-          <div className="mt-2 mb-8 sm:mt-4">
-            <form className="register" onSubmit={(e) => e.preventDefault()}>
-              <div className="username">
-                <Label>ชื่อผู้ใช้</Label>
-                <Input type="text" id="username" value={values.username} onChange={onChange} required></Input>
+          <PersonalInfoForm values={values} email={values.email} onChange={onChange} onSubmit={handleSubmit} ids="reg">
+            <div className="mt-2 sm:mt-4">
+              <div className="register">
+                <div className="username">
+                  <Label>ชื่อผู้ใช้</Label>
+                  <Input type="text" name="username" value={values.username} onChange={onChange} required></Input>
+                </div>
+                <div className="pwd1">
+                  <Label>รหัสผ่าน</Label>
+                  <Input type="password" name="password1" value={values.password1} onChange={onChange} required pattern="^[A-Za-z0-9]{8,}$"></Input>
+                </div>
+                <div className="pwd2">
+                  <Label>ยืนยันรหัสผ่าน</Label>
+                  <Input type="password" name="password2" value={values.password2} onChange={onChange} required pattern={values.password1}></Input>
+                </div>
               </div>
-              <div className="pwd1">
-                <Label>รหัสผ่าน</Label>
-                <Input type="password" id="password1" value={values.password1} onChange={onChange} required pattern="^[A-Za-z0-9]{8,}$"></Input>
-              </div>
-              <div className="pwd2">
-                <Label>ยืนยันรหัสผ่าน</Label>
-                <Input type="password" id="password2" value={values.password2} onChange={onChange} required pattern={values.password1}></Input>
-              </div>
-            </form>
-          </div>
+            </div>
+          </PersonalInfoForm>
           <div className="rowbutton">
             <Link to={"/login"}>
-              <Button textColor="white" outline shadow={false}>
+              <Button textColor="white" outline shadow={false} onClick={() => history("/login")}>
                 ยกเลิก
               </Button>
             </Link>
