@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
 const ApplyBtn = styled.button`
   width: 194px;
@@ -47,7 +47,7 @@ const ApplyBtn = styled.button`
       to {background: linear-gradient(262.9deg, #C83A41 8.25%, #D7525B 29.21%, #D24F66 71.52%, #C43E56 94.65%);}
     }
 
-}`;
+}`
 
 const ApplyTxt = styled.p`
   font-family: CHULALONGKORN;
@@ -64,15 +64,18 @@ const ApplyTxt = styled.p`
     font-size: 28px;
     line-height: 42px;
   }
-}`;
+}`
 
 interface ApplyButtonProps {
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const ApplyButton: React.FC<ApplyButtonProps> = ({onClick}) => {
-    return <ApplyBtn onClick={onClick}><ApplyTxt>สมัครค่าย</ApplyTxt></ApplyBtn>
+const ApplyButton: React.FC<ApplyButtonProps> = ({ onClick }) => {
+  return (
+    <ApplyBtn onClick={onClick}>
+      <ApplyTxt>สมัครค่าย</ApplyTxt>
+    </ApplyBtn>
+  )
 }
 
 export default ApplyButton
