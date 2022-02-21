@@ -6,9 +6,9 @@ import Switch from "../../components/Switch/Switch"
 import { PRODUCT_TYPE } from "../../utils/enums"
 import { IoMdBasket } from "react-icons/io"
 import { Circle } from "../../components/Containers"
-import clientInstance from "../../utils/client"
 import { useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
+import { apiClient } from "../../utils/client"
 const testProps: ProductInfoProps[] = [
   {
     id: 1,
@@ -49,7 +49,7 @@ const Product = () => {
   ]
   const [product, setProduct] = useState<ProductInfoProps>()
   const getProduct = useCallback(async (id: string, cancelToken?: CancelTokenSource) => {
-    await clientInstance.getProduct(id, setProduct, cancelToken)
+    apiClient.fetchProduct(id, setProduct, cancelToken)
   }, [])
   useEffect(() => {
     const source = Axios.CancelToken.source()

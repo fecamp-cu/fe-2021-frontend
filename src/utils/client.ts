@@ -1,8 +1,9 @@
-import { AxiosResponse } from "axios"
-import Axios, { CancelTokenSource } from "axios"
-import { addSeconds, isPast } from "date-fns"
-import { Credentials } from "./types/auth"
+import Axios, { AxiosResponse, CancelTokenSource } from "axios"
 import { ProductInfoProps } from "../components/ProductInfo/ProductInfo"
+import { Endpoint } from "./enums/common.enum"
+import { Credentials } from "./types/common"
+import { addSeconds, isPast } from "date-fns"
+import { LoginPayload } from "./types/auth"
 
 function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
@@ -17,58 +18,60 @@ const client = Axios.create({
   withCredentials: true,
 })
 
-async function addBearer() {
-  let accessToken = localStorage.getItem("fe_camp_access_token")
-
-  if (isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
-    const res: AxiosResponse = await client.post("/auth/token", { refreshToken: localStorage.getItem("fe_camp_refresh_token") as string })
-    accessToken = res.data.accessToken
-    storeToken(res.data)
+const getActiveSetting = async () => {
+  try {
+    const res: AxiosResponse = await client.get("/settings/active")
+    return res.data
+  } catch (error) {
+    console.log(error)
   }
-  client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
 }
 
-const testAPI = async () => {
-  const res = await client.get("/")
-  console.log(res)
-}
+// async function addBearer() {
+//   let accessToken = localStorage.getItem("fe_camp_access_token")
 
-const getUserInfo = async () => {
-  addBearer()
-  const res = await client.get("/auth/me")
-  console.log(res)
-}
+//   if (isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
+//     const res: AxiosResponse = await client.post("/auth/token", { refreshToken: localStorage.getItem("fe_camp_refresh_token") as string })
+//     accessToken = res.data.accessToken
+//     storeToken(res.data)
+//   }
+//   client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
+// }
 
-const postLogin = async (postLog: object) => {
-  const res = await client.post("/auth/login", postLog)
+// FIXME remove this (MOCK data)
+
+const mockLogin = async (credentials: LoginPayload) => {
+  const res = await client.post(Endpoint.LOGIN, credentials)
   storeToken(res.data)
+  client.interceptors.request.use(
+    async (req) => {
+      if (!req?.headers?.Authorization) {
+        let accessToken = localStorage.getItem("fe_camp_access_token") as string
+        const refreshToken = localStorage.getItem("fe_camp_refresh_token") as string
+
+        if (!!refreshToken && isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
+          const res: AxiosResponse = await client.post("/auth/token", { refreshToken })
+          console.log(req)
+          accessToken = res.data.accessToken
+          storeToken(res.data)
+        }
+
+        if (req.headers && accessToken) {
+          req.headers.Authorization = `Bearer ${accessToken}`
+        }
+      }
+      return req
+    },
+    (err) => Promise.reject(err)
+  )
 }
 
-const resetPassword = async (requestReset: object) => {
-  await client.post("/auth/reset-password/request", requestReset)
+const getProfile = async () => {
+  const res: AxiosResponse = await client.get(Endpoint.ME + "?order=false")
+  return res.data
 }
 
-const postRegister = async (postReg: object) => {
-  await addBearer()
-  const res = await client.post("/auth/register", postReg)
-  console.log(res)
-}
-
-const getGoogle = async () => {
-  await client.get("/auth/google")
-}
-
-const getFacebook = async () => {
-  await client.get("/auth/facebook")
-}
-
-const getLogout = async () => {
-  await addBearer()
-  const res = await client.get("/auth/logout")
-  console.log(res)
-}
-
-const getProduct = async (id: string, setProduct: (data: ProductInfoProps) => void, cancelToken?: CancelTokenSource) => {
+const fetchProduct = async (id: string, setProduct: (data: ProductInfoProps) => void, cancelToken?: CancelTokenSource) => {
   try {
     const { data } = await client.get<ProductInfoProps>(`/api/item/${id}`, { cancelToken: cancelToken?.token })
     setProduct(data)
@@ -77,17 +80,33 @@ const getProduct = async (id: string, setProduct: (data: ProductInfoProps) => vo
   }
 }
 
-const clientInstance = {
-  client,
-  testAPI,
-  getUserInfo,
-  postRegister,
-  postLogin,
-  getGoogle,
-  getFacebook,
-  resetPassword,
-  getLogout,
-  getProduct,
-}
+export const apiClient = { getProfile, fetchProduct, mockLogin, getActiveSetting }
 
-export default clientInstance
+const getUserInfo = async () => {
+  addBearer()
+  console.log(res)
+  const res = await client.get("/auth/me")
+}
+const postLogin = async (postLog: object) => {
+  const res = await client.post("/auth/login", postLog)
+  storeToken(res.data)
+}
+const resetPassword = async (requestReset: object) => {
+  await client.post("/auth/reset-password/request", requestReset)
+}
+const postRegister = async (postReg: object) => {
+  const res = await client.post("/auth/register", postReg)
+  await addBearer()
+  console.log(res)
+}
+const getGoogle = async () => {
+  await client.get("/auth/google")
+}
+const getFacebook = async () => {
+  await client.get("/auth/facebook")
+}
+const getLogout = async () => {
+  const res = await client.get("/auth/logout")
+  await addBearer()
+  console.log(res)
+}
