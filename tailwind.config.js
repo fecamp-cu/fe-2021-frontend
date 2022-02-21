@@ -18,6 +18,7 @@ module.exports = {
         },
         red: {
           1: "#bc4646",
+          2: "#b32f4e",
         },
       },
       fontFamily: {
@@ -36,6 +37,9 @@ module.exports = {
         base: ["18px", "27px"],
         sm: ["16px", "20px"],
         xs: ["14px", "17.5px"],
+        "2xs": ["12px", "15px"],
+        "3xs": ["10px", "12.5px"],
+        "4xs": ["8px", "10px"],
       },
       keyframes: {
         "fade-in": {
