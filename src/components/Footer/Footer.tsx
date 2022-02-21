@@ -1,56 +1,57 @@
-import "./Footer.css";
-import {FaFacebookSquare} from "react-icons/fa"
-import {FaInstagramSquare} from "react-icons/fa"
-import {FaYoutubeSquare} from "react-icons/fa"
+import {
+  FacebookIcon,
+  FacultyAddress,
+  FacultyName,
+  FooterContent,
+  FooterContentItem,
+  FooterContentSocial,
+  FooterLabel,
+  FooterLabelContent,
+  FooterRoot,
+  InstagramIcon,
+  Line,
+  YoutubeIcon,
+} from "./style"
 
-function Footer() {
-  return (
-    
-    <div className="footer-container">
-      <div className="sub-container1">
-        <div className="sub1-column1">
-          <h1 className="faculty-text">
-            คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
-          </h1>
-
-          <h2 className="address-text">
-            254 ถนนพญาไท แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330
-          </h2>
-        </div>
-
-        <div className="sub1-column2">
-          <div className="icons">
-
-          <a href="https://th-th.facebook.com/fecampchula/" target="_blank">
-            <FaFacebookSquare className="image-footer"></FaFacebookSquare>
-          </a>
-          <a href="https://www.instagram.com/fecampcu/" target="_blank">
-            <FaInstagramSquare className="image-footer"></FaInstagramSquare>
-          </a>
-          <a href="https://www.youtube.com/channel/UCzAKRq31Xm-lqcP4ZkI5ZSg" target="_blank">
-            <FaYoutubeSquare className="image-footer"></FaYoutubeSquare>
-          </a>
-          
-          </div>
-        </div>
-      </div>
-
-      <div className="line"></div>
-
-      <div className="sub-container2">
-        <div className="sub2-column1">
-          <div className="rectangle"></div>
-        </div>
-
-        <div className="sub2-column2">
-          <div className="english-text">
-            <p className="eng1">Fundamental Engineering</p>
-            <p className="eng2">Stimulation Test 15 | 2022</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+export type FooterProps = {
+  name: string
+  address: string
+  facebookUrl: string
+  instagramUrl: string
+  youtubeUrl: string
+  copyright: string
 }
 
-export default Footer;
+const Footer = (props: FooterProps) => {
+  // TODO Refactor This
+  return (
+    <FooterRoot className="divide-[1px] select-none p-10">
+      <FooterContent className="w-full flex-col gap-y-5 sm:gap-y-0 lg:flex-row">
+        <FooterContentItem>
+          <FacultyName>คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</FacultyName>
+          <FacultyAddress>254 ถนนพญาไท แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330</FacultyAddress>
+        </FooterContentItem>
+        <FooterContentSocial>
+          <a href="https://th-th.facebook.com/fecampchula/" rel="noreferrer" target="_blank">
+            <FacebookIcon />
+          </a>
+          <a href="https://www.instagram.com/fecampcu/" rel="noreferrer" target="_blank">
+            <InstagramIcon />
+          </a>
+          <a href="https://www.youtube.com/channel/UCzAKRq31Xm-lqcP4ZkI5ZSg" rel="noreferrer" target="_blank">
+            <YoutubeIcon />
+          </a>
+        </FooterContentSocial>
+      </FooterContent>
+      <Line />
+      <FooterLabelContent className="w-full flex-row justify-center">
+        <FooterLabel className="font-bold">FE CAMP</FooterLabel>
+        <FooterLabelContent className="flex-wrap items-center justify-center text-center font-BaiJamjuree text-2xs font-bold sm:text-base">
+          {props.copyright}
+        </FooterLabelContent>
+      </FooterLabelContent>
+    </FooterRoot>
+  )
+}
+
+export default Footer
