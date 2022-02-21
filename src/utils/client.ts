@@ -27,17 +27,6 @@ const getActiveSetting = async () => {
   }
 }
 
-// async function addBearer() {
-//   let accessToken = localStorage.getItem("fe_camp_access_token")
-
-//   if (isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
-//     const res: AxiosResponse = await client.post("/auth/token", { refreshToken: localStorage.getItem("fe_camp_refresh_token") as string })
-//     accessToken = res.data.accessToken
-//     storeToken(res.data)
-//   }
-//   client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
-// }
-
 // FIXME remove this (MOCK data)
 
 const mockLogin = async (credentials: LoginPayload) => {
@@ -80,11 +69,7 @@ const fetchProduct = async (id: string, setProduct: (data: ProductInfoProps) => 
   }
 }
 
-export const apiClient = { getProfile, fetchProduct, mockLogin, getActiveSetting }
-
 const getUserInfo = async () => {
-  addBearer()
-  console.log(res)
   const res = await client.get("/auth/me")
 }
 const postLogin = async (postLog: object) => {
@@ -96,8 +81,6 @@ const resetPassword = async (requestReset: object) => {
 }
 const postRegister = async (postReg: object) => {
   const res = await client.post("/auth/register", postReg)
-  await addBearer()
-  console.log(res)
 }
 const getGoogle = async () => {
   await client.get("/auth/google")
@@ -107,6 +90,17 @@ const getFacebook = async () => {
 }
 const getLogout = async () => {
   const res = await client.get("/auth/logout")
-  await addBearer()
-  console.log(res)
+}
+
+export const apiClient = {
+  getProfile,
+  fetchProduct,
+  mockLogin,
+  getActiveSetting,
+  postLogin,
+  resetPassword,
+  postRegister,
+  getGoogle,
+  getFacebook,
+  getLogout,
 }
