@@ -1,3 +1,5 @@
+// TODO Delete this in sprint 2
+
 export const FooterMock = {
   name: "ติดต่อเรา",
   address: "ติดต่อเรา",
