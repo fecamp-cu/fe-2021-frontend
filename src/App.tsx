@@ -11,6 +11,7 @@ import { User } from "./utils/types/common"
 import { Menubar } from "./components/Navbar/Menubar"
 import useWindowDimensions from "./hooks/useWindowDimension"
 import LandingPage from "./pages/LandingPage"
+import { FooterMock } from "./utils/constants/mock.constant"
 
 function App() {
   const [image, setImage] = useState<File>()
@@ -25,8 +26,8 @@ function App() {
   })
 
   useEffect(() => {
-    // FIXME Remove this when production
     const fetchUser = async () => {
+      // FIXME Remove this when production
       await apiClient.mockLogin({
         email: "superadmin@gmail.com",
         password: "adminadmin",
@@ -57,7 +58,14 @@ function App() {
           <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview="" />}></Route>
         </Routes>
       </PageContainer>
-      <Footer />
+      <Footer
+        address={FooterMock.address}
+        name={FooterMock.name}
+        copyright={FooterMock.copyright}
+        facebookUrl={FooterMock.facebookUrl}
+        youtubeUrl={FooterMock.youtubeUrl}
+        instagramUrl={FooterMock.instagramUrl}
+      />
     </>
   )
 }
