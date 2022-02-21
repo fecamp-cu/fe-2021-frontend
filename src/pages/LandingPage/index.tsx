@@ -7,7 +7,6 @@ import AnchorLink from "react-anchor-link-smooth-scroll"
 
 import PhotoPreview from "../../components/LandingPage/PhotoPreview"
 import VideoCamp from "../../components/LandingPage/VideoCamp"
-import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { apiClient } from "../../utils/client"
 import star from "../../assets/images/star.svg"
@@ -42,9 +41,9 @@ function LandingPage() {
       <img src="https://storage.googleapis.com/fe-camp/setting-header.jpg" alt="Header" className="h-full w-full object-cover" />
       <Hero className="sm:h-64">
         <HeroContent className="bg-red-500/0">
-          <Link to={settings.registerFormUrl} className="-translate-y-1/2">
+          <a href={settings.registerFormUrl} target="_blank" rel="noreferrer" className="-translate-y-1/2">
             <ApplyButton />
-          </Link>
+          </a>
           <HeroText className="font-BaiJamjuree text-lg font-semibold text-red-1">รู้จักค่าย</HeroText>
           <AnchorLink href="#main-info-landing">
             <IoIosArrowDown className="h-12 w-12 animate-pulse text-red-1" />
