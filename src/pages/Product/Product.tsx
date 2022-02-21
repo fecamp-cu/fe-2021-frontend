@@ -7,6 +7,8 @@ import { PRODUCT_TYPE } from "../../utils/enums"
 import { IoMdBasket } from "react-icons/io"
 import { Circle } from "../../components/Containers"
 import { useParams } from "react-router-dom"
+import { client } from "../../utils/client"
+import { useNavigate, useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
 import { apiClient } from "../../utils/client"
 const testProps: ProductInfoProps[] = [
@@ -35,27 +37,34 @@ const testProps: ProductInfoProps[] = [
     fileUrl: "https://pdfgeneratorapi.com/example-documents/226340/pdf",
   },
 ]
+
 const Product = () => {
   const { id } = useParams()
+  const navigator = useNavigate()
   const switchItems = [
     {
       title: "ข้อสอบเก่า 1",
-      value: testProps[0].id.toString(),
+      value: "1",
     },
     {
       title: "ข้อสอบเก่า 2",
-      value: testProps[1].id.toString(),
+      value: "2",
     },
   ]
   const [product, setProduct] = useState<ProductInfoProps>()
   const getProduct = useCallback(async (id: string, cancelToken?: CancelTokenSource) => {
     apiClient.fetchProduct(id, setProduct, cancelToken)
+    try {
+      const { data } = await client.get<ProductInfoProps>(`/item/${id}`, { cancelToken: cancelToken?.token })
+      setProduct(data)
+    } catch (err) {
+      alert("error cannot get product")
+    }
   }, [])
   useEffect(() => {
     const source = Axios.CancelToken.source()
     if (id) {
-      // getProduct(id, source)
-      setTimeout(() => setProduct(id === "1" ? testProps[0] : testProps[1]), 5000)
+      getProduct(id, source)
     }
     return () => source.cancel()
   }, [id, getProduct])
@@ -63,7 +72,7 @@ const Product = () => {
   return (
     <ProductContainer>
       <div>
-        <Switch items={switchItems} onSelectCallback={(id) => setProduct(id === "1" ? testProps[0] : testProps[1])} />
+        <Switch items={switchItems} onSelectCallback={(id) => navigator(`/product/${id}`)} />
         <div className="absolute right-8 top-32 hidden sm:block">
           <Circle color="white">
             <IoMdBasket size={40} color={"var(--crimson)"} />
