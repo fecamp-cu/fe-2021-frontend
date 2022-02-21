@@ -48,10 +48,10 @@ const Label = styled.label`
     margin: 3px 6px;
   }
 `
-const isLogin = false
 
 const Register = () => {
   const history = useNavigate()
+  const [image, setImage] = useState<File>()
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -91,23 +91,32 @@ const Register = () => {
   }
 
   const handleSubmit = async (e: any) => {
-    console.log("Register")
     e.preventDefault()
     try {
       const res = await apiClient.postRegister(userInfo)
-      console.log(res)
-      console.log("register success")
+      if (image) {
+        const imageFormData = new FormData()
+        imageFormData.append("avatar", image)
+        const profile = await apiClient.putProfile(res.data.user.id, imageFormData)
+      }
       history("/login")
     } catch (error: any) {
       alert(error.response.data.message)
     }
+  }
+  const onChangeImage = (event: any) => {
+    const file = event.target.files?.item(0)
+    if (file && file.type.substring(0, 5) === "image") {
+      setImage(file)
+    }
+    console.log(file)
   }
 
   return (
     <div className="registercon">
       <div className="items-center pt-28">
         <div className="formbox">
-          <div className="profile">{/* <Profile /> */}</div>
+          <div className="profile">{/* <Profile onChange={onChangeImage} image={image} /> */}</div>
           <h1 className="regheader">ข้อมูลผู้สมัคร</h1>
           <PersonalInfoForm values={values} email={values.email} onChange={onChange} onSubmit={handleSubmit} ids="reg">
             <div className="mt-2 sm:mt-4">
