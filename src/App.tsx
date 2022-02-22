@@ -11,33 +11,17 @@ import { User } from "./utils/types/common"
 import { Menubar } from "./components/Navbar/Menubar"
 import useWindowDimensions from "./hooks/useWindowDimension"
 import LandingPage from "./pages/LandingPage"
+import { useUserContext } from "./utils/contexts/userContext"
 import { FooterMock } from "./utils/constants/mock.constant"
+import Register from "./pages/Register/Register"
+import Login from "./pages/Login/Login"
 
 function App() {
   const [image, setImage] = useState<File>()
   const [isClicked, setIsClicked] = useState(false)
   const location = useLocation()
   const { width } = useWindowDimensions()
-  const [user, setUser] = useState<User>({
-    id: 0,
-    username: "",
-    email: "",
-    role: "",
-  })
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      // FIXME Remove this when production
-      await apiClient.mockLogin({
-        email: "superadmin@gmail.com",
-        password: "adminadmin",
-      })
-      const profile = await apiClient.getProfile()
-      setUser(profile)
-    }
-    fetchUser()
-  }, [])
-
+  const { user } = useUserContext()
   const onChangeImage = (event: any) => {
     const file = event.target.files?.item(0)
     if (file && file.type.substring(0, 5) === "image") {
@@ -55,6 +39,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
           <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview="" />}></Route>
         </Routes>
       </PageContainer>

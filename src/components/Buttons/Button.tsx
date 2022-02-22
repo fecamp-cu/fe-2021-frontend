@@ -19,7 +19,7 @@ export const Button: React.FC<ButtonProps> = ({ children, textColor, Icon, margi
       <p>
         {Icon && (
           <Logo {...{ marginbottom, marginleft, marginright, margintop }}>
-            <Icon color={textColor} size={20}></Icon>
+            <Icon color={textColor} size={27}></Icon>
           </Logo>
         )}
         {children}
