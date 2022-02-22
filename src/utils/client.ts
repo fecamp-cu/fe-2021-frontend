@@ -3,7 +3,7 @@ import { ProductInfoProps } from "../components/ProductInfo/ProductInfo"
 import { Endpoint } from "./enums/common.enum"
 import { Credentials } from "./types/common"
 import { addSeconds, isPast } from "date-fns"
-import { LoginPayload } from "./types/auth"
+import { FacebookAuthToken, LoginPayload } from "./types/auth"
 import { ClientRequest } from "http"
 
 function storeToken(credentials: Credentials): void {
@@ -96,6 +96,14 @@ const getGoogle = async () => {
 const getFacebook = async () => {
   await client.get("/auth/facebook")
 }
+const googleCallback = async (token: string) => {
+  const res = await client.get("/auth/google/callback", { params: { code: token } })
+  storeToken(res.data)
+}
+const facebookCallback = async ({ state, code }: FacebookAuthToken) => {
+  const res = await client.get("/auth/facebook/callback", { params: { state, code } })
+  storeToken(res.data)
+}
 const getLogout = async () => {
   const res = await client.get("/auth/logout")
 }
@@ -113,4 +121,6 @@ export const apiClient = {
   storeToken,
   renewToken,
   putProfilePicture,
+  googleCallback,
+  facebookCallback,
 }

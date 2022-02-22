@@ -4,7 +4,12 @@ export interface LoginPayload {
 }
 
 export type Credentials = {
-    accessToken: string
-    refreshToken: string
-    expiresIn: number
-  }
+  accessToken: string
+  refreshToken: string
+  expiresIn: number
+}
+
+export type FacebookAuthToken = {
+  state: string
+  code: string
+}
