@@ -86,8 +86,8 @@ const postRegister = async (postReg: object) => {
   const res = await client.post("/auth/register", postReg)
   return res
 }
-const putProfile = async (id: string, file: FormData) => {
-  const res = await client.put(`/api/profile/${id}/upload`, file, {headers: {'content-Type': 'multipart/form-data'}})
+const putProfilePicture = async (id: string, file: FormData) => {
+  const res = await client.put(`/profile/${id}/upload`, file, { headers: { "content-Type": "multipart/form-data" } })
   return res
 }
 const getGoogle = async () => {
@@ -112,5 +112,5 @@ export const apiClient = {
   getLogout,
   storeToken,
   renewToken,
-  putProfile,
+  putProfilePicture,
 }
