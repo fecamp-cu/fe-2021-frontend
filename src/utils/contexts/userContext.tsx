@@ -34,6 +34,7 @@ const UserProvider = ({ ...props }) => {
         if (paramName === "state") matchFacebookToken.state = paramValue
         if (paramName === "code") matchFacebookToken.code = paramValue
       })
+    console.log({ matchFacebookToken, matchGoogleToken })
     if (matchGoogleToken) {
       const googleAccessToken = matchGoogleToken[0].split("=")[1]
       apiClient.googleCallback(googleAccessToken)
