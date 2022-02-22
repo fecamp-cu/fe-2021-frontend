@@ -37,14 +37,7 @@ function App() {
       {isClicked ? <Menubar width={width} /> : null}
       <PageContainer>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="w-100 mt-10 py-10 px-10">
-                hello <button onClick={() => localStorage.clear()}>logout</button>
-              </div>
-            }
-          ></Route>
+          <Route path="/" element={<LandingPage />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
