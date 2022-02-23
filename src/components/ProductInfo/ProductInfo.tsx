@@ -74,7 +74,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
           <ol>
             {indexes.map((bookIndex, i) => (
               <li key={`index-${i}`}>
-                ส่วนที่ {i}: {bookIndex.text}
+                ส่วนที่ {i + 1}: {bookIndex.text}
               </li>
             ))}
           </ol>
