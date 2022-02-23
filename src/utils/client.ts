@@ -1,7 +1,7 @@
 import Axios, { AxiosResponse, CancelTokenSource } from "axios"
 import { ProductInfoProps } from "../components/ProductInfo/ProductInfo"
 import { Endpoint } from "./enums/common.enum"
-import { Credentials } from "./types/common"
+import { Credentials, User } from "./types/common"
 import { addSeconds, isPast } from "date-fns"
 import { LoginPayload } from "./types/auth"
 
@@ -25,17 +25,6 @@ const getActiveSetting = async () => {
     console.log(error)
   }
 }
-
-// async function addBearer() {
-//   let accessToken = localStorage.getItem("fe_camp_access_token")
-
-//   if (isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
-//     const res: AxiosResponse = await client.post("/auth/token", { refreshToken: localStorage.getItem("fe_camp_refresh_token") as string })
-//     accessToken = res.data.accessToken
-//     storeToken(res.data)
-//   }
-//   client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
-// }
 
 // FIXME remove this (MOCK data)
 
@@ -66,7 +55,7 @@ const mockLogin = async (credentials: LoginPayload) => {
 }
 
 const getProfile = async () => {
-  const res: AxiosResponse = await client.get(Endpoint.ME + "?order=false")
+  const res: AxiosResponse = await client.get(Endpoint.ME + "?order=true")
   return res.data
 }
 
@@ -79,84 +68,49 @@ const fetchProduct = async (id: string, setProduct: (data: ProductInfoProps) => 
   }
 }
 
-export const apiClient = { getProfile, fetchProduct, mockLogin, getActiveSetting }
-
-function storeToken(credentials: Credentials): void {
-  const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
-
-  localStorage.setItem("fe_camp_access_token", credentials.accessToken)
-  localStorage.setItem("fe_camp_refresh_token", credentials.refreshToken)
-  localStorage.setItem("fe_camp_expire_date", expireDate)
+const patchProfile = async (patchProf: object, id: any) => {
+  const res = await client.patch("/profile/" + id, patchProf)
 }
 
-async function addBearer() {
-  let accessToken = localStorage.getItem("fe_camp_access_token")
-
-  if (isPast(new Date(localStorage.getItem("fe_camp_expire_date") as string))) {
-    const res: AxiosResponse = await client.post("/auth/token", { refreshToken: localStorage.getItem("fe_camp_refresh_token") as string })
-    accessToken = res.data.accessToken
-    storeToken(res.data)
-  }
-
-  client.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
-}
-
-const patchProfile = async(patchProf : object,id:any) =>{
-  addBearer()
-  const res = await client.patch("/profile/"+id,patchProf)
-}
-
-const putProfile = async(putProf : File|undefined,id:number) =>{
-  addBearer();
-  if(putProf){ 
-    const formData = new FormData();
-    formData.append('avatar',putProf);
+const putProfile = async (putProf: File | undefined, id: number) => {
+  if (putProf) {
+    const formData = new FormData()
+    formData.append("avatar", putProf)
     const config = {
       headers: {
-          'content-type': 'multipart/form-data'
+        "content-type": "multipart/form-data",
       },
-      onUploadProgress: (ProgressEvent:any) => {
-          const {loaded,total} = ProgressEvent;
-          const percent = Math.floor((loaded*100)/total);
-          console.log(ProgressEvent);
-      }
+      onUploadProgress: (ProgressEvent: any) => {
+        const { loaded, total } = ProgressEvent
+        const percent = Math.floor((loaded * 100) / total)
+        console.log(ProgressEvent)
+      },
     }
-    const res = await client.put("/profile/"+id+"/upload",formData,config)
-    console.log(res);
+    const res = await client.put("/profile/" + id + "/upload", formData, config)
+    console.log(res)
   }
 }
 
-const getUser =async () => {
-  addBearer();
-  const res = await client.get("/auth/me");
-  console.log(res);
-  return res;
+const getUser = async (): Promise<User> => {
+  const res: AxiosResponse = await client.get(Endpoint.ME + "?order=true")
+  return res.data
 }
 
-const getProfile =async (id:number) => {
-  addBearer();
-  const res = await client.get("/profile/" + id);
-  console.log(res);
-  return res;
-} 
-
-const postLogin = async(postLog : object) =>{
-  const res = await client.post("/auth/login",postLog)
-  console.log(res);
-  storeToken(res.data);
+const postLogin = async (postLog: object) => {
+  const res = await client.post("/auth/login", postLog)
+  console.log(res)
+  storeToken(res.data)
 }
 
-const getLogout = async() =>{
+const getLogout = async () => {
   const res = await client.get("/auth/logout")
-  storeToken(res.data);
+  storeToken(res.data)
 }
 
-
-const getOrderAll =async () => {
-  addBearer();
+const getOrderAll = async () => {
   const res = await client.get("/auth/me?order=true")
-  console.log(res);
-  return res;
+  console.log(res)
+  return res
 }
 
 export const clientInstance = {
@@ -167,6 +121,7 @@ export const clientInstance = {
   putProfile,
   getLogout,
   getOrderAll,
-  getProfile
+  getProfile,
 }
 
+export const apiClient = { getUser, fetchProduct, mockLogin, getActiveSetting, getLogout, getOrderAll }
