@@ -1,11 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ProductContainer } from "./product.style"
 import { ProductInfo, ProductInfoProps } from "../../components/ProductInfo/ProductInfo"
-import Book from "../../assets/book_cover.jpg"
 import Switch from "../../components/Switch/Switch"
-import { PRODUCT_TYPE } from "../../utils/enums"
-import { IoMdBasket } from "react-icons/io"
-import { Circle } from "../../components/Containers"
 import { useNavigate, useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
 import { apiClient } from "../../utils/client"
@@ -36,15 +32,17 @@ const Product = () => {
     return () => source.cancel()
   }, [id, getProduct])
 
+  // TODO: Remove dummy div this in sprint 2
   return (
-    <ProductContainer>
+    <ProductContainer className="text-white">
+      <div className="h-20 sm:h-24" />
       <div>
         <Switch items={switchItems} onSelectCallback={(id) => navigator(`/product/${id}`)} />
-        <div className="absolute right-8 top-32 hidden sm:block">
+        {/* <div className="absolute right-8 top-32 hidden sm:block">
           <Circle color="white">
             <IoMdBasket size={40} color={"var(--crimson)"} />
           </Circle>
-        </div>
+        </div> */}
       </div>
       <main className="glass-container p-4 md:pt-8">{product ? <ProductInfo {...product} /> : <div>loading</div>}</main>
     </ProductContainer>
