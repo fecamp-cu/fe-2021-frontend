@@ -6,7 +6,7 @@ import { addSeconds, isPast } from "date-fns"
 import { FacebookAuthToken, LoginPayload } from "./types/auth"
 import { ClientRequest } from "http"
 
-function storeToken(credentials: Credentials): void {
+export function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
 
   localStorage.setItem("fe_camp_access_token", credentials.accessToken)
@@ -91,10 +91,10 @@ const putProfilePicture = async (id: string, file: FormData) => {
   return res
 }
 const getGoogle = async () => {
-  await client.get("/auth/google")
+  return await client.get("/auth/google")
 }
 const getFacebook = async () => {
-  await client.get("/auth/facebook")
+  return await client.get("/auth/facebook")
 }
 const googleCallback = async (token: string) => {
   const res = await client.get("/auth/google/callback", { params: { code: token } })
@@ -104,8 +104,8 @@ const facebookCallback = async ({ state, code }: FacebookAuthToken) => {
   const res = await client.get("/auth/facebook/callback", { params: { state, code } })
   storeToken(res.data)
 }
-const getLogout = async () => {
-  const res = await client.get("/auth/logout")
+const logout = async () => {
+  await client.get("/auth/logout")
 }
 
 export const apiClient = {
@@ -117,7 +117,7 @@ export const apiClient = {
   postRegister,
   getGoogle,
   getFacebook,
-  getLogout,
+  logout,
   storeToken,
   renewToken,
   putProfilePicture,

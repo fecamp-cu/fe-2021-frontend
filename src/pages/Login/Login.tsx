@@ -11,6 +11,9 @@ import { useUserContext } from "../../utils/contexts/userContext"
 const Login = () => {
   const history = useNavigate()
   const { setUser } = useUserContext()
+  const redirectOAuth = (url: string) => {
+    window.location.href = url
+  }
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -83,7 +86,7 @@ const Login = () => {
               marginright="0"
               marginbottom="0"
               marginleft="0"
-              onClick={() => apiClient.getGoogle()}
+              onClick={() => apiClient.getGoogle().then((res) => redirectOAuth(res.data))}
             ></Button>
             <div></div>
             <IconContext.Provider value={{ className: "fb-icon" }}>
@@ -99,7 +102,7 @@ const Login = () => {
                 marginright="0"
                 marginbottom="0"
                 marginleft="0"
-                onClick={() => apiClient.getFacebook()}
+                onClick={() => apiClient.getFacebook().then((res) => redirectOAuth(res.data))}
               ></Button>
             </IconContext.Provider>
           </div>
