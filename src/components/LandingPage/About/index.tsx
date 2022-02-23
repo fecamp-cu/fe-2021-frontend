@@ -7,10 +7,6 @@ export type AboutProps = {
 }
 
 function About(props: AboutProps) {
-  props.posts.sort((prev, next) => {
-    return prev.order - next.order
-  })
-
   const items = props.posts.map((item) => {
     return item.order % 2 === 0 ? (
       <ContentText key={`item-${item.id}`} className="w-11/12 sm:w-2/3">

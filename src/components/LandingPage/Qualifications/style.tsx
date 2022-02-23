@@ -33,6 +33,7 @@ export const QualificationItemRoot = styled.div`
 
 export const QualificationItem = styled.div`
   display: flex;
+  flex-direction: row;
   width: 100%;
   column-gap: 1rem;
 `
@@ -46,6 +47,11 @@ export const QualificationIndex = styled.div`
   width: 3rem;
   border-radius: 9999px;
   background-color: rgb(255 255 255);
+`
+
+export const QualificationContentRoot = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 export const QualificationContent = styled.div`

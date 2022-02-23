@@ -9,10 +9,6 @@ export type PhotoPreviewProps = {
 }
 
 function PhotoPreview(props: PhotoPreviewProps) {
-  props.photoes.sort((prev, next) => {
-    return prev.order - next.order
-  })
-
   return (
     <div>
       <Label className="text-center font-Chulalongkorn text-4xl text-white sm:text-7xl">ภาพกิจกรรม</Label>
