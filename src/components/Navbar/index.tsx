@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
 import { navPath } from "../../utils/constants/common.constant"
 import { Path, Size } from "../../utils/enums/common.enum"
-import { User } from "../../utils/types/common"
+import { PagePath, User } from "../../utils/types/common"
 import { HiMenu, HiMenuAlt3 } from "react-icons/hi"
 import React, { useState, useRef } from "react"
 import { MenuLink, Nav, NavContent, NavContentItem, NavMenu, NavTitle } from "./style"
 import { Menubar } from "./Menubar"
 import useWindowDimensions from "../../hooks/useWindowDimension"
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter"
+import { useUserContext } from "../../utils/contexts/userContext"
 
 export type NavbarProps = {
   user: User
@@ -18,10 +19,15 @@ export type NavbarProps = {
 }
 
 const Navbar = (props: NavbarProps) => {
+  const { logout } = useUserContext()
   const [showMenu, setShowMenu] = useState(false)
   const navbarRef = useRef(null)
   const onClickedOutside = () => setShowMenu(false)
   useOutsideAlerter(navbarRef, onClickedOutside)
+  const onClickMenu = (link: PagePath) => {
+    if (link.name === "ออกจากระบบ") logout()
+    setShowMenu(false)
+  }
   const paths = navPath.map((path) => {
     return props.width > Size.MOBILE_OVERALL ? (
       <MenuLink to={path.link} path={props.path} key={`path-${path.name}`}>
@@ -63,7 +69,7 @@ const Navbar = (props: NavbarProps) => {
           )}
         </div>
       </Nav>
-      {showMenu && <Menubar width={props.width} onClickMenu={() => setShowMenu(false)} />}
+      {showMenu && <Menubar width={props.width} onClickMenu={onClickMenu} />}
     </div>
   )
 }

@@ -3,23 +3,19 @@ import { Link } from "react-router-dom"
 import { menuItems, subMenuItems } from "../../utils/constants/common.constant"
 import { useUserContext } from "../../utils/contexts/userContext"
 import { Size } from "../../utils/enums/common.enum"
+import { PagePath } from "../../utils/types/common"
 import { MenuBG, MenuList, MenuRoot } from "./style"
 
 export type MenubarProps = {
   width: number
-  onClickMenu: () => void
+  onClickMenu: (link: PagePath) => void
 }
 
 export const Menubar = (props: MenubarProps) => {
-  const { logout } = useUserContext()
-  const onClickMenuCallback = (linkName?: string) => {
-    if (linkName === "ออกจากระบบ") logout()
-    props.onClickMenu()
-  }
   const menu = props.width > Size.MOBILE_OVERALL ? subMenuItems : menuItems
   const items = menu.map((item, pos) => {
     return (
-      <Link to={item.link} className="flex w-full flex-col justify-center py-3" key={`item-${pos}`} onClick={() => onClickMenuCallback(item.name)}>
+      <Link to={item.link} className="flex w-full flex-col justify-center py-3" key={`item-${pos}`} onClick={() => props.onClickMenu(item)}>
         {item.name}
       </Link>
     )
