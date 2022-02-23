@@ -2,35 +2,14 @@ import Form from "../../components/Form/Form"
 import ProfilePictureEdit from "../../components/Profile/Profile"
 import "./Profile_edit.css"
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { clientInstance } from "../../utils/client"
+import { useState } from "react"
 import { Button } from "../../components/Buttons/Button"
 import { IoMdArrowBack } from "react-icons/io"
 import { ProfileProps } from "./ProfileShow"
-import { Profile, User } from "../../utils/types/common"
+import { Profile } from "../../utils/types/common"
+import { apiClient } from "../../utils/client"
 
 function ProfileEdit(props: ProfileProps) {
-  //   const [user, setUser] = useState({
-  //     id: 0,
-  //     username: "",
-  //     email: "",
-  //     role: "",
-  //     profile: {
-  //       id: 0,
-  //       firstName: "",
-  //       lastName: "",
-  //       imageUrl: "",
-  //       tel: "",
-  //       grade: "",
-  //       school: "",
-  //       address: "",
-  //       subdistrict: "",
-  //       district: "",
-  //       province: "",
-  //       postcode: "",
-  //     },
-  //   })
-
   const [values, setValues] = useState({
     id: 0,
     firstName: "",
@@ -48,22 +27,6 @@ function ProfileEdit(props: ProfileProps) {
 
   const [image, setImage] = useState<File>()
 
-  // useEffect(()=>{
-  //     clientInstance.getUser().then((res)=>{
-  //         setUser(res.data)
-  //         setValues(res?.data.profile)
-  //     })
-  //     console.log(user);
-
-  //         clientInstance.postLogin({
-  //             "email": "pattarapon.knot@gmail.com",
-  //             "password": "7v'!Fx]u%eTLibpV"
-  //           });
-
-  //           console.log("login");
-
-  // },[])
-
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
@@ -80,8 +43,8 @@ function ProfileEdit(props: ProfileProps) {
     e.preventDefault()
     const { id, ...newValues } = values
     console.log(newValues)
-    clientInstance.putProfile(image, values.id)
-    clientInstance.patchProfile(newValues, values.id)
+    apiClient.putProfile(image, values.id)
+    apiClient.patchProfile(newValues, values.id)
   }
 
   return (
