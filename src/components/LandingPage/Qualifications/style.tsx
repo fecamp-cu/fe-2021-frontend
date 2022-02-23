@@ -27,7 +27,7 @@ export const QualificationItemRoot = styled.div`
   }
 
   @media ${device.laptopL} {
-    width: 40%;
+    width: 50%;
   }
 `
 
@@ -39,6 +39,7 @@ export const QualificationItem = styled.div`
 `
 
 export const QualificationIndex = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -52,6 +53,8 @@ export const QualificationIndex = styled.div`
 export const QualificationContentRoot = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 4rem;
+  margin-top: 0.5rem;
 `
 
 export const QualificationContent = styled.div`
@@ -59,5 +62,5 @@ export const QualificationContent = styled.div`
   flex-direction: row;
   align-items: center;
   color: #fff;
-  width: 80%;
+  width: 100%;
 `
