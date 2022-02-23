@@ -1,18 +1,17 @@
-import { useRef } from "react"
 import { Link } from "react-router-dom"
-import { menuItems, subMenuItems } from "../../utils/constants/common.constant"
-import { useUserContext } from "../../utils/contexts/userContext"
+import { menuItems, menuItemsLoggedin, subMenuItems } from "../../utils/constants/common.constant"
 import { Size } from "../../utils/enums/common.enum"
-import { PagePath } from "../../utils/types/common"
+import { PagePath, User } from "../../utils/types/common"
 import { MenuBG, MenuList, MenuRoot } from "./style"
 
 export type MenubarProps = {
+  user: User
   width: number
   onClickMenu: (link: PagePath) => void
 }
 
 export const Menubar = (props: MenubarProps) => {
-  const menu = props.width > Size.MOBILE_OVERALL ? subMenuItems : menuItems
+  const menu = props.width > Size.MOBILE_OVERALL ? subMenuItems : props.user.id > 0 ? menuItemsLoggedin : menuItems
   const items = menu.map((item, pos) => {
     return (
       <Link to={item.link} className="flex w-full flex-col justify-center py-3" key={`item-${pos}`} onClick={() => props.onClickMenu(item)}>
