@@ -15,10 +15,10 @@ export const navPath: PagePath[] = [
     name: "ตัวอย่างข้อสอบ",
     link: Path.PREVIEW,
   },
-  {
-    name: "เข้าสู่บทเรียน",
-    link: Path.NONE,
-  },
+  // {
+  //   name: "เข้าสู่บทเรียน",
+  //   link: Path.NONE,
+  // },
 ]
 
 export const menuItems: PagePath[] = [
@@ -35,14 +35,14 @@ export const menuItems: PagePath[] = [
     name: "ตัวอย่างข้อสอบ",
     link: Path.PREVIEW,
   },
-  {
-    name: "สมัครสมาชิก",
-    link: Path.REGISTER,
-  },
-  {
-    name: "เข้าสู่ระบบ",
-    link: Path.LOGIN,
-  },
+  // {
+  //   name: "สมัครสมาชิก",
+  //   link: Path.REGISTER,
+  // },
+  // {
+  //   name: "เข้าสู่ระบบ",
+  //   link: Path.LOGIN,
+  // },
 ]
 
 export const menuItemsLoggedin: PagePath[] = [
@@ -59,10 +59,10 @@ export const menuItemsLoggedin: PagePath[] = [
     name: "ตัวอย่างข้อสอบ",
     link: Path.PREVIEW,
   },
-  {
-    name: "ข้อมูลส่วนตัว",
-    link: Path.PROFILE,
-  },
+  // {
+  //   name: "ข้อมูลส่วนตัว",
+  //   link: Path.PROFILE,
+  // },
 ]
 
 export const subMenuItems = [
@@ -70,10 +70,10 @@ export const subMenuItems = [
     name: "ข้อมูลส่วนตัว",
     link: Path.PROFILE,
   },
-  {
-    name: "ออกจากระบบ",
-    link: Path.LANDING,
-  },
+  // {
+  //   name: "ออกจากระบบ",
+  //   link: Path.LANDING,
+  // },
 ]
 
 export const device = {

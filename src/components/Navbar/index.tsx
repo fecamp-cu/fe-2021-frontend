@@ -44,7 +44,7 @@ const Navbar = (props: NavbarProps) => {
         <NavTitle to={Path.LANDING}>FE CAMP</NavTitle>
         <NavMenu>{paths}</NavMenu>
 
-        {props.width > Size.MOBILE_OVERALL && (
+        {/* {props.width > Size.MOBILE_OVERALL && (
           <NavContent>
             {!props.user.id && (
               <Link to={Path.REGISTER} className="flex flex-col justify-center">
@@ -68,7 +68,7 @@ const Navbar = (props: NavbarProps) => {
               </NavContentItem>
             )}
           </NavContent>
-        )}
+        )} */}
         <div className="visible z-40 flex h-full w-1/2 flex-col items-end sm:invisible sm:w-0">
           {!showMenu ? (
             <HiMenu className="z-40 h-1/3 w-1/5 sm:w-[12%]" onClick={() => setShowMenu(!showMenu)} />
