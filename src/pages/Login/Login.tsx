@@ -12,7 +12,6 @@ const Login = () => {
   const history = useNavigate()
   const { setUser } = useUserContext()
   const redirectOAuth = (url: string) => {
-    console.log(url)
     window.location.href = url
   }
   const [values, setValues] = useState({
