@@ -17,9 +17,9 @@ export type QualificationProps = {
 
 function Qualifications(props: QualificationProps) {
   return (
-    <QualificationRoot className="">
+    <QualificationRoot>
       <Label>คุณสมบัติผู้สมัคร</Label>
-      <QualificationItemRoot className="">
+      <QualificationItemRoot>
         {props.qualifications.map((element: QualificationPreview, index) => {
           return (
             <QualificationItem key={`item-${index}`}>
