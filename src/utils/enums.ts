@@ -1,4 +1,4 @@
 export enum PRODUCT_TYPE {
-  oldPapers = "oldPapers",
-  examPreps = "examPreps",
+  oldPapers = "old_papers",
+  examPreps = "exam_preps",
 }

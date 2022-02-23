@@ -46,7 +46,7 @@ export const subMenuItems = [
   },
   {
     name: "ออกจากระบบ",
-    link: Path.LOGOUT,
+    link: Path.LANDING,
   },
 ]
 

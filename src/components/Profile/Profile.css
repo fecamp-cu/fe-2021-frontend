@@ -6,7 +6,7 @@
     height: 120px;
     border-radius: 50%;
     cursor: pointer;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .plusShow {
