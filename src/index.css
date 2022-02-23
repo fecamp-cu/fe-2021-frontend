@@ -1,25 +1,117 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-  font-family: "CHULALONGKORN";
-  src: local("CHULALONGKORN"), url("./assets/fonts/CHULALONGKORNReg.otf") format("opentype"),
-    url("./assets/fonts/CHULALONGKORNBold.otf") format("opentype");
+
+@layer base {
+  @font-face {
+    font-family: "CHULALONGKORN";
+    src: local("CHULALONGKORN"), url("./assets/fonts/CHULALONGKORNReg.otf") format("opentype"),
+      url("./assets/fonts/CHULALONGKORNBold.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "MuseoModerno";
+    src: url("./assets/fonts/MuseoModerno/MuseoModerno-Regular.ttf");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "MuseoModerno";
+    src: url("./assets/fonts/MuseoModerno/MuseoModerno-Bold.ttf");
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: "NotoSansThai";
+    src: url("./assets/fonts/NotoSansThai/NotoSansThai-Regular.ttf");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "NotoSansThai";
+    src: url("./assets/fonts/NotoSansThai/NotoSansThai-Medium.ttf");
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: "NotoSansThai";
+    src: url("./assets/fonts/NotoSansThai/NotoSansThai-SemiBold.ttf");
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: "NotoSansThai";
+    src: url("./assets/fonts/NotoSansThai/NotoSansThai-Bold.ttf");
+    font-weight: 700;
+  }
+
+  /* * {
+    font-family: "CHULALONGKORN";
+  } */
+
+  img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  /* :root {
+    --glass: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
+    --gm-color: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.22) 100%);
+    --crimson: #8b0000;
+    --bg-color: linear-gradient(180deg, #9b2c33 0%, #d1555d 49.48%, #ea727f 99.88%);
+    --pink-red: linear-gradient(90deg, #d46c86 0%, #8b0000 100%);
+    --red-orange: linear-gradient(93.44deg, #af3b43 5.21%, #ea727f 98.99%);
+    --white-200: #e8e8e8;
+    --white-400: #f5f5f5;
+    --white-500: #ffffff;
+  } */
+  body {
+    @apply bg-primary;
+  }
+
+  h1 {
+    @apply text-8xl
+	font-bold;
+  }
+
+  h2 {
+    @apply text-[4rem]
+	font-bold;
+  }
+
+  h3 {
+    @apply text-5xl
+	font-semibold;
+  }
+
+  h4 {
+    @apply text-4xl
+	font-semibold;
+  }
+
+  h5 {
+    @apply text-[1.75rem];
+  }
+
+  h6 {
+    @apply text-lg;
+  }
 }
-* {
-  font-family: "CHULALONGKORN";
+@layer components {
+  .glass-container {
+    background: var(--gm-color);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+  }
 }
-:root {
-  --glass: linear-gradient(98.4deg, rgba(226, 226, 226, 0.3) 10.21%, rgba(255, 255, 255, 0.2) 90.92%);
-  --gm-color: linear-gradient(90.16deg, rgba(255, 255, 255, 0.4) 1.45%, rgba(255, 255, 255, 0.22) 100%);
-  --crimson: #8b0000;
-  --bg-color: linear-gradient(180deg, #9b2c33 0%, #d1555d 49.48%, #ea727f 99.88%);
-  --pink-red: linear-gradient(90deg, #d46c86 0%, #8b0000 100%);
-  --red-orange: linear-gradient(93.44deg, #af3b43 5.21%, #ea727f 98.99%);
-  --white-200: #e8e8e8;
-  --white-400: #f5f5f5;
-  --white-500: #ffffff;
-}
-body {
-  margin: 0;
+
+@layer utilities {
 }

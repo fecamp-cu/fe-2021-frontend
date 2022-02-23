@@ -1,0 +1,47 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: fecamp-2021-frontend
+  namespace: dev
+  labels:
+    app: fecamp-2021-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fecamp-2021-frontend
+  template:
+    metadata:
+      labels:
+        app: fecamp-2021-frontend
+    spec:
+      containers:
+        - name: fecamp-2021-frontend
+          image: ghcr.io/fecamp-cu/fe-2021-frontend:dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: fecamp-config
+                  key: api_url
+            - name: REACT_APP_OMISE_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: omise-secret
+                  key: public_key
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 15m
+              memory: 25Mi
+            limits:
+              cpu: 25m
+              memory: 40Mi
