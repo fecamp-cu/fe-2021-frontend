@@ -80,7 +80,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
           </ol>
         </div>
         <div ref={pdfRef}>
-          <h1 className="text-lg font-bold">ตัวอย่าง{type === "exam_preps" ? "หนังสือ" : "ข้อสอบ"}:</h1>
+          {/** TODO: Remove (ดูใน browser) ใน sprint 2 */}
+          <h1 className="text-lg font-bold">ตัวอย่าง{type === "exam_preps" ? "หนังสือ" : "ข้อสอบ"} (ดูใน browser ดีที่สุด): </h1>
           <PDFView srcUrl={fileURL} />
         </div>
       </div>
