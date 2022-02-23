@@ -40,7 +40,7 @@ const Navbar = (props: NavbarProps) => {
               <img
                 src={(props.user as User).profile?.imageUrl}
                 alt="Profile Pic"
-                className="h-[2.5rem] w-[2.5rem] rounded-full lg:h-[3.125rem] lg:w-[3.125rem]"
+                className="h-[2.5rem] w-[2.5rem] rounded-full object-cover lg:h-[3.125rem] lg:w-[3.125rem]"
               />
               <div>{(props.user as User).username}</div>
             </NavContentItem>
