@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom"
 import { PageContainer } from "./components/Containers"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar"
-import Profile from "./components/Profile_picture/Profile"
+import Profile from "./components/Profile/Profile"
 import Product from "./pages/Product/Product"
 import { apiClient } from "./utils/client"
 import { setUpOmise } from "./utils/omise"
@@ -12,19 +12,33 @@ import { Menubar } from "./components/Navbar/Menubar"
 import useWindowDimensions from "./hooks/useWindowDimension"
 import LandingPage from "./pages/LandingPage"
 import { FooterMock } from "./utils/constants/mock.constant"
-import ProfileShow from "./pages/Profile_page/ProfileShow"
-import ProfileEdit from "./pages/Profile_page/ProfileEdit"
+import ProfileShow from "./pages/Profile/ProfileShow"
+import ProfileEdit from "./pages/Profile/ProfileEdit"
 
 function App() {
   const [image, setImage] = useState<File>()
-  const [isClicked, setIsClicked] = useState(false)
   const location = useLocation()
   const { width } = useWindowDimensions()
+  const [isClicked, setIsClicked] = useState(false)
   const [user, setUser] = useState<User>({
     id: 0,
     username: "",
     email: "",
     role: "",
+    profile: {
+      id: 0,
+      firstName: "",
+      lastName: "",
+      imageUrl: "",
+      tel: "",
+      grade: "",
+      school: "",
+      address: "",
+      subdistrict: "",
+      district: "",
+      province: "",
+      postcode: "",
+    },
   })
 
   useEffect(() => {
@@ -33,20 +47,14 @@ function App() {
       await apiClient.mockLogin({
         email: "superadmin@gmail.com",
         password: "adminadmin",
+        // email: "samithiwat2544@gmail.com",
+        // password: "Modem2544",
       })
-      const profile = await apiClient.getProfile()
+      const profile = await apiClient.getUser()
       setUser(profile)
     }
     fetchUser()
   }, [])
-
-  const onChangeImage = (event: any) => {
-    const file = event.target.files?.item(0)
-    if (file && file.type.substring(0, 5) === "image") {
-      setImage(file)
-    }
-    console.log(file)
-  }
 
   setUpOmise()
   return (
@@ -57,9 +65,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/product/:id" element={<Product />}></Route>
-          <Route path="/ProfileShow" element={<ProfileShow />}></Route>
-          <Route path="/ProfileEdit" element={<ProfileEdit />}></Route>
-          <Route path="/profile" element={<Profile onChange={onChangeImage} image={image} preview=""/>}></Route>
+          <Route path="/profile" element={<ProfileShow user={user} setUser={setUser} />}></Route>
+          <Route path="/profile/edit" element={<ProfileEdit user={user} setUser={setUser} />}></Route>
         </Routes>
       </PageContainer>
       <Footer
