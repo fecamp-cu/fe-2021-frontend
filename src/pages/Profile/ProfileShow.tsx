@@ -13,6 +13,7 @@ import {
   ProfileInfoContentLabelRoot,
   ProfileRoot,
 } from "./style"
+import { useUserContext } from "../../utils/contexts/userContext"
 
 export type ProfileProps = {
   user: User
@@ -20,9 +21,7 @@ export type ProfileProps = {
 }
 
 function ProfileShow(props: ProfileProps) {
-  const handleLogout = () => {
-    apiClient.getLogout()
-  }
+  const { logout } = useUserContext()
 
   return (
     <ProfileRoot>
@@ -53,7 +52,7 @@ function ProfileShow(props: ProfileProps) {
           <div className="flex font-medium text-white sm:text-2xl">นโยบายความเป็นส่วนตัว</div>
         </Link>
 
-        <Link to="/" onClick={handleLogout}>
+        <Link to="/" onClick={() => logout()}>
           <div className="flex font-medium text-white sm:text-2xl">
             ออกจากระบบ
             <IoExitOutline className="ml-[8px] mt-[10px]" />
