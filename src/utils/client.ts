@@ -6,7 +6,7 @@ import { addSeconds, isPast } from "date-fns"
 import { FacebookAuthToken, LoginPayload } from "./types/auth"
 import { ClientRequest } from "http"
 
-function storeToken(credentials: Credentials): void {
+export function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
 
   localStorage.setItem("fe_camp_access_token", credentials.accessToken)
