@@ -25,10 +25,6 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       // FIXME: Remove this when production
-      await apiClient.postLogin({
-        email: "superadmin@gmail.com",
-        password: "adminadmin",
-      })
       const profile = await apiClient.getProfile()
       setUser(profile)
     }
