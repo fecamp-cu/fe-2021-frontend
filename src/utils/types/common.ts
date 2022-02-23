@@ -1,3 +1,5 @@
+import { Customer } from "./shop"
+
 export type PagePath = {
   name: string
   link: string
@@ -19,7 +21,8 @@ export interface User {
   username: string
   email: string
   role: string
-  profile?: Profile
+  profile: Profile
+  customer?: Customer
 }
 
 export interface Profile {
