@@ -7,6 +7,7 @@ export enum Path {
   SHOP = "/shop",
   PAYMENT = "/payment",
   PROFILE = "/profile",
+  PROFILE_EDIT = "/profile/edit",
 }
 
 export enum Endpoint {
