@@ -19,11 +19,12 @@ export const useUserContext = () => useContext(UserContext)
 const UserProvider = ({ ...props }) => {
   const [user, setUser] = useState<User>({} as User)
   const location = useLocation()
-  const logout = () => {
+  const logout = async () => {
+    await apiClient.logout()
     localStorage.clear()
     setUser({} as User)
   }
-  useEffect(() => {
+  const getAcessTokenFromOAuthToken = () => {
     const matchGoogleToken = location.hash.match(/access_token=([^&]*)/)
     const matchFacebookToken = { state: "", code: "" }
     location.search
@@ -41,8 +42,11 @@ const UserProvider = ({ ...props }) => {
     } else if (matchFacebookToken.code && matchFacebookToken.state) {
       apiClient.facebookCallback(matchFacebookToken)
     }
+  }
+  getAcessTokenFromOAuthToken()
+  useEffect(() => {
     apiClient.getProfile().then((profile: User) => setUser(profile ?? {}))
-  }, [location.hash, location.search])
+  }, [])
   return <UserContext.Provider value={{ user, setUser, isLoggedIn: !!user.id, logout }} {...props} />
 }
 
