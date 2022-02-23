@@ -9,7 +9,7 @@ export type AboutProps = {
 function About(props: AboutProps) {
   const items = props.posts.map((item) => {
     return item.order % 2 === 0 ? (
-      <ContentText key={`item-${item.id}`} className="w-11/12 sm:w-2/3">
+      <ContentText key={`item-${item.id}`} className="w-11/12 text-sm sm:w-2/3 sm:text-lg 2xl:text-2xl">
         {item.text}
       </ContentText>
     ) : (
