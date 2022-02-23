@@ -71,10 +71,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      BaiJamjuree: ['Bai Jamjuree', 'san-serif'],
+      BaiJamjuree: ["Bai Jamjuree", "san-serif"],
     },
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-  ],
+  plugins: [require("tailwind-scrollbar")],
 }
