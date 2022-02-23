@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios"
+// import { AxiosResponse } from "axios"
 export enum PaymentTypes {
   eBank = "internet_banking",
   card = "credit_card",
@@ -27,4 +27,3 @@ export const setUpOmise = () => {
 //     },
 //   })
 // }
-

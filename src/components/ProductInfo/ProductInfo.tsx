@@ -29,24 +29,24 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
   return (
     <>
       <div style={{ color: "var(--white-400)" }}>
-        <div className="grid sm:grid-rows-6 sm:grid-flow-col gap-4 mb-8">
-          <div className="product-img-container row-span-6 flex col-span-2 flex-row items-center justify-center">
+        <div className="mb-8 grid gap-4 sm:grid-flow-col sm:grid-rows-6">
+          <div className="product-img-container col-span-2 row-span-6 flex flex-row items-center justify-center">
             <img src={thumbnail} alt="cover"></img>
           </div>
-          <div className="col-span-2 product-title flex flex-row items-center">
+          <div className="product-title col-span-2 flex flex-row items-center">
             <h1 className="text-xl font-bold">{title}</h1>
           </div>
-          <div className="row-span-5 col-span-2 flex flex-col justify-between">
+          <div className="col-span-2 row-span-5 flex flex-col justify-between">
             <div className="product-detail">
               <p>แต่งโดย: {author}</p>
               <p>เนื้อหาโดยสังเขป:</p>
               <p>{summary}</p>
             </div>
-            <div className="flex flex-col items-start order-first sm:order-2">
+            <div className="order-first flex flex-col items-start sm:order-2">
               {type === "exam_preps" ? (
                 <>
                   {/* TODO: Style buttons */}
-                  <div className="flex flex-col sm:flex-row justify-around w-full mb-2">
+                  <div className="mb-2 flex w-full flex-col justify-around sm:flex-row">
                     <Button outline shadow={false} lineHeight="35px" className=" mb-2 sm:mb-0 sm:mr-2">
                       ดูตัวอย่างหนังสือ
                     </Button>

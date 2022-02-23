@@ -19,11 +19,11 @@ const Switch = ({ items, onSelectCallback }: SwitchProps) => {
     [onSelectCallback]
   )
   return (
-    <div className="flex justify-center text-xs sm:text-lg mb-6">
-      <div className="flex switch w-full justify-center">
+    <div className="mb-6 flex justify-center text-xs sm:text-lg">
+      <div className="switch flex w-full justify-center">
         {items.map((item) => (
           <button
-            className={`flex justify-center items-center px-5`}
+            className={`flex items-center justify-center px-5`}
             onClick={() => onSelect(item)}
             key={item.title}
             id={selectedItem.title === item.title ? "selected-tab" : ""}
