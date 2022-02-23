@@ -70,6 +70,9 @@ module.exports = {
         "2xl": "1536px",
       },
     },
+    fontFamily: {
+      BaiJamjuree: ["Bai Jamjuree", "san-serif"],
+    },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 }

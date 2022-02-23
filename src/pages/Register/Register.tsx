@@ -1,10 +1,8 @@
-import React from "react"
+import { useState } from "react"
 import PersonalInfoForm from "../../components/Form/Form"
 import "./Register.css"
 import styled from "styled-components"
-import Profile from "../../components/Profile_picture/Profile"
 import { Button } from "../../components/Buttons/Button"
-import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { apiClient } from "../../utils/client"
 

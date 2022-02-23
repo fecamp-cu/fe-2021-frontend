@@ -7,7 +7,7 @@ interface profilePictureProps{
   image: File|undefined;
 }
 
-function ProfileEdit(props:profilePictureProps) {
+function ProfilePictureEdit(props:profilePictureProps) {
   
   const [preview, setPreview] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -59,4 +59,4 @@ function ProfileEdit(props:profilePictureProps) {
   );
 }
 
-export default ProfileEdit;
+export default ProfilePictureEdit;

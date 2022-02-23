@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react"
+import React, { useEffect, useCallback } from "react"
 
 export const useOutsideAlerter = (ref: React.MutableRefObject<any>, handleClickOutside: () => void) => {
   const onClickOutside = useCallback(

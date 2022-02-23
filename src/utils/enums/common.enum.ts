@@ -4,9 +4,12 @@ export enum Path {
   LOGIN = "/login",
   LOGOUT = "/logout",
   REGISTER = "/register",
+  // TODO: Remove this in sprint 2
+  PREVIEW = "/product/1",
   SHOP = "/shop",
   PAYMENT = "/payment",
   PROFILE = "/profile",
+  PROFILE_EDIT = "/profile/edit",
 }
 
 export enum Endpoint {

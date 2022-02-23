@@ -6,9 +6,9 @@ import { HiMenu, HiMenuAlt3 } from "react-icons/hi"
 import React, { useState, useRef } from "react"
 import { MenuLink, Nav, NavContent, NavContentItem, NavMenu, NavTitle } from "./style"
 import { Menubar } from "./Menubar"
-import useWindowDimensions from "../../hooks/useWindowDimension"
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter"
 import { useUserContext } from "../../utils/contexts/userContext"
+import { Avatar } from "../Profile/Avatar"
 
 export type NavbarProps = {
   user: User
@@ -24,10 +24,12 @@ const Navbar = (props: NavbarProps) => {
   const navbarRef = useRef(null)
   const onClickedOutside = () => setShowMenu(false)
   useOutsideAlerter(navbarRef, onClickedOutside)
+
   const onClickMenu = (link: PagePath) => {
     if (link.name === "ออกจากระบบ") logout()
     setShowMenu(false)
   }
+
   const paths = navPath.map((path) => {
     return props.width > Size.MOBILE_OVERALL ? (
       <MenuLink to={path.link} path={props.path} key={`path-${path.name}`}>
@@ -44,18 +46,24 @@ const Navbar = (props: NavbarProps) => {
 
         {props.width > Size.MOBILE_OVERALL && (
           <NavContent>
-            <Link to={Path.REGISTER} className="flex flex-col justify-center">
-              สมัครค่าย
-            </Link>
+            {!props.user.id && (
+              <Link to={Path.REGISTER} className="flex flex-col justify-center">
+                สมัครสมาชิก
+              </Link>
+            )}
             {!props.user.id ? (
               <Link to={Path.LOGIN}>เข้าสู่ระบบ</Link>
             ) : (
               <NavContentItem onClick={() => setShowMenu(!showMenu)}>
-                <img
-                  src={(props.user as User).profile?.imageUrl}
-                  alt="Profile Pic"
-                  className="h-[2.5rem] w-[2.5rem] rounded-full lg:h-[3.125rem] lg:w-[3.125rem]"
-                />
+                {props.user.profile.imageUrl ? (
+                  <img
+                    src={(props.user as User).profile?.imageUrl}
+                    alt="Profile Pic"
+                    className="object-cover h-[2.5rem] w-[2.5rem] rounded-full lg:h-[3.125rem] lg:w-[3.125rem]"
+                  />
+                ) : (
+                  <Avatar user={props.user} className="h-[2.5rem] w-[2.5rem] text-2xl lg:h-[3.125rem] lg:w-[3.125rem]" />
+                )}
                 <div>{(props.user as User).username}</div>
               </NavContentItem>
             )}
@@ -69,7 +77,7 @@ const Navbar = (props: NavbarProps) => {
           )}
         </div>
       </Nav>
-      {showMenu && <Menubar width={props.width} onClickMenu={onClickMenu} />}
+      {showMenu && <Menubar width={props.width} onClickMenu={onClickMenu} user={props.user} />}
     </div>
   )
 }

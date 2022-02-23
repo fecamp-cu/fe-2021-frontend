@@ -1,25 +1,34 @@
 import { QualificationPreview } from "../../../utils/types/setting"
 import { Label } from "../../../utils/style/common"
-import { QualificationContent, QualificationIndex, QualificationItem, QualificationItemRoot, QualificationRoot } from "./style"
+import {
+  QualificationContent,
+  QualificationContentRoot,
+  QualificationIndex,
+  QualificationItem,
+  QualificationItemRoot,
+  QualificationRoot,
+} from "./style"
 
 export type QualificationProps = {
   qualifications: QualificationPreview[]
 }
 
-function Qualifications(props: QualificationProps) {
-  const items = props.qualifications.sort((prev, next) => {
-    return prev.order - next.order
-  })
+// TODO Fix qualification view
 
+function Qualifications(props: QualificationProps) {
   return (
-    <QualificationRoot className="">
+    <QualificationRoot>
       <Label>คุณสมบัติผู้สมัคร</Label>
-      <QualificationItemRoot className="">
-        {items.map((element: QualificationPreview, index) => {
+      <QualificationItemRoot>
+        {props.qualifications.map((element: QualificationPreview, index) => {
           return (
-            <QualificationItem key={`item-${index}`} className="">
+            <QualificationItem key={`item-${index}`}>
               <QualificationIndex className="text-2xl font-bold text-red-1">{index + 1}</QualificationIndex>
-              <QualificationContent className="text-lg font-medium text-white">{element.text}</QualificationContent>
+              <QualificationContentRoot>
+                {element.text.split("\n").map((text) => {
+                  return <QualificationContent className="text-lg font-medium text-white">{text}</QualificationContent>
+                })}
+              </QualificationContentRoot>
             </QualificationItem>
           )
         })}

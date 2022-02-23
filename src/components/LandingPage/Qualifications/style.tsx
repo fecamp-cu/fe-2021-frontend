@@ -27,17 +27,19 @@ export const QualificationItemRoot = styled.div`
   }
 
   @media ${device.laptopL} {
-    width: 40%;
+    width: 50%;
   }
 `
 
 export const QualificationItem = styled.div`
   display: flex;
+  flex-direction: row;
   width: 100%;
   column-gap: 1rem;
 `
 
 export const QualificationIndex = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -48,10 +50,17 @@ export const QualificationIndex = styled.div`
   background-color: rgb(255 255 255);
 `
 
+export const QualificationContentRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 4rem;
+  margin-top: 0.5rem;
+`
+
 export const QualificationContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   color: #fff;
-  width: 80%;
+  width: 100%;
 `

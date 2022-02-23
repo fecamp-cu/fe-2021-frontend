@@ -6,9 +6,14 @@ export const navPath: PagePath[] = [
     name: "หน้าแรก",
     link: Path.LANDING,
   },
+  // TODO: remove this nin sprint 2
+  // {
+  //   name: "ร้านค้า",
+  //   link: Path.SHOP,
+  // },
   {
-    name: "ร้านค้า",
-    link: Path.SHOP,
+    name: "ตัวอย่างข้อสอบ",
+    link: Path.PREVIEW,
   },
   {
     name: "เข้าสู่บทเรียน",
@@ -21,9 +26,14 @@ export const menuItems: PagePath[] = [
     name: "หน้าแรก",
     link: Path.LANDING,
   },
+  // TODO: remove this nin sprint 2
+  // {
+  //   name: "ร้านค้า",
+  //   link: Path.SHOP,
+  // },
   {
-    name: "ร้านค้า",
-    link: Path.SHOP,
+    name: "ตัวอย่างข้อสอบ",
+    link: Path.PREVIEW,
   },
   {
     name: "สมัครสมาชิก",
@@ -32,6 +42,22 @@ export const menuItems: PagePath[] = [
   {
     name: "เข้าสู่ระบบ",
     link: Path.LOGIN,
+  },
+]
+
+export const menuItemsLoggedin: PagePath[] = [
+  {
+    name: "หน้าแรก",
+    link: Path.LANDING,
+  },
+  // TODO: remove this nin sprint 2
+  // {
+  //   name: "ร้านค้า",
+  //   link: Path.SHOP,
+  // },
+  {
+    name: "ตัวอย่างข้อสอบ",
+    link: Path.PREVIEW,
   },
   {
     name: "ข้อมูลส่วนตัว",
