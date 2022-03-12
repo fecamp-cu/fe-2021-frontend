@@ -24,10 +24,15 @@ function App() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      // FIXME: Remove this when production
       const profile = await apiClient.getProfile()
       setUser(profile)
     }
+
+    window.gtag("config", "G-XKLCNLPQJZ", {
+      page_path: location.pathname,
+      page_title: location.pathname,
+    })
+
     fetchUser()
   }, [])
 
