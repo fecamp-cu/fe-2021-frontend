@@ -5,6 +5,8 @@ import Switch from "../../components/Switch/Switch"
 import { useNavigate, useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
 import { apiClient } from "../../utils/client"
+import { IoMdBasket } from "react-icons/io"
+import { Circle } from "../../components/Containers"
 
 const Product = () => {
   const { id } = useParams()
