@@ -9,10 +9,15 @@ import facebookLogo from "../../assets/book_cover.jpg"
 import { createOmiseToken, createSourceOmise, setUpOmise } from "../../utils/omise"
 import axiosInstance from "../../utils/client"
 import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
+import { ResizableContainer } from "../../components/Containers"
 
 interface Basket {
   productId: number
   quantity: number
+}
+interface HeadingProps {
+  index: number
+  title: string
 }
 
 interface Book {
@@ -29,14 +34,16 @@ const book: Book[] = [
 ]
 
 const PaymentComponentBackground = styled.div`
+  overflow: auto;
   box-sizing: border-box;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   background: var(--gm-color);
   border-radius: 17px;
   margin-top: 31px;
-  margin-left: 118px;
-  margin-right: 118px;
+  margin: auto;
+  width max-content;
+  height:auto;
 `
 
 const Header = styled.h1`
@@ -89,7 +96,11 @@ const WhiteLabel = styled.label`
   color: #ffffff;
   margin-right: 16px;
 `
-
+const Layout = styled.main.attrs({
+  className: "grid grid-cols-3",
+})`
+  padding: 61px 19px;
+`
 const TextInput = styled.input`
   @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
   padding: 2px 2px;
@@ -127,7 +138,12 @@ const WhiteSelect = styled.select`
   line-height: 17px;
   align-items: center;
 `
-
+const FormContainer = styled.div`
+  & > form > div {
+    display: block;
+    width: max-content;
+  }
+`
 function Payment() {
   // ----------------------------User info--------------------------
   const [firstName, setFirstname] = useState("")
@@ -302,7 +318,7 @@ function Payment() {
     }
   }
 
-  function omiseResiveToken() {
+  function omiseReceiveToken() {
     window.OmiseCard.open({
       amount: 12345,
       onCreateTokenSuccess: (token: any) => {
@@ -331,200 +347,156 @@ function Payment() {
   function payWithCreditCard(event: any) {
     event.preventDefault()
     setUpOmise()
-    omiseResiveToken()
+    omiseReceiveToken()
   }
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.id]: e.target.value })
   }
-
-  return (
-    <PaymentComponentBackground style={{ display: "inline-flex" }}>
-      <form>
-        <button type="button" id="credit-card" onClick={payWithCreditCard}>
-          จ่ายเงิน
-        </button>
-      </form>
-      <div style={{ padding: "46px 20px", width: "75%" }}>
-        <ReuseForm onChange={onChange} onSubmit={payWithCreditCard} nameForm={"myform"} />
-        <button type="submit" id="credit-card" form="myform">
-          จ่ายเงิน
-        </button>
+  const Heading = ({ title, index }: HeadingProps) => {
+    return (
+      <div className="w-100 flex justify-between">
         <div>
-          <div style={{ overflow: "auto" }}>
-            <WhiteCircle>
-              <Number>1</Number>
-            </WhiteCircle>
-            <Header>ข้อมูลผู้ซื้อ</Header>
-            {<RiArrowDropDownLine style={{ float: "right", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+          <WhiteCircle>
+            <Number>{index}</Number>
+          </WhiteCircle>
+          <Header>{title}</Header>
+        </div>
+        {<RiArrowDropDownLine style={{ float: "right", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+      </div>
+    )
+  }
+  return (
+    <PaymentComponentBackground>
+      <Layout>
+        <div className="col-span-2 mr-4">
+          <div>
+            <Heading index={1} title="ข้อมูลผู้ซื้อ"></Heading>
+            <FormContainer>
+              <ReuseForm></ReuseForm>
+            </FormContainer>
           </div>
-          <form action="">
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel>ชื่อ</WhiteLabel>
-              <TextInput type="text" style={{ width: "39%" }} onChange={inputFirstName} value={firstName} />
-              <WhiteLabel>นามสกุล</WhiteLabel>
-              <TextInput type="text" style={{ width: "40%" }} onChange={inputLastName} value={lastName} />
-            </div>
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel>เบอร์โทรศัพท์</WhiteLabel>
-              <TextInput type="tel" style={{ width: "31%" }} onChange={inputTel} value={tel} />
-              <WhiteLabel>อีเมล</WhiteLabel>
-              <TextInput type="email" style={{ width: "42%" }} onChange={inputEmail} value={email} />
-            </div>
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel>ระดับชั้น</WhiteLabel>
-              <WhiteSelect id="grade" name="grade" style={{ width: "19%", height: "26px" }} onChange={inputGrade} value={grade}>
-                <option value="grade10">ม.4</option>
-                <option value="grade11">ม.5</option>
-                <option value="grade12">ม.6</option>
-              </WhiteSelect>
-              <WhiteLabel>โรงเรียน</WhiteLabel>
-              <TextInput type="text" style={{ width: "56%" }} onChange={inputSchool} value={school} />
-            </div>
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel>ที่อยู่</WhiteLabel>
-              <TextInput type="text" style={{ width: "59%" }} onChange={inputAddress} value={address} />
-              <WhiteLabel>ตำบล/แขวง</WhiteLabel>
-              <TextInput type="text" style={{ width: "16%" }} onChange={inputSubDistrict} value={subDistrict} />
-            </div>
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel>อำเภอ/เขต</WhiteLabel>
-              <TextInput type="text" style={{ width: "128px" }} onChange={inputDistrict} value={district} />
-              <WhiteLabel>จังหวัด</WhiteLabel>
-              <TextInput type="text" style={{ width: "155px" }} onChange={inputProvince} value={province} />
-              <WhiteLabel>รหัสไปรษณีย์</WhiteLabel>
-              <TextInput type="text" style={{ width: "116px" }} onChange={inputZipCode} value={zipCode} />
-            </div>
-          </form>
-        </div>
 
-        <div style={{ marginTop: "77px" }}>
-          <WhiteCircle>
-            <Number>2</Number>
-          </WhiteCircle>
-          <Header>การจัดส่ง</Header>
-          {<RiArrowDropDownLine style={{ marginRight: "auto", marginLeft: "67%", display: "inline-flex" }} color="white" size={"3.7rem"} />}
+          <div style={{ marginTop: "77px" }}>
+            <Heading index={1} title="การจัดส่ง"></Heading>
 
-          <h1 style={{ color: "white", marginTop: "19px" }}>เลือกที่อยู่จัดส่งพัสดุของคุณ</h1>
-          <form action="">
-            <div style={{ marginBottom: "36px" }}>
-              <input
-                className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
-                type="radio"
-                name="selectAddress"
-                style={{ marginRight: "17px", marginTop: "20px" }}
-              />
-              <WhiteLabel style={{ marginRight: "112px" }}>ที่อยู่ปัจจุบัน</WhiteLabel>
-              <input
-                className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
-                type="radio"
-                name="selectAddress"
-                style={{ marginRight: "17px" }}
-              />
-              <WhiteLabel>ที่อยู่ใหม่</WhiteLabel>
-            </div>
-
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel className={addressLableColor}>ที่อยู่</WhiteLabel>
-              <TextInput
-                className={addressInputColor}
-                disabled={isUseOldAddress}
-                type="text"
-                style={{ width: "407px" }}
-                onChange={inputShippingAddress}
-                value={shippingAddress}
-              />
-              <WhiteLabel className={addressLableColor}>ตำบล/แขวง</WhiteLabel>
-              <TextInput
-                className={addressInputColor}
-                disabled={isUseOldAddress}
-                type="text"
-                style={{ width: "123px" }}
-                onChange={inputShippingSubDistrict}
-                value={shippingSubDistrict}
-              />
-            </div>
-            <div style={{ marginBottom: "20px" }}>
-              <WhiteLabel className={addressLableColor}>อำเภอ/เขต</WhiteLabel>
-              <TextInput
-                className={addressInputColor}
-                disabled={isUseOldAddress}
-                type="text"
-                style={{ width: "128px" }}
-                onChange={inputShippingDistrict}
-                value={shippingDistrict}
-              />
-              <WhiteLabel className={addressLableColor}>จังหวัด</WhiteLabel>
-              <TextInput
-                className={addressInputColor}
-                disabled={isUseOldAddress}
-                type="text"
-                style={{ width: "155px" }}
-                onChange={inputShippingProvince}
-                value={shippingProvince}
-              />
-              <WhiteLabel className={addressLableColor}>รหัสไปรษณีย์</WhiteLabel>
-              <TextInput
-                className={addressInputColor}
-                disabled={isUseOldAddress}
-                type="text"
-                style={{ width: "116px" }}
-                onChange={inputShippingZipCode}
-                value={shippingZipCode}
-              />
-            </div>
-          </form>
-        </div>
-
-        <div style={{ marginTop: "77px" }}>
-          <WhiteCircle>
-            <Number>3</Number>
-          </WhiteCircle>
-          <Header>การชำระเงิน</Header>
-          {<RiArrowDropDownLine style={{ marginRight: "auto", marginLeft: "67%", display: "inline-flex" }} color="white" size={"3.7rem"} />}
-          <form action="">
-            <div>
-              <div>
+            <Header style={{ color: "white", marginTop: "19px" }}>เลือกที่อยู่จัดส่งพัสดุของคุณ</Header>
+            <form action="">
+              <div style={{ marginBottom: "36px" }}>
                 <input
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
-                  name="selectPayment"
+                  name="selectAddress"
                   style={{ marginRight: "17px", marginTop: "20px" }}
                 />
-                <WhiteLabel style={{ marginRight: "112px" }}>พร้อมเพย์</WhiteLabel>
-              </div>
-
-              <div>
+                <WhiteLabel style={{ marginRight: "112px" }}>ที่อยู่ปัจจุบัน</WhiteLabel>
                 <input
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
-                  name="selectPayment"
-                  style={{ marginRight: "17px", marginTop: "20px" }}
+                  name="selectAddress"
+                  style={{ marginRight: "17px" }}
                 />
-
-                <WhiteLabel>บัตรเครดิต/เดบิต</WhiteLabel>
+                <WhiteLabel>ที่อยู่ใหม่</WhiteLabel>
               </div>
 
+              <div style={{ marginBottom: "20px" }}>
+                <WhiteLabel className={addressLableColor}>ที่อยู่</WhiteLabel>
+                <TextInput
+                  className={addressInputColor}
+                  disabled={isUseOldAddress}
+                  type="text"
+                  style={{ width: "407px" }}
+                  onChange={inputShippingAddress}
+                  value={shippingAddress}
+                />
+                <WhiteLabel className={addressLableColor}>ตำบล/แขวง</WhiteLabel>
+                <TextInput
+                  className={addressInputColor}
+                  disabled={isUseOldAddress}
+                  type="text"
+                  style={{ width: "123px" }}
+                  onChange={inputShippingSubDistrict}
+                  value={shippingSubDistrict}
+                />
+              </div>
+              <div style={{ marginBottom: "20px" }}>
+                <WhiteLabel className={addressLableColor}>อำเภอ/เขต</WhiteLabel>
+                <TextInput
+                  className={addressInputColor}
+                  disabled={isUseOldAddress}
+                  type="text"
+                  style={{ width: "128px" }}
+                  onChange={inputShippingDistrict}
+                  value={shippingDistrict}
+                />
+                <WhiteLabel className={addressLableColor}>จังหวัด</WhiteLabel>
+                <TextInput
+                  className={addressInputColor}
+                  disabled={isUseOldAddress}
+                  type="text"
+                  style={{ width: "155px" }}
+                  onChange={inputShippingProvince}
+                  value={shippingProvince}
+                />
+                <WhiteLabel className={addressLableColor}>รหัสไปรษณีย์</WhiteLabel>
+                <TextInput
+                  className={addressInputColor}
+                  disabled={isUseOldAddress}
+                  type="text"
+                  style={{ width: "116px" }}
+                  onChange={inputShippingZipCode}
+                  value={shippingZipCode}
+                />
+              </div>
+            </form>
+          </div>
+
+          <div style={{ marginTop: "77px" }}>
+            <Heading index={1} title="การชำระเงิน"></Heading>
+            <form action="">
               <div>
-                <input
-                  className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
-                  type="radio"
-                  name="selectPayment"
-                  style={{ marginRight: "17px", marginTop: "20px" }}
-                />
-                <WhiteLabel>โอนผ่านธนาคาร</WhiteLabel>
+                <div>
+                  <input
+                    className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
+                    type="radio"
+                    name="selectPayment"
+                    style={{ marginRight: "17px", marginTop: "20px" }}
+                  />
+                  <WhiteLabel style={{ marginRight: "112px" }}>พร้อมเพย์</WhiteLabel>
+                </div>
+
+                <div>
+                  <input
+                    className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
+                    type="radio"
+                    name="selectPayment"
+                    style={{ marginRight: "17px", marginTop: "20px" }}
+                  />
+
+                  <WhiteLabel>บัตรเครดิต/เดบิต</WhiteLabel>
+                </div>
+
+                <div>
+                  <input
+                    className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
+                    type="radio"
+                    name="selectPayment"
+                    style={{ marginRight: "17px", marginTop: "20px" }}
+                  />
+                  <WhiteLabel>โอนผ่านธนาคาร</WhiteLabel>
+                </div>
               </div>
-            </div>
+            </form>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <ProductListV2 bookList={book}></ProductListV2>
+          <form>
+            <button type="button" id="credit-card" onClick={payWithCreditCard}>
+              จ่ายเงิน
+            </button>
           </form>
         </div>
-      </div>
-      <div style={{ paddingTop: "50px", paddingRight: "20px" }}>
-        <ProductListV2 bookList={book}></ProductListV2>
-        <form>
-          <button type="button" id="credit-card" onClick={payWithCreditCard}>
-            จ่ายเงิน
-          </button>
-        </form>
-      </div>
+      </Layout>
     </PaymentComponentBackground>
   )
 }
