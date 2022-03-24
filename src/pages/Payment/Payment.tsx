@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import "./Payment.css"
 import axios from "axios"
-import ReuseForm from "../../components/Form/reuseForm"
-import ProductListV2 from "../../components/Product_list/ProductListv2"
+import PersonalInfoInputGroup from "../../components/Form/Form"
+import ProductListV2, { Book } from "../../components/Product_list/ProductListv2"
 import facebookLogo from "../../assets/book_cover.jpg"
-import { createOmiseToken, createSourceOmise, setUpOmise } from "../../utils/omise"
-import axiosInstance from "../../utils/client"
-import { PaymentTypes, PromotionCodeType } from "../../utils/enums"
-import { ResizableContainer } from "../../components/Containers"
+import { checkoutCardOmise, setUpOmise } from "../../utils/omise"
+import { useCart } from "../../hooks/useCart"
+import { PaymentTypes } from "../../utils/enums"
 
 interface Basket {
   productId: number
@@ -20,27 +19,19 @@ interface HeadingProps {
   title: string
 }
 
-interface Book {
-  productId: number
-  title: string
-  price: number
-  productImg: string
-}
-
 const book: Book[] = [
-  { productId: 1, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo },
-  { productId: 2, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo },
-  { productId: 3, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo },
+  { productId: 1, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo, quantity: 1 },
+  { productId: 2, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo, quantity: 1 },
+  { productId: 3, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo, quantity: 1 },
 ]
 
-const PaymentComponentBackground = styled.div`
+const PaymentComponentBackground = styled.div.attrs({ className: "mt-5" })`
   overflow: auto;
   box-sizing: border-box;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   background: var(--gm-color);
   border-radius: 17px;
-  margin-top: 31px;
   margin: auto;
   width max-content;
   height:auto;
@@ -97,10 +88,8 @@ const WhiteLabel = styled.label`
   margin-right: 16px;
 `
 const Layout = styled.main.attrs({
-  className: "grid grid-cols-3",
-})`
-  padding: 61px 19px;
-`
+  className: "grid grid-cols-3 px-7 py-12",
+})``
 const TextInput = styled.input`
   @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
   padding: 2px 2px;
@@ -139,28 +128,17 @@ const WhiteSelect = styled.select`
   align-items: center;
 `
 const FormContainer = styled.div`
-  & > form > div {
+  & > div {
     display: block;
     width: max-content;
   }
 `
 function Payment() {
-  // ----------------------------User info--------------------------
-  const [firstName, setFirstname] = useState("")
-  const [lastName, setLastname] = useState("")
-  const [tel, setTel] = useState("")
-  const [email, setEmail] = useState("")
-  const [grade, setGrad] = useState("")
-  const [school, setSchool] = useState("")
-  const [address, setAddress] = useState("")
-  const [subDistrict, setSubDistrict] = useState("")
-  const [district, setDistrict] = useState("")
-  const [province, setProvince] = useState("")
-  const [zipCode, setZipCode] = useState("")
-
+  const { cart, dispatchCart, getTotalPrice } = useCart(book)
+  const totalPrice = getTotalPrice()
   const [values, setValues] = useState({
     firstName: "",
-    surName: "",
+    lastName: "",
     tel: "",
     email: "",
     grade: "ม.5",
@@ -171,51 +149,9 @@ function Payment() {
     province: "",
     postcode: "",
   })
-
-  function inputFirstName(event: any) {
-    setFirstname(event.target.value)
+  const onCustomerInfoChange = (e: any) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
   }
-
-  function inputLastName(event: any) {
-    setLastname(event.target.value)
-  }
-
-  function inputTel(event: any) {
-    setTel(event.target.value)
-  }
-
-  function inputEmail(event: any) {
-    setEmail(event.target.value)
-  }
-
-  function inputGrade(event: any) {
-    setGrad(event.target.value)
-  }
-
-  function inputSchool(event: any) {
-    setSchool(event.target.value)
-  }
-
-  function inputAddress(event: any) {
-    setAddress(event.target.value)
-  }
-
-  function inputSubDistrict(event: any) {
-    setSubDistrict(event.target.value)
-  }
-
-  function inputDistrict(event: any) {
-    setDistrict(event.target.value)
-  }
-
-  function inputProvince(event: any) {
-    setProvince(event.target.value)
-  }
-
-  function inputZipCode(event: any) {
-    setZipCode(event.target.value)
-  }
-
   // ----------------------------shipping address info--------------------
   const [isUseOldAddress, setIsUseOldAddress] = useState(false)
   const [shippingAddress, setShippingAddress] = useState("")
@@ -239,28 +175,19 @@ function Payment() {
   function inputShippingZipCode(event: any) {
     setShippingZipCode(event.target.value)
   }
-
-  function OnClickUseOldAddress(event: any) {
-    setIsUseOldAddress(true)
-  }
-
-  function OnClickUseNewAddress(event: any) {
-    setIsUseOldAddress(false)
-  }
-
   // ----------------------------shipping address info--------------------
   const addressLableColor = isUseOldAddress ? "disable" : "enable"
   const addressInputColor = isUseOldAddress ? "disable" : "enable"
 
   useEffect(() => {
     if (isUseOldAddress) {
-      setShippingAddress(address)
-      setShippingSubDistrict(subDistrict)
-      setShippingDistrict(district)
-      setShippingProvince(province)
-      setShippingZipCode(zipCode)
+      setShippingAddress(values.address)
+      setShippingSubDistrict(values.subdistrict)
+      setShippingDistrict(values.district)
+      setShippingProvince(values.province)
+      setShippingZipCode(values.postcode)
     }
-  }, [isUseOldAddress, address, subDistrict, district, province, zipCode])
+  }, [isUseOldAddress, values.address, values.district, values.postcode, values.province, values.subdistrict])
 
   // -------------------omise handle-----------------
 
@@ -327,12 +254,12 @@ function Payment() {
         const basket = [b1]
         sentData(
           token,
-          email,
-          firstName,
-          lastName,
-          tel,
-          grade,
-          school,
+          values.email,
+          values.firstName,
+          values.lastName,
+          values.tel,
+          values.grade,
+          values.school,
           shippingAddress,
           shippingSubDistrict,
           shippingDistrict,
@@ -349,9 +276,6 @@ function Payment() {
     setUpOmise()
     omiseReceiveToken()
   }
-  const onChange = (e: any) => {
-    setValues({ ...values, [e.target.id]: e.target.value })
-  }
   const Heading = ({ title, index }: HeadingProps) => {
     return (
       <div className="w-100 flex justify-between">
@@ -367,33 +291,40 @@ function Payment() {
   }
   return (
     <PaymentComponentBackground>
-      <Layout>
-        <div className="col-span-2 mr-4">
-          <div>
-            <Heading index={1} title="ข้อมูลผู้ซื้อ"></Heading>
-            <FormContainer>
-              <ReuseForm></ReuseForm>
-            </FormContainer>
-          </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          console.log({ values, shippingAddress, shippingDistrict, shippingProvince, shippingSubDistrict, shippingZipCode })
+        }}
+      >
+        <Layout>
+          <div className="col-span-2 mr-4">
+            <div>
+              <Heading index={1} title="ข้อมูลผู้ซื้อ"></Heading>
+              <FormContainer>
+                <PersonalInfoInputGroup values={values} email={values.email} onChange={onCustomerInfoChange} />
+              </FormContainer>
+            </div>
 
-          <div style={{ marginTop: "77px" }}>
-            <Heading index={1} title="การจัดส่ง"></Heading>
+            <div style={{ marginTop: "77px" }}>
+              <Heading index={1} title="การจัดส่ง"></Heading>
 
-            <Header style={{ color: "white", marginTop: "19px" }}>เลือกที่อยู่จัดส่งพัสดุของคุณ</Header>
-            <form action="">
+              <Header style={{ color: "white", marginTop: "19px" }}>เลือกที่อยู่จัดส่งพัสดุของคุณ</Header>
               <div style={{ marginBottom: "36px" }}>
                 <input
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
-                  name="selectAddress"
+                  name="currentAddress"
+                  onChange={() => setIsUseOldAddress(true)}
                   style={{ marginRight: "17px", marginTop: "20px" }}
                 />
                 <WhiteLabel style={{ marginRight: "112px" }}>ที่อยู่ปัจจุบัน</WhiteLabel>
                 <input
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
-                  name="selectAddress"
+                  name="newAddress"
                   style={{ marginRight: "17px" }}
+                  onChange={() => setIsUseOldAddress(false)}
                 />
                 <WhiteLabel>ที่อยู่ใหม่</WhiteLabel>
               </div>
@@ -447,12 +378,10 @@ function Payment() {
                   value={shippingZipCode}
                 />
               </div>
-            </form>
-          </div>
+            </div>
 
-          <div style={{ marginTop: "77px" }}>
-            <Heading index={1} title="การชำระเงิน"></Heading>
-            <form action="">
+            <div style={{ marginTop: "77px" }}>
+              <Heading index={1} title="การชำระเงิน"></Heading>
               <div>
                 <div>
                   <input
@@ -485,18 +414,16 @@ function Payment() {
                   <WhiteLabel>โอนผ่านธนาคาร</WhiteLabel>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-        <div className="col-span-1">
-          <ProductListV2 bookList={book}></ProductListV2>
-          <form>
-            <button type="button" id="credit-card" onClick={payWithCreditCard}>
+          <div className="col-span-1">
+            <ProductListV2 bookList={cart.books} onBookChange={dispatchCart} price={totalPrice}></ProductListV2>
+            <button id="credit-card" onClick={() => checkoutCardOmise(totalPrice, (n) => console.log(n), PaymentTypes.card)}>
               จ่ายเงิน
             </button>
-          </form>
-        </div>
-      </Layout>
+          </div>
+        </Layout>
+      </form>
     </PaymentComponentBackground>
   )
 }

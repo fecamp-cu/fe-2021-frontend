@@ -37,7 +37,7 @@ function LandingPage() {
   }, [])
 
   return (
-    <div className="select-none">
+    <div className="select-none" style={{ marginTop: "-70px" }}>
       <img src="https://storage.googleapis.com/fe-camp/setting-header.jpg" alt="Header" className="h-full w-full object-cover" />
       <Hero className="sm:h-64">
         <HeroContent className="bg-red-500/0">

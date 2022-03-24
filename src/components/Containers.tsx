@@ -4,6 +4,7 @@ import useWindowDimensions from "../hooks/useWindowDimension"
 
 export const PageContainer = styled.div`
   margin-bottom: 30px;
+  padding-top: 70px;
 `
 
 export const Circle = styled.span.attrs({

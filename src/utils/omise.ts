@@ -1,5 +1,6 @@
 // import { AxiosResponse } from "axios"
 import axios, { AxiosResponse } from "axios"
+import client from "./client"
 import { PaymentTypes } from "./enums"
 
 export const setUpOmise = () => {
@@ -28,7 +29,15 @@ export const createToken = () => {
     }
   )
 }
-
+export const checkoutCardOmise = (amount: number, onCreateTokenSuccess: (nonce: string) => void, payType: PaymentTypes) => {
+  window.OmiseCard.open({
+    amount: amount,
+    currency: "THB",
+    defaultPaymentMethod: payType,
+    otherPaymentMethods: "internet_banking,promptpay,credit_card",
+    onCreateTokenSuccess: onCreateTokenSuccess,
+  })
+}
 export const createSourceOmise = (amount: number, payType: string, setSource: (source: object) => void) => {
   window.Omise.createSource(
     payType,

@@ -82,88 +82,85 @@ interface PersonalInfo {
   province: string
   postcode: string
 }
-interface PersonalInfoFormProps {
-  onSubmit: any
-  ids: string
+interface PersonalInfoInputGroupProps {
+  ids?: string
   values: PersonalInfo
   email: string
   onChange: any
 }
 
-const PersonalInfoForm: React.FC<PersonalInfoFormProps> = (props) => {
+const PersonalInfoInputGroup: React.FC<PersonalInfoInputGroupProps> = (props) => {
   return (
-    <form onSubmit={props.onSubmit} id={props.ids}>
-      <Expandable
-        className="my-7 justify-center"
-        atWidth={600}
-        expandedHeight={1200}
-        collapsedHeight={450}
-        expandIcon={<BsChevronDown />}
-        collapseIcon={<BsChevronUp />}
-      >
-        <div className="row1">
-          <Label>ชื่อ</Label>
-          <Input type="text" name="firstName" value={props.values.firstName} onChange={props.onChange} required></Input>
-          <Label>นามสกุล</Label>
-          <Input type="text" name="lastName" value={props.values.lastName} onChange={props.onChange} required></Input>
+    <Expandable
+      className="my-7 justify-center"
+      atWidth={600}
+      expandedHeight={1200}
+      collapsedHeight={450}
+      expandIcon={<BsChevronDown />}
+      collapseIcon={<BsChevronUp />}
+    >
+      <div className="row1">
+        <Label>ชื่อ</Label>
+        <Input type="text" name="firstName" value={props.values.firstName} onChange={props.onChange} required></Input>
+        <Label>นามสกุล</Label>
+        <Input type="text" name="lastName" value={props.values.lastName} onChange={props.onChange} required></Input>
+      </div>
+      <div className="row2">
+        <Label>เบอร์โทรศัพท์</Label>
+        <Input type="text" name="tel" value={props.values.tel} onChange={props.onChange} required></Input>
+        <Label>อีเมล</Label>
+        <Input type="email" name="email" value={props.email} onChange={props.onChange} required></Input>
+      </div>
+      <div>
+        <div className="row3">
+          <Label>ระดับชั้น</Label>
+          <Select name="grade" value={props.values.grade} onChange={props.onChange}>
+            <option value="ม.6" id="option">
+              ม.6
+            </option>
+            <option value="ม.5" id="option">
+              ม.5
+            </option>
+            <option value="ม.4" id="option">
+              ม.4
+            </option>
+            <option value="ปวช.3" id="option">
+              ปวช.3
+            </option>
+            <option value="ปวช.2" id="option">
+              ปวช.2
+            </option>
+            <option value="ปวช.1" id="option">
+              ปวช.1
+            </option>
+            <option value="อื่นๆ" id="option">
+              อื่นๆ
+            </option>
+            <option value="ไม่ระบุ" id="option">
+              ไม่ระบุ
+            </option>
+          </Select>
+          <Label>โรงเรียน</Label>
+          <Input type="text" name="school" value={props.values.school} onChange={props.onChange} required></Input>
         </div>
-        <div className="row2">
-          <Label>เบอร์โทรศัพท์</Label>
-          <Input type="text" name="tel" value={props.values.tel} onChange={props.onChange} required></Input>
-          <Label>อีเมล</Label>
-          <Input type="email" name="email" value={props.email} onChange={props.onChange} required></Input>
+        <div className="row4">
+          <Label>ที่อยู่</Label>
+          <Input type="text" name="address" value={props.values.address} onChange={props.onChange} required></Input>
+          <Label>ตำบล/แขวง</Label>
+          <Input type="text" name="subdistrict" value={props.values.subdistrict} onChange={props.onChange} required></Input>
         </div>
-        <div>
-          <div className="row3">
-            <Label>ระดับชั้น</Label>
-            <Select name="grade" value={props.values.grade} onChange={props.onChange}>
-              <option value="ม.6" id="option">
-                ม.6
-              </option>
-              <option value="ม.5" id="option">
-                ม.5
-              </option>
-              <option value="ม.4" id="option">
-                ม.4
-              </option>
-              <option value="ปวช.3" id="option">
-                ปวช.3
-              </option>
-              <option value="ปวช.2" id="option">
-                ปวช.2
-              </option>
-              <option value="ปวช.1" id="option">
-                ปวช.1
-              </option>
-              <option value="อื่นๆ" id="option">
-                อื่นๆ
-              </option>
-              <option value="ไม่ระบุ" id="option">
-                ไม่ระบุ
-              </option>
-            </Select>
-            <Label>โรงเรียน</Label>
-            <Input type="text" name="school" value={props.values.school} onChange={props.onChange} required></Input>
-          </div>
-          <div className="row4">
-            <Label>ที่อยู่</Label>
-            <Input type="text" name="address" value={props.values.address} onChange={props.onChange} required></Input>
-            <Label>ตำบล/แขวง</Label>
-            <Input type="text" name="subdistrict" value={props.values.subdistrict} onChange={props.onChange} required></Input>
-          </div>
-          <div className="row5">
-            <Label>อำเภอ/เขต</Label>
-            <Input type="text" name="district" value={props.values.district} onChange={props.onChange} required></Input>
-            <Label>จังหวัด</Label>
-            <Input type="text" name="province" value={props.values.province} onChange={props.onChange} required></Input>
-            <Label>รหัสไปรษณีย์</Label>
-            <Input type="text" name="postcode" value={props.values.postcode} onChange={props.onChange} required></Input>
-          </div>
-          {props.children}
+        <div className="row5">
+          <Label>อำเภอ/เขต</Label>
+          <Input type="text" name="district" value={props.values.district} onChange={props.onChange} required></Input>
+          <Label>จังหวัด</Label>
+          <Input type="text" name="province" value={props.values.province} onChange={props.onChange} required></Input>
+          <Label>รหัสไปรษณีย์</Label>
+          <Input type="text" name="postcode" value={props.values.postcode} onChange={props.onChange} required></Input>
         </div>
-      </Expandable>
-    </form>
+        {props.children}
+      </div>
+    </Expandable>
   )
 }
 
-export default PersonalInfoForm
+export default PersonalInfoInputGroup
