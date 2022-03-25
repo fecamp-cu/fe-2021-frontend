@@ -4,7 +4,8 @@ import { Endpoint } from "./enums/common.enum"
 import { Credentials, User } from "./types/common"
 import { addSeconds, isPast } from "date-fns"
 import { FacebookAuthToken, LoginPayload } from "./types/auth"
-import { PaymentTypes, PromotionCodeType } from "./enums"
+import { PaymentOption, ProductTransaction } from "./types/shop"
+import { PromotionCodeType } from "./enums/shop.enum"
 export function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
 
@@ -21,9 +22,9 @@ export type GenPromotionCode = {
   value?: number
 }
 
-export type costumerData = {
+export type CustomerInfo = {
   firstName: string
-  surName: string
+  lastName: string
   tel: string
   email: string
   grade: string
@@ -33,6 +34,8 @@ export type costumerData = {
   district: string
   province: string
   postcode: string
+  promotion_code?: string
+  basket: ProductTransaction[]
 }
 
 const client = Axios.create({
@@ -171,52 +174,12 @@ const getOrderAll = async () => {
   console.log(res)
   return res
 }
-const checkout = async (source: object, paymentType: PaymentTypes) => {
-  const res = await client.post(`/shop/checkout/${paymentType}`, {
-    source,
-    email: "admin@samithiwat.info",
-    firstName: "someone",
-    lastName: "naja",
-    tel: "0922501231",
-    grade: "m6",
-    school: "string",
-    address: "string",
-    subdistrict: "string",
-    district: "string",
-    province: "string",
-    postcode: "11000",
-    basket: [
-      {
-        productId: 1,
-        quantity: 1,
-      },
-    ],
-    promotion_code: "string",
-  })
-  console.log(res)
-}
 
-const checkoutCard = async (token: object, paymentType: PaymentTypes, costumerData: costumerData) => {
-  const res = await client.post(`/shop/checkout/${paymentType}`, {
+const checkout = async (customerInfo: CustomerInfo, paymentOption: PaymentOption, token?: { id: string }) => {
+  const res = await client.post(`/shop/checkout/${paymentOption.type}`, {
     source: token,
-    email: costumerData.email,
-    firstName: costumerData.firstName,
-    lastName: costumerData.surName,
-    tel: costumerData.tel,
-    grade: costumerData.grade,
-    school: costumerData.school,
-    address: costumerData.address,
-    subdistrict: costumerData.subdistrict,
-    district: costumerData.district,
-    province: costumerData.province,
-    postcode: costumerData.postcode,
-    basket: [
-      {
-        productId: 1,
-        quantity: 1,
-      },
-    ],
-    promotion_code: "string",
+    ...customerInfo,
+    bank: paymentOption.bank,
   })
   console.log(res)
 }
@@ -285,14 +248,12 @@ export const apiClient = {
   putProfilePicture,
   googleCallback,
   facebookCallback,
-}
-
-const clientInstance = {
   testAPI,
   checkout,
-  checkoutCard,
   genCode,
   verifyCode,
 }
+
+const clientInstance = {}
 
 export default clientInstance

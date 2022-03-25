@@ -2,24 +2,20 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import "./Payment.css"
-import axios from "axios"
 import PersonalInfoInputGroup from "../../components/Form/Form"
-import ProductListV2, { Book } from "../../components/Product_list/ProductListv2"
+import ProductListV2 from "../../components/Product_list/ProductListv2"
 import facebookLogo from "../../assets/book_cover.jpg"
-import { checkoutCardOmise, setUpOmise } from "../../utils/omise"
+import { checkoutWithOmise, getPaymentOption } from "../../utils/omise"
 import { useCart } from "../../hooks/useCart"
-import { PaymentTypes } from "../../utils/enums"
 import { PaymentMethod } from "../../utils/enums/shop.enum"
+import { Book } from "../../utils/types/shop"
+import { apiClient, CustomerInfo } from "../../utils/client"
+import { Button } from "../../components/Buttons/Button"
 
-interface Basket {
-  productId: number
-  quantity: number
-}
 interface HeadingProps {
   index: number
   title: string
 }
-
 const book: Book[] = [
   { productId: 1, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo, quantity: 1 },
   { productId: 2, title: "เตรียมสอบ PAT 3 ความถนัดทางวิศวกรรมศาสตร์", price: 15, productImg: facebookLogo, quantity: 1 },
@@ -150,6 +146,7 @@ function Payment() {
     province: "",
     postcode: "",
   })
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.CREDIT_CARD)
   const onCustomerInfoChange = (e: any) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
@@ -191,91 +188,29 @@ function Payment() {
   }, [isUseOldAddress, values.address, values.district, values.postcode, values.province, values.subdistrict])
 
   // -------------------omise handle-----------------
-
-  function omiseConfigure() {
-    window.OmiseCard.configure({
-      publicKey: "pkey_test_5qkz65yd4xjeimitf5x",
-      frameLabel: "FE Camp",
-      submitLabel: "Pay",
-      defaultPaymentMethod: "credit_card",
-    })
-    window.OmiseCard.configureButton("#credit-card")
-    window.OmiseCard.attach()
+  const checkout = async (omiseNonce?: string) => {
+    const source = omiseNonce ? { id: omiseNonce } : undefined
+    const basket = cart.books.map(({ productId, quantity, price }) => ({ productId, quantity, price }))
+    let data: CustomerInfo = {} as CustomerInfo
+    if (!isUseOldAddress) {
+      const shippingInfo = {
+        address: shippingAddress,
+        subdistrict: shippingSubDistrict,
+        district: shippingDistrict,
+        province: shippingProvince,
+        postcode: shippingZipCode,
+      }
+      data = { ...values, ...shippingInfo, basket }
+    } else data = { ...values, basket }
+    await apiClient.checkout(data, getPaymentOption(paymentMethod), source)
   }
-
-  const sentData = async (
-    source: string,
-    email: string,
-    firstName: string,
-    lastName: string,
-    tel: string,
-    grade: string,
-    school: string,
-    address: string,
-    subdistrict: string,
-    district: string,
-    province: string,
-    // postalCode
-    postcode: string,
-    basket: Basket[],
-    promotion_code?: string
-  ) => {
-    try {
-      await axios({
-        method: "post",
-        url: "https://dev.fe.in.th/api",
-        data: {
-          source,
-          email,
-          firstName,
-          lastName,
-          tel,
-          grade,
-          school,
-          address,
-          subdistrict,
-          district,
-          province,
-          postcode,
-          basket,
-          promotion_code,
-        },
-      })
-    } catch {
-      console.log("error")
+  const onCheckout = (e: any) => {
+    e.preventDefault()
+    if (getPaymentOption(paymentMethod).bank !== "internet-banking") {
+      checkout()
+      return
     }
-  }
-
-  function omiseReceiveToken() {
-    window.OmiseCard.open({
-      amount: 12345,
-      onCreateTokenSuccess: (token: any) => {
-        console.log(token)
-        const b1 = { productId: 10, quantity: 2 }
-        const basket = [b1]
-        sentData(
-          token,
-          values.email,
-          values.firstName,
-          values.lastName,
-          values.tel,
-          values.grade,
-          values.school,
-          shippingAddress,
-          shippingSubDistrict,
-          shippingDistrict,
-          shippingProvince,
-          shippingZipCode,
-          basket
-        )
-      },
-    })
-  }
-
-  function payWithCreditCard(event: any) {
-    event.preventDefault()
-    setUpOmise()
-    omiseReceiveToken()
+    checkoutWithOmise(totalPrice, checkout, paymentMethod)
   }
   const Heading = ({ title, index }: HeadingProps) => {
     return (
@@ -292,12 +227,7 @@ function Payment() {
   }
   return (
     <PaymentComponentBackground>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          console.log({ values, shippingAddress, shippingDistrict, shippingProvince, shippingSubDistrict, shippingZipCode })
-        }}
-      >
+      <form onSubmit={onCheckout} id="payment-form">
         <Layout>
           <div className="col-span-2 mr-4">
             <div>
@@ -316,7 +246,10 @@ function Payment() {
                   className="form-check-input h-4 w-4 cursor-pointer appearance-none rounded-full border border-2 border-red-900 bg-red-300 checked:border-2 checked:border-blue-100 checked:bg-red-900"
                   type="radio"
                   name="currentAddress"
-                  onChange={() => setIsUseOldAddress(true)}
+                  onChange={(e) => {
+                    setIsUseOldAddress(true)
+                  }}
+                  checked={isUseOldAddress}
                   style={{ marginRight: "17px", marginTop: "20px" }}
                 />
                 <WhiteLabel style={{ marginRight: "112px" }}>ที่อยู่ปัจจุบัน</WhiteLabel>
@@ -325,7 +258,8 @@ function Payment() {
                   type="radio"
                   name="newAddress"
                   style={{ marginRight: "17px" }}
-                  onChange={() => setIsUseOldAddress(false)}
+                  checked={!isUseOldAddress}
+                  onChange={(e) => setIsUseOldAddress(false)}
                 />
                 <WhiteLabel>ที่อยู่ใหม่</WhiteLabel>
               </div>
@@ -390,6 +324,8 @@ function Payment() {
                     type="radio"
                     name="selectPayment"
                     style={{ marginRight: "17px", marginTop: "20px" }}
+                    checked={paymentMethod === PaymentMethod.PROMPTPAY}
+                    onChange={() => setPaymentMethod(PaymentMethod.PROMPTPAY)}
                   />
                   <WhiteLabel style={{ marginRight: "112px" }}>พร้อมเพย์</WhiteLabel>
                 </div>
@@ -400,6 +336,8 @@ function Payment() {
                     type="radio"
                     name="selectPayment"
                     style={{ marginRight: "17px", marginTop: "20px" }}
+                    checked={paymentMethod === PaymentMethod.CREDIT_CARD}
+                    onChange={() => setPaymentMethod(PaymentMethod.CREDIT_CARD)}
                   />
 
                   <WhiteLabel>บัตรเครดิต/เดบิต</WhiteLabel>
@@ -411,6 +349,8 @@ function Payment() {
                     type="radio"
                     name="selectPayment"
                     style={{ marginRight: "17px", marginTop: "20px" }}
+                    checked={paymentMethod === PaymentMethod.INTERNET_BANKING_SCB}
+                    onChange={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_SCB)}
                   />
                   <WhiteLabel>โอนผ่านธนาคาร</WhiteLabel>
                 </div>
@@ -419,9 +359,9 @@ function Payment() {
           </div>
           <div className="col-span-1">
             <ProductListV2 bookList={cart.books} onBookChange={dispatchCart} price={totalPrice}></ProductListV2>
-            <button id="credit-card" onClick={() => checkoutCardOmise(totalPrice, (n) => console.log(n), PaymentMethod.INTERNET_BANKING_SCB)}>
-              จ่ายเงิน
-            </button>
+            <Button type="submit" form="payment-form" bg="white" textColor="var(--bg-color)" className="mt-5">
+              ยืนยันและไปชำระเงิน
+            </Button>
           </div>
         </Layout>
       </form>

@@ -7,6 +7,7 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai"
 
 import { Button } from "../Buttons/Button"
 import { CartAction, CartActionEnum } from "../../hooks/useCart"
+import { Book } from "../../utils/types/shop"
 
 const Container = styled.div`
     width: 454px;
@@ -206,18 +207,6 @@ const CodeBtn = styled.p`
     display: inline;
 }`
 
-export interface Book {
-  productId: number
-  title: string
-  price: number
-  productImg: any
-  quantity: number
-}
-
-interface Basket {
-  productId: number
-  quantity: number
-}
 interface ProductListProps {
   shipping?: number
   bookList: Book[]
@@ -237,7 +226,7 @@ const ProductListV2: React.FC<ProductListProps> = ({ onBookChange, shipping, boo
       <Head>รายการสินค้า</Head>
       {bookList.map((book) => {
         return (
-          <ListBackGround>
+          <ListBackGround key={book.productId}>
             <ProductImg src={book.productImg}></ProductImg>
             <Title>
               <InfoText>{book.title}</InfoText>

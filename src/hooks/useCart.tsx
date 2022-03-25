@@ -1,6 +1,5 @@
 import React, { ReducerAction, ReducerState, useReducer } from "react"
-import { Book } from "../components/Product_list/ProductListv2"
-import Product from "../pages/Product/Product"
+import { Book } from "../utils/types/shop"
 export enum CartActionEnum {
   INCREMENT = "INCREMENT",
   DECREMENT = "DECREMENT",
