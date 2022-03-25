@@ -2,6 +2,7 @@
 import axios, { AxiosResponse } from "axios"
 import client from "./client"
 import { PaymentTypes } from "./enums"
+import { PaymentMethod } from "./enums/shop.enum"
 
 export const setUpOmise = () => {
   window.Omise.setPublicKey(process.env.REACT_APP_OMISE_PUBLIC_KEY)
@@ -29,9 +30,9 @@ export const createToken = () => {
     }
   )
 }
-export const checkoutCardOmise = (amount: number, onCreateTokenSuccess: (nonce: string) => void, payType: PaymentTypes) => {
+export const checkoutCardOmise = (amount: number, onCreateTokenSuccess: (nonce: string) => void, payType: PaymentMethod) => {
   window.OmiseCard.open({
-    amount: amount,
+    amount: amount * 100,
     currency: "THB",
     defaultPaymentMethod: payType,
     otherPaymentMethods: "internet_banking,promptpay,credit_card",

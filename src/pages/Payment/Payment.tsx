@@ -9,6 +9,7 @@ import facebookLogo from "../../assets/book_cover.jpg"
 import { checkoutCardOmise, setUpOmise } from "../../utils/omise"
 import { useCart } from "../../hooks/useCart"
 import { PaymentTypes } from "../../utils/enums"
+import { PaymentMethod } from "../../utils/enums/shop.enum"
 
 interface Basket {
   productId: number
@@ -418,7 +419,7 @@ function Payment() {
           </div>
           <div className="col-span-1">
             <ProductListV2 bookList={cart.books} onBookChange={dispatchCart} price={totalPrice}></ProductListV2>
-            <button id="credit-card" onClick={() => checkoutCardOmise(totalPrice, (n) => console.log(n), PaymentTypes.card)}>
+            <button id="credit-card" onClick={() => checkoutCardOmise(totalPrice, (n) => console.log(n), PaymentMethod.INTERNET_BANKING_SCB)}>
               จ่ายเงิน
             </button>
           </div>
