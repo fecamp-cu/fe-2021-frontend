@@ -1,9 +1,10 @@
 import React from "react"
 import styled from "styled-components"
+import { device } from "../../utils/constants/common.constant"
 
 const ApplyBtn = styled.button`
-  width: 194px;
-  height: 67px;
+  width: 190px;
+  height: 90px;
 
   /* red2orange/left/right */
 
@@ -14,15 +15,30 @@ const ApplyBtn = styled.button`
   align-items: center;
   text-align: center;
   justify-content: center;
-  padding-top: 10px; 
+  padding-top: 30px; 
+  padding-left: 20px; 
+  padding-right: 20px; 
+  padding-bottom: 20px; 
 
   color: #ffffff;
-  
 
-  @media (max-width: 390px) {
-      width: 148px;
-      height: 49px;
-    }
+  @media ${device.mobileS} {
+    padding-top: 15px; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 10px; 
+    width: 150px;
+    height: 55px;
+  }
+
+  @media ${device.mobileOverall} {
+    padding-top: 15px; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 10px; 
+    width: 170px;
+    height: 60px;
+  }
   
    &:hover{
        background: linear-gradient(262.9deg, #C43E56 8.25%, #D24F66 29.21%, #D7525B 71.52%, #C83A41 94.65%);
@@ -53,17 +69,30 @@ const ApplyTxt = styled.p`
   font-family: CHULALONGKORN;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
-  line-height: 54px;
+  font-size: 25px;
+  line-height: 30px;
   /* identical to box height */
 
   display: flex;
 
-
-  @media (max-width: 390px){
-    font-size: 28px;
-    line-height: 42px;
+  @media ${device.mobileS}{
+    padding-top: 10px; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 10px; 
+    font-size: 16px;
+    line-height: 20px;
   }
+
+  @media ${device.mobileOverall}{
+    padding-top: 10px; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 10px; 
+    font-size: 18px;
+    line-height: 20px;
+  }
+
 }`
 
 interface ApplyButtonProps {
@@ -73,7 +102,7 @@ interface ApplyButtonProps {
 const ApplyButton: React.FC<ApplyButtonProps> = ({ onClick }) => {
   return (
     <ApplyBtn onClick={onClick}>
-      <ApplyTxt>สมัครค่าย</ApplyTxt>
+      <ApplyTxt>สมัครค่ายและตรวจสอบสถานะ</ApplyTxt>
     </ApplyBtn>
   )
 }
