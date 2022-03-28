@@ -16,6 +16,17 @@ export const Circle = styled.span.attrs({
   height: 60px;
   width: 60px;
 `
+
+export const RoundBox = styled.div.attrs({
+  className: "px-3 py-3",
+})<{ bg?: string; borderThickness?: string; textColor: string }>`
+  border-radius: 10px;
+  max-width: 200px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  background-color: ${(props) => props.bg || "white"};
+  color: ${(props) => props.textColor};
+  border: ${(props) => props.borderThickness || "0.5"}px solid white;
+`
 interface ResizableContainerProps {
   width: number
   height: number

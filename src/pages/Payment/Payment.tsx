@@ -11,6 +11,11 @@ import { PaymentMethod } from "../../utils/enums/shop.enum"
 import { Book } from "../../utils/types/shop"
 import { apiClient, CustomerInfo } from "../../utils/client"
 import { Button } from "../../components/Buttons/Button"
+import { Badge } from "../../components/Badge/Badge"
+import KrungSri from "../../assets/images/bank_krungsri.png"
+import SCB from "../../assets/images/bank_scb.png"
+import BBL from "../../assets/images/bank_bbl.png"
+import SomeBank from "../../assets/images/bank_something.png"
 
 interface HeadingProps {
   index: number
@@ -202,11 +207,15 @@ function Payment() {
       }
       data = { ...values, ...shippingInfo, basket }
     } else data = { ...values, basket }
-    await apiClient.checkout(data, getPaymentOption(paymentMethod), source)
+    console.log({ data, method: getPaymentOption(paymentMethod), source })
+    const bankUri = await apiClient.checkout(data, getPaymentOption(paymentMethod), source)
+    if (bankUri) {
+      window.open(bankUri)
+    }
   }
   const onCheckout = (e: any) => {
     e.preventDefault()
-    if (getPaymentOption(paymentMethod).bank !== "internet-banking") {
+    if (getPaymentOption(paymentMethod).bank === "internet-banking") {
       checkout()
       return
     }
@@ -349,10 +358,36 @@ function Payment() {
                     type="radio"
                     name="selectPayment"
                     style={{ marginRight: "17px", marginTop: "20px" }}
-                    checked={paymentMethod === PaymentMethod.INTERNET_BANKING_SCB}
-                    onChange={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_SCB)}
+                    checked={getPaymentOption(paymentMethod).type === "internet-banking"}
+                    onChange={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_KTB)}
                   />
                   <WhiteLabel>โอนผ่านธนาคาร</WhiteLabel>
+                </div>
+                <div className="ml-12 mt-2 grid grid-cols-3 gap-6">
+                  <Badge
+                    icon={KrungSri}
+                    title="กรุงศรี"
+                    checked={paymentMethod === PaymentMethod.INTERNET_BANKING_BAY}
+                    onChangeCallback={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_BAY)}
+                  ></Badge>
+                  <Badge
+                    icon={SCB}
+                    title="ไทยพานิชย์"
+                    checked={paymentMethod === PaymentMethod.INTERNET_BANKING_SCB}
+                    onChangeCallback={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_SCB)}
+                  ></Badge>
+                  <Badge
+                    icon={BBL}
+                    title="กรุงเทพ"
+                    checked={paymentMethod === PaymentMethod.INTERNET_BANKING_BBL}
+                    onChangeCallback={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_BBL)}
+                  ></Badge>
+                  <Badge
+                    icon={SomeBank}
+                    title="กรุงไทย"
+                    checked={paymentMethod === PaymentMethod.INTERNET_BANKING_KTB}
+                    onChangeCallback={() => setPaymentMethod(PaymentMethod.INTERNET_BANKING_KTB)}
+                  ></Badge>
                 </div>
               </div>
             </div>
