@@ -13,7 +13,6 @@ export const Nav = styled.nav`
   line-height: 1.875rem;
   font-weight: 500;
   position: absolute;
-  /* border: 2px solid #fff; */
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   z-index: 40;
@@ -46,6 +45,7 @@ export const NavTitle = styled(Link)`
   justify-content: center;
   align-items: center;
   z-index: 40;
+  width: 50%;
 
   @media ${device.mobileOverall} {
     width: 20%;
