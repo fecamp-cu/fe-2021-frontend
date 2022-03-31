@@ -194,7 +194,7 @@ function Payment() {
 
   // -------------------omise handle-----------------
   const checkout = async (omiseNonce?: string) => {
-    const source = omiseNonce ? { id: omiseNonce } : undefined
+    const source = omiseNonce ? { id: omiseNonce, amount: getTotalPrice() * 100 } : undefined
     const basket = cart.books.map(({ productId, quantity, price }) => ({ productId, quantity, price }))
     let data: CustomerInfo = {} as CustomerInfo
     if (!isUseOldAddress) {
@@ -207,7 +207,6 @@ function Payment() {
       }
       data = { ...values, ...shippingInfo, basket }
     } else data = { ...values, basket }
-    console.log({ data, method: getPaymentOption(paymentMethod), source })
     const bankUri = await apiClient.checkout(data, getPaymentOption(paymentMethod), source)
     if (bankUri) {
       window.open(bankUri)
