@@ -137,7 +137,7 @@ const Title = styled.p`
     margin-left: 15px;
 }`
 
-const SqrBtn = styled.button`
+const SqrBtn = styled.button.attrs({ type: "button" })`
 
     width: 30px;
     height: 30px;

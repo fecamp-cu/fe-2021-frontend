@@ -176,12 +176,17 @@ const getOrderAll = async () => {
 }
 
 const checkout = async (customerInfo: CustomerInfo, paymentOption: PaymentOption, token?: { id: string }) => {
-  const res = await client.post<{ authorize_uri: string }>(`/shop/checkout/${paymentOption.type}`, {
+  const body = {
     source: token,
     ...customerInfo,
     bank: paymentOption.bank,
-  })
-  return res.data.authorize_uri
+  }
+  try {
+    const res = await client.post<{ authorize_uri: string }>(`/shop/checkout/${paymentOption.type}`, body)
+    return res.data?.authorize_uri
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const genCode = async (
