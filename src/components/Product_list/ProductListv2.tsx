@@ -33,10 +33,10 @@ const Head = styled.div`
     color: #FFFFFF;
 }`
 
-const Footer = styled.div`
+const Footer = styled.div.attrs({
+  className: "p-3",
+})`
     height: 75px;
-    padding-left: 20px;
-    padding-top: 13px;
     
 }`
 
@@ -44,27 +44,24 @@ const ListBackGround = styled.div.attrs({
   className: "flex justify-center items-center",
 })`
     max-width: 454px;
-    min-height: 100px;
     height:auto;
-    padding-top: 0.1px;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
 }
 `
 
-const CodeBg = styled.div`
+const CodeBg = styled.div.attrs({
+  className: "p-5 flex justify-between",
+})`
     width: 454px;
     min-height: 90px;
     height:auto !important;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
-    padding-left: 20px;
-    padding-top: 30px;
     
 }`
 
 const CodeInput = styled.input`
     width: 222px;
     height: 40px;
-    margin-left: 36px;
     display: inline;
 
     background: rgba(255, 255, 255, 0.3);
@@ -80,46 +77,42 @@ const CodeInput = styled.input`
     
 }`
 
-const InfoText = styled.text`
+const InfoText = styled.p.attrs({
+  className: "flex items-center",
+})`
     @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
     font-family: Bai Jamjuree;
+    line-height: 20px;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 20px;
-    /* identical to box height */
-
-    /* white/500 */
-
     color: #FFFFFF;
 }`
 
-const ShippingCost = styled.p`
+const ShippingCost = styled.div.attrs({
+  className: "flex justify-between",
+})`
 
     font-family: CHULALONGKORN;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height */
-    display: inline;
 
     /* white/500 */
 
     color: #FFFFFF;
 }`
 
-const Cost = styled.p`
-    display: inline-block;
+const Cost = styled.div.attrs({
+  className: "flex justify-between",
+})`
 
     font-family: CHULALONGKORN;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 27px;
-    /* identical to box height */
-    
-    /* white/500 */
     color: #FFFFFF;
 }`
 
@@ -132,7 +125,7 @@ const ProductImg = styled.img`
 
 }`
 
-const Title = styled.p`
+const Title = styled.div`
     display: inline-block;
     margin-left: 15px;
 }`
@@ -160,7 +153,6 @@ const Logo = styled.p`
 
 const Price = styled.p`
 
-    position: absolute;
     width: 61px;
     height: 27px;
 
@@ -202,7 +194,7 @@ const Amount = styled.p`
     color: #D15C65;
 }`
 
-const CodeBtn = styled.p`
+const CodeBtn = styled.div`
     margin-left: 13px;
     display: inline;
 }`
@@ -262,19 +254,25 @@ const ProductListV2: React.FC<ProductListProps> = ({ onBookChange, shipping, boo
 
       <CodeBg>
         <InfoText>โค้ดส่วนลด</InfoText>
-        <CodeInput type="text" onChange={inputCode}></CodeInput>
-        <CodeBtn>
-          <Button width="71" bg="#D45161" fontSize="16px" lineHeight="24px" outline={false} shadow>
-            ใช้โค้ด
-          </Button>
-        </CodeBtn>
+        <div className="flex justify-between">
+          <CodeInput type="text" onChange={inputCode}></CodeInput>
+          <CodeBtn>
+            <Button width="71" bg="#D45161" fontSize="16px" lineHeight="24px" outline={false} shadow>
+              ใช้โค้ด
+            </Button>
+          </CodeBtn>
+        </div>
       </CodeBg>
 
       <Footer>
-        <ShippingCost>ค่าจัดส่ง</ShippingCost>
-        <ShippingCost style={{ marginLeft: "330px" }}>฿ 0.00</ShippingCost>
-        <Cost>ราคาสุทธิ</Cost>
-        <Cost style={{ marginLeft: "297px" }}>฿ {price.toFixed(2)}</Cost>
+        <ShippingCost>
+          <p>ค่าจัดส่ง</p>
+          <p>฿ 0.00</p>
+        </ShippingCost>
+        <Cost>
+          <p>ราคาสุทธิ</p>
+          <p>฿ {price.toFixed(2)}</p>
+        </Cost>
       </Footer>
     </Container>
   )
