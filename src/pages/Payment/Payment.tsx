@@ -242,7 +242,7 @@ function Payment() {
             <div>
               <Heading index={1} title="ข้อมูลผู้ซื้อ"></Heading>
               <FormContainer>
-                <PersonalInfoInputGroup values={values} email={values.email} onChange={onCustomerInfoChange} />
+                <PersonalInfoInputGroup values={values} email={values.email} disableFlex onChange={onCustomerInfoChange} />
               </FormContainer>
             </div>
 

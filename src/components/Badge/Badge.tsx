@@ -12,7 +12,7 @@ export const Badge: React.FC<BadgeProps> = ({ icon, title, checked, onChangeCall
   return (
     <RoundBox
       textColor={checked ? "white" : "var(--crimson)"}
-      bg={checked ? "var(--bg-color)" : "white"}
+      bg={checked ? "var(--red-pink)" : "white"}
       onClick={() => onChangeCallback(value ?? title)}
     >
       <div className="flex justify-start">

@@ -87,6 +87,7 @@ interface PersonalInfoInputGroupProps {
   values: PersonalInfo
   email: string
   onChange: any
+  disableFlex?: boolean
 }
 
 const PersonalInfoInputGroup: React.FC<PersonalInfoInputGroupProps> = (props) => {
@@ -98,6 +99,7 @@ const PersonalInfoInputGroup: React.FC<PersonalInfoInputGroupProps> = (props) =>
       collapsedHeight={450}
       expandIcon={<BsChevronDown />}
       collapseIcon={<BsChevronUp />}
+      disabled={props.disableFlex}
     >
       <div className="row1">
         <Label>ชื่อ</Label>

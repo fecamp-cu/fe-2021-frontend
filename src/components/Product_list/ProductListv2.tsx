@@ -10,8 +10,8 @@ import { CartAction, CartActionEnum } from "../../hooks/useCart"
 import { Book } from "../../utils/types/shop"
 
 const Container = styled.div`
-    width: 454px;
-    height:auto !important;
+    max-width: 454px;
+    height:auto;
 
     background: linear-gradient(90deg, #AC3B43 0%, #D15C65 64.31%, #E56D77 98.24%);
     border-radius: 5px;
@@ -40,12 +40,12 @@ const Footer = styled.div`
     
 }`
 
-const ListBackGround = styled.div`
-    width: 454px;
+const ListBackGround = styled.div.attrs({
+  className: "flex justify-center items-center",
+})`
+    max-width: 454px;
     min-height: 100px;
-    height:auto !important;
-    display: inline-block;
-    padding-left: 20px;
+    height:auto;
     padding-top: 0.1px;
     background: linear-gradient(98.4deg, rgba(226, 226, 226, 0.6) 10.21%, rgba(255, 255, 255, 0.4) 90.92%);
 }
@@ -227,33 +227,35 @@ const ProductListV2: React.FC<ProductListProps> = ({ onBookChange, shipping, boo
       {bookList.map((book) => {
         return (
           <ListBackGround key={book.productId}>
-            <ProductImg src={book.productImg}></ProductImg>
-            <Title>
-              <InfoText>{book.title}</InfoText>
-            </Title>
+            <div>
+              <ProductImg src={book.productImg}></ProductImg>
+              <Title>
+                <InfoText>{book.title}</InfoText>
+              </Title>
 
-            <Amount style={{ marginLeft: "360px", marginTop: "-25px" }}>{book.quantity}</Amount>
+              <Amount style={{ marginLeft: "360px", marginTop: "-25px" }}>{book.quantity}</Amount>
 
-            <SqrBtn
-              style={{ marginLeft: "-95px", marginTop: "70px" }}
-              id={book.productId.toString()}
-              onClick={() => onBookChange({ type: CartActionEnum.DECREMENT, payload: book.productId })}
-            >
-              <Logo>
-                <AiOutlineMinus />
-              </Logo>
-            </SqrBtn>
+              <SqrBtn
+                style={{ marginLeft: "-95px", marginTop: "70px" }}
+                id={book.productId.toString()}
+                onClick={() => onBookChange({ type: CartActionEnum.DECREMENT, payload: book.productId })}
+              >
+                <Logo>
+                  <AiOutlineMinus />
+                </Logo>
+              </SqrBtn>
 
-            <SqrBtn
-              style={{ marginLeft: "-22px", marginTop: "70px" }}
-              id={book.productId.toString()}
-              onClick={() => onBookChange({ type: CartActionEnum.INCREMENT, payload: book.productId })}
-            >
-              <Logo>
-                <AiOutlinePlus />
-              </Logo>
-            </SqrBtn>
-            <Price style={{ marginLeft: "86px", marginTop: "-25px" }}>฿ {book.price.toFixed(2)}</Price>
+              <SqrBtn
+                style={{ marginLeft: "-22px", marginTop: "70px" }}
+                id={book.productId.toString()}
+                onClick={() => onBookChange({ type: CartActionEnum.INCREMENT, payload: book.productId })}
+              >
+                <Logo>
+                  <AiOutlinePlus />
+                </Logo>
+              </SqrBtn>
+              <Price style={{ marginLeft: "86px", marginTop: "-25px" }}>฿ {book.price.toFixed(2)}</Price>
+            </div>
           </ListBackGround>
         )
       })}
