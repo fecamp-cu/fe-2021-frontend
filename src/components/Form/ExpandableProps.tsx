@@ -9,6 +9,7 @@ interface ExpandableProps {
   expandIcon: any
   className?: string
   collapseIcon: any
+  disabled?: boolean
 }
 const ExpandableBlock = styled.div<{ collapsedHeight: number; expandedHeight: number; atWidth: number; show: boolean }>`
   @media (max-width: ${(props) => props.atWidth}px) {
@@ -36,20 +37,33 @@ export const Expandable: React.FC<ExpandableProps> = ({
   expandIcon,
   className,
   collapseIcon,
+  disabled,
 }) => {
   const [show, setShow] = useState(true)
   return (
     <div>
-      <ExpandableBlock collapsedHeight={collapsedHeight} expandedHeight={expandedHeight} atWidth={atWidth} show={show} className={className ?? ""}>
-        {children}
-      </ExpandableBlock>
-      <IconContext.Provider value={{ className: "collapsed-icon" }}>
-        <div className="flex justify-center">
-          <ExpandButton onClick={() => setShow((prev) => !prev)} atWidth={atWidth}>
-            {show ? collapseIcon : expandIcon}
-          </ExpandButton>
-        </div>
-      </IconContext.Provider>
+      {disabled ? (
+        children
+      ) : (
+        <>
+          <ExpandableBlock
+            collapsedHeight={collapsedHeight}
+            expandedHeight={expandedHeight}
+            atWidth={atWidth}
+            show={show}
+            className={className ?? ""}
+          >
+            {children}
+          </ExpandableBlock>
+          <IconContext.Provider value={{ className: "collapsed-icon" }}>
+            <div className="flex justify-center">
+              <ExpandButton onClick={() => setShow((prev) => !prev)} atWidth={atWidth}>
+                {show ? collapseIcon : expandIcon}
+              </ExpandButton>
+            </div>
+          </IconContext.Provider>
+        </>
+      )}
     </div>
   )
 }

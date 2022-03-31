@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
 import { PageContainer } from "./components/Containers"
 import Footer from "./components/Footer/Footer"
@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar"
 import Product from "./pages/Product/Product"
 import { apiClient } from "./utils/client"
 import { setUpOmise } from "./utils/omise"
-import { User } from "./utils/types/common"
 import useWindowDimensions from "./hooks/useWindowDimension"
 import LandingPage from "./pages/LandingPage"
 import { useUserContext } from "./utils/contexts/userContext"
@@ -15,6 +14,8 @@ import ProfileShow from "./pages/Profile/ProfileShow"
 import ProfileEdit from "./pages/Profile/ProfileEdit"
 import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
+import Payment from "./pages/Payment/Payment"
+import PaymentConfirm from "./pages/Payment/PaymentConfirm"
 
 function App() {
   const location = useLocation()
@@ -29,7 +30,7 @@ function App() {
     }
 
     fetchUser()
-  }, [])
+  }, [setUser])
 
   setUpOmise()
   return (
@@ -43,6 +44,8 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/profile" element={<ProfileShow user={user} setUser={setUser} />}></Route>
           <Route path="/profile/edit" element={<ProfileEdit user={user} setUser={setUser} />}></Route>
+          <Route path="/payment" element={<Payment />}></Route>
+          <Route path="/paymentconfirm" element={<PaymentConfirm />}></Route>
         </Routes>
       </PageContainer>
       <Footer

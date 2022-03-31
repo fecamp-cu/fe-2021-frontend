@@ -1,4 +1,4 @@
-import Form from "../../components/Form/Form"
+import PersonalInfoInputGroup from "../../components/Form/Form"
 import ProfilePictureEdit from "../../components/Profile/Profile"
 import "./Profile_edit.css"
 import { Link } from "react-router-dom"
@@ -54,18 +54,18 @@ function ProfileEdit(props: ProfileProps) {
       </Link>
       <h1 className="mt-[75px] items-center text-center text-3xl font-bold text-white">ข้อมูลส่วนตัว</h1>
       <div className="mx-auto mt-[24px] mb-[-70px] h-[120px] w-[120px]">
-        <ProfilePictureEdit onChange={onChangeImage} image={image} preview={(props.user.profile as Profile).imageUrl} />
+        <ProfilePictureEdit onChange={onChangeImage} image={image} preview={(props.user.profile as Profile)?.imageUrl} />
       </div>
       <div className="mx-auto h-[440px] w-[1040px] rounded-[15px] bg-white/30 pt-[60px] text-center text-white shadow-lg">
-        <Form onChange={onChange} onSubmit={onSubmit} values={values} email={props.user.email} ids={"myform"} />
-        <form>
+        <form onSubmit={onSubmit} id="profile-form">
+          <PersonalInfoInputGroup onChange={onChange} values={values} email={props.user.email} ids={"myform"} />
           <Link to="/ProfileShow">
             <Button className="mr-[50px]" width="157" height="40" fontSize="20" textColor="white" outline shadow={false}>
               ยกเลิก
             </Button>
           </Link>
 
-          <Button width="157" height="40" fontSize="20" form="myform" bg="white" textColor="#9B2C33" outline={false} shadow>
+          <Button width="157" height="40" form="profile-form" fontSize="20" type="submit" bg="white" textColor="#9B2C33" outline={false} shadow>
             บันทึก
           </Button>
         </form>

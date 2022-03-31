@@ -5,6 +5,8 @@ import Switch from "../../components/Switch/Switch"
 import { useNavigate, useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
 import { apiClient } from "../../utils/client"
+import { IoMdBasket } from "react-icons/io"
+import { Circle } from "../../components/Containers"
 
 const Product = () => {
   const { id } = useParams()
@@ -35,7 +37,6 @@ const Product = () => {
   // TODO: Remove dummy div this in sprint 2
   return (
     <ProductContainer className="text-white">
-      <div className="h-20 sm:h-24" />
       <div>
         <Switch items={switchItems} onSelectCallback={(id) => navigator(`/product/${id}`)} />
         {/* <div className="absolute right-8 top-32 hidden sm:block">
