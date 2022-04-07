@@ -7,7 +7,6 @@ export default function useLoading() {
 
   useEffect(() => {
     setLoading(true)
-    console.log("Location changed")
   }, [location])
 
   return { isLoading: loading, setLoading }
