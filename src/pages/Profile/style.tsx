@@ -3,11 +3,9 @@ import { device } from "../../utils/constants/common.constant"
 import { Root } from "../../utils/style/common"
 
 export const ProfileRoot = styled(Root)`
-  padding-top: 3.5rem;
   row-gap: 1.5rem;
 
   @media ${device.laptop} {
-    padding-top: 4.7rem;
     row-gap: 2.58rem;
   }
 `

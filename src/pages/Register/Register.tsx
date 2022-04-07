@@ -100,9 +100,9 @@ const Register = () => {
   return (
     <div className="registercon">
       <div className="items-center pt-28">
-        <div className="formbox pt-5">
+        <form className="formbox pt-5" onSubmit={handleSubmit} id="reg-form">
           <h1 className="regheader">ข้อมูลผู้สมัคร</h1>
-          <PersonalInfoForm values={values} email={values.email} onChange={onChange} onSubmit={handleSubmit} ids="reg">
+          <PersonalInfoForm values={values} email={values.email} onChange={onChange} ids="reg">
             <div className="mt-2 sm:mt-4">
               <div className="register">
                 <div className="username">
@@ -126,11 +126,11 @@ const Register = () => {
                 ยกเลิก
               </Button>
             </Link>
-            <Button form="reg" bg="white" textColor="#9B2C33" outline={false} shadow>
+            <Button bg="white" textColor="#9B2C33" outline={false} shadow type="submit" form="reg-form">
               ลงทะเบียน
             </Button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )

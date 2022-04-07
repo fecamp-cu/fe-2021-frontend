@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ButtonHTMLAttributes } from "react"
 import { IconType } from "react-icons"
 import styled from "styled-components"
 import { BaseButton, BaseButtonProps } from "./BaseButton"
@@ -9,6 +9,7 @@ interface ButtonProps extends BaseButtonProps, LogoProps {
   className?: string
   onClick?: () => void
   Icon?: IconType
+  type?: "button" | "submit"
   form?: string
 }
 

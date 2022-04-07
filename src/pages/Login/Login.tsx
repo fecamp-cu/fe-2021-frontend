@@ -63,7 +63,7 @@ const Login = () => {
               ลืมรหัสผ่าน
             </p>
             <div className="my-1.5 mx-2.5">
-              <Button form="loginform" bg="white" textColor="#9B2C33" outline={false} shadow>
+              <Button type="submit" form="loginform" bg="white" textColor="#9B2C33" outline={false} shadow>
                 เข้าสู่ระบบ
               </Button>
             </div>

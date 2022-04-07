@@ -4,13 +4,38 @@ import { Endpoint } from "./enums/common.enum"
 import { Credentials, User } from "./types/common"
 import { addSeconds, isPast } from "date-fns"
 import { FacebookAuthToken, LoginPayload } from "./types/auth"
-
+import { PaymentOption, ProductTransaction } from "./types/shop"
+import { PromotionCodeType } from "./enums/shop.enum"
 export function storeToken(credentials: Credentials): void {
   const expireDate = addSeconds(Date.now(), credentials.expiresIn).toISOString()
 
   localStorage.setItem("fe_camp_access_token", credentials.accessToken)
   localStorage.setItem("fe_camp_refresh_token", credentials.refreshToken)
   localStorage.setItem("fe_camp_expire_date", expireDate)
+}
+
+export type GenPromotionCode = {
+  type: PromotionCodeType
+  isReuseable?: boolean
+  expireDate?: Date
+  code?: string
+  value?: number
+}
+
+export type CustomerInfo = {
+  firstName: string
+  lastName: string
+  tel: string
+  email: string
+  grade: string
+  school: string
+  address: string
+  subdistrict: string
+  district: string
+  province: string
+  postcode: string
+  promotion_code?: string
+  basket: ProductTransaction[]
 }
 
 const client = Axios.create({
@@ -150,6 +175,64 @@ const getOrderAll = async () => {
   return res
 }
 
+const checkout = async (customerInfo: CustomerInfo, paymentOption: PaymentOption, token?: { id: string }) => {
+  const body = {
+    source: token,
+    ...customerInfo,
+    bank: paymentOption.bank,
+  }
+  try {
+    const res = await client.post<{ authorize_uri: string }>(`/shop/checkout/${paymentOption.type}`, body)
+    return res.data?.authorize_uri
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const genCode = async (
+  type: PromotionCodeType,
+  setCode: (code: string) => void,
+  isReuseable?: boolean,
+  expireDate?: Date,
+  code?: string,
+  value?: number
+) => {
+  if (!isReuseable) {
+    isReuseable = false
+  }
+
+  const data: GenPromotionCode = {
+    type,
+    isReuseable,
+  }
+
+  if (expireDate) {
+    data.expireDate = expireDate
+  }
+
+  if (code) {
+    data.code = code
+  }
+
+  if (value) {
+    data.value = value
+  }
+
+  const res = await client.post(`/shop/generate-code`, data)
+  setCode(res.data.code)
+  console.log(res)
+}
+const verifyCode = async (code: string) => {
+  const res = await client.post(`/shop/verify/${code}`)
+  console.log(res)
+}
+
+const testAPI = async () => {
+  const res = await client.get("/")
+  console.log(res)
+  return res
+}
+
 export const apiClient = {
   patchProfile,
   putProfile,
@@ -170,4 +253,12 @@ export const apiClient = {
   putProfilePicture,
   googleCallback,
   facebookCallback,
+  testAPI,
+  checkout,
+  genCode,
+  verifyCode,
 }
+
+const clientInstance = {}
+
+export default clientInstance

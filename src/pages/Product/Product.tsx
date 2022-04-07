@@ -5,8 +5,13 @@ import Switch from "../../components/Switch/Switch"
 import { useNavigate, useParams } from "react-router-dom"
 import Axios, { CancelTokenSource } from "axios"
 import { apiClient } from "../../utils/client"
+import { IoMdBasket } from "react-icons/io"
+import { Circle } from "../../components/Containers"
+import useLoading from "../../hooks/useLoading"
+import Loading from "../../components/Loading"
 
 const Product = () => {
+  const { isLoading, setLoading } = useLoading()
   const { id } = useParams()
   const navigator = useNavigate()
   const switchItems = [
@@ -23,6 +28,7 @@ const Product = () => {
   const getProduct = useCallback(async (id: string, cancelToken?: CancelTokenSource) => {
     const product = await apiClient.fetchProduct(id, cancelToken)
     setProduct(product)
+    setLoading(false)
   }, [])
   useEffect(() => {
     const source = Axios.CancelToken.source()
@@ -35,16 +41,21 @@ const Product = () => {
   // TODO: Remove dummy div this in sprint 2
   return (
     <ProductContainer className="text-white">
-      <div className="h-20 sm:h-24" />
-      <div>
-        <Switch items={switchItems} onSelectCallback={(id) => navigator(`/product/${id}`)} />
-        {/* <div className="absolute right-8 top-32 hidden sm:block">
-          <Circle color="white">
-            <IoMdBasket size={40} color={"var(--crimson)"} />
-          </Circle>
-        </div> */}
-      </div>
-      <main className="glass-container p-4 md:pt-8">{product ? <ProductInfo {...product} /> : <div>loading</div>}</main>
+      {!isLoading ? (
+        <div>
+          <div>
+            <Switch items={switchItems} onSelectCallback={(id) => navigator(`/product/${id}`)} />
+            {/* <div className="absolute right-8 top-32 hidden sm:block">
+            <Circle color="white">
+              <IoMdBasket size={40} color={"var(--crimson)"} />
+            </Circle>
+          </div> */}
+          </div>
+          <main className="glass-container p-4 md:pt-8">{product ? <ProductInfo {...product} /> : <div>loading</div>}</main>
+        </div>
+      ) : (
+        <Loading />
+      )}
     </ProductContainer>
   )
 }

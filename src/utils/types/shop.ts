@@ -1,6 +1,14 @@
-import { PRODUCT_TYPE } from "../enums"
-import { PaymentMethod, Status } from "../enums/shop.enum"
+import { PaymentMethod, PRODUCT_TYPE, Status } from "../enums/shop.enum"
 
+export interface ProductTransaction {
+  productId: number
+  quantity: number
+  price: number
+}
+export interface Book extends ProductTransaction {
+  title: string
+  productImg: any
+}
 export interface Customer {
   id: number
   firstname: string
@@ -16,6 +24,11 @@ export interface Customer {
   postcode: string
   point: number
   orders: Order[]
+}
+
+export interface PaymentOption {
+  type: string
+  bank?: string
 }
 
 export interface Order {
