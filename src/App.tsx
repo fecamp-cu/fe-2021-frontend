@@ -16,8 +16,10 @@ import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
 import Payment from "./pages/Payment/Payment"
 import PaymentConfirm from "./pages/Payment/PaymentConfirm"
+import useLoading from "./hooks/useLoading"
 
 function App() {
+  useLoading()
   const location = useLocation()
   const { user, setUser } = useUserContext()
   const { width } = useWindowDimensions()
