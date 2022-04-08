@@ -114,7 +114,7 @@ const postRegister = async (postReg: object) => {
 }
 
 const putProfilePicture = async (id: string, file: FormData) => {
-  const res = await client.put(`/api/profile/${id}/upload`, file, { headers: { "content-Type": "multipart/form-data" } })
+  const res = await client.put(`/api/profile/${id}/upload`, file,  { headers: { "content-Type": "multipart/form-data" } })
   return res
 }
 
