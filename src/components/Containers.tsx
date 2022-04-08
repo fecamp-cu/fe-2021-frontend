@@ -3,7 +3,6 @@ import styled from "styled-components"
 import useWindowDimensions from "../hooks/useWindowDimension"
 
 export const PageContainer = styled.div`
-  margin-bottom: 30px;
   padding-top: 70px;
 `
 
@@ -27,27 +26,13 @@ export const RoundBox = styled.div.attrs({
   color: ${(props) => props.textColor};
   border: ${(props) => props.borderThickness || "0.5"}px solid white;
 `
-interface ResizableContainerProps {
-  width: number
-  height: number
-  className?: string
-}
-const ResizableDiv = styled.div<{ scale: number; width: number; height: number }>`
-  width: ${(props) => props.width}px;
-  height: ${(props) => props.height}px;
-  transform: translate(-10%) scale(${(props) => props.scale * 0.75});
-  resize: both;
-  transform-origin: center center;
+
+export const FloatingGlassBox = styled.div`
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  background: var(--gm-color);
+  border-radius: 17px;
+  max-width: 500px;
+  margin: 20% auto 30% auto;
 `
-export const ResizableContainer: React.FC<ResizableContainerProps> = ({ className, width, height, children }) => {
-  const windowDimension = useWindowDimensions()
-  const [scale, setScale] = useState<number>(Math.min(width / windowDimension.width, height / windowDimension.height))
-  useEffect(() => {
-    setScale(Math.min(width / windowDimension.width, height / windowDimension.height))
-  }, [windowDimension.width, windowDimension.height, width, height])
-  return (
-    <ResizableDiv scale={scale} width={width} height={height}>
-      {children}
-    </ResizableDiv>
-  )
-}

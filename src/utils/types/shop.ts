@@ -56,3 +56,8 @@ export interface Item {
   summary: string
   author: string
 }
+
+export interface PaymentApiResponse {
+  download_uri?: string
+  authorize_uri?: string
+}
