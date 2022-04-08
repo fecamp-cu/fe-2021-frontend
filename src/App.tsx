@@ -17,6 +17,7 @@ import Login from "./pages/Login/Login"
 import Payment from "./pages/Payment/Payment"
 import PaymentConfirm from "./pages/Payment/PaymentConfirm"
 import useLoading from "./hooks/useLoading"
+import { QrcodePage } from "./pages/Payment/Qrcode"
 
 function App() {
   useLoading()
@@ -48,6 +49,7 @@ function App() {
           <Route path="/profile/edit" element={<ProfileEdit user={user} setUser={setUser} />}></Route>
           <Route path="/payment" element={<Payment />}></Route>
           <Route path="/paymentconfirm" element={<PaymentConfirm />}></Route>
+          <Route path="/payment/qr" element={<QrcodePage></QrcodePage>}></Route>
         </Routes>
       </PageContainer>
       <Footer

@@ -52,9 +52,7 @@ function LandingPage() {
                 <ApplyButton />
               </a>
               <HeroText className="font-BaiJamjuree text-lg font-semibold text-red-1">รู้จักค่าย</HeroText>
-              <AnchorLink href="#main-info-landing">
-                <IoIosArrowDown className="h-12 w-12 animate-pulse text-red-1" />
-              </AnchorLink>
+              <IoIosArrowDown className="h-12 w-12 animate-pulse text-red-1" />
             </HeroContent>
           </Hero>
 

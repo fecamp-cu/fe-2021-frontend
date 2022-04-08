@@ -16,6 +16,7 @@ import KrungSri from "../../assets/images/bank_krungsri.png"
 import SCB from "../../assets/images/bank_scb.png"
 import BBL from "../../assets/images/bank_bbl.png"
 import SomeBank from "../../assets/images/bank_something.png"
+import { useNavigate } from "react-router-dom"
 
 interface HeadingProps {
   index: number
@@ -37,6 +38,7 @@ const PaymentComponentBackground = styled.div.attrs({ className: "mt-5" })`
   margin: auto;
   width max-content;
   height:auto;
+  margin-bottom: 30px;
 `
 
 const Header = styled.h1`
@@ -111,24 +113,6 @@ const TextInput = styled.input`
   line-height: 17px;
   align-items: center;
 `
-
-const WhiteSelect = styled.select`
-  border: 1px solid #ffffff;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
-  background: var(--gm-color);
-  border-radius: 5px;
-  margin-right: 20px;
-  color: #ffffff;
-
-  font-family: Bai Jamjuree;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  align-items: center;
-`
 const FormContainer = styled.div`
   & > div {
     display: block;
@@ -136,6 +120,7 @@ const FormContainer = styled.div`
   }
 `
 function Payment() {
+  const navigate = useNavigate()
   const { cart, dispatchCart, getTotalPrice } = useCart(book)
   const totalPrice = getTotalPrice()
   const [values, setValues] = useState({
@@ -196,6 +181,7 @@ function Payment() {
   const checkout = async (omiseNonce?: string) => {
     const source = omiseNonce ? { id: omiseNonce, amount: getTotalPrice() * 100 } : undefined
     const basket = cart.books.map(({ productId, quantity, price }) => ({ productId, quantity, price }))
+    const paymentOption = getPaymentOption(paymentMethod)
     let data: CustomerInfo = {} as CustomerInfo
     if (!isUseOldAddress) {
       const shippingInfo = {
@@ -207,18 +193,19 @@ function Payment() {
       }
       data = { ...values, ...shippingInfo, basket }
     } else data = { ...values, basket }
-    const bankUri = await apiClient.checkout(data, getPaymentOption(paymentMethod), source)
-    if (bankUri) {
-      window.open(bankUri)
+    const res = await apiClient.checkout(data, paymentOption, source)
+    console.log(res)
+    if (res?.authorize_uri) {
+      window.open(res.authorize_uri)
+    } else if (res?.download_uri) {
+      navigate(`qr`, { state: res })
     }
   }
   const onCheckout = (e: any) => {
     e.preventDefault()
-    if (getPaymentOption(paymentMethod).bank === "internet-banking") {
+    if (getPaymentOption(paymentMethod).type !== "credit-card") {
       checkout()
-      return
-    }
-    checkoutWithOmise(totalPrice, checkout, paymentMethod)
+    } else checkoutWithOmise(totalPrice, checkout, paymentMethod)
   }
   const Heading = ({ title, index }: HeadingProps) => {
     return (

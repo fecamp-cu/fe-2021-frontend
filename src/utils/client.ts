@@ -182,8 +182,8 @@ const checkout = async (customerInfo: CustomerInfo, paymentOption: PaymentOption
     bank: paymentOption.bank,
   }
   try {
-    const res = await client.post<{ authorize_uri: string }>(`/shop/checkout/${paymentOption.type}`, body)
-    return res.data?.authorize_uri
+    const res = await client.post<{ authorize_uri?: string; download_uri?: string }>(`/shop/checkout/${paymentOption.type}`, body)
+    return res.data
   } catch (err) {
     console.log(err)
   }
