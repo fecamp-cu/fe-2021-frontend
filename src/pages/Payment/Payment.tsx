@@ -198,7 +198,7 @@ function Payment() {
     if (res?.authorize_uri) {
       window.open(res.authorize_uri)
     } else if (res?.download_uri) {
-      navigate(`qr`, { state: res })
+      navigate(`qr`, { state: { ...res, amount: totalPrice } })
     }
   }
   const onCheckout = (e: any) => {

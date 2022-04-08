@@ -34,5 +34,5 @@ export const FloatingGlassBox = styled.div`
   background: var(--gm-color);
   border-radius: 17px;
   max-width: 500px;
-  margin: 20% auto 30% auto;
+  margin: 10% auto 30% auto;
 `

@@ -60,4 +60,5 @@ export interface Item {
 export interface PaymentApiResponse {
   download_uri?: string
   authorize_uri?: string
+  amount: number
 }
