@@ -29,7 +29,7 @@ function PaymentConfirm() {
       <main className="py-8 px-8">
         <div>
           <div className="flex justify-center">
-            <MdStore size={"10rem"} color="white" />
+            <MdStore size="18rem" color="white" />
           </div>
           <Header>สั่งซื้อเรียบร้อย</Header>
         </div>
