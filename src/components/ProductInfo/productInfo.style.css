@@ -12,4 +12,8 @@
   .product-title {
     order: -9999;
   }
+  .product-img-container {
+    max-width: 335px;
+    width: auto;
+  }
 }
