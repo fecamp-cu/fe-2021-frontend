@@ -13,14 +13,18 @@ export const QrcodePage = () => {
   }, [navigate])
   const { time, startTimer } = useTimer(600, onTimeout)
   useEffect(() => {
+    if (!paymentState?.download_uri) {
+      alert("ไม่สามารถดำเนินการ QR code ได้ กรุณาลองใหม่อีกครั้ง")
+      navigate(-1)
+    }
     startTimer()
-  }, [startTimer])
+  }, [paymentState?.download_uri, startTimer, navigate])
   return (
     <FloatingGlassBox>
       <div className=" flex flex-col justify-center py-8 px-8">
         <img src={paymentState?.download_uri || "https://picsum.photos/283/328"} />
         <div className="mt-5 flex flex-col items-center text-white">
-          <h1 className="text-xl font-bold sm:text-3xl">ยอดเงินของรายการสั่งซื้อนี้ : {paymentState?.amount || 5000}</h1>
+          <h1 className="text-xl font-bold sm:text-3xl">ยอดเงินของรายการสั่งซื้อนี้ : {paymentState?.amount}</h1>
           <p className="text-sm">กรุณาชำระเงินก่อน QR CODE หมดอายุ</p>
           <div>{formatTime(time)} นาที</div>
         </div>
