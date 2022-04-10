@@ -38,7 +38,7 @@ export type CustomerInfo = {
   basket: ProductTransaction[]
 }
 
-const client = Axios.create({
+export const client = Axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   withCredentials: true,
 })

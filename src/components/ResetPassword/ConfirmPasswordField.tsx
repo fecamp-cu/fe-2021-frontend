@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import InputField from "./InputField"
+import ConfirmPasswordInput from "./ConfirmPasswordInput"
 
 const Container = styled.div`
   display: grid;
@@ -20,19 +20,20 @@ const GridTextfieldItem = styled.div`
   border: 0px solid black;
 `
 
-const TextField: React.FC<{ title: string; placeholder: string; formTitle: string; handleFormUpdate: (title: string, text: string) => void }> = ({
-  title,
-  placeholder,
-  formTitle,
-  handleFormUpdate,
-}) => {
+const ConfirmPasswordField: React.FC<{
+  title: string
+  placeholder: string
+  formTitle: string
+  handleFormUpdate: (title: string, text: string) => void
+  password: string
+}> = ({ title, placeholder, formTitle, handleFormUpdate,password }) => {
   return (
     <Container>
       <Body>{title}</Body>
       <GridTextfieldItem>
-        <InputField placeholder={placeholder} handleFormUpdate={handleFormUpdate} formTitle={formTitle} inputType = "password" />
+        <ConfirmPasswordInput password = {password} placeholder={placeholder} handleFormUpdate={handleFormUpdate} formTitle={formTitle} inputType="password" />
       </GridTextfieldItem>
     </Container>
   )
 }
-export default TextField
+export default ConfirmPasswordField;

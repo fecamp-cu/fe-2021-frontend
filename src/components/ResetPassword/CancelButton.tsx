@@ -21,8 +21,11 @@ const Text = styled.div`
   font-size: 1.25rem;
 `
 const CancelButton = () => {
+  const handleOnCancel = ()=>{
+    window.location.reload();
+  }
   return (
-    <Button>
+    <Button onClick={handleOnCancel}>
       <Text>ยกเลิก</Text>
     </Button>
   )

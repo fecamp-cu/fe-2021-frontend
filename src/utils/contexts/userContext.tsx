@@ -16,6 +16,7 @@ export const useUserContext = () => useContext(UserContext)
 
 const UserProvider = ({ ...props }) => {
   const [user, setUser] = useState<User>({} as User)
+  console.log(user);
   const location = useLocation()
   const logout = async () => {
     await apiClient.logout()

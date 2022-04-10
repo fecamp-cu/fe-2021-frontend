@@ -16,8 +16,8 @@ import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
 import Payment from "./pages/Payment/Payment"
 import PaymentConfirm from "./pages/Payment/PaymentConfirm"
-import ForgotPassword from "./pages/ResetPassword/ForgotPassword"
-import ChangePassword from "./pages/ResetPassword/ChangePassword"
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword"
+import ResetPassword from "./pages/ResetPassword/ResetPassword"
 import Privacy from "./pages/Privacy/Privacy"
 
 function App() {
@@ -34,7 +34,6 @@ function App() {
 
     fetchUser()
   }, [setUser])
-
   setUpOmise()
   return (
     <>
@@ -49,9 +48,10 @@ function App() {
           <Route path="/profile/edit" element={<ProfileEdit user={user} setUser={setUser} />}></Route>
           <Route path="/payment" element={<Payment />}></Route>
           <Route path="/paymentconfirm" element={<PaymentConfirm />}></Route>
-          <Route path="/login/forgotPassword" element={<ForgotPassword />}></Route>
-          <Route path="/login/changePassword" element={<ChangePassword />}></Route>
+          <Route path="/forgotPassword" element={<ForgotPassword />}></Route>
+          <Route path="/reset-password" element={<ResetPassword />}></Route>
           <Route path="/privacyPolicy" element={<Privacy />} />
+
         </Routes>
       </PageContainer>
       <Footer

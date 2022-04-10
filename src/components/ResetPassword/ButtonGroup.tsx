@@ -1,3 +1,4 @@
+import { memo } from "react"
 import styled from "styled-components"
 import CancelButton from "./CancelButton"
 import SubmitButton from "./SubmitButton"
@@ -7,15 +8,18 @@ const Container = styled.div`
   align-items: center;
   gap: 1rem;
   position: absolute;
-  bottom:2rem;
+  bottom: 2rem;
 `
 
-const ButtonGroup = () => {
+const ButtonGroup: React.FC<{ canSubmit: boolean; handleOnSubmit: () => Promise<{ status: number; errorText: string }> }> = ({
+  canSubmit,
+  handleOnSubmit,
+}) => {
   return (
     <Container>
       <CancelButton />
-      <SubmitButton />
+      <SubmitButton disabled={!canSubmit} handleOnSubmit={handleOnSubmit} />
     </Container>
   )
 }
-export default ButtonGroup
+export default memo(ButtonGroup)

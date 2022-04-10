@@ -19,13 +19,22 @@ const Button = styled.button`
   padding: 4px 0rem;
   background-color: white;
   color: rgba(176, 63, 70, 1);
+  :disabled {
+    background: rgba(255, 255, 255, 0.5);
+    :hover {
+      color: rgba(176, 63, 70, 1);
+    }
+  }
 `
 const Text = styled.div`
   font-size: 1.25rem;
 `
-const SubmitButton = () => {
+const SubmitButton: React.FC<{ disabled: boolean; handleOnSubmit: () => Promise<{status:number,errorText:string}> }> = ({ disabled, handleOnSubmit }) => {
+  const handleOnClick = () => {
+    handleOnSubmit();
+  }
   return (
-    <Button>
+    <Button disabled={disabled} onClick={handleOnClick}>
       <Text>ยืนยัน</Text>
     </Button>
   )

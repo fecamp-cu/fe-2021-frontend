@@ -1,18 +1,17 @@
 import { ChangeEvent, useEffect, useState, memo } from "react"
 import styled from "styled-components"
 import { InputChecker } from "./helper/InputChecker"
-
-export interface InputProps {
-  warning: boolean
-}
+import { PasswordChecker } from "./helper/PasswordChecker"
+import { InputProps } from "./InputField"
 
 const Input = styled.input<InputProps>`
   padding: 0.5em;
   background: rgba(255, 255, 255, 0.3);
-  border: 1px solid ${(props) => (props.warning ? "#FFA500" : "#ffffff")};
+  border: 1px solid ${props => props.warning? "#FFA500" : "#ffffff"};
   border-radius: 4px;
   height: 2rem;
   width: 100%;
+
   ::placeholder {
     color: rgba(255, 255, 255, 0.8);
   }
@@ -28,12 +27,13 @@ const WarningText = styled.div`
   font-size: 14px;
 `
 
-const InputField: React.FC<{
+const ConfirmPasswordInput: React.FC<{
   placeholder: string
   handleFormUpdate: (title: string, text: string) => void
-  formTitle: string
+  formTitle?: string
   inputType: string
-}> = ({ placeholder, handleFormUpdate, formTitle, inputType }) => {
+  password: string
+}> = ({ placeholder, handleFormUpdate, password,formTitle = "confirmPassword" }) => {
   const [input, setInput] = useState<string>("")
   const [inputProperty, setInputProperty] = useState<{ focus: boolean; everType: boolean; isEmpty: boolean }>({
     focus: false,
@@ -46,12 +46,8 @@ const InputField: React.FC<{
       handleFormUpdate(formTitle, input)
       if (!inputProperty.everType || inputProperty.isEmpty) {
         setWarning({ warning: false, warningText: "" })
-      } else if (!InputChecker(inputType, input)) {
-        if (inputType === "email") {
-          setWarning({ warning: true, warningText: "โปรดป้อนอีเมลให้ถูกต้อง" })
-        } else {
-          setWarning({ warning: true, warningText: "รหัสผ่านต้องมีึตวามยาวอย่างน้อย 8 หลัก" })
-        }
+      } else if (!PasswordChecker(input, password)) {
+        setWarning({ warning: true, warningText: input === password ? "รหัสผ่านต้องมีึตวามยาวอย่างน้อย 8 หลัก" : "รหัสผ่านที่ยืนยันไม่ตรงกัน" })
       } else {
         setWarning({ warning: false, warningText: "" })
       }
@@ -59,7 +55,7 @@ const InputField: React.FC<{
     return () => {
       clearTimeout(timer)
     }
-  }, [handleFormUpdate, input, formTitle, inputProperty, inputType])
+  }, [handleFormUpdate, input, formTitle, inputProperty, password])
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.value) {
@@ -80,17 +76,17 @@ const InputField: React.FC<{
   return (
     <Container>
       <Input
-        warning={warning.warning}
         placeholder={placeholder}
         onChange={handleInputChange}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        type={inputType === "password" ? "password" : ""}
+        type="password"
+        warning = {warning.warning}
       />
       <WarningText>{warning.warningText}</WarningText>
     </Container>
   )
 }
 
-export default memo(InputField)
+export default memo(ConfirmPasswordInput)
 //export default InputField;
