@@ -15,7 +15,11 @@ export const ResetPasswordWithtoken = async (
     } catch (err) {
       const error = err as AxiosError
       if (error.response) {
-        return { status: error.response.status, errorText: error.response.data.message }
+        const errorMessage = error.response.data.message;
+        if (errorMessage === "The token is already used"){
+          return { status: error.response.status, errorText: "โทเค่นในการรีเซ็ตรหัสผ่านนี้ได้ถูกใช้แล้ว"}
+        }
+        return { status: error.response.status, errorText: "เกิดข้อผิดพลาดกับเว็ปไซต์ โปรดลองภายหลัง"}
       }
       return { status: 500, errorText: "พบปัญหาที่ไม่ทราบสาเหตุ" }
     }

@@ -1,6 +1,6 @@
 import { AxiosError } from "axios"
 import { client } from "../../../utils/client"
-import { EmailChecker } from "./EmailChecker"
+import { EmailChecker } from "../../ResetPassword/helper/EmailChecker";
 
 export const SendPasswordRequest = async (formData: { [key: string]: string }):Promise<{status:number,errorText:string}> => {
   if (EmailChecker(formData.resetEmail)) {
@@ -10,7 +10,7 @@ export const SendPasswordRequest = async (formData: { [key: string]: string }):P
     } catch (err) {
       const error = err as AxiosError
       if (error.response) {
-        return { status: error.response.status, errorText: error.response.data.message }
+        return { status: error.response.status, errorText: "เกิดข้อผิดพลาดกับเว็ปไซต์ โปรดลองภายหลัง" }
       }
       return { status: 500, errorText: "พบปัญหาที่ไม่ทราบสาเหตุ" }
     }

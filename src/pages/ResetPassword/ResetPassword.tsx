@@ -5,9 +5,12 @@ import { PasswordChecker } from "../../components/ResetPassword/helper/PasswordC
 import TextField from "../../components/ResetPassword/TextField"
 import Title from "../../components/ResetPassword/Title"
 import "./ResetPassword.css"
-import { useLocation, Location,useNavigate } from "react-router-dom"
+import { useLocation, Location, useNavigate } from "react-router-dom"
 import { ResetPasswordWithtoken } from "../../components/ResetPassword/helper/ResetPasswordWithtoken"
-import Success from "../../components/ResetPassword/Success";
+import Success from "../../components/ResetPassword/Success"
+import warning from "postcss/lib/warning"
+import WarningBox from "../../components/ForgotPassword/WarningBox"
+import { stringify } from "querystring"
 
 const getTokenInfo = (location: Location) => {
   const url = location.pathname + "&token=" + location.search.slice(1, location.search.length)
@@ -19,25 +22,30 @@ const getTokenInfo = (location: Location) => {
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({ password: "", confirmPassword: "" })
-  const [increment,setIncrement] = useState<number>(0);
+  const [increment, setIncrement] = useState<number>(0)
   const handleFormUpdate = useCallback((title: string, text: string) => {
     setFormData((prevForm) => ({ ...prevForm, [title]: text }))
   }, [])
   const location = useLocation()
+  const [warning,setWarning] = useState<{warningText:string,status:number}>({warningText:"",status:200});
   const handleOnSubmit = async () => {
     const [token, userId] = getTokenInfo(location)
-    const {status,errorText} = await ResetPasswordWithtoken(formData, userId, token)
-    if (status === 200 || status === 201 || status === 204){
-      setIncrement(prevIncrement => prevIncrement+1);
+    const { status, errorText } = await ResetPasswordWithtoken(formData, userId, token)
+    if (status === 200 || status === 201 || status === 204) {
+      setIncrement((prevIncrement) => prevIncrement + 1)
     }
-    return {status,errorText};
+    setWarning({status,warningText:errorText});
+    return { status, errorText }
   }
 
   return increment === 0 ? (
     <div className="logincon">
       <div className="box">
         <div className="backgroundBox">
-          <Title>เปลี่ยนรหัสผ่าน</Title>
+          <div className="titleContainer">
+            <Title>เปลี่ยนรหัสผ่าน</Title>
+            <WarningBox warningText={warning.warningText} status={warning.status} />
+          </div>
           <div className="changePasswordBox">
             <TextField title="รหัสผ่านใหม่" placeholder="รหัสผ่าน..." formTitle="password" handleFormUpdate={handleFormUpdate} />
             <ConfirmPasswordField
@@ -52,6 +60,8 @@ const ResetPassword = () => {
         </div>
       </div>
     </div>
-  ) : <Success/>
+  ) : (
+    <Success />
+  )
 }
 export default ResetPassword

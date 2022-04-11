@@ -59,9 +59,11 @@ const Login = () => {
             <input type="email" className="input" id="email" value={values.email} onChange={onChange} required></input>
             <label className="label">รหัสผ่าน</label>
             <input type="password" className="input" id="password" value={values.password} onChange={onChange} required></input>
-            <p className="mx-1.5 text-right text-sm text-white" onClick={() => handleReset()}>
-              ลืมรหัสผ่าน
-            </p>
+            <Link to = "/forgotPassword">
+              <p className="mx-1.5 text-right text-sm text-white">
+                ลืมรหัสผ่าน
+              </p>
+            </Link>
             <div className="my-1.5 mx-2.5">
               <Button type="submit" form="loginform" bg="white" textColor="#9B2C33" outline={false} shadow>
                 เข้าสู่ระบบ

@@ -1,3 +1,13 @@
+.titleContainer{
+  display:flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+
 @media (min-width: 1080px) {
   .successBox {
     background: linear-gradient(127.19deg, rgba(248, 248, 248, 0.35) 0%, rgba(248, 248, 248, 0.15) 100%);
@@ -117,3 +127,4 @@
         flex-direction: column;
       }
 }
+
