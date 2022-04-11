@@ -11,8 +11,10 @@ import Success from "../../components/ResetPassword/Success"
 import warning from "postcss/lib/warning"
 import WarningBox from "../../components/ForgotPassword/WarningBox"
 import { stringify } from "querystring"
+import { useUpdateFormData } from "../../hooks/useUpdateFormData"
+import BackgroundContainer from "../../components/ResetPassword/common/BackgroundContainer"
 
-const getTokenInfo = (location: Location) => {
+export const getTokenInfo = (location: Location) => {
   const url = location.pathname + "&token=" + location.search.slice(1, location.search.length)
   const params = new URLSearchParams(url)
   const token = params.get("token") || "invalid token"
@@ -21,45 +23,27 @@ const getTokenInfo = (location: Location) => {
 }
 
 const ResetPassword = () => {
-  const [formData, setFormData] = useState<{ [key: string]: string }>({ password: "", confirmPassword: "" })
-  const [increment, setIncrement] = useState<number>(0)
-  const handleFormUpdate = useCallback((title: string, text: string) => {
-    setFormData((prevForm) => ({ ...prevForm, [title]: text }))
-  }, [])
-  const location = useLocation()
-  const [warning,setWarning] = useState<{warningText:string,status:number}>({warningText:"",status:200});
-  const handleOnSubmit = async () => {
-    const [token, userId] = getTokenInfo(location)
-    const { status, errorText } = await ResetPasswordWithtoken(formData, userId, token)
-    if (status === 200 || status === 201 || status === 204) {
-      setIncrement((prevIncrement) => prevIncrement + 1)
-    }
-    setWarning({status,warningText:errorText});
-    return { status, errorText }
-  }
-
+  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData()
   return increment === 0 ? (
-    <div className="logincon">
-      <div className="box">
-        <div className="backgroundBox">
-          <div className="titleContainer">
-            <Title>เปลี่ยนรหัสผ่าน</Title>
-            <WarningBox warningText={warning.warningText} status={warning.status} />
-          </div>
-          <div className="changePasswordBox">
-            <TextField title="รหัสผ่านใหม่" placeholder="รหัสผ่าน..." formTitle="password" handleFormUpdate={handleFormUpdate} />
-            <ConfirmPasswordField
-              password={formData.password}
-              title="ยืนยันรหัสผ่าน"
-              placeholder="ยืนยันรหัสผ่าน..."
-              formTitle="confirmPassword"
-              handleFormUpdate={handleFormUpdate}
-            />
-          </div>
-          <ButtonGroup canSubmit={PasswordChecker(formData.password, formData.confirmPassword)} handleOnSubmit={handleOnSubmit} />
+    <BackgroundContainer>
+      <div className="backgroundBox">
+        <div className="titleContainer">
+          <Title>เปลี่ยนรหัสผ่าน</Title>
+          <WarningBox warningText={warning.warningText} status={warning.status} />
         </div>
+        <div className="changePasswordBox">
+          <TextField title="รหัสผ่านใหม่" placeholder="รหัสผ่าน..." formTitle="password" handleFormUpdate={handleFormUpdate} />
+          <ConfirmPasswordField
+            password={formData.password}
+            title="ยืนยันรหัสผ่าน"
+            placeholder="ยืนยันรหัสผ่าน..."
+            formTitle="confirmPassword"
+            handleFormUpdate={handleFormUpdate}
+          />
+        </div>
+        <ButtonGroup canSubmit={PasswordChecker(formData.password, formData.confirmPassword)} handleOnSubmit={handleOnSubmit} />
       </div>
-    </div>
+    </BackgroundContainer>
   ) : (
     <Success />
   )
