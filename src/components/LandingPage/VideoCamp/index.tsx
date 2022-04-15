@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { getYouTubeEmbedFormat } from "../../../utils/function/formatter"
 import { Root } from "../../../utils/style/common"
 
 export type VideoCampProps = {
@@ -22,7 +23,7 @@ function VideoCamp(props: VideoCampProps) {
       <VideoTitle className="my-12 text-lg font-bold">คลิปเปิดค่าย Jailbreak by FeCampX - FECamp Chula</VideoTitle>
       <iframe
         className="h-80 w-full max-w-[62.5rem] sm:h-[37.5rem]"
-        src={props.youtubeUrl}
+        src={props.youtubeUrl ? getYouTubeEmbedFormat(props.youtubeUrl) : ""}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
