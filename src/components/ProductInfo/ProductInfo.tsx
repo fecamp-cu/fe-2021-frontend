@@ -45,7 +45,6 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ title, author, summary
             <div className="order-first flex flex-col items-start sm:order-2">
               {type === "exam_preps" ? (
                 <>
-                  {/* TODO: Style buttons */}
                   <div className="mb-2 flex w-full flex-col justify-around sm:flex-row">
                     <Button outline shadow={false} lineHeight="35px" className=" mb-2 sm:mb-0 sm:mr-2">
                       ดูตัวอย่างหนังสือ
