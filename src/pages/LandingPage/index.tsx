@@ -29,6 +29,7 @@ function LandingPage() {
     photoPreviews: [],
     qualificationPreviews: [],
     sponcerContainers: [],
+    announcements : []
   })
   const { isLoading, setLoading } = useLoading()
 

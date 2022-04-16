@@ -9,6 +9,7 @@ export interface Setting {
   sponcerContainers: SponsorContainer[]
   timelineEvents: TimelineEvent[]
   aboutFeContainers: AboutFeContainer[]
+  announcements : Announcement[]
 }
 
 export interface AboutFeContainer {
@@ -50,4 +51,13 @@ export interface YouTube{
   likes : string,
   views : string,
   publishDate : string
+}
+
+export interface Announcement {
+  id : number,
+  dateStart : string,
+  dateEnd : string,
+  header : string,
+  description : string,
+  order : number
 }
