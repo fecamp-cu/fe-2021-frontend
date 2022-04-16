@@ -16,7 +16,7 @@ const Privacy = () => {
   return (
     <div className="privacyBG">
       <div className="privacyDetailBox">
-        <Title>นโยบายความเป็นส่วนบุคคล (Privacy Policy)</Title>
+        <Title>ข้อตกลงด้านข้อมูลส่วนบุคคลและเงื่อนไขในการสมัคร</Title>
         <ReactMarkdown children={PrivacyMD} remarkPlugins={[remarkGfm]} />
       </div>
     </div>

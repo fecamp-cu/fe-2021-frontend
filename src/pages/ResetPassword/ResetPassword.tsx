@@ -23,7 +23,7 @@ export const getTokenInfo = (location: Location) => {
 }
 
 const ResetPassword = () => {
-  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData()
+  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("password");
   return increment === 0 ? (
     <BackgroundContainer>
       <div className="backgroundBox">

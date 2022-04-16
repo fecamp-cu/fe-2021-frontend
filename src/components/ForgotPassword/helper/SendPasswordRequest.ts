@@ -3,7 +3,7 @@ import { client } from "../../../utils/client"
 import { EmailChecker } from "../../ResetPassword/helper/EmailChecker";
 
 export const SendPasswordRequest = async (formData: { [key: string]: string }):Promise<{status:number,errorText:string}> => {
-  if (EmailChecker(formData.resetEmail)) {
+  if (EmailChecker(formData.email)) {
     try {
       const response = await client.post("/auth/reset-password/request", formData)
       return { status: response.status, errorText: "" }

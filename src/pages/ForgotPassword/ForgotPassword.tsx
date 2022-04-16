@@ -10,7 +10,8 @@ import { useUpdateFormData } from "../../hooks/useUpdateFormData"
 import BackgroundContainer from "../../components/ResetPassword/common/BackgroundContainer"
 
 const ForgotPassword = () => {
-  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData()
+  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("email");
+  console.log(formData);
   return increment === 0 ? (
     <BackgroundContainer>
       <div className="backgroundBox">
@@ -21,9 +22,9 @@ const ForgotPassword = () => {
 
         <div className="resetPasswordBox">
           <Body>โปรดป้อนที่อยู่อีเมลเพื่อรีเซ็ตรหัสผ่าน</Body>
-          <InputField placeholder="อีเมล..." handleFormUpdate={handleFormUpdate} formTitle="resetEmail" inputType="email" />
+          <InputField placeholder="อีเมล..." handleFormUpdate={handleFormUpdate} formTitle="email" inputType="email" />
         </div>
-        <ButtonGroup canSubmit={EmailChecker(formData.resetEmail)} handleOnSubmit={handleOnSubmit} />
+        <ButtonGroup canSubmit={EmailChecker(formData.email)} handleOnSubmit={handleOnSubmit} />
       </div>
     </BackgroundContainer>
   ) : (
