@@ -10,7 +10,7 @@ import VideoCamp from "../../components/LandingPage/VideoCamp"
 import { useEffect, useState } from "react"
 import { apiClient } from "../../utils/client"
 import star from "../../assets/images/star.svg"
-import { Setting } from "../../utils/types/setting"
+import { Setting, YouTube } from "../../utils/types/setting"
 import { IoIosArrowDown } from "react-icons/io"
 import { Hero, HeroContent, HeroText, Star } from "./style"
 import { CgSpinner } from "react-icons/cg"
@@ -22,7 +22,7 @@ function LandingPage() {
     id: 0,
     title: "",
     registerFormUrl: "",
-    youtubeUrl: "",
+    youtube: {} as YouTube,
     isActive: false,
     aboutFeContainers: [],
     timelineEvents: [],
@@ -40,7 +40,7 @@ function LandingPage() {
     }
     fetchSetting()
   }, [])
-
+  console.log(settings)
   return (
     <div className="select-none" style={{ marginTop: "-70px" }}>
       {!isLoading ? (
@@ -62,7 +62,7 @@ function LandingPage() {
             <About posts={(settings as Setting).aboutFeContainers} />
             <Star src={star} alt="starIcon" />
             <PhotoPreview photoes={(settings as Setting).photoPreviews} />
-            <VideoCamp youtubeUrl={(settings as Setting).youtubeUrl} />
+            <VideoCamp youtubeUrl={(settings as Setting).youtube.url} />
             <Star src={star} alt="starIcon" />
             <Schedule schedules={(settings as Setting).timelineEvents} />
             <Star src={star} alt="starIcon" />

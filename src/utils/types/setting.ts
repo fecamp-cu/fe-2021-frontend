@@ -2,7 +2,7 @@ export interface Setting {
   id: number
   isActive: boolean
   title: string
-  youtubeUrl: string
+  youtube : YouTube
   registerFormUrl: string
   photoPreviews: PhotoPreviewContainer[]
   qualificationPreviews: QualificationPreview[]
@@ -40,4 +40,14 @@ export interface TimelineEvent {
   eventStartDate: string
   eventEndDate: string
   text: string
+}
+
+export interface YouTube{
+  url : string,
+  title : string,
+  thumbnail : string,
+  duration : string,
+  likes : string,
+  views : string,
+  publishDate : string
 }
