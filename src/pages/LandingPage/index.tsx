@@ -4,7 +4,7 @@ import Qualifications from "../../components/LandingPage/Qualifications"
 import Schedule from "../../components/LandingPage/Schedule"
 import Sponsor from "../../components/LandingPage/Sponsor"
 import AnchorLink from "react-anchor-link-smooth-scroll"
-
+import Announcement from '../../components/Announcement'
 import PhotoPreview from "../../components/LandingPage/PhotoPreview"
 import VideoCamp from "../../components/LandingPage/VideoCamp"
 import { useEffect, useState } from "react"
@@ -46,6 +46,7 @@ function LandingPage() {
     <div className="select-none" style={{ marginTop: "-70px" }}>
       {!isLoading ? (
         <div>
+          <Announcement announcements = {(settings as Setting).announcements}/>
           <img src="https://storage.googleapis.com/fe-camp/setting-header.jpg" alt="Header" className="h-full w-full object-cover" />
           <Hero className="sm:h-64">
             <HeroContent className="bg-red-500/0">
@@ -60,6 +61,7 @@ function LandingPage() {
           </Hero>
 
           <div className="bg-landing bg-cover font-BaiJamjuree" id="main-info-landing">
+            
             <About posts={(settings as Setting).aboutFeContainers} />
             <Star src={star} alt="starIcon" />
             <PhotoPreview photoes={(settings as Setting).photoPreviews} />
