@@ -108,6 +108,10 @@ const resetPassword = async (requestReset: object) => {
   await client.post("/auth/reset-password/request", requestReset)
 }
 
+const verifyEmail = async (token: string, userId: string) => {
+  await client.get(`/auth/verify-email?token=${token}&userId=${userId}`)
+}
+
 const postRegister = async (postReg: object) => {
   const res = await client.post("/auth/register", postReg)
   return res
@@ -257,6 +261,7 @@ export const apiClient = {
   checkout,
   genCode,
   verifyCode,
+  verifyEmail,
 }
 
 const clientInstance = {}

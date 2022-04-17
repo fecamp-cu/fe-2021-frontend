@@ -91,7 +91,7 @@ const Register = () => {
     e.preventDefault()
     try {
       await apiClient.postRegister(userInfo)
-      history("/login")
+      history("/emailVerify")
     } catch (error: any) {
       alert(error.response.data.message)
     }

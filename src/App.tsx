@@ -4,6 +4,8 @@ import { PageContainer } from "./components/Containers"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar"
 import Product from "./pages/Product/Product"
+import EmailVerify from "./pages/EmailVerify/EmailVerify"
+import EmailVerifed from "./pages/EmailVerify/verified"
 import { apiClient } from "./utils/client"
 import { setUpOmise } from "./utils/omise"
 import useWindowDimensions from "./hooks/useWindowDimension"
@@ -48,6 +50,8 @@ function App() {
           <Route path="/profile/edit" element={<ProfileEdit user={user} setUser={setUser} />}></Route>
           <Route path="/payment" element={<Payment />}></Route>
           <Route path="/paymentconfirm" element={<PaymentConfirm />}></Route>
+          <Route path="/emailverify" element={<EmailVerify />}></Route>
+          <Route path="/verify-email" element={<EmailVerifed />}></Route>
         </Routes>
       </PageContainer>
       <Footer
