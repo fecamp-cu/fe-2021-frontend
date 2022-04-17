@@ -15,25 +15,61 @@ const arrayChange = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "
 
 function Announcements(prop : AnnouncementProp){
     return (
-        <AnnouncementContainer>
-            {prop.announcements.map((news : Announcement) => {
-                const startDate = Date.parse(news.dateStart)
-                const endDate = Date.parse(news.dateEnd)
-                
-                const dayStart = getDate(startDate)
-                const monthStart = getMonth(startDate)+1
+        <div id="carouselExampleControls" className = "carousel slide relative"  data-bs-ride = "carousel">
+            <button
+                className ="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev"
+            >
+                <span className ="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                <span className ="visually-hidden">Previous</span>
+            </button>
+            <AnnouncementContainer>
+                <div className ="carousel-inner overflow-hidden w-full">
+                    {prop.announcements.map((news : Announcement, i : number) => {
+                        const startDate = Date.parse(news.dateStart)
+                        const endDate = Date.parse(news.dateEnd)
+                        
+                        const dayStart = getDate(startDate)
+                        const monthStart = getMonth(startDate)+1
 
-                const dayEnd = getDate(endDate)
-                const monthEnd = getMonth(endDate)+1
-
-                return (
-                <AnnouncementBox >
-                    <Header>{news.header}</Header>
-                    <Description>{news.description}</Description>
-                    <Duration>{dayStart} {arrayChange[monthStart]} - {dayEnd} {arrayChange[monthEnd]} เท่านั้น</Duration>
-                </AnnouncementBox>
-            )})}
-        </AnnouncementContainer>
+                        const dayEnd = getDate(endDate)
+                        const monthEnd = getMonth(endDate)+1
+                        if( i === 0){
+                            return (
+                                <div className = "carousel-item active float-left w-full">
+                                    <AnnouncementBox>
+                                        <Header>{news.header}</Header>
+                                        <Description>{news.description}</Description>
+                                        <Duration>{dayStart} {arrayChange[monthStart]} - {dayEnd} {arrayChange[monthEnd]} เท่านั้น</Duration>
+                                    </AnnouncementBox>
+                                </div>
+                            )
+                        }else{
+                            return (
+                                <div className = "carousel-item float-left w-full">
+                                    <AnnouncementBox>
+                                        <Header>{news.header}</Header>
+                                        <Description>{news.description}</Description>
+                                        <Duration>{dayStart} {arrayChange[monthStart]} - {dayEnd} {arrayChange[monthEnd]} เท่านั้น</Duration>
+                                    </AnnouncementBox>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+            </AnnouncementContainer>
+            <button
+                    className ="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                    type="button"
+                    data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next"
+                >
+                    <span className ="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                    <span className ="visually-hidden">Next</span>
+            </button>
+        </div>
     )
 }
 

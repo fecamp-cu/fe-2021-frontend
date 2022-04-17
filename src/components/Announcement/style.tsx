@@ -1,21 +1,16 @@
 import styled, { css } from "styled-components"
 
 export const AnnouncementContainer = styled.div`
-    display : flex;
-    flex-direction : row;
-    row-gap : 40px;
     margin-top : 54px;
-    padding : 45px 0px;
-    padding-left : 30px;
+    padding : 45px 200px;
 `
 
 export const AnnouncementBox = styled.div`
-    width : 810px;
     height : 249px;
-    padding : 15px;
+    padding : 15px 100px;
+    margin : 0px 100px;
     border : 1px solid #ffffff;
     border-radius : 20px;
-    marginTop : 54px;
     background: linear-gradient(98.4deg, rgba(255, 255, 255, 0.175) 10.21%, rgba(255, 255, 255, 0.07) 90.92%);
     backdrop-filter: blur(50px);
     color : #ffffff;
