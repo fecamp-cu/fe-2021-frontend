@@ -16,17 +16,29 @@ const arrayChange = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "
 function Announcements(prop : AnnouncementProp){
     return (
         <div id="carouselExampleControls" className = "carousel slide relative"  data-bs-ride = "carousel">
-            <button
-                className ="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev"
-            >
-                <span className ="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                <span className ="visually-hidden">Previous</span>
-            </button>
+            <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                <button
+                    type="button"
+                    data-bs-target="#carouselExampleControls"
+                    data-bs-slide-to="0"
+                    className="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                ></button>
+                {[...Array(Math.max(0, prop.announcements.length - 1))].map((e, i) => {
+                    return (
+                    <button
+                        key={i}
+                        type="button"
+                        data-bs-target="#carouselExampleControls"
+                        data-bs-slide-to={`${i + 1}`}
+                        aria-label={`Slide ${i + 2}`}
+                    ></button>
+                    )
+                })}
+            </div>
             <AnnouncementContainer>
-                <div className ="carousel-inner overflow-hidden w-full">
+                <div className ="carousel-inner relative overflow-hidden w-full">
                     {prop.announcements.map((news : Announcement, i : number) => {
                         const startDate = Date.parse(news.dateStart)
                         const endDate = Date.parse(news.dateEnd)
@@ -38,7 +50,7 @@ function Announcements(prop : AnnouncementProp){
                         const monthEnd = getMonth(endDate)+1
                         if( i === 0){
                             return (
-                                <div className = "carousel-item active float-left w-full">
+                                <div key={`item-${i}`} className = "carousel-item active float-left w-full">
                                     <AnnouncementBox>
                                         <Header>{news.header}</Header>
                                         <Description>{news.description}</Description>
@@ -48,7 +60,7 @@ function Announcements(prop : AnnouncementProp){
                             )
                         }else{
                             return (
-                                <div className = "carousel-item float-left w-full">
+                                <div key={`item-${i}`} className = "carousel-item float-left w-full">
                                     <AnnouncementBox>
                                         <Header>{news.header}</Header>
                                         <Description>{news.description}</Description>
@@ -60,6 +72,15 @@ function Announcements(prop : AnnouncementProp){
                     })}
                 </div>
             </AnnouncementContainer>
+            <button
+                className ="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev"
+            >
+                <span className ="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                <span className ="visually-hidden">Previous</span>
+            </button>
             <button
                     className ="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
                     type="button"
