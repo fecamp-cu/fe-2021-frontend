@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react"
+import { MouseEventHandler, useEffect, useState } from "react"
 import styled from "styled-components"
 
 const Button = styled.button`
@@ -32,8 +32,18 @@ const Text = styled.div`
 `
 const ConfirmButton: React.FC<{
   text: string
-  handleOnClick: MouseEventHandler<HTMLButtonElement>;
+  handleOnClick: MouseEventHandler<HTMLButtonElement>
 }> = ({ text, handleOnClick }) => {
+  const [isClick, setIsClick] = useState<boolean>(false)
+  const [countDown, setCountDown] = useState<number>(10)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCountDown((prevValue) => prevValue - 1)
+    }, 1000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
   return (
     <Button onClick={handleOnClick}>
       <Text>{text}</Text>

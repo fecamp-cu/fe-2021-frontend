@@ -13,7 +13,6 @@ import { Fragment } from "react"
 
 const ForgotPassword = () => {
   const [formData, increment, loading, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("email")
-  console.log(formData)
   return increment === 0 ? (
     <BackgroundContainer>
       <Fragment>

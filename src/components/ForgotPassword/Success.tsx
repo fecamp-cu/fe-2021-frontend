@@ -33,6 +33,7 @@ const Success: React.FC<{
   }>
 }> = ({ handleOnClick }) => {
   // return
+
   return (
     <BackgroundContainer>
       <div className="successBox">

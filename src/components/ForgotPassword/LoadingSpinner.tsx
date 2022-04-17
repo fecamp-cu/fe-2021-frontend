@@ -16,6 +16,7 @@ const Container = styled.div`
   position: fixed;
 `
 const Title = styled.div`
+  color: black;
   font-size: 20px;
 `
 
