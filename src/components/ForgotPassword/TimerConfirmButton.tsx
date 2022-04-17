@@ -58,7 +58,6 @@ const TimerConfirmButton: React.FC<{
       setCountDown(30)
     }
   }, [countDown, isClick])
-  console.log(countDown)
 
   return (
     <Button onClick={handleOnConfirm} disabled = {isClick}>
