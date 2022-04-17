@@ -1,11 +1,10 @@
 import styled from "styled-components"
-import ConfirmButton from "../ForgotPassword/ConfirmButton"
 import CheckSvg from "./CheckSvg"
 import "../../pages/ResetPassword/ResetPassword.css"
 import "./Success.css"
 import { useDecreaseTimeShow } from "../../hooks/useDecreaseTimeShow"
-import BackgroundContainer from "./common/BackgroundContainer";
-
+import BackgroundContainer from "./common/BackgroundContainer"
+import ConfirmButton from "./ConfirmButton"
 
 const Title = styled.div`
   @media (min-width: 320px) and (max-width: 480px) {

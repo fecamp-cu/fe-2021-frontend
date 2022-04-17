@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import ConfirmButton from "./ConfirmButton"
+import TimerConfirmButton from "./TimerConfirmButton"
 import EmailSvg from "./EmailSvg"
 import "../../pages/ResetPassword/ResetPassword.css"
 import "./Success.css"
@@ -27,11 +27,11 @@ const Body = styled.div`
 `
 
 const Success: React.FC<{
-  handleOnClick: () => Promise<{
+  handleOnSubmit: () => Promise<{
     status: number
     errorText: string
   }>
-}> = ({ handleOnClick }) => {
+}> = ({ handleOnSubmit }) => {
   // return
 
   return (
@@ -43,7 +43,7 @@ const Success: React.FC<{
           <Body>คุณสามารถเช็คในอีเมลเพื่อรีเซ็ตรหัสผ่านได้</Body>
           <Body>หากไม่ได้รับอีเมลยืนยัน กรุณาคลิกปุ่มด้านล่างอีกครั้ง</Body>
         </div>
-        <ConfirmButton text="คลิกที่นี่เพื่อขออีเมลยืนยันอีกครั้ง" handleOnClick={handleOnClick} />
+        <TimerConfirmButton textBeforeClick="คลิกที่นี่เพื่อขออีเมลยืนยันอีกครั้ง" textAfterClick="กรุณารอสักครู่เพื่อส่งคำขออีกครั้ง" handleOnSubmit={handleOnSubmit} />
       </div>
     </BackgroundContainer>
   )

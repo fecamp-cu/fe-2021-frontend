@@ -28,11 +28,11 @@ const ForgotPassword = () => {
           </div>
           <ButtonGroup canSubmit={EmailChecker(formData.email)} handleOnSubmit={handleOnSubmit} />
         </div>
-        <LoadingSpinner isLoading = {loading} />
+        <LoadingSpinner isLoading={loading} />
       </Fragment>
     </BackgroundContainer>
   ) : (
-    <Success handleOnClick={handleOnSubmit} />
+    <Success handleOnSubmit={handleOnSubmit} />
   )
 }
 export default ForgotPassword

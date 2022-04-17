@@ -11,7 +11,6 @@ const Button = styled.button`
   @media (max-width: 320px) {
     width: 200px;
   }
-
   width: 300px;
   color: #d1555d;
   background-color: white;
@@ -34,16 +33,6 @@ const ConfirmButton: React.FC<{
   text: string
   handleOnClick: MouseEventHandler<HTMLButtonElement>
 }> = ({ text, handleOnClick }) => {
-  const [isClick, setIsClick] = useState<boolean>(false)
-  const [countDown, setCountDown] = useState<number>(10)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCountDown((prevValue) => prevValue - 1)
-    }, 1000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
   return (
     <Button onClick={handleOnClick}>
       <Text>{text}</Text>
