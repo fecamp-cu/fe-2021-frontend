@@ -8,24 +8,29 @@ import Success from "../../components/ForgotPassword/Success"
 import WarningBox from "../../components/ForgotPassword/WarningBox"
 import { useUpdateFormData } from "../../hooks/useUpdateFormData"
 import BackgroundContainer from "../../components/ResetPassword/common/BackgroundContainer"
+import LoadingSpinner from "../../components/ForgotPassword/LoadingSpinner"
+import { Fragment } from "react"
 
 const ForgotPassword = () => {
-  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("email");
-  console.log(formData);
+  const [formData, increment, loading, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("email")
+  console.log(formData)
   return increment === 0 ? (
     <BackgroundContainer>
-      <div className="backgroundBox">
-        <div className="titleContainer">
-          <Title>ลืมรหัสผ่าน</Title>
-          <WarningBox warningText={warning.warningText} status={warning.status} />
-        </div>
+      <Fragment>
+        <div className="backgroundBox">
+          <div className="titleContainer">
+            <Title>ลืมรหัสผ่าน</Title>
+            <WarningBox warningText={warning.warningText} status={warning.status} />
+          </div>
 
-        <div className="resetPasswordBox">
-          <Body>โปรดป้อนที่อยู่อีเมลเพื่อรีเซ็ตรหัสผ่าน</Body>
-          <InputField placeholder="อีเมล..." handleFormUpdate={handleFormUpdate} formTitle="email" inputType="email" />
+          <div className="resetPasswordBox">
+            <Body>โปรดป้อนที่อยู่อีเมลเพื่อรีเซ็ตรหัสผ่าน</Body>
+            <InputField placeholder="อีเมล..." handleFormUpdate={handleFormUpdate} formTitle="email" inputType="email" />
+          </div>
+          <ButtonGroup canSubmit={EmailChecker(formData.email)} handleOnSubmit={handleOnSubmit} />
         </div>
-        <ButtonGroup canSubmit={EmailChecker(formData.email)} handleOnSubmit={handleOnSubmit} />
-      </div>
+        <LoadingSpinner isLoading = {loading} />
+      </Fragment>
     </BackgroundContainer>
   ) : (
     <Success handleOnClick={handleOnSubmit} />

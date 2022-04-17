@@ -13,6 +13,7 @@ import WarningBox from "../../components/ForgotPassword/WarningBox"
 import { stringify } from "querystring"
 import { useUpdateFormData } from "../../hooks/useUpdateFormData"
 import BackgroundContainer from "../../components/ResetPassword/common/BackgroundContainer"
+import LoadingSpinner from "../../components/ForgotPassword/LoadingSpinner"
 
 export const getTokenInfo = (location: Location) => {
   const url = location.pathname + "&token=" + location.search.slice(1, location.search.length)
@@ -23,7 +24,7 @@ export const getTokenInfo = (location: Location) => {
 }
 
 const ResetPassword = () => {
-  const [formData, increment, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("password");
+  const [formData, increment, loading, handleFormUpdate, warning, handleOnSubmit] = useUpdateFormData("password")
   return increment === 0 ? (
     <BackgroundContainer>
       <div className="backgroundBox">
@@ -42,6 +43,7 @@ const ResetPassword = () => {
           />
         </div>
         <ButtonGroup canSubmit={PasswordChecker(formData.password, formData.confirmPassword)} handleOnSubmit={handleOnSubmit} />
+        <LoadingSpinner isLoading = {loading} />
       </div>
     </BackgroundContainer>
   ) : (
