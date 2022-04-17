@@ -17,7 +17,7 @@ const FirstTime = () => {
     let interval: ReturnType<typeof setInterval>
     ;(async () => {
       if (userId && token) {
-        await apiClient.verifyEmail(userId, token)
+        await apiClient.verifyEmail(token, userId)
         interval = setInterval(() => {
           if (countdown > 0) {
             setCountDown(countdown - 1)
