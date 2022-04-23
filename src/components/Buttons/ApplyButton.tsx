@@ -102,7 +102,7 @@ interface ApplyButtonProps {
 const ApplyButton: React.FC<ApplyButtonProps> = ({ onClick }) => {
   return (
     <ApplyBtn onClick={onClick}>
-      <ApplyTxt>สมัครค่ายและตรวจสอบสถานะ</ApplyTxt>
+      <ApplyTxt>ตรวจสอบสถานะ</ApplyTxt>
     </ApplyBtn>
   )
 }
