@@ -52,13 +52,13 @@ jobs:
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
 
-      - uses: google-github-actions/get-gke-credentials@main
-        with:
-          cluster_name: ${{ env.GKE_CLUSTER }}
-          location: ${{ env.GKE_ZONE }}
-          credentials: ${{ secrets.GKE_SA_KEY }}
+      # - uses: google-github-actions/get-gke-credentials@main
+      #   with:
+      #     cluster_name: ${{ env.GKE_CLUSTER }}
+      #     location: ${{ env.GKE_ZONE }}
+      #     credentials: ${{ secrets.GKE_SA_KEY }}
 
-      - name: Deploy
-        run: |
-          kubectl apply -f k8s-$BRANCH.yaml -n $BRANCH
-          kubectl rollout restart deployment/$GKE_DEPLOYMENT_NAME -n $BRANCH
+      # - name: Deploy
+      #   run: |
+      #     kubectl apply -f k8s-$BRANCH.yaml -n $BRANCH
+      #     kubectl rollout restart deployment/$GKE_DEPLOYMENT_NAME -n $BRANCH
